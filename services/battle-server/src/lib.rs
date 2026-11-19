@@ -560,6 +560,45 @@ pub struct CommandExecutionResult {
     pub outcome: MatchOutcome,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct CardSummaryDto {
+    pub instance_id: u32,
+    pub card_id: String,
+    pub owner: usize,
+    pub reclaimed: bool,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct PlayerSnapshotDto {
+    pub player_index: usize,
+    pub vitality: i32,
+    pub max_vitality: i32,
+    pub aether: u8,
+    pub aether_capacity: u8,
+    pub resonate_active: bool,
+    pub deck_count: usize,
+    pub hand_count: usize,
+    pub hand: Vec<CardSummaryDto>,
+    pub discard: Vec<CardInstance>,
+    pub lanes: [LaneSide; 3],
+    pub relics: Vec<RelicInstance>,
+}
+
+/// Explicit, leak-proof player-facing and spectator snapshot DTO containing ONLY permitted fields.
+/// Contains NO internal RNG state, NO private deck ordering, and NO opponent card identities.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct MatchSnapshotDto {
+    pub format: MatchFormat,
+    pub rule_version: String,
+    pub global_turn: u32,
+    pub active_player: usize,
+    pub players: Vec<PlayerSnapshotDto>,
+    pub active_environment: Option<EnvironmentInstance>,
+    pub outcome: MatchOutcome,
+    pub event_log: Vec<BattleEvent>,
+    pub viewer: Option<usize>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MatchState {
     pub format: MatchFormat,
@@ -788,27 +827,102 @@ impl MatchState {
 
     /// Produces a redacted snapshot of the match state for a specific viewer (`Some(player_index)`) or spectator (`None`).
     /// Never exposes any player's draw deck order or opponents' hidden hand card IDs.
+    /// Produces a dedicated, leak-proof player-facing or spectator-facing snapshot DTO.
+    /// Internal RNG state, draw deck ordering, and private opponent cards are strictly excluded.
+    pub fn to_snapshot(&self, viewer: Option<usize>) -> MatchSnapshotDto {
+        let players = self
+            .players
+            .iter()
+            .map(|p| {
+                let can_see_hand = viewer == Some(p.player_index);
+                let hand = p
+                    .hand
+                    .iter()
+                    .map(|c| {
+                        if can_see_hand {
+                            CardSummaryDto {
+                                instance_id: c.instance_id,
+                                card_id: c.card_id.clone(),
+                                owner: c.owner,
+                                reclaimed: c.reclaimed,
+                            }
+                        } else {
+                            CardSummaryDto {
+                                instance_id: 0,
+                                card_id: "HIDDEN".to_string(),
+                                owner: c.owner,
+                                reclaimed: c.reclaimed,
+                            }
+                        }
+                    })
+                    .collect();
+
+                PlayerSnapshotDto {
+                    player_index: p.player_index,
+                    vitality: p.vitality,
+                    max_vitality: p.max_vitality,
+                    aether: p.aether,
+                    aether_capacity: p.aether_capacity,
+                    resonate_active: p.resonate_active,
+                    deck_count: p.deck.len(),
+                    hand_count: p.hand.len(),
+                    hand,
+                    discard: p.discard.clone(),
+                    lanes: p.lanes.clone(),
+                    relics: p.relics.clone(),
+                }
+            })
+            .collect();
+
+        let event_log = self
+            .event_log
+            .iter()
+            .map(|ev| {
+                let mut ev_copy = ev.clone();
+                match &mut ev_copy {
+                    BattleEvent::CardDrawn { player, card_id } => {
+                        if viewer != Some(*player) {
+                            *card_id = "HIDDEN".to_string();
+                        }
+                    }
+                    BattleEvent::CardBurnedOverdraw { player, card_id } => {
+                        if viewer != Some(*player) {
+                            *card_id = "HIDDEN".to_string();
+                        }
+                    }
+                    _ => {}
+                }
+                ev_copy
+            })
+            .collect();
+
+        MatchSnapshotDto {
+            format: self.format,
+            rule_version: self.rule_version.clone(),
+            global_turn: self.global_turn,
+            active_player: self.active_player,
+            players,
+            active_environment: self.active_environment.clone(),
+            outcome: self.outcome.clone(),
+            event_log,
+            viewer,
+        }
+    }
+
+    /// Backward-compatible redactor that scrubs confidential state in-place.
+    /// Strictly guarantees 0 leakage of draw deck order, hidden hands, and draw logs.
     pub fn redact_for_player(&self, viewer: Option<usize>) -> Self {
         let mut copy = self.clone();
-        // Zero out internal RNG state so clients cannot predict future draws
+        // Zero out internal RNG state and instance ID counter
         copy.rng = DeterministicRng::new(0);
+        copy.next_instance_id = 0;
 
         for p in &mut copy.players {
             for card in &mut p.deck {
                 card.card_id = "HIDDEN".to_string();
                 card.instance_id = 0;
             }
-            let can_see_hand = match viewer {
-                Some(v) => {
-                    if self.format == MatchFormat::Tag2v2 {
-                        // In 2v2 Tag Battles, teammates can coordinate or only see their own hand; keep opponent hands hidden
-                        v == p.player_index
-                    } else {
-                        v == p.player_index
-                    }
-                }
-                None => false,
-            };
+            let can_see_hand = viewer == Some(p.player_index);
             if !can_see_hand {
                 for card in &mut p.hand {
                     card.card_id = "HIDDEN".to_string();
@@ -818,10 +932,18 @@ impl MatchState {
         }
 
         for ev in &mut copy.event_log {
-            if let BattleEvent::CardDrawn { player, card_id } = ev {
-                if viewer != Some(*player) {
-                    *card_id = "HIDDEN".to_string();
+            match ev {
+                BattleEvent::CardDrawn { player, card_id } => {
+                    if viewer != Some(*player) {
+                        *card_id = "HIDDEN".to_string();
+                    }
                 }
+                BattleEvent::CardBurnedOverdraw { player, card_id } => {
+                    if viewer != Some(*player) {
+                        *card_id = "HIDDEN".to_string();
+                    }
+                }
+                _ => {}
             }
         }
 
