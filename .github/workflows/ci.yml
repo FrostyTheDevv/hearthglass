@@ -1,14 +1,13 @@
 name: Hearthglass CI
 
+# Workflow is configured for manual dispatch only (workflow_dispatch)
+# to strictly preserve user GitHub Actions runner quota.
 on:
-  push:
-    branches: [master, main]
-  pull_request:
-    branches: [master, main]
+  workflow_dispatch:
 
 jobs:
   rust-battle-engine:
-    name: Rust Convergence Duels Engine & 1,000-Match Simulation
+    name: Rust Convergence Duels Engine & Match Simulation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +16,7 @@ jobs:
         run: cargo build --manifest-path services/battle-server/Cargo.toml
       - name: Run Authoritative Rules Engine Tests
         run: cargo test --manifest-path services/battle-server/Cargo.toml
-      - name: Run 1,000-Match In-Memory Battle Simulation Benchmark
+      - name: Run Comprehensive Pairwise Battle Simulation
         run: cargo test --manifest-path services/battle-server/Cargo.toml --test simulation_1000_tests -- --nocapture
 
   node-api-and-card-integrity:
@@ -35,7 +34,7 @@ jobs:
         run: npm ci --prefer-offline --no-audit
       - name: Validate 480-Card Catalogue & Starter Decks Schema
         run: node tools/card-validator/validate.mjs
-      - name: Verify Card Type & Allocation Integrity (Regression Protection)
+      - name: Verify Card Type & Historical Baseline Integrity
         run: node tools/card-validator/verify_card_integrity.mjs
       - name: Verify Canonical Keyword Vocabulary
         run: node tools/card-validator/keyword_audit.mjs
@@ -43,3 +42,24 @@ jobs:
         run: node services/api/tests/economy_security.test.mjs
       - name: Run Backend API & WebSocket Integration Tests
         run: node --test services/api/tests/api.test.mjs
+
+  godot-engine-tests:
+    name: Godot 4.3 Headless Smoke & Vertical Slice Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build Rust Engine Binary for Godot Offline Bridge
+        run: cargo build --manifest-path services/battle-server/Cargo.toml
+      - name: Install Godot 4.3 Headless
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          unzip -q Godot_v4.3-stable_linux.x86_64.zip
+          mv Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot
+          chmod +x /usr/local/bin/godot
+      - name: Import Godot Project Assets (Headless)
+        run: godot --headless --path apps/game-client --editor --quit || true
+      - name: Run Godot Smoke Test Suite
+        run: godot --headless --path apps/game-client scenes/tests/smoke_test_runner.tscn
+      - name: Run Godot Connected Vertical Slice Test
+        run: godot --headless --path apps/game-client scenes/tests/vertical_slice_test.tscn
