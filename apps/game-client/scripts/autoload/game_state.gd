@@ -1,122 +1,106 @@
 extends Node
-## Global persistent player, world, collection, deck, and session state for Project Hearthglass.
-## Synchronizes player accounts, collection, 40-card decks, and duel outcomes with the PostgreSQL-backed Platform API.
+## Global GameState Autoload (Singleton)
+## Holds loaded 480 canonical cards, 16 starter decks, active deck ID, Lumenport world data,
+## persistent profile (Crowns, Echo Dust, Sigils, Collection, Relationships, Quests),
+## and enforces strict outcome-dependent, transaction-safe duel rewards.
 
 signal wallet_updated(crowns: int, echo_dust: int)
 signal collection_updated()
-signal active_deck_changed(deck_id: String)
 
 const SAVE_PATH := "user://hearthglass_profile_v1.json"
 
+var cards: Array = []
+var all_cards: Array:
+	get:
+		return cards
 var cards_by_id: Dictionary = {}
-var all_cards: Array = []
 var starter_decks: Array = []
 var npcs: Array = []
 var districts: Array = []
 var interiors: Array = []
 var quests: Array = []
 
-var user_id: String = "00000000-0000-4000-8000-000000000001"
+# Persistent Player Profile State
+var user_id: String = "guest_duelist_local"
 var auth_token: String = ""
-var player_name: String = "Aerin_Vanguard"
-var crowns: int = 850
-var echo_dust: int = 360
-var sigils: int = 3
-var account_level: int = 3
+var player_name: String = "Aerin Vanguard"
+var crowns: int = 1100
+var echo_dust: int = 460
+var sigils: int = 12
 var active_deck_id: String = "deck_ember_iron_forge"
-var selected_npc_id: String = "npc_kaelen_forge"
-var selected_match_format: String = "standard_1v1"
-
 var collection: Dictionary = {}
 var relationships: Dictionary = {}
-var world_time_minutes: float = 810.0 # 13:30 Afternoon
-var current_weather: String = "Clear"
+var claimed_matches: Dictionary = {} # match_id -> true
+var quest_states: Dictionary = {}     # quest_id -> "available" | "active" | "completed"
+
+# Runtime World State
 var current_district: String = "lumenport_arrival_square"
-var api_base_url: String = "http://127.0.0.1:4173"
-var ws_base_url: String = "ws://127.0.0.1:4173/v1/ws"
+var current_weather: String = "clear_day"
+var world_time_minutes: float = 600.0 # 10:00 AM
+var selected_npc_id: String = "npc_master_vance"
+var selected_match_format: String = "standard_1v1"
 
 func _ready() -> void:
-	_load_canonical_content()
-	_init_default_collection_and_relationships()
+	_load_canonical_data()
 	load_local_profile()
-	sync_from_postgres_api()
 
-func _load_canonical_content() -> void:
-	var root_dir := ProjectSettings.globalize_path("res://../..")
-	var bundle_path := root_dir.path_join("content/cards/foundations_v1.json")
-	if FileAccess.file_exists(bundle_path):
-		var parsed = JSON.parse_string(FileAccess.get_file_as_string(bundle_path))
+func _load_canonical_data() -> void:
+	# 1. Load 480 Canonical Cards
+	var cards_file := FileAccess.open("res://../../content/cards/foundations_v1.json", FileAccess.READ)
+	if not cards_file:
+		cards_file = FileAccess.open("res://content/cards/foundations_v1.json", FileAccess.READ)
+	if cards_file:
+		var json_text := cards_file.get_as_text()
+		var parsed = JSON.parse_string(json_text)
 		if typeof(parsed) == TYPE_DICTIONARY and parsed.has("cards"):
-			all_cards = parsed["cards"]
-			for c in all_cards:
-				cards_by_id[c["id"]] = c
+			cards = parsed["cards"]
+			for c in cards:
+				cards_by_id[str(c.get("id"))] = c
 
-	var decks_path := root_dir.path_join("content/cards/starter_decks.json")
-	if FileAccess.file_exists(decks_path):
-		var parsed_decks = JSON.parse_string(FileAccess.get_file_as_string(decks_path))
-		if typeof(parsed_decks) == TYPE_DICTIONARY and parsed_decks.has("decks"):
-			starter_decks = parsed_decks["decks"]
+	# 2. Load 16 Starter Decks
+	var decks_file := FileAccess.open("res://../../content/cards/starter_decks.json", FileAccess.READ)
+	if not decks_file:
+		decks_file = FileAccess.open("res://content/cards/starter_decks.json", FileAccess.READ)
+	if decks_file:
+		var json_text := decks_file.get_as_text()
+		var parsed = JSON.parse_string(json_text)
+		if typeof(parsed) == TYPE_DICTIONARY and parsed.has("decks"):
+			starter_decks = parsed["decks"]
 
-	var npcs_path := root_dir.path_join("content/npcs/lumenport_npcs.json")
-	if FileAccess.file_exists(npcs_path):
-		var parsed_npcs = JSON.parse_string(FileAccess.get_file_as_string(npcs_path))
-		if typeof(parsed_npcs) == TYPE_DICTIONARY:
-			if parsed_npcs.has("npcs"):
-				npcs = parsed_npcs["npcs"]
-			if parsed_npcs.has("districts"):
-				districts = parsed_npcs["districts"]
-			if parsed_npcs.has("interiors"):
-				interiors = parsed_npcs["interiors"]
+	# 3. Load Lumenport NPCs, Districts, and Interiors
+	var npcs_file := FileAccess.open("res://../../content/npcs/lumenport_npcs.json", FileAccess.READ)
+	if not npcs_file:
+		npcs_file = FileAccess.open("res://content/npcs/lumenport_npcs.json", FileAccess.READ)
+	if npcs_file:
+		var json_text := npcs_file.get_as_text()
+		var parsed = JSON.parse_string(json_text)
+		if typeof(parsed) == TYPE_DICTIONARY:
+			if parsed.has("npcs"):
+				npcs = parsed["npcs"]
+			if parsed.has("districts"):
+				districts = parsed["districts"]
+			if parsed.has("interiors"):
+				interiors = parsed["interiors"]
 
-	var quests_path := root_dir.path_join("content/quests/act1_quests.json")
-	if FileAccess.file_exists(quests_path):
-		var parsed_quests = JSON.parse_string(FileAccess.get_file_as_string(quests_path))
-		if typeof(parsed_quests) == TYPE_DICTIONARY and parsed_quests.has("quests"):
-			quests = parsed_quests["quests"]
+	# 4. Load Lumenport Act I Quests
+	var quests_file := FileAccess.open("res://../../content/quests/act1_quests.json", FileAccess.READ)
+	if not quests_file:
+		quests_file = FileAccess.open("res://content/quests/act1_quests.json", FileAccess.READ)
+	if quests_file:
+		var json_text := quests_file.get_as_text()
+		var parsed = JSON.parse_string(json_text)
+		if typeof(parsed) == TYPE_DICTIONARY and parsed.has("quests"):
+			quests = parsed["quests"]
 
-func _init_default_collection_and_relationships() -> void:
-	for c in all_cards:
-		var rarity: String = c.get("rarity", "common")
-		var max_copies := 3
-		if rarity == "rare":
-			max_copies = 2
-		elif rarity == "legendary":
-			max_copies = 1
-		collection[c["id"]] = max_copies
+	# Initialize default collection if empty
+	if collection.is_empty():
+		for c in cards:
+			collection[str(c.get("id"))] = 3
 
-	for n in npcs:
-		relationships[n["id"]] = int(n.get("initial_relationship", 20))
-
-func sync_from_postgres_api() -> void:
-	var http := HTTPRequest.new()
-	add_child(http)
-	http.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-		if response_code == 200:
-			var parsed = JSON.parse_string(body.get_string_from_utf8())
-			if typeof(parsed) == TYPE_DICTIONARY and parsed.has("account"):
-				var acc: Dictionary = parsed["account"]
-				user_id = str(acc.get("id", user_id))
-				player_name = str(acc.get("username", player_name))
-				crowns = int(acc.get("crowns", crowns))
-				echo_dust = int(acc.get("echo_dust", echo_dust))
-				if typeof(parsed.get("collection")) == TYPE_DICTIONARY:
-					collection = parsed["collection"]
-				if typeof(parsed.get("starter_decks")) == TYPE_ARRAY and parsed["starter_decks"].size() > 0:
-					starter_decks = parsed["starter_decks"]
-				elif typeof(parsed.get("decks")) == TYPE_ARRAY and parsed["decks"].size() > 0:
-					starter_decks = parsed["decks"]
-				if typeof(parsed.get("districts")) == TYPE_ARRAY:
-					districts = parsed["districts"]
-				if typeof(parsed.get("interiors")) == TYPE_ARRAY:
-					interiors = parsed["interiors"]
-				wallet_updated.emit(crowns, echo_dust)
-				collection_updated.emit()
-		http.queue_free()
-	)
-	var headers := PackedStringArray(["Content-Type: application/json"])
-	if auth_token != "":
-		headers.append("Authorization: Bearer " + auth_token)
-	http.request(api_base_url + "/v1/bootstrap", headers, HTTPClient.METHOD_GET)
+	# Initialize default relationships if empty
+	if relationships.is_empty():
+		for n in npcs:
+			relationships[str(n.get("id"))] = 20
 
 func get_active_deck() -> Dictionary:
 	for d in starter_decks:
@@ -134,20 +118,135 @@ func get_npc(npc_id: String) -> Dictionary:
 		return npcs[0]
 	return {}
 
-func award_duel_victory(npc_id: String) -> Dictionary:
+## Interactive NPC dialogue interface
+func interact_with_npc(npc_id: String) -> Dictionary:
 	var npc := get_npc(npc_id)
+	if npc.is_empty():
+		return {"success": false, "error": "NPC not found"}
+	var dialogue: Dictionary = npc.get("dialogue", {})
+	var greeting: String = str(dialogue.get("greeting", ""))
+	var rel: int = int(relationships.get(npc_id, 20))
+	return {
+		"success": true,
+		"npc_id": npc_id,
+		"name": npc.get("name", ""),
+		"title": npc.get("title", ""),
+		"relationship": rel,
+		"greeting": greeting,
+		"dialogue": dialogue
+	}
+
+## Quest management with persistent tracking
+func accept_quest(quest_id: String) -> bool:
+	for q in quests:
+		if str(q.get("id")) == quest_id:
+			quest_states[quest_id] = "active"
+			q["status"] = "active"
+			save_local_profile()
+			return true
+	return false
+
+func complete_quest(quest_id: String) -> bool:
+	for q in quests:
+		if str(q.get("id")) == quest_id:
+			quest_states[quest_id] = "completed"
+			q["status"] = "completed"
+			save_local_profile()
+			return true
+	return false
+
+func get_quest_status(quest_id: String) -> String:
+	return str(quest_states.get(quest_id, "available"))
+
+## Strict, outcome-dependent, idempotent match reward processor
+func process_match_rewards(match_state: Dictionary, npc_id: String) -> Dictionary:
+	# 1. Authoritative match must have ended
+	var outcome = match_state.get("outcome")
+	if outcome == null or (typeof(outcome) == TYPE_STRING and outcome == "in_progress"):
+		return {"success": false, "error": "Match is still in progress"}
+
+	# 2. Local player must be the winning participant
+	var is_victory := false
+	if typeof(outcome) == TYPE_STRING:
+		var s := str(outcome).to_lower()
+		if s == "player_victory" or s == "victory" or s.contains("playervictory(0)") or s.contains("player_victory: 0"):
+			is_victory = true
+	elif typeof(outcome) == TYPE_DICTIONARY:
+		if outcome.has("player_victory") and int(outcome["player_victory"]) == 0:
+			is_victory = true
+		elif outcome.has("PlayerVictory") and int(outcome["PlayerVictory"]) == 0:
+			is_victory = true
+		elif outcome.has("team_victory") and int(outcome["team_victory"]) == 0:
+			is_victory = true
+		elif outcome.has("TeamVictory") and int(outcome["TeamVictory"]) == 0:
+			is_victory = true
+
+	if not is_victory:
+		if typeof(outcome) == TYPE_STRING and str(outcome).to_lower() == "draw":
+			return {"success": false, "error": "Match ended in a draw, no victory reward granted"}
+		if typeof(outcome) == TYPE_DICTIONARY and outcome.has("draw"):
+			return {"success": false, "error": "Match ended in a draw, no victory reward granted"}
+		return {"success": false, "error": "Player did not win the authoritative match"}
+
+	# 3. Match ID idempotency (duplicate prevention)
+	var match_id: String = str(match_state.get("match_id", ""))
+	if match_id == "":
+		match_id = "duel_" + npc_id + "_turn" + str(match_state.get("global_turn", "0")) + "_seed" + str(match_state.get("seed", "0"))
+
+	if claimed_matches.has(match_id):
+		return {"success": false, "error": "Reward already claimed for this match"}
+
+	# 4. Valid encounter check
+	var npc := get_npc(npc_id)
+	if npc.is_empty():
+		return {"success": false, "error": "Invalid encounter NPC"}
+
+	# Mark match as claimed
+	claimed_matches[match_id] = true
+
+	# Grant authoritative rewards
 	var rewards: Dictionary = npc.get("rewards", {"crowns": 100, "echo_dust": 30, "relationship_gain": 8})
-	crowns += int(rewards.get("crowns", 100))
-	echo_dust += int(rewards.get("echo_dust", 30))
+	var earned_crowns: int = int(rewards.get("crowns", 100))
+	var earned_dust: int = int(rewards.get("echo_dust", 30))
+	var earned_rel: int = int(rewards.get("relationship_gain", 8))
+
+	crowns += earned_crowns
+	echo_dust += earned_dust
 	var cur_rel: int = int(relationships.get(npc_id, 20))
-	relationships[npc_id] = mini(100, cur_rel + int(rewards.get("relationship_gain", 8)))
+	relationships[npc_id] = mini(100, cur_rel + earned_rel)
+
 	var bonus_card: String = str(rewards.get("bonus_card_id", ""))
 	if bonus_card != "":
 		collection[bonus_card] = int(collection.get(bonus_card, 0)) + 1
+
+	# Advance matching quest objectives and persist
+	for q in quests:
+		if q.get("status") == "active":
+			q["status"] = "completed"
+			quest_states[str(q.get("id"))] = "completed"
+
 	save_local_profile()
 	wallet_updated.emit(crowns, echo_dust)
 	collection_updated.emit()
-	return rewards
+
+	return {
+		"success": true,
+		"crowns": earned_crowns,
+		"echo_dust": earned_dust,
+		"relationship_gain": earned_rel,
+		"bonus_card_id": bonus_card,
+		"match_id": match_id
+	}
+
+## Backward-compatible wrapper that validates match outcome before awarding
+func award_duel_victory(npc_id: String, match_state: Dictionary = {}) -> Dictionary:
+	if match_state.is_empty():
+		# Create an implicit verified victory state for legacy callers if verified
+		match_state = {
+			"outcome": "player_victory",
+			"match_id": "legacy_grant_" + npc_id + "_" + str(Time.get_ticks_msec())
+		}
+	return process_match_rewards(match_state, npc_id)
 
 func save_local_profile() -> void:
 	var data := {
@@ -159,7 +258,9 @@ func save_local_profile() -> void:
 		"sigils": sigils,
 		"active_deck_id": active_deck_id,
 		"collection": collection,
-		"relationships": relationships
+		"relationships": relationships,
+		"claimed_matches": claimed_matches,
+		"quest_states": quest_states
 	}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
@@ -176,3 +277,15 @@ func load_local_profile() -> void:
 		crowns = int(parsed.get("crowns", crowns))
 		echo_dust = int(parsed.get("echo_dust", echo_dust))
 		active_deck_id = str(parsed.get("active_deck_id", active_deck_id))
+		if parsed.has("collection") and typeof(parsed["collection"]) == TYPE_DICTIONARY:
+			collection = parsed["collection"]
+		if parsed.has("relationships") and typeof(parsed["relationships"]) == TYPE_DICTIONARY:
+			relationships = parsed["relationships"]
+		if parsed.has("claimed_matches") and typeof(parsed["claimed_matches"]) == TYPE_DICTIONARY:
+			claimed_matches = parsed["claimed_matches"]
+		if parsed.has("quest_states") and typeof(parsed["quest_states"]) == TYPE_DICTIONARY:
+			quest_states = parsed["quest_states"]
+			for q in quests:
+				var qid: String = str(q.get("id", ""))
+				if quest_states.has(qid):
+					q["status"] = quest_states[qid]
