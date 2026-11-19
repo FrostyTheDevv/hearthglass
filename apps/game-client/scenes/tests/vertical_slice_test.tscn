@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hgvertslice001"]
+
+[ext_resource type="Script" path="res://scripts/tests/vertical_slice_test.gd" id="1_vertslice"]
+
+[node name="VerticalSliceTest" type="Node"]
+script = ExtResource("1_vertslice")

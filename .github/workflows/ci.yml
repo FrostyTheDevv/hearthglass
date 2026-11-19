@@ -1,0 +1,42 @@
+name: Hearthglass CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  rust-battle-engine:
+    name: Rust Convergence Duels Engine & 1,000-Match Simulation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build Rust Battle Engine
+        run: cargo build --manifest-path services/battle-server/Cargo.toml
+      - name: Run Authoritative Rules Engine Tests
+        run: cargo test --manifest-path services/battle-server/Cargo.toml
+      - name: Run 1,000-Match In-Memory Battle Simulation Benchmark
+        run: cargo test --manifest-path services/battle-server/Cargo.toml --test simulation_1000_tests -- --nocapture
+
+  node-api-and-card-integrity:
+    name: Card Catalogue Integrity, Security & API Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+      - name: Validate 480-Card Catalogue & Starter Decks Schema
+        run: node tools/card-validator/validate.mjs
+      - name: Verify Card Type & Allocation Integrity (Regression Protection)
+        run: node tools/card-validator/verify_card_integrity.mjs
+      - name: Verify Canonical Keyword Vocabulary
+        run: node tools/card-validator/keyword_audit.mjs
+      - name: Run Economy Anti-Tamper Security Tests
+        run: node services/api/tests/economy_security.test.mjs
+      - name: Run Backend API & WebSocket Integration Tests
+        run: node --test services/api/tests/api.test.mjs

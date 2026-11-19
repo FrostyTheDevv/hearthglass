@@ -1,0 +1,159 @@
+{
+  "region_id": "verdant_expanse",
+  "region_name": "The Verdant Expanse",
+  "recommended_level": "4 - 8",
+  "description": "A vast, primordial woodland stretching northeast of Lumenport where ancient roots intertwine with petrified glass strata and wild Aether springs.",
+  "districts": [
+    {
+      "id": "verdant_rootbridge_crossing",
+      "name": "Rootbridge Crossing",
+      "flavor": "A suspended living bridge woven from colossal ironwood boughs over the roaring Amberfall chasm.",
+      "connected_to": ["lumenport_arrival_square", "verdant_whispering_canopy"],
+      "ambience": "wind_through_boughs",
+      "poi": ["The Watchman's Perch", "Amberfall Chasm Outlook"]
+    },
+    {
+      "id": "verdant_whispering_canopy",
+      "name": "Whispering Canopy",
+      "flavor": "Dappled sunlight filters through emerald foliage where duelists gather on natural moss stone stages.",
+      "connected_to": ["verdant_rootbridge_crossing", "verdant_old_growth_glen"],
+      "ambience": "avian_chorus",
+      "poi": ["Duelist Clearing", "Canopy Waymarker"]
+    },
+    {
+      "id": "verdant_old_growth_glen",
+      "name": "Old Growth Shaded Glen",
+      "flavor": "Towering thousand-year trunks surrounded by luminous spore-ferns and wild fauna.",
+      "connected_to": ["verdant_whispering_canopy", "verdant_sporewood_sanctuary"],
+      "ambience": "deep_forest_drone",
+      "poi": ["Gravewild Boundary Stone", "Herbalist Clearing"]
+    },
+    {
+      "id": "verdant_sporewood_sanctuary",
+      "name": "Sporewood Sanctuary",
+      "flavor": "The sacred heart of the Verdant Pact, where hollow wood temples house ancient resonance conduits.",
+      "connected_to": ["verdant_old_growth_glen"],
+      "ambience": "reverberant_chimes",
+      "poi": ["The Great Elder Trunk", "Resonance Font of Seeds"]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "npc_elder_orla",
+      "name": "Elder Orla of the Canopy",
+      "faction": "verdant_pact",
+      "title": "First Keeper of the Living Boughs",
+      "location": "verdant_sporewood_sanctuary",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "The forest remembers what cities forget, Wanderer. Speak with quiet boots upon these roots.",
+        "friendly": "Your Aether hums with the pulse of green growth. The boughs do not turn against you.",
+        "bonded": "Take this seedspeaker's talisman. When the city walls crumble, the expanse remains.",
+        "victory": "A duel well struck. Even the highest oaks bend before a patient gale.",
+        "defeat": "The woods have tested your footing, duelist. Stand, and drink from the font."
+      },
+      "rewards": {
+        "crowns": 140,
+        "echo_dust": 45,
+        "relationship_gain": 12,
+        "bonus_card_id": "VER-C-0019"
+      }
+    },
+    {
+      "id": "npc_ranger_bram",
+      "name": "Ranger Bram",
+      "faction": "verdant_pact",
+      "title": "Rootbridge Scout & Duelist",
+      "location": "verdant_rootbridge_crossing",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Toll's waived for duelists who carry clean steel and respect the canopy.",
+        "friendly": "Seen any beasts near the chasm? The convergence stirs them up fierce.",
+        "bonded": "You fight like you were born between ironwood trunks. Glad to share a campfire.",
+        "victory": "Fast hands, friend! You caught my flank wide open.",
+        "defeat": "Gotta watch the leaves, kid. They telegraph where the strike lands."
+      },
+      "rewards": {
+        "crowns": 90,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-C-0001"
+      }
+    },
+    {
+      "id": "npc_alchemist_fenn",
+      "name": "Fenn the Spore-Collector",
+      "faction": "neutral",
+      "title": "Travelling Concocter & Merchant",
+      "location": "verdant_old_growth_glen",
+      "deck_id": "deck_verdant_grave_cycle",
+      "initial_relationship": 30,
+      "dialogue": {
+        "greeting": "Mind the violet caps—breathe deep and you'll think your cards are talking back to you.",
+        "friendly": "Need restorative distillates or raw Echo Dust? I trade fair, city crowns or wild seeds.",
+        "bonded": "Between you and me, the Grand Tournament scouts were out here snooping yesterday.",
+        "victory": "Impressive! You turned my spore swarm right back against me.",
+        "defeat": "Too slow on the counter-spell! That's how the glen takes you."
+      },
+      "rewards": {
+        "crowns": 110,
+        "echo_dust": 40,
+        "relationship_gain": 10,
+        "bonus_card_id": "NEU-C-0001"
+      }
+    },
+    {
+      "id": "npc_thornweaver_myra",
+      "name": "Thornweaver Myra",
+      "faction": "verdant_pact",
+      "title": "Hermit of the Whispering Canopy",
+      "location": "verdant_whispering_canopy",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "The wind carries word from Lumenport. They say a new champion walks the cobbles.",
+        "friendly": "Do you feel the resonance in the tree bark? The Accord cannot pave the whole world.",
+        "bonded": "You are a friend to the silent wood. Call upon my thorns whenever your vanguard needs cover.",
+        "victory": "Graceful and unrelenting. A duel worthy of song.",
+        "defeat": "Your roots were shallow that turn. Deepen your stance."
+      },
+      "rewards": {
+        "crowns": 125,
+        "echo_dust": 35,
+        "relationship_gain": 12,
+        "bonus_card_id": "VER-C-0002"
+      }
+    }
+  ],
+  "quests": [
+    {
+      "id": "quest_verdant_rootbridge_patrol",
+      "title": "Trial of the Rootbridge",
+      "giver_npc_id": "npc_ranger_bram",
+      "objective": "Defeat Ranger Bram in a standard 1v1 duel to secure safe transit into the Expanse.",
+      "crown_reward": 150,
+      "dust_reward": 50,
+      "xp_reward": 250
+    },
+    {
+      "id": "quest_verdant_sporewood_reclaim",
+      "title": "Sporewood Reclamation",
+      "giver_npc_id": "npc_alchemist_fenn",
+      "objective": "Investigate anomalous Gravewild creeping vines in the Old Growth Glen and purify them in combat.",
+      "crown_reward": 200,
+      "dust_reward": 60,
+      "xp_reward": 350
+    },
+    {
+      "id": "quest_verdant_elder_trial",
+      "title": "Boughs of the First Concord",
+      "giver_npc_id": "npc_elder_orla",
+      "objective": "Complete the 2v2 Tag Convergence Trial in the Sporewood Sanctuary alongside Ranger Bram.",
+      "crown_reward": 300,
+      "dust_reward": 100,
+      "xp_reward": 500
+    }
+  ]
+}

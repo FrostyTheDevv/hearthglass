@@ -1,0 +1,23 @@
+{
+  "name": "hearthglass-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Project Hearthglass — Original Isometric Open-World Card-Battling RPG",
+  "scripts": {
+    "build:cards": "node tools/card-validator/build_cards.mjs",
+    "validate:cards": "node tools/card-validator/validate.mjs",
+    "start:api": "node services/api/src/server.mjs",
+    "test:api": "node --test services/api/tests/api.test.mjs",
+    "test:cards": "node tools/card-validator/validate.mjs",
+    "test": "node tools/card-validator/validate.mjs && node --test services/api/tests/api.test.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "pg": "^8.23.1",
+    "ws": "^8.23.0"
+  }
+}

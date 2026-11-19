@@ -1,0 +1,1221 @@
+{
+  "schema_version": "1.1.0",
+  "decks": [
+    {
+      "id": "deck_ember_iron_forge",
+      "name": "Molten Choir Vanguard",
+      "description": "Aggressive Emberclad Overheat pressure backed by Iron Choir shields and relics.",
+      "factions": [
+        "emberclad",
+        "iron_choir"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "EMB-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0004",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-E-0008",
+          "count": 1
+        },
+        {
+          "card_id": "IRN-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0004",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-T-0006",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_verdant_tide_harmony",
+      "name": "Living Tides of Whisperleaf",
+      "description": "Verdant Pact Bloom growth combined with Tidebound lane mobility and healing.",
+      "factions": [
+        "verdant_pact",
+        "tidebound"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "VER-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0004",
+          "count": 2
+        },
+        {
+          "card_id": "VER-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "VER-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "VER-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "VER-E-0008",
+          "count": 1
+        },
+        {
+          "card_id": "TID-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0004",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "TID-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "TID-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0004",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "deck_glass_star_prism",
+      "name": "Prismatic Observatory",
+      "description": "Glassborne Wards and Refraction counterplay paired with Starweave Alignment draw engines.",
+      "factions": [
+        "glassborne",
+        "starweave"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "GLS-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0004",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-E-0008",
+          "count": 1
+        },
+        {
+          "card_id": "STR-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0004",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "STR-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "STR-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-T-0006",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "deck_nocturne_grave_echo",
+      "name": "Velvet Ossuary",
+      "description": "Nocturne Stealth ambushes and Silence disruption backed by Gravewild Rebirth and Reclaim recursion.",
+      "factions": [
+        "nocturne",
+        "gravewild"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "NOC-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0004",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-E-0008",
+          "count": 1
+        },
+        {
+          "card_id": "GRV-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0003",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0004",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0005",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-R-0007",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0002",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "deck_ember_nocturne_blitz",
+      "name": "Cinderveil Saboteurs",
+      "description": "High-tempo Emberclad burn combined with Nocturne Stealth ambushes and resource drain.",
+      "factions": [
+        "emberclad",
+        "nocturne"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "EMB-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "EMB-T-0006",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "NOC-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0009",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_verdant_grave_cycle",
+      "name": "Sporewood Reclaimers",
+      "description": "Resilient Verdant Pact Bloom walls paired with Gravewild Rebirth and graveyard Reclaim engines.",
+      "factions": [
+        "verdant_pact",
+        "gravewild"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "VER-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0012",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "VER-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "VER-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "VER-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0011",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "GRV-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0011",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_iron_glass_citadel",
+      "name": "Aegis of the Prism Choir",
+      "description": "Fortified Iron Choir Shield constructs and Glassborne Refraction wards dominating all three lanes.",
+      "factions": [
+        "iron_choir",
+        "glassborne"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "IRN-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0002",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "IRN-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "GLS-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0010",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_tide_star_navigation",
+      "name": "Celestial Maelstrom",
+      "description": "Tidebound lane repositioning and Current surges synchronized with Starweave Alignment draw combos.",
+      "factions": [
+        "tidebound",
+        "starweave"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "TID-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0010",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0012",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "TID-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "TID-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "TID-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0009",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0011",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0013",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0014",
+          "count": 1
+        },
+        {
+          "card_id": "STR-T-0015",
+          "count": 3
+        },
+        {
+          "card_id": "STR-R-0017",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-T-0014",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_star_ember_supernova",
+      "name": "Supernova Conjunction",
+      "description": "Phase 3 Expansion Deck: Starweave constellation scrying fuels explosive Emberclad Overheat colossi.",
+      "factions": [
+        "starweave",
+        "emberclad"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "EMB-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0020",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-C-0026",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "EMB-E-0032",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0021",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0026",
+          "count": 1
+        },
+        {
+          "card_id": "STR-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "STR-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0017",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_iron_tide_dreadnought",
+      "name": "Abyssal Dreadnought Armada",
+      "description": "Phase 3 Expansion Deck: Mobile Tidebound Skirmishers and armored Iron Choir Assembly constructs.",
+      "factions": [
+        "iron_choir",
+        "tidebound"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "IRN-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0020",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-C-0026",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-E-0032",
+          "count": 2
+        },
+        {
+          "card_id": "TID-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0020",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "TID-C-0026",
+          "count": 1
+        },
+        {
+          "card_id": "TID-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "TID-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0018",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_glass_nocturne_mirage",
+      "name": "Mirage of the Hollow Court",
+      "description": "Phase 3 Expansion Deck: Glassborne Ward illusions and Nocturne Stealth assassins striking Rear lanes.",
+      "factions": [
+        "glassborne",
+        "nocturne"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "GLS-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0021",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-C-0026",
+          "count": 1
+        },
+        {
+          "card_id": "GLS-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-E-0032",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0021",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-C-0026",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-R-0030",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0022",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_accord_grand_alliance",
+      "name": "Lumenport Grand Alliance",
+      "description": "Phase 3 Expansion Deck: High-synergy Neutral Accord veterans reinforced by Verdant Pact and Gravewild sustain.",
+      "factions": [
+        "verdant_pact",
+        "gravewild"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "VER-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "VER-C-0026",
+          "count": 2
+        },
+        {
+          "card_id": "VER-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0023",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0025",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0026",
+          "count": 1
+        },
+        {
+          "card_id": "GRV-T-0027",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0019",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0025",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0037",
+          "count": 1
+        },
+        {
+          "card_id": "NEU-T-0039",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-R-0051",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_ember_tide_steam",
+      "name": "Ember-Tide Thermal Surge",
+      "description": "Phase 4 Expansion Deck: High-tempo Steam archetype combining Emberclad Heat pressure with Tidebound Flooding and Current repositions.",
+      "factions": [
+        "emberclad",
+        "tidebound"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "EMB-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0035",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "EMB-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "EMB-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "TID-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "TID-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "TID-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "TID-T-0043",
+          "count": 2
+        },
+        {
+          "card_id": "TID-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0065",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0066",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_verdant_iron_resonance",
+      "name": "Verdant Iron Bastion",
+      "description": "Phase 4 Expansion Deck: Colossal defensive synergy pairing Iron Choir Shield arrays with Verdant Pact Bloom growth and regenerative healing.",
+      "factions": [
+        "verdant_pact",
+        "iron_choir"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "VER-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "VER-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "VER-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "VER-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "VER-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "IRN-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "IRN-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "IRN-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0067",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0068",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_glass_star_celestial",
+      "name": "Prismatic Starweave Conjunction",
+      "description": "Phase 4 Expansion Deck: Spell-slinging combo archetype leveraging Starweave Starlight scrying to duplicate Glassborne Prismatic echoes.",
+      "factions": [
+        "glassborne",
+        "starweave"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "GLS-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "GLS-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "GLS-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "GLS-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "STR-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "STR-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "STR-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "STR-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0069",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0070",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "deck_nocturne_grave_nightfall",
+      "name": "Nocturne Grave Harvester",
+      "description": "Phase 4 Expansion Deck: Relentless attrition deck using Nocturne Stealth assassins to sacrifice friendly units and trigger Gravewild Reclaim and Rebirth.",
+      "factions": [
+        "nocturne",
+        "gravewild"
+      ],
+      "total_cards": 40,
+      "cards": [
+        {
+          "card_id": "NOC-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "NOC-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "NOC-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "NOC-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0001",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0033",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0034",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-C-0035",
+          "count": 2
+        },
+        {
+          "card_id": "GRV-C-0038",
+          "count": 1
+        },
+        {
+          "card_id": "GRV-T-0043",
+          "count": 3
+        },
+        {
+          "card_id": "GRV-R-0045",
+          "count": 2
+        },
+        {
+          "card_id": "NEU-C-0071",
+          "count": 3
+        },
+        {
+          "card_id": "NEU-C-0072",
+          "count": 3
+        }
+      ]
+    }
+  ]
+}

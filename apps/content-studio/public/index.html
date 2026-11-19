@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEARTHGLASS — Convergence Duels, 320-Card Studio &amp; AI Art Pipeline</title>
+  <style>
+    :root {
+      --bg-sapphire: #070d19;
+      --bg-panel: #0e172a;
+      --bg-card: #15223c;
+      --border-gold: #c99b49;
+      --accent-gold: #f3c669;
+      --accent-cyan: #4de1ff;
+      --text-main: #edf3ff;
+      --text-muted: #98abc9;
+      --danger: #ff5e6c;
+      --success: #45e09b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #132242 0%, var(--bg-sapphire) 75%);
+      color: var(--text-main);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(9, 15, 29, 0.96);
+      border-bottom: 1px solid rgba(201, 155, 73, 0.45);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-gem {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--accent-cyan), #9155ff, var(--accent-gold));
+      transform: rotate(45deg);
+      border: 2px solid var(--accent-gold);
+      border-radius: 4px;
+      box-shadow: 0 0 12px rgba(77, 225, 255, 0.5);
+    }
+    .brand h1 {
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+    .brand span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid rgba(201, 155, 73, 0.38);
+      padding: 8px 13px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.83rem;
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: linear-gradient(180deg, #273c69, #182747);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      box-shadow: 0 0 10px rgba(243, 198, 105, 0.25);
+    }
+    .wallet-bar {
+      display: flex;
+      gap: 14px;
+      font-size: 0.83rem;
+      align-items: center;
+      background: rgba(21, 34, 60, 0.85);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(77, 225, 255, 0.3);
+    }
+    .wallet-bar strong { color: var(--accent-gold); }
+    main {
+      flex: 1;
+      padding: 16px 20px;
+      max-width: 1620px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .view-section { display: none; }
+    .view-section.active { display: block; }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #d8a648, #a77824);
+      color: #09101d;
+      border: 1px solid #ffd984;
+      padding: 7px 13px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .btn-secondary {
+      background: #1c2d4f;
+      color: var(--text-main);
+      border: 1px solid rgba(77, 225, 255, 0.4);
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .btn-secondary:hover { border-color: var(--accent-gold); }
+    .side-panel {
+      background: var(--bg-panel);
+      border: 1px solid rgba(201, 155, 73, 0.38);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .input-box, select.input-box, textarea.input-box {
+      background: #091224;
+      color: var(--text-main);
+      border: 1px solid rgba(201, 155, 73, 0.4);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+
+    /* DATA-DRIVEN CARD FRAME RENDERER (SECTION 8) */
+    .hg-card-frame {
+      position: relative;
+      width: 195px;
+      min-height: 268px;
+      border-radius: 10px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #1b2a4a 0%, #0e1629 100%);
+      border: 2px solid var(--border-gold);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+      overflow: hidden;
+    }
+    .hg-card-frame:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(77, 225, 255, 0.28);
+    }
+    .hg-card-frame.faction-emberclad { border-color: #ff6238; }
+    .hg-card-frame.faction-verdant_pact { border-color: #39d87d; }
+    .hg-card-frame.faction-iron_choir { border-color: #d6a456; }
+    .hg-card-frame.faction-tidebound { border-color: #26d0ce; }
+    .hg-card-frame.faction-glassborne { border-color: #c084fc; }
+    .hg-card-frame.faction-nocturne { border-color: #818cf8; }
+    .hg-card-frame.faction-starweave { border-color: #fbbf24; }
+    .hg-card-frame.faction-gravewild { border-color: #a3e635; }
+    .hg-card-frame.faction-neutral { border-color: #94a3b8; }
+
+    .hg-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+    }
+    .hg-card-title {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hg-cost-gem {
+      background: radial-gradient(circle, #2492eb 0%, #0d3b75 100%);
+      color: #fff;
+      border: 1.5px solid var(--accent-cyan);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+    .hg-art-window {
+      width: 100%;
+      height: 112px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      overflow: hidden;
+      background: #09101f;
+      margin: 5px 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hg-art-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hg-type-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-gold);
+      background: rgba(7, 13, 25, 0.82);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 155, 73, 0.25);
+    }
+    .hg-rarity-gem {
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.62rem;
+    }
+    .rarity-common { background: #334155; color: #e2e8f0; }
+    .rarity-uncommon { background: #065f46; color: #6ee7b7; }
+    .rarity-rare { background: #1e40af; color: #93c5fd; }
+    .rarity-legendary { background: #92400e; color: #fde68a; border: 1px solid #fbbf24; }
+
+    .hg-text-box {
+      background: rgba(8, 13, 26, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 5px;
+      padding: 5px 6px;
+      font-size: 0.7rem;
+      line-height: 1.3;
+      color: #d7e3f8;
+      flex: 1;
+      margin: 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .hg-stats-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+    .hg-atk-badge {
+      background: linear-gradient(135deg, #b45309, #78350f);
+      border: 1px solid #fbbf24;
+      color: #fef3c7;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .hg-hp-badge {
+      background: linear-gradient(135deg, #be123c, #881337);
+      border: 1px solid #fda4af;
+      color: #ffe4e6;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    /* BATTLE ARENA */
+    .battle-grid {
+      display: grid;
+      grid-template-columns: 1fr 370px;
+      gap: 16px;
+    }
+    .arena-board {
+      background: linear-gradient(180deg, rgba(16, 26, 48, 0.95), rgba(10, 17, 32, 0.98));
+      border: 1px solid rgba(201, 155, 73, 0.45);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .duelist-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(21, 34, 60, 0.9);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .vitality-orb {
+      background: linear-gradient(135deg, #c82548, #701028);
+      border: 2px solid var(--accent-gold);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .aether-orb {
+      background: linear-gradient(135deg, #1b76b8, #0f3f75);
+      border: 2px solid var(--accent-cyan);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: #dff8ff;
+    }
+    .lanes-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .lane-col {
+      background: rgba(11, 19, 36, 0.9);
+      border: 1px solid rgba(201, 155, 73, 0.35);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lane-col.controlled-ally {
+      border-color: var(--success);
+      box-shadow: inset 0 0 12px rgba(69, 224, 155, 0.12);
+    }
+    .lane-header {
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold);
+      font-weight: 700;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(201, 155, 73, 0.25);
+    }
+    .slot-box {
+      min-height: 78px;
+      border: 1px dashed rgba(152, 171, 201, 0.35);
+      border-radius: 6px;
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      cursor: pointer;
+      background: rgba(18, 30, 54, 0.55);
+      transition: all 0.14s ease;
+    }
+    .slot-box:hover, .slot-box.valid-target {
+      border-color: var(--accent-cyan);
+      background: rgba(29, 49, 86, 0.78);
+    }
+    .slot-box.occupied-ally {
+      border: 1px solid var(--accent-gold);
+      background: linear-gradient(160deg, #1d3158, #121f3a);
+    }
+    .slot-box.occupied-enemy {
+      border: 1px solid #d15666;
+      background: linear-gradient(160deg, #3c1b2c, #21101c);
+    }
+    .slot-box.ready-unit {
+      box-shadow: 0 0 10px rgba(69, 224, 155, 0.45);
+      border-color: var(--success);
+    }
+    .slot-label {
+      font-size: 0.67rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .unit-title {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.84rem;
+    }
+    .unit-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+    .kw-badge {
+      display: inline-block;
+      background: rgba(77, 225, 255, 0.16);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(77, 225, 255, 0.35);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.64rem;
+      margin-right: 3px;
+    }
+    .hand-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 8px 4px;
+    }
+    .event-log {
+      background: #070c17;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 10px;
+      height: 240px;
+      overflow-y: auto;
+      font-size: 0.77rem;
+      line-height: 1.45;
+      color: #c8d8f4;
+    }
+    .event-log div {
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .world-layout {
+      display: grid;
+      grid-template-columns: 1fr 410px;
+      gap: 16px;
+    }
+    canvas#lumenportCanvas {
+      width: 100%;
+      height: 540px;
+      background: #081120;
+      border: 1px solid rgba(201, 155, 73, 0.45);
+      border-radius: 10px;
+      cursor: crosshair;
+      display: block;
+    }
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .curve-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 90px;
+      padding: 8px 10px;
+      background: #081020;
+      border-radius: 8px;
+      border: 1px solid rgba(77, 225, 255, 0.25);
+    }
+    .curve-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+    }
+    .curve-fill {
+      width: 100%;
+      background: linear-gradient(180deg, var(--accent-cyan), #1b65a6);
+      border-radius: 4px 4px 0 0;
+      min-height: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-gem"></div>
+      <div>
+        <h1>HEARTHGLASS</h1>
+        <span>320-Card RPG Vertical Slice • Rust Authoritative Engine • AI Card-Art Studio</span>
+      </div>
+    </div>
+    <nav>
+      <button class="tab-btn active" data-tab="worldView">1. Lumenport RPG World (6 Districts)</button>
+      <button class="tab-btn" data-tab="battleView">2. Convergence Duels (1v1 &amp; 2v2 Tag)</button>
+      <button class="tab-btn" data-tab="deckView">3. Deck Builder, Crafting &amp; Shop</button>
+      <button class="tab-btn" data-tab="artStudioView">4. Card Art Production Studio (320 Cards)</button>
+    </nav>
+    <div class="wallet-bar">
+      <span>Duelist: <strong id="hudUsername">Aerin_Vanguard</strong></span>
+      <span>Crowns: <strong id="hudCrowns">850</strong></span>
+      <span>Echo Dust: <strong id="hudDust">360</strong></span>
+      <span>Catalogue: <strong id="hudCardCount">320 / 640</strong></span>
+      <span>Approved Art: <strong id="hudArtCount">8</strong></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. LUMENPORT ISOMETRIC RPG WORLD (6 DISTRICTS, 6 INTERIORS, 16 NPCS, 8 QUESTS) -->
+    <section id="worldView" class="view-section active">
+      <div class="world-layout">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+            <div>
+              <strong style="color:var(--accent-gold);" id="worldLocationTitle">LUMENPORT — Arrival Square &amp; Old Harbor</strong>
+              <span style="font-size:0.78rem;color:var(--text-muted);margin-left:10px;" id="worldTimeLabel">Time: 10:00 AM • Weather: Clear</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="btn-secondary" id="btnRotateCam">Rotate Camera 90° (Q/E)</button>
+              <button class="btn-secondary" id="btnAdvanceTime">+3 Hours</button>
+              <button class="btn-secondary" id="btnCycleWeather">Weather: Clear</button>
+              <button class="btn-primary" id="btnJumpToDuel">Enter Tabletop Arena</button>
+            </div>
+          </div>
+
+          <!-- District & Interior Fast Travel Bar -->
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="districtFastTravelBar"></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="interiorEnterBar"></div>
+
+          <canvas id="lumenportCanvas" width="1060" height="540"></canvas>
+        </div>
+
+        <div class="side-panel" style="max-height:660px;overflow-y:auto;">
+          <h3 style="color:var(--accent-gold);font-size:0.92rem;">NAMED DUELISTS, MENTORS &amp; COMPANIONS (16)</h3>
+          <div id="npcDialogueBox" style="background:#081020;border:1px solid rgba(77,225,255,0.35);border-radius:8px;padding:10px;font-size:0.8rem;line-height:1.45;">
+            Select any of the 16 named NPCs across Lumenport’s 6 districts and 6 interiors to talk, give gifts, recruit as a 2v2 Tag Companion, or challenge to an authoritative Rust duel.
+          </div>
+          <div id="npcListContainer" style="display:flex;flex-direction:column;gap:7px;"></div>
+          <h3 style="color:var(--accent-gold);font-size:0.92rem;margin-top:8px;">QUEST JOURNAL (8 ACT I &amp; SIDE QUESTS)</h3>
+          <div id="questListContainer" style="display:flex;flex-direction:column;gap:7px;font-size:0.78rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CONVERGENCE DUELS TABLETOP BATTLE ARENA (1V1 & 2V2 TAG) -->
+    <section id="battleView" class="view-section">
+      <div class="battle-grid">
+        <div class="arena-board">
+          <div class="duelist-strip">
+            <div>
+              <strong id="oppName" style="color:#ff9aa6;font-size:0.95rem;">Kaelen Emberforge</strong>
+              <span id="oppDeckInfo" style="font-size:0.78rem;color:var(--text-muted);margin-left:8px;">Hand: 5 | Deck: 35</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <span id="formatBadge" style="font-size:0.75rem;background:#1e293b;padding:3px 8px;border-radius:4px;color:var(--accent-gold);">1v1 Standard</span>
+              <span id="envBanner" style="font-size:0.78rem;color:var(--accent-cyan);">Environment: Lumenport Grand Table</span>
+              <span class="vitality-orb" id="oppVitality">30 / 30 Vitality</span>
+            </div>
+          </div>
+
+          <div class="lanes-wrapper" id="lanesWrapper"></div>
+
+          <div class="duelist-strip">
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <span class="vitality-orb" id="allyVitality">30 / 30 Vitality</span>
+              <span class="aether-orb" id="allyAether">1 / 1 Aether</span>
+              <span id="allyResonate" style="font-size:0.8rem;color:var(--text-muted);">Resonate: Inactive (0/2 Lanes)</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn-secondary" id="btnMulligan">Mulligan 2 Cards</button>
+              <button class="btn-secondary" id="btnNewMatch">New 1v1 Duel</button>
+              <button class="btn-secondary" id="btnNewTagMatch">New 2v2 Tag Battle (45 Vitality)</button>
+              <button class="btn-primary" id="btnEndTurn">End Turn &rarr;</button>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;">
+              YOUR HAND — Data-Driven Card Frame Renderer (Illustrations never contain baked stats; Cost/ATK/HP render live from canonical Rust state)
+            </div>
+            <div class="hand-strip" id="handStrip"></div>
+          </div>
+        </div>
+
+        <div class="side-panel">
+          <h3 style="color:var(--accent-gold);font-size:0.92rem;">CARD, LORE &amp; RULES INSPECTOR</h3>
+          <div id="cardInspector" style="background:#0a1326;border:1px solid rgba(201,155,73,0.3);border-radius:6px;padding:10px;font-size:0.8rem;min-height:190px;line-height:1.45;">
+            Select any card in your hand or on the 3-lane board to inspect its canonical stats, biography, strategic strengths, and artwork.
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h3 style="color:var(--accent-gold);font-size:0.88rem;">AUTHORITATIVE RUST EVENT LOG</h3>
+            <span id="turnIndicator" style="font-size:0.76rem;color:var(--accent-cyan);">Turn 1</span>
+          </div>
+          <div class="event-log" id="battleLog"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ADVANCED 40-CARD DECK BUILDER, CRAFTING & THEMED CARD SHOP (SECTION 14) -->
+    <section id="deckView" class="view-section">
+      <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:16px;">
+        <div class="side-panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <h3 style="color:var(--accent-gold);">12 LEGAL 40-CARD DECKS &amp; AETHER COST CURVE</h3>
+            <div style="display:flex;gap:6px;">
+              <button class="btn-secondary" id="btnDuplicateDeck">Duplicate Active Deck</button>
+              <button class="btn-secondary" id="btnExportDeckCode">Export Deck Code</button>
+              <button class="btn-primary" id="btnPracticeDeck">Practice Active Deck</button>
+            </div>
+          </div>
+          <p style="font-size:0.79rem;color:var(--text-muted);">
+            Validated by the Rust rules engine: 40 cards exact, max 2 major factions + Neutral, copy limits (Common 3, Uncommon 3, Rare 2, Legendary 1).
+          </p>
+
+          <!-- Aether Cost Curve Visualization -->
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:var(--accent-cyan);margin-bottom:4px;">
+              <span id="activeDeckSummaryTitle">Active Deck Curve</span>
+              <span id="activeDeckTypeBreakdown">Creatures: 0 • Tactics: 0 • Relics: 0 • Environments: 0</span>
+            </div>
+            <div class="curve-bars" id="deckCurveBars"></div>
+          </div>
+
+          <div id="deckCodeBox" style="display:none;background:#070e1c;border:1px solid var(--accent-cyan);padding:8px;border-radius:6px;font-size:0.74rem;word-break:break-all;"></div>
+          <div id="decksContainer" style="display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;"></div>
+        </div>
+
+        <div class="side-panel">
+          <h3 style="color:var(--accent-gold);">RESONANCE EMPORIUM — 5 THEMED FACTION PACKS &amp; CRAFTING</h3>
+          <p style="font-size:0.79rem;color:var(--text-muted);">
+            Every pack grants 5 cards (3 Common, 1 Uncommon, 1 Rare/Legendary) using PostgreSQL idempotent transactions. Excess copies convert into Echo Dust.
+          </p>
+          <div id="shopPackButtons" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;"></div>
+          <div id="packResultBox" style="background:#081020;border:1px solid rgba(77,225,255,0.35);border-radius:8px;padding:12px;min-height:150px;font-size:0.8rem;">
+            Select any themed pack above to open 5 cards!
+          </div>
+
+          <h4 style="color:var(--accent-gold);font-size:0.86rem;margin-top:6px;">ECHO DUST CARD CRAFTING &amp; DISENCHANTING</h4>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <select id="craftCardSelect" class="input-box" style="flex:1;"></select>
+            <button class="btn-primary" id="btnCraftCard">Craft (+1 Copy)</button>
+            <button class="btn-secondary" id="btnDisenchantCard">Disenchant (-1 Copy)</button>
+          </div>
+          <div id="craftStatusBox" style="font-size:0.78rem;color:var(--accent-cyan);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI CARD ART PRODUCTION & 320-CARD CONTENT STUDIO (SECTIONS 6, 7, 8) -->
+    <section id="artStudioView" class="view-section">
+      <div style="display:grid;grid-template-columns:1fr 430px;gap:16px;">
+        <div>
+          <!-- Status Report & Batch Controls Header -->
+          <div class="side-panel" style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+              <div>
+                <h3 style="color:var(--accent-gold);font-size:0.96rem;">AI CARD ART PRODUCTION PIPELINE &amp; 320-CARD CATALOGUE</h3>
+                <div style="font-size:0.78rem;color:var(--text-muted);" id="artStatusSummaryLine">
+                  Loading artwork production status...
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <select id="artProviderSelect" class="input-box"></select>
+                <button class="btn-primary" id="btnGenerateFactionArt">Generate Current Faction Filter</button>
+                <button class="btn-secondary" id="btnExportBatchJsonl">Export 320 Batch JSONL</button>
+              </div>
+            </div>
+
+            <!-- Advanced Search & Multi-Faceted Filters -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <input type="text" id="studioSearchInput" class="input-box" placeholder="Search 320 cards by name, subtype, text, lore..." style="flex:1;min-width:190px;" />
+              <select id="studioTypeFilter" class="input-box">
+                <option value="all">All Types (320)</option>
+                <option value="creature">Creatures (184)</option>
+                <option value="tactic">Tactics (62)</option>
+                <option value="relic">Relics (42)</option>
+                <option value="environment">Environments (32)</option>
+              </select>
+              <select id="studioRarityFilter" class="input-box">
+                <option value="all">All Rarities</option>
+                <option value="common">Common (145)</option>
+                <option value="uncommon">Uncommon (105)</option>
+                <option value="rare">Rare (58)</option>
+                <option value="legendary">Legendary (12)</option>
+              </select>
+              <select id="studioArtFilter" class="input-box">
+                <option value="all">All Art Statuses</option>
+                <option value="integrated_into_game">Approved &amp; Integrated in Godot</option>
+                <option value="review_required">Candidates Awaiting Review</option>
+                <option value="brief_ready">Brief Ready (Missing Art)</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;" id="factionFilters"></div>
+          </div>
+
+          <div class="catalogue-grid" id="catalogueGrid"></div>
+        </div>
+
+        <!-- Card Art & Lore Inspector Sidebar -->
+        <div class="side-panel" style="position:sticky;top:16px;max-height:86vh;overflow-y:auto;">
+          <h3 style="color:var(--accent-gold);font-size:0.94rem;">SELECTED CARD ART &amp; LORE WORKBENCH</h3>
+          <div id="artWorkbenchContainer" style="font-size:0.8rem;display:flex;flex-direction:column;gap:10px;">
+            Select any card from the 320-card gallery to inspect its complete character biography, visual specification, compiled art prompt, and candidate illustrations.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      cards: [],
+      cardsById: {},
+      decks: [],
+      starterDecks: [],
+      activeDeckId: '',
+      districts: [],
+      interiors: [],
+      currentLocationId: 'lumenport_arrival_square',
+      inGameMinutes: 600,
+      npcs: [],
+      relationships: {},
+      quests: [],
+      questDefinitions: [],
+      shopPacks: [],
+      artStatus: null,
+      selectedStudioCardId: 'EMB-C-0001',
+      match: null,
+      selectedHandIndex: -1,
+      filterFaction: 'all',
+      cameraAngleIndex: 0,
+      weatherIndex: 0,
+      weathers: ['Clear', 'Harbor Mist', 'Sunlit Breeze', 'Astral Shimmer'],
+      playerPos: { x: 0, y: 4 }
+    };
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+      document.querySelectorAll('.view-section').forEach(s => s.classList.toggle('active', s.id === tabId));
+    }
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    /**
+     * Reusable Data-Driven Card Frame HTML Renderer (Section 8)
+     * Never relies on text inside the illustration; overlays live stats over the artwork.
+     */
+    function renderDataDrivenCardFrameHtml(card, { extraClass = '', showArtUrl = null } = {}) {
+      const artUrl = showArtUrl || card.art?.web_asset_url || card.art?.web_preview_url || null;
+      const artContent = artUrl
+        ? `<img src="${artUrl}" alt="${card.name} illustration" loading="lazy" />`
+        : `<div style="font-size:0.68rem;color:var(--text-muted);text-align:center;padding:8px;">[${card.faction.replace('_',' ').toUpperCase()}]<br/>${card.art?.subject || card.name}</div>`;
+
+      const kws = (card.keywords || []).map(k => `<span class="kw-badge">${k}</span>`).join('');
+      const footer = card.type === 'creature'
+        ? `<div class="hg-stats-footer">
+             <span class="hg-atk-badge">⚔ ${card.attack}</span>
+             <span style="font-size:0.65rem;color:var(--text-muted);">${card.role || ''}</span>
+             <span class="hg-hp-badge">♥ ${card.health}</span>
+           </div>`
+        : `<div class="hg-stats-footer" style="justify-content:center;">
+             <span style="font-size:0.68rem;color:var(--accent-cyan);text-transform:uppercase;">${card.type} • ${card.subtype || card.faction}</span>
+           </div>`;
+
+      return `
+        <div class="hg-card-frame faction-${card.faction} ${extraClass}" data-card-id="${card.id}">
+          <div class="hg-card-header">
+            <span class="hg-card-title" title="${card.name}">${card.name}</span>
+            <span class="hg-cost-gem">${card.cost}</span>
+          </div>
+          <div class="hg-art-window">${artContent}</div>
+          <div class="hg-type-bar">
+            <span>${card.faction.replace('_', ' ')}</span>
+            <span class="hg-rarity-gem rarity-${card.rarity}">${card.rarity[0].toUpperCase()}</span>
+          </div>
+          <div class="hg-text-box">
+            ${kws ? `<div>${kws}</div>` : ''}
+            <div>${card.description}</div>
+          </div>
+          ${footer}
+        </div>
+      `;
+    }
+
+    async function bootstrap() {
+      const boot = await fetch('/v1/bootstrap').then(r => r.json());
+      state.cards = boot.cards || [];
+      state.cards.forEach(c => { state.cardsById[c.id] = c; });
+      state.decks = (boot.decks && boot.decks.length > 0) ? boot.decks : (boot.starter_decks || []);
+      state.starterDecks = boot.starter_decks || [];
+      state.activeDeckId = boot.active_deck_id || (state.decks[0] && state.decks[0].id);
+      state.districts = boot.districts || [];
+      state.interiors = boot.interiors || [];
+      state.npcs = boot.npcs || [];
+      state.quests = boot.quests || [];
+      state.questDefinitions = boot.quest_definitions || [];
+      state.shopPacks = boot.shop_packs || [];
+      state.artStatus = boot.art_status || null;
+
+      if (boot.account) {
+        document.getElementById('hudUsername').textContent = boot.account.username;
+        document.getElementById('hudCrowns').textContent = boot.account.crowns;
+        document.getElementById('hudDust').textContent = boot.account.echo_dust;
+      }
+      document.getElementById('hudCardCount').textContent = `${state.cards.length} / 640`;
+      if (state.artStatus) {
+        document.getElementById('hudArtCount').textContent = state.artStatus.counts.integrated_into_game;
+      }
+
+      renderWorldSidebars();
+      renderDecksAndShopView();
+      renderArtStudioView();
+      await selectStudioCard(state.selectedStudioCardId);
+      await startNewMatch({ npcId: 'npc_kaelen_forge', format: 'standard_1v1' });
+      initLumenportCanvas();
+    }
+
+    async function startNewMatch({ npcId = 'npc_kaelen_forge', format = 'standard_1v1' } = {}) {
+      const res = await fetch('/v1/matches', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          npc_id: npcId,
+          deck_id: state.activeDeckId,
+          format
+        })
+      });
+      const data = await res.json();
+      state.match = data.match;
+      state.selectedHandIndex = -1;
+      renderBattleArena();
+    }
+
+    async function sendBattleCommand(cmd) {
+      if (!state.match) return;
+      const res = await fetch(`/v1/matches/${state.match.id}/command`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cmd)
+      });
+      const data = await res.json();
+      if (data.match) state.match = data.match;
+      if (data.account) {
+        document.getElementById('hudCrowns').textContent = data.account.crowns;
+        document.getElementById('hudDust').textContent = data.account.echo_dust;
+      }
+      if (!res.ok && data.error) {
+        document.getElementById('cardInspector').innerHTML = `<strong style="color:var(--danger);">Authoritative Rust Engine Rejected Action:</strong><br/>${data.error}`;
+      }
+      renderBattleArena();
+    }
+
+    function renderBattleArena() {
+      const m = state.match;
+      if (!m) return;
+      const p0 = m.players[0];
+      const p1 = m.players[1];
+
+      const isTag = m.format === 'tag_2v2';
+      document.getElementById('formatBadge').textContent = isTag
+        ? '2v2 Tag Battle (Shared 45 Vitality & 6-Slot Board)'
+        : '1v1 Standard Convergence Duel';
+      document.getElementById('oppName').textContent = isTag
+        ? `Team 1: ${p1.name} & ${m.players[3]?.name || 'Partner'}`
+        : `${p1.name} (Authoritative Rust AI)`;
+      document.getElementById('oppDeckInfo').textContent = `Hand: ${p1.hand.length} | Deck: ${p1.deck.length} | Discard: ${p1.discard.length}`;
+      document.getElementById('oppVitality').textContent = `${p1.vitality} / ${p1.max_vitality} Vitality`;
+      document.getElementById('allyVitality').textContent = `${p0.vitality} / ${p0.max_vitality} Vitality`;
+      document.getElementById('allyAether').textContent = `${p0.aether} / ${p0.aether_capacity} Aether`;
+      document.getElementById('allyResonate').textContent = `Resonate: ${p0.resonate_active ? 'ACTIVE' : 'Inactive'} (${p0.controlled_lanes || 0}/2 Lanes)`;
+      document.getElementById('allyResonate').style.color = p0.resonate_active ? 'var(--success)' : 'var(--text-muted)';
+      document.getElementById('envBanner').textContent = `Environment: ${m.active_environment ? m.active_environment.name : 'Lumenport Grand Table'}`;
+      document.getElementById('turnIndicator').textContent = `Turn ${m.global_turn} • Active Seat ${m.active_player} (${m.outcome.replace(/_/g, ' ').toUpperCase()})`;
+
+      const lanesWrapper = document.getElementById('lanesWrapper');
+      lanesWrapper.innerHTML = '';
+      const laneTitles = ['LEFT LANE (1)', 'CENTER LANE (2)', 'RIGHT LANE (3)'];
+
+      for (let l = 0; l < 3; l++) {
+        const allyHas = Boolean(p0.lanes[l].front || p0.lanes[l].rear);
+        const oppHas = Boolean(p1.lanes[l].front || p1.lanes[l].rear);
+        const col = document.createElement('div');
+        col.className = 'lane-col' + (allyHas && !oppHas ? ' controlled-ally' : '');
+        col.innerHTML = `<div class="lane-header">${laneTitles[l]} ${allyHas && !oppHas ? '★ CONTROLLED' : ''}</div>`;
+
+        const slots = [
+          { owner: 1, pos: 'rear', label: 'Enemy Rear' },
+          { owner: 1, pos: 'front', label: 'Enemy Front (Shields Rear)' },
+          { owner: 0, pos: 'front', label: 'Team Front (Shields Rear)' },
+          { owner: 0, pos: 'rear', label: 'Team Rear' }
+        ];
+
+        for (const s of slots) {
+          const unit = m.players[s.owner].lanes[l][s.pos];
+          const box = document.createElement('div');
+          let cls = 'slot-box';
+          if (unit) {
+            cls += s.owner === 0 ? ' occupied-ally' : ' occupied-enemy';
+            if (s.owner === 0 && unit.ready && !(m.global_turn === 1)) cls += ' ready-unit';
+          } else if (s.owner === 0 && state.selectedHandIndex >= 0) {
+            cls += ' valid-target';
+          }
+          box.className = cls;
+
+          if (unit) {
+            const kws = (unit.keywords || []).map(k => `<span class="kw-badge">${k}</span>`).join('');
+            const counters = Object.entries(unit.counters || {})
+              .filter(([, v]) => v > 0)
+              .map(([k, v]) => `<span class="kw-badge" style="border-color:var(--accent-gold);color:var(--accent-gold);">${k}:${v}</span>`)
+              .join('');
+            box.innerHTML = `
+              <div class="slot-label">${s.label} ${s.owner === 0 && unit.ready ? '• READY' : ''}</div>
+              <div class="unit-title">${unit.name}</div>
+              <div>${kws}${counters}</div>
+              <div class="unit-stats">
+                <span style="color:#ffbf69;">⚔ ${unit.attack}</span>
+                <span style="color:#6fffe9;">♥ ${unit.health}/${unit.max_health}</span>
+              </div>
+            `;
+          } else {
+            box.innerHTML = `<div class="slot-label">${s.label}</div><div style="color:rgba(152,171,201,0.45);font-size:0.73rem;">[ Open Tabletop Slot ]</div>`;
+          }
+
+          box.addEventListener('click', () => onBoardSlotClicked(s.owner, l, s.pos, unit));
+          col.appendChild(box);
+        }
+        lanesWrapper.appendChild(col);
+      }
+
+      // Render Hand using Data-Driven Card Frame Renderer
+      const handStrip = document.getElementById('handStrip');
+      handStrip.innerHTML = '';
+      p0.hand.forEach((hCard, idx) => {
+        const def = state.cardsById[hCard.card_id];
+        if (!def) return;
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = renderDataDrivenCardFrameHtml(def, {
+          extraClass: state.selectedHandIndex === idx ? 'selected' : ''
+        });
+        const cardEl = wrapper.firstElementChild;
+        if (state.selectedHandIndex === idx) {
+          cardEl.style.boxShadow = '0 0 16px var(--accent-cyan)';
+        }
+        cardEl.addEventListener('click', () => onHandCardClicked(idx, def));
+        handStrip.appendChild(cardEl);
+      });
+
+      const logEl = document.getElementById('battleLog');
+      logEl.innerHTML = m.event_log.slice(-18).map(line => `<div>${line}</div>`).join('');
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function inspectCardDetails(def) {
+      const iden = def.identity || {};
+      const meta = def.gameplay_metadata || {};
+      document.getElementById('cardInspector').innerHTML = `
+        <div style="font-weight:700;color:var(--accent-gold);font-size:0.95rem;">${def.name} <span style="color:var(--accent-cyan);">[${def.id}]</span></div>
+        <div style="font-size:0.74rem;color:var(--text-muted);margin:3px 0;">
+          Cost: ${def.cost} Aether | Faction: ${def.faction} | Type: ${def.type} (${def.subtype || 'core'}) ${def.role ? '• Role: ' + def.role : ''}
+        </div>
+        <div style="margin:6px 0;color:#fff;">${def.description}</div>
+        <div style="font-size:0.74rem;color:var(--accent-cyan);margin-bottom:4px;">
+          Archetypes: ${(meta.archetype_membership || []).join(', ')} • Origin: ${iden.origin || def.faction}
+        </div>
+        <div style="font-size:0.73rem;color:#a5b8d8;font-style:italic;">"${iden.flavor_text || def.lore}"</div>
+      `;
+    }
+
+    function onHandCardClicked(idx, def) {
+      state.selectedHandIndex = idx;
+      inspectCardDetails(def);
+      const activeSeat = state.match ? state.match.active_player : 0;
+      if (def.type === 'tactic') {
+        sendBattleCommand({ type: 'play_tactic', player: activeSeat, hand_index: idx, target_lane: 0 });
+        state.selectedHandIndex = -1;\n      } else if (def.type === 'relic') {
+        sendBattleCommand({ type: 'play_relic', player: activeSeat, hand_index: idx });
+        state.selectedHandIndex = -1;
+      } else if (def.type === 'environment') {
+        sendBattleCommand({ type: 'play_environment', player: activeSeat, hand_index: idx });
+        state.selectedHandIndex = -1;
+      } else {
+        renderBattleArena();
+      }
+    }
+
+    function onBoardSlotClicked(owner, lane, pos, unit) {
+      const activeSeat = state.match ? state.match.active_player : 0;
+      if (unit) {
+        const def = state.cardsById[unit.card_id];
+        if (def) inspectCardDetails(def);
+      }
+      if (owner === 0 && !unit && state.selectedHandIndex >= 0) {
+        sendBattleCommand({
+          type: 'summon_creature',
+          player: activeSeat,
+          hand_index: state.selectedHandIndex,
+          lane,
+          position: pos
+        });
+        state.selectedHandIndex = -1;
+        return;
+      }
+      if (owner === 0 && unit) {
+        const enemyLane = state.match.players[1].lanes[lane];
+        if (enemyLane.front) {
+          sendBattleCommand({
+            type: 'attack_creature',
+            player: activeSeat,
+            attacker_lane: lane,
+            attacker_position: pos,
+            defender_position: 'front'
+          });
+        } else if (enemyLane.rear) {
+          sendBattleCommand({
+            type: 'attack_creature',
+            player: activeSeat,
+            attacker_lane: lane,
+            attacker_position: pos,
+            defender_position: 'rear'
+          });
+        } else {
+          sendBattleCommand({
+            type: 'attack_leader',
+            player: activeSeat,
+            attacker_lane: lane,
+            attacker_position: pos
+          });
+        }
+      }
+    }
+
+    document.getElementById('btnMulligan').addEventListener('click', () => {
+      const activeSeat = state.match ? state.match.active_player : 0;
+      sendBattleCommand({ type: 'mulligan', player: activeSeat, replace_hand_indices: [0, 1] });
+    });
+    document.getElementById('btnEndTurn').addEventListener('click', () => {
+      const activeSeat = state.match ? state.match.active_player : 0;
+      sendBattleCommand({ type: 'end_turn', player: activeSeat });
+    });
+    document.getElementById('btnNewMatch').addEventListener('click', () => {
+      startNewMatch({ npcId: 'npc_kaelen_forge', format: 'standard_1v1' });
+    });
+    document.getElementById('btnNewTagMatch').addEventListener('click', () => {
+      startNewMatch({ npcId: 'npc_soren_whisperleaf', format: 'tag_2v2' });
+    });
+    document.getElementById('btnJumpToDuel').addEventListener('click', () => {
+      switchTab('battleView');
+    });
+
+    // =========================================================================
+    // 1. LUMENPORT WORLD: 6 DISTRICTS, 6 INTERIORS, 16 NPCS & 8 QUESTS
+    // =========================================================================
+    function formatInGameTime(minutes) {
+      const hrs = Math.floor((minutes % 1440) / 60);
+      const mins = minutes % 60;
+      const suffix = hrs >= 12 ? 'PM' : 'AM';
+      const h12 = hrs % 12 === 0 ? 12 : hrs % 12;
+      return `${String(h12).padStart(2, '0')}:${String(mins).padStart(2, '0')} ${suffix}`;
+    }
+
+    function renderWorldSidebars() {
+      // Fast-travel district buttons
+      const distBar = document.getElementById('districtFastTravelBar');
+      distBar.innerHTML = state.districts.map(d => `
+        <button class="btn-secondary" style="font-size:0.73rem;border-color:${state.currentLocationId === d.id ? 'var(--accent-gold)' : ''}" onclick="travelToLocation('${d.id}', '${d.name}')">
+          📍 ${d.name}
+        </button>
+      `).join('');
+
+      // Interior buttons
+      const intBar = document.getElementById('interiorEnterBar');
+      intBar.innerHTML = state.interiors.map(i => `
+        <button class="btn-secondary" style="font-size:0.71rem;background:#132342;border-color:${state.currentLocationId === i.id ? 'var(--accent-cyan)' : ''}" onclick="travelToLocation('${i.id}', '${i.name}')">
+          🚪 ${i.name}
+        </button>
+      `).join('');
+
+      const npcBox = document.getElementById('npcListContainer');
+      npcBox.innerHTML = '';
+      state.npcs.forEach(npc => {
+        const el = document.createElement('div');
+        el.style.cssText = 'background:#13203b;border:1px solid rgba(201,155,73,0.35);border-radius:6px;padding:8px;font-size:0.77rem;display:flex;justify-content:space-between;align-items:center;gap:8px;';
+        const activeSched = (npc.schedule || [])[0];
+        el.innerHTML = `
+          <div>
+            <strong style="color:var(--accent-gold);">${npc.name}</strong>
+            <span style="font-size:0.68rem;color:var(--accent-cyan);margin-left:4px;">[${npc.faction_affinity.replace('_',' ')}]</span>
+            <div style="color:var(--text-muted);font-size:0.71rem;">${npc.title} • AI: ${npc.companion_ai_profile || npc.duel_difficulty}</div>
+            <div style="color:#88a2c9;font-size:0.68rem;">Schedule: ${activeSched ? activeSched.time + ' @ ' + activeSched.location.replace('lumenport_','').replace('interior_','') : npc.home_location}</div>
+          </div>
+          <div style="display:flex;gap:4px;flex-shrink:0;">
+            <button class="btn-secondary" style="padding:4px 7px;font-size:0.71rem;" data-act="talk">Talk</button>
+            <button class="btn-primary" style="padding:4px 8px;font-size:0.71rem;" data-act="duel">Duel</button>
+          </div>
+        `;
+        el.querySelector('[data-act="talk"]').addEventListener('click', async () => {
+          const res = await fetch('/v1/npcs/interact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ npc_id: npc.id, type: 'gift' })
+          }).then(r => r.json());
+          document.getElementById('npcDialogueBox').innerHTML = `
+            <strong style="color:var(--accent-gold);">${npc.name} (${res.relationship?.tier || 'Friendly'} • Bond ${res.relationship?.score || 30}/100):</strong><br/>
+            "${res.dialogue}"<br/>
+            <span style="font-size:0.72rem;color:var(--accent-cyan);">Appearance: ${npc.appearance || ''}</span>
+          `;
+        });
+        el.querySelector('[data-act="duel"]').addEventListener('click', async () => {
+          document.getElementById('npcDialogueBox').innerHTML = `<strong>${npc.name}:</strong> "${npc.dialogue.greeting}"`;
+          await startNewMatch({ npcId: npc.id, format: 'standard_1v1' });
+          switchTab('battleView');
+        });
+        npcBox.appendChild(el);
+      });
+
+      const qBox = document.getElementById('questListContainer');
+      const questsToRender = state.questDefinitions.length > 0 ? state.questDefinitions : state.quests;
+      qBox.innerHTML = questsToRender.map(q => `
+        <div style="background:#101c34;border:1px solid rgba(77,225,255,0.25);border-radius:6px;padding:8px;">
+          <div style="display:flex;justify-content:space-between;">
+            <strong style="color:var(--accent-cyan);">Ch.${q.chapter || 1}: ${q.title}</strong>
+            <span style="color:var(--accent-gold);font-size:0.71rem;">+${q.rewards?.crowns || 100} Crowns</span>
+          </div>
+          <div style="color:var(--text-muted);margin-top:3px;">${q.description}</div>
+        </div>
+      `).join('');
+    }
+
+    window.travelToLocation = async (locId, locName) => {
+      state.currentLocationId = locId;
+      document.getElementById('worldLocationTitle').textContent = `LUMENPORT — ${locName}`;
+      await fetch('/v1/world/move', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ location_id: locId, in_game_minutes: state.inGameMinutes })
+      });
+      renderWorldSidebars();
+      if (window._redrawLumenportCanvas) window._redrawLumenportCanvas();
+    };
+
+    document.getElementById('btnAdvanceTime').addEventListener('click', async () => {
+      state.inGameMinutes = (state.inGameMinutes + 180) % 1440;
+      document.getElementById('worldTimeLabel').textContent =
+        `Time: ${formatInGameTime(state.inGameMinutes)} • Weather: ${state.weathers[state.weatherIndex]}`;
+      await fetch('/v1/world/move', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ in_game_minutes: state.inGameMinutes })
+      });
+    });
+
+    // =========================================================================
+    // 3. DECK BUILDER, COST CURVE, CRAFTING & THEMED SHOP
+    // =========================================================================
+    function renderDecksAndShopView() {
+      const allDecks = [...state.decks];
+      state.starterDecks.forEach(sd => {
+        if (!allDecks.some(d => d.name === sd.name)) allDecks.push(sd);
+      });
+
+      const activeDeck = allDecks.find(d => d.id === state.activeDeckId) || allDecks[0];
+      if (activeDeck) {
+        // Compute cost curve (1..7+) and type breakdown
+        const curve = [0, 0, 0, 0, 0, 0, 0];
+        const counts = { creature: 0, tactic: 0, relic: 0, environment: 0 };
+        for (const entry of activeDeck.cards || []) {
+          const c = state.cardsById[entry.card_id];
+          if (!c) continue;
+          const bucket = Math.min(7, Math.max(1, c.cost)) - 1;
+          curve[bucket] += entry.count;
+          counts[c.type] = (counts[c.type] || 0) + entry.count;
+        }
+        const maxBucket = Math.max(1, ...curve);
+        document.getElementById('activeDeckSummaryTitle').textContent =
+          `${activeDeck.name} (${(activeDeck.factions || []).join(' + ').toUpperCase()})`;
+        document.getElementById('activeDeckTypeBreakdown').textContent =
+          `Creatures: ${counts.creature} • Tactics: ${counts.tactic} • Relics: ${counts.relic} • Environments: ${counts.environment}`;
+
+        document.getElementById('deckCurveBars').innerHTML = curve.map((cnt, idx) => {
+          const pct = Math.round((cnt / maxBucket) * 58) + 4;
+          const label = idx === 6 ? '7+' : String(idx + 1);
+          return `
+            <div class="curve-col">
+              <span style="color:var(--accent-gold);font-weight:700;">${cnt}</span>
+              <div class="curve-fill" style="height:${pct}px;"></div>
+              <span style="color:var(--text-muted);">${label}⚡</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const box = document.getElementById('decksContainer');
+      box.innerHTML = allDecks.map(d => `
+        <div style="background:#13203b;border:1px solid ${d.id === state.activeDeckId ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)'};border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;">
+          <div>
+            <strong style="color:var(--accent-gold);">${d.name}</strong>
+            <div style="font-size:0.75rem;color:var(--text-muted);">${d.description || '40-card Convergence deck'} (${d.total_cards} Cards • ${(d.factions || []).join(', ')})</div>
+          </div>
+          <button class="btn-secondary" onclick="selectActiveDeck('${d.id}')">${d.id === state.activeDeckId ? '✓ Active' : 'Select'}</button>
+        </div>
+      `).join('');
+
+      // Shop Pack Buttons
+      const packBar = document.getElementById('shopPackButtons');
+      packBar.innerHTML = state.shopPacks.map(p => `
+        <button class="btn-primary" onclick="buyPack('${p.id}')">${p.name} (${p.cost_crowns} Crowns)</button>
+      `).join('');
+
+      // Crafting selector
+      const craftSel = document.getElementById('craftCardSelect');
+      if (craftSel.options.length === 0) {
+        craftSel.innerHTML = state.cards.map(c =>
+          `<option value="${c.id}">[${c.id}] ${c.name} (${c.faction} • ${c.rarity})</option>`
+        ).join('');
+      }
+    }
+
+    window.selectActiveDeck = (deckId) => {
+      state.activeDeckId = deckId;
+      renderDecksAndShopView();
+    };
+
+    document.getElementById('btnDuplicateDeck').addEventListener('click', async () => {
+      const allDecks = [...state.decks, ...state.starterDecks];
+      const activeDeck = allDecks.find(d => d.id === state.activeDeckId) || allDecks[0];
+      if (!activeDeck) return;
+      const res = await fetch('/v1/decks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${activeDeck.name} (Copy)`,
+          cards: activeDeck.cards
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.deck) {
+        state.decks.push(data.deck);
+        state.activeDeckId = data.deck.id;
+        renderDecksAndShopView();
+      }
+    });
+
+    document.getElementById('btnExportDeckCode').addEventListener('click', () => {
+      const allDecks = [...state.decks, ...state.starterDecks];
+      const activeDeck = allDecks.find(d => d.id === state.activeDeckId) || allDecks[0];
+      if (!activeDeck) return;
+      const code = 'HG1_' + btoa(JSON.stringify({ name: activeDeck.name, cards: activeDeck.cards }));
+      const box = document.getElementById('deckCodeBox');
+      box.style.display = 'block';
+      box.innerHTML = `<strong>Exported Deck Code:</strong><br/>${code}`;
+    });
+
+    document.getElementById('btnPracticeDeck').addEventListener('click', async () => {
+      await startNewMatch({ npcId: 'npc_instructor_hale', format: 'standard_1v1' });
+      switchTab('battleView');
+    });
+
+    window.buyPack = async (packId) => {
+      const res = await fetch('/v1/shop/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pack_id: packId })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        document.getElementById('packResultBox').innerHTML = `<strong style="color:var(--danger);">${data.error}</strong>`;
+        return;
+      }
+      document.getElementById('hudCrowns').textContent = data.wallet.crowns;
+      document.getElementById('hudDust').textContent = data.wallet.echo_dust;
+      document.getElementById('packResultBox').innerHTML = `
+        <strong style="color:var(--accent-gold);">Opened ${data.pack_id}!</strong>
+        <ul style="margin:6px 0 6px 18px;">
+          ${data.cards.map(c => `<li><strong>${c.name}</strong> [${c.card_id}] (${c.faction || ''} • ${c.rarity}) ${c.converted_to_dust ? `<span style="color:var(--accent-cyan);">[+${c.converted_to_dust} Echo Dust]</span>` : ''}</li>`).join('')}
+        </ul>
+        <div>Total Duplicate Echo Dust Gained: <strong style="color:var(--accent-cyan);">+${data.duplicate_echo_dust_gained}</strong></div>
+      `;
+    };
+
+    async function runCraftAction(action) {
+      const cardId = document.getElementById('craftCardSelect').value;
+      const res = await fetch('/v1/crafting/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, action })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        document.getElementById('craftStatusBox').innerHTML = `<span style="color:var(--danger);">${data.error}</span>`;
+        return;
+      }
+      document.getElementById('hudDust').textContent = data.echo_dust;
+      document.getElementById('craftStatusBox').textContent =
+        `${action.toUpperCase()} succeeded for ${data.card_id} • Owned copies: ${data.new_quantity} • Echo Dust: ${data.echo_dust}`;
+    }
+    document.getElementById('btnCraftCard').addEventListener('click', () => runCraftAction('craft'));
+    document.getElementById('btnDisenchantCard').addEventListener('click', () => runCraftAction('disenchant'));
+
+    // =========================================================================
+    // 4. AI CARD ART PRODUCTION & 320-CARD CONTENT STUDIO (SECTIONS 6, 7, 8)
+    // =========================================================================
+    async function refreshArtStatus() {
+      const status = await fetch('/v1/art/status').then(r => r.json());
+      state.artStatus = status;
+      document.getElementById('hudArtCount').textContent = status.counts.integrated_into_game;
+      document.getElementById('artStatusSummaryLine').innerHTML =
+        `Total Cards: <strong>${status.total_cards}</strong> • Briefs Ready: <strong>${status.counts.brief_ready}</strong> • Awaiting Review: <strong>${status.counts.review_required}</strong> • Approved &amp; Exported to Godot: <strong style="color:var(--success);">${status.counts.integrated_into_game}</strong> • Budget Remaining: <strong>$${status.budget.remaining_usd}</strong>`;
+
+      const provSel = document.getElementById('artProviderSelect');
+      if (provSel.options.length === 0 && status.providers) {
+        provSel.innerHTML = status.providers.map(p =>
+          `<option value="${p.id}">${p.name} (${p.configured ? 'READY' : 'ENV KEY NEEDED'} • $${p.cost_per_image_usd}/img)</option>`
+        ).join('');
+        provSel.value = 'studio_stylized_svg';
+      }
+    }
+
+    function renderArtStudioView() {
+      refreshArtStatus();
+      const factions = ['all', 'emberclad', 'verdant_pact', 'iron_choir', 'tidebound', 'glassborne', 'nocturne', 'starweave', 'gravewild', 'neutral'];
+      const filterBar = document.getElementById('factionFilters');
+      filterBar.innerHTML = factions.map(f => `
+        <button class="btn-secondary" style="font-size:0.73rem;padding:4px 9px;border-color:${state.filterFaction === f ? 'var(--accent-gold)' : ''}" onclick="setFactionFilter('${f}')">
+          ${f.replace('_', ' ').toUpperCase()}
+        </button>
+      `).join('');
+
+      const q = (document.getElementById('studioSearchInput').value || '').toLowerCase();
+      const typeFilter = document.getElementById('studioTypeFilter').value;
+      const rarityFilter = document.getElementById('studioRarityFilter').value;
+      const artFilter = document.getElementById('studioArtFilter').value;
+
+      const filtered = state.cards.filter(c => {
+        if (state.filterFaction !== 'all' && c.faction !== state.filterFaction) return false;
+        if (typeFilter !== 'all' && c.type !== typeFilter) return false;
+        if (rarityFilter !== 'all' && c.rarity !== rarityFilter) return false;
+        if (artFilter !== 'all' && (c.art?.art_status || 'brief_ready') !== artFilter) return false;
+        if (q) {
+          const hay = `${c.id} ${c.name} ${c.description} ${c.subtype || ''} ${(c.keywords || []).join(' ')} ${c.lore || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const grid = document.getElementById('catalogueGrid');
+      grid.innerHTML = filtered.map(c => renderDataDrivenCardFrameHtml(c)).join('');
+      grid.querySelectorAll('.hg-card-frame').forEach(el => {
+        el.addEventListener('click', () => selectStudioCard(el.dataset.cardId));
+      });
+    }
+
+    window.setFactionFilter = (f) => {
+      state.filterFaction = f;
+      renderArtStudioView();
+    };
+    ['studioSearchInput', 'studioTypeFilter', 'studioRarityFilter', 'studioArtFilter'].forEach(id => {
+      document.getElementById(id).addEventListener('input', renderArtStudioView);
+    });
+
+    async function selectStudioCard(cardId) {
+      state.selectedStudioCardId = cardId;
+      const detail = await fetch(`/v1/art/cards/${cardId}`).then(r => r.json());
+      const card = state.cardsById[cardId];
+      if (!card || !detail) return;
+      const rec = detail.art_record;
+      const iden = card.identity || {};
+
+      const candidatesHtml = (rec.candidates || []).length > 0
+        ? rec.candidates.map(cand => `
+            <div style="background:#081020;border:1px solid ${cand.approved ? 'var(--success)' : 'rgba(255,255,255,0.15)'};border-radius:6px;padding:8px;display:flex;gap:10px;align-items:center;">
+              <img src="${cand.web_preview_url}" style="width:64px;height:84px;object-fit:cover;border-radius:4px;border:1px solid var(--border-gold);" />
+              <div style="flex:1;font-size:0.73rem;">
+                <div><strong>${cand.candidate_id}</strong> (${cand.provider_id})</div>
+                <div style="color:var(--text-muted);">768x1024 • No baked text: ✓</div>
+                <div style="display:flex;gap:6px;margin-top:5px;">
+                  <button class="btn-primary" style="padding:3px 8px;font-size:0.7rem;" onclick="approveCardCandidate('${card.id}', '${cand.candidate_id}')">
+                    ${cand.approved ? '✓ Approved in Godot' : 'Approve & Export to Godot'}
+                  </button>
+                  <button class="btn-secondary" style="padding:3px 8px;font-size:0.7rem;" onclick="rejectCardCandidate('${card.id}', '${cand.candidate_id}')">Reject</button>
+                </div>
+              </div>
+            </div>
+          `).join('')
+        : `<div style="color:var(--text-muted);font-size:0.75rem;">No candidate images generated yet. Click "Generate Illustration" below.</div>`;
+
+      document.getElementById('artWorkbenchContainer').innerHTML = `
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          ${renderDataDrivenCardFrameHtml(card, { showArtUrl: rec.exported_web_url })}
+          <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
+            <strong style="color:var(--accent-gold);font-size:0.95rem;">${card.name} (${card.id})</strong>
+            <span style="font-size:0.74rem;color:var(--accent-cyan);">Status: <strong>${rec.status.toUpperCase()}</strong></span>
+            <span style="font-size:0.72rem;color:var(--text-muted);">Godot Path: ${rec.exported_godot_path || 'Pending Approval'}</span>
+            <div style="font-size:0.74rem;margin-top:4px;"><strong>Biography:</strong> ${iden.collection_biography || card.lore}</div>
+            <div style="font-size:0.72rem;color:#a5b8d8;"><strong>Origin:</strong> ${iden.origin || ''}</div>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.74rem;color:var(--accent-gold);font-weight:700;">COMPILED AI ART GENERATION PROMPT (NO BAKED STATS):</label>
+          <textarea id="workbenchPromptInput" class="input-box" rows="4" style="width:100%;margin-top:4px;">${rec.custom_prompt || card.art?.prompt || ''}</textarea>
+          <div style="display:flex;gap:6px;margin-top:6px;">
+            <button class="btn-secondary" onclick="saveCustomPrompt('${card.id}')">Save Prompt</button>
+            <button class="btn-primary" onclick="generateCardArtwork('${card.id}', 1)">Generate Illustration</button>
+            <button class="btn-secondary" onclick="generateCardArtwork('${card.id}', 2)">+2 Variants</button>
+          </div>
+        </div>
+
+        <div>
+          <strong style="font-size:0.76rem;color:var(--accent-gold);">CANDIDATE GENERATIONS &amp; GODOT EXPORT:</strong>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">${candidatesHtml}</div>
+        </div>
+      `;
+    }
+
+    window.saveCustomPrompt = async (cardId) => {
+      const prompt = document.getElementById('workbenchPromptInput').value;
+      await fetch('/v1/art/prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, prompt })
+      });
+      await selectStudioCard(cardId);
+    };
+
+    window.generateCardArtwork = async (cardId, variantCount = 1) => {
+      const providerId = document.getElementById('artProviderSelect').value || 'studio_stylized_svg';
+      await fetch('/v1/art/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          card_id: cardId,
+          provider_id: providerId,
+          variant_count: variantCount
+        })
+      });
+      await selectStudioCard(cardId);
+      await refreshArtStatus();
+    };
+
+    window.approveCardCandidate = async (cardId, candidateId) => {
+      const res = await fetch('/v1/art/approve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, candidate_id: candidateId })
+      }).then(r => r.json());
+      if (res.art_record && state.cardsById[cardId]) {
+        state.cardsById[cardId].art.art_status = res.art_record.status;
+        state.cardsById[cardId].art.web_asset_url = res.art_record.exported_web_url;
+      }
+      await selectStudioCard(cardId);
+      renderArtStudioView();
+    };
+
+    window.rejectCardCandidate = async (cardId, candidateId) => {
+      await fetch('/v1/art/reject', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, candidate_id: candidateId })
+      });
+      await selectStudioCard(cardId);
+      await refreshArtStatus();
+    };
+
+    document.getElementById('btnGenerateFactionArt').addEventListener('click', async () => {
+      const faction = state.filterFaction === 'all' ? 'emberclad' : state.filterFaction;
+      const providerId = document.getElementById('artProviderSelect').value || 'studio_stylized_svg';
+      await fetch('/v1/art/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          faction,
+          provider_id: providerId,
+          variant_count: 1
+        })
+      });
+      await selectStudioCard(state.selectedStudioCardId);
+      renderArtStudioView();
+    });
+
+    document.getElementById('btnExportBatchJsonl').addEventListener('click', async () => {
+      const res = await fetch('/v1/art/export-batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ missing_only: false })
+      }).then(r => r.json());
+      document.getElementById('artStatusSummaryLine').innerHTML =
+        `<strong style="color:var(--success);">Exported ${res.exported_count} compiled card art prompts to ${res.manifest_path}!</strong>`;
+    });
+
+    // =========================================================================
+    // ISOMETRIC LUMENPORT CANVAS WITH MINIMAP & 6 DISTRICTS
+    // =========================================================================
+    function initLumenportCanvas() {
+      const canvas = document.getElementById('lumenportCanvas');
+      const ctx = canvas.getContext('2d');
+      const landmarks = [
+        { x: -4.2, y: -3.2, z: 36, color: '#c98a38', label: 'Central Card Market & Shop' },
+        { x: 4.2, y: -3.2, z: 44, color: '#3b6cb7', label: 'The Accord Institute' },
+        { x: 0, y: 0, z: 16, color: '#6b4ca8', label: 'Duelist Plaza Grand Table' },
+        { x: -4.2, y: 3.2, z: 28, color: '#2b937f', label: 'Arrival Square & Harbor Café' },
+        { x: 4.2, y: 3.2, z: 38, color: '#b5384a', label: 'Grand Tournament Hall' },
+        { x: 0, y: -4.5, z: 30, color: '#7a59b5', label: 'Lantern Row Residential Lofts' }
+      ];
+
+      function isoProject(wx, wy, wz = 0) {
+        const angle = (state.cameraAngleIndex * Math.PI) / 2;
+        const rx = wx * Math.cos(angle) - wy * Math.sin(angle);
+        const ry = wx * Math.sin(angle) + wy * Math.cos(angle);
+        const sx = canvas.width / 2 + (rx - ry) * 34;
+        const sy = canvas.height / 2 + (rx + ry) * 18 - wz;
+        return { x: sx, y: sy };
+      }
+
+      function drawWorld() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let gx = -7; gx <= 7; gx++) {
+          for (let gy = -7; gy <= 7; gy++) {
+            const p1 = isoProject(gx, gy);
+            const p2 = isoProject(gx + 1, gy);
+            const p3 = isoProject(gx + 1, gy + 1);
+            const p4 = isoProject(gx, gy + 1);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.lineTo(p3.x, p3.y);
+            ctx.lineTo(p4.x, p4.y);
+            ctx.closePath();
+            const isPlaza = Math.abs(gx) <= 2 && Math.abs(gy) <= 2;
+            ctx.fillStyle = isPlaza ? '#1c2d4f' : ((gx + gy) % 2 === 0 ? '#111d35' : '#14223d');
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(201,155,73,0.14)';
+            ctx.stroke();
+          }
+        }
+
+        // District Landmarks
+        for (const lm of landmarks) {
+          const top = isoProject(lm.x, lm.y, lm.z);
+          ctx.fillStyle = lm.color;
+          ctx.beginPath();
+          ctx.arc(top.x, top.y, 24, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#f3c669';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 11px Segoe UI';
+          ctx.textAlign = 'center';
+          ctx.fillText(lm.label, top.x, top.y - 30);
+        }
+
+        // Place first 8 NPCs dynamically around the isometric city
+        state.npcs.slice(0, 8).forEach((npc, idx) => {
+          const ang = (idx / 8) * Math.PI * 2;
+          const nx = Math.cos(ang) * 3.1;
+          const ny = Math.sin(ang) * 2.8;
+          const p = isoProject(nx, ny, 10);
+          ctx.fillStyle = '#4de1ff';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
+          ctx.fillStyle = '#edf3ff';
+          ctx.font = '600 10px Segoe UI';
+          ctx.textAlign = 'center';
+          ctx.fillText(npc.name, p.x, p.y - 14);
+        });
+
+        // Player Character
+        const pp = isoProject(state.playerPos.x, state.playerPos.y, 12);
+        ctx.fillStyle = '#f3c669';
+        ctx.beginPath();
+        ctx.arc(pp.x, pp.y, 13, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#070d19';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        ctx.fillStyle = '#f3c669';
+        ctx.font = 'bold 12px Segoe UI';
+        ctx.fillText('YOU (Duelist)', pp.x, pp.y - 18);
+
+        // Top-Left Minimap Overlay
+        ctx.fillStyle = 'rgba(7, 13, 25, 0.85)';
+        ctx.fillRect(14, 14, 155, 115);
+        ctx.strokeStyle = '#c99b49';
+        ctx.strokeRect(14, 14, 155, 115);
+        ctx.fillStyle = '#f3c669';
+        ctx.font = 'bold 10px Segoe UI';
+        ctx.textAlign = 'left';
+        ctx.fillText('LUMENPORT MINIMAP', 22, 30);
+        landmarks.forEach(lm => {
+          const mx = 90 + lm.x * 10;
+          const my = 76 + lm.y * 8;
+          ctx.fillStyle = lm.color;
+          ctx.fillRect(mx - 3, my - 3, 6, 6);
+        });
+        ctx.fillStyle = '#45e09b';
+        ctx.beginPath();
+        ctx.arc(90 + state.playerPos.x * 10, 76 + state.playerPos.y * 8, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      window._redrawLumenportCanvas = drawWorld;
+
+      window.addEventListener('keydown', (e) => {
+        if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        const key = e.key.toLowerCase();
+        if (key === 'w' || e.key === 'arrowup') state.playerPos.y = Math.max(-6, state.playerPos.y - 0.6);
+        else if (key === 's' || e.key === 'arrowdown') state.playerPos.y = Math.min(6, state.playerPos.y + 0.6);
+        else if (key === 'a' || e.key === 'arrowleft') state.playerPos.x = Math.max(-6, state.playerPos.x - 0.6);
+        else if (key === 'd' || e.key === 'arrowright') state.playerPos.x = Math.min(6, state.playerPos.x + 0.6);
+        else if (key === 'q') state.cameraAngleIndex = (state.cameraAngleIndex + 3) % 4;
+        else if (key === 'e') state.cameraAngleIndex = (state.cameraAngleIndex + 1) % 4;
+        else return;
+        drawWorld();
+      });
+
+      document.getElementById('btnRotateCam').addEventListener('click', () => {
+        state.cameraAngleIndex = (state.cameraAngleIndex + 1) % 4;
+        drawWorld();
+      });
+      document.getElementById('btnCycleWeather').addEventListener('click', (e) => {
+        state.weatherIndex = (state.weatherIndex + 1) % state.weathers.length;
+        e.target.textContent = `Weather: ${state.weathers[state.weatherIndex]}`;
+        document.getElementById('worldTimeLabel').textContent =
+          `Time: ${formatInGameTime(state.inGameMinutes)} • Weather: ${state.weathers[state.weatherIndex]}`;
+        drawWorld();
+      });
+
+      drawWorld();
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>

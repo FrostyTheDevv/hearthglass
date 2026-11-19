@@ -1,0 +1,29 @@
+# Rust build artifacts
+target/
+
+# Node.js dependencies
+node_modules/
+
+# Local runtime database & caches
+data/
+*.log
+
+# Godot editor artifacts & imported assets
+.godot/
+*.import
+
+# Godot engine binaries & archives (downloaded separately)
+tools/godot/
+*.exe
+*.zip
+*.pdb
+*.dll
+
+# Environment & local secrets
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db

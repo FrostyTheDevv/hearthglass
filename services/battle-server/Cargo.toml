@@ -1,0 +1,9 @@
+[package]
+name = "hearthglass-battle-server"
+version = "0.1.0"
+edition = "2021"
+description = "Authoritative deterministic Convergence Duels rules engine and battle simulator for Project Hearthglass"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

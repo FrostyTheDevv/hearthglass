@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.1.0",
+  "quests": [
+    {
+      "id": "quest_ch1_first_echo",
+      "chapter": 1,
+      "title": "Chapter 1: Arrival in Lumenport",
+      "category": "main_campaign",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_soren_whisperleaf",
+      "description": "Explore Arrival Square, claim your starter deck from Envoy Soren, and complete your first Convergence Duel against Kaelen Emberforge.",
+      "objectives": [
+        {
+          "id": "obj_speak_soren",
+          "description": "Speak with Soren of Whisperleaf in Arrival Square",
+          "target_count": 1
+        },
+        {
+          "id": "obj_duel_kaelen",
+          "description": "Complete a Convergence Duel against Kaelen Emberforge",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 150,
+        "echo_dust": 40,
+        "pack_count": 1,
+        "card_id": "NEU-C-0004",
+        "reputation_gain": 25
+      }
+    },
+    {
+      "id": "quest_ch2_market_resonance",
+      "chapter": 1,
+      "title": "Chapter 2: The Resonance Emporium",
+      "category": "main_campaign",
+      "district_id": "lumenport_central_card_market",
+      "giver_npc_id": "npc_master_vance",
+      "description": "Visit Master Artificer Vance in the Central Card Market, open a card pack or craft a card, and customize a legal 40-card deck.",
+      "objectives": [
+        {
+          "id": "obj_visit_vance",
+          "description": "Enter the Resonance Emporium and speak with Master Vance",
+          "target_count": 1
+        },
+        {
+          "id": "obj_open_pack",
+          "description": "Open 1 Foundations Card Pack or craft 1 card",
+          "target_count": 1
+        },
+        {
+          "id": "obj_save_deck",
+          "description": "Validate and save a legal 40-card deck",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "pack_count": 1,
+        "card_id": "IRN-C-0003",
+        "reputation_gain": 35
+      }
+    },
+    {
+      "id": "quest_ch3_plaza_qualifier",
+      "chapter": 1,
+      "title": "Chapter 3: Duelist Plaza Qualifier",
+      "category": "main_campaign",
+      "district_id": "lumenport_duelist_plaza",
+      "giver_npc_id": "npc_marshal_corin",
+      "description": "Defeat Lyra Vane in Duelist Plaza and register with Grand Marshal Corin inside the Tournament Hall.",
+      "objectives": [
+        {
+          "id": "obj_defeat_lyra",
+          "description": "Win a Convergence Duel against Lyra Vane in Duelist Plaza",
+          "target_count": 1
+        },
+        {
+          "id": "obj_register_corin",
+          "description": "Speak with Grand Marshal Corin in the Tournament Registration Rotunda",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 300,
+        "echo_dust": 100,
+        "pack_count": 2,
+        "card_id": "GLS-C-0005",
+        "reputation_gain": 50
+      }
+    },
+    {
+      "id": "quest_ch4_tag_convergence",
+      "chapter": 2,
+      "title": "Chapter 4: The Four-Banner Tag Trial",
+      "category": "main_campaign",
+      "district_id": "lumenport_grand_tournament_hall",
+      "giver_npc_id": "npc_marshal_corin",
+      "description": "Recruit a bonded NPC companion or join an online 2v2 Tag lobby and complete a four-duelist Tag Convergence match.",
+      "objectives": [
+        {
+          "id": "obj_recruit_partner",
+          "description": "Reach Friendly (40+) bond with any companion NPC",
+          "target_count": 1
+        },
+        {
+          "id": "obj_complete_2v2",
+          "description": "Complete a 2v2 Tag Convergence Duel (Co-op or 4-Client Online)",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "pack_count": 2,
+        "card_id": "STR-C-0026",
+        "reputation_gain": 60
+      }
+    },
+    {
+      "id": "quest_side_prism_calibration",
+      "chapter": 1,
+      "title": "Side Quest: Lenses of the Mirror Spire",
+      "category": "side_story",
+      "district_id": "lumenport_central_card_market",
+      "giver_npc_id": "npc_eluned_glass",
+      "description": "Assist Eluned Prismwright and Lyra Vane in the Calibration Workshop by inspecting and approving Echo card artwork.",
+      "objectives": [
+        {
+          "id": "obj_visit_workshop",
+          "description": "Visit the Choir & Prism Calibration Workshop",
+          "target_count": 1
+        },
+        {
+          "id": "obj_duel_eluned",
+          "description": "Test Glassborne Refraction in a duel with Eluned Prismwright",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 140,
+        "echo_dust": 55,
+        "pack_count": 1,
+        "card_id": "GLS-C-0025",
+        "reputation_gain": 20
+      }
+    },
+    {
+      "id": "quest_side_harbor_undertow",
+      "chapter": 1,
+      "title": "Side Quest: Undertow at the Old Breakwater",
+      "category": "side_story",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_captain_nerissa",
+      "description": "Meet Captain Nerissa Wake at the Anchor & Aether Café and master Tidebound lane-shifting Current mechanics.",
+      "objectives": [
+        {
+          "id": "obj_cafe_briefing",
+          "description": "Speak with Mira Solis and Captain Nerissa inside the Harbor Café",
+          "target_count": 1
+        },
+        {
+          "id": "obj_duel_nerissa",
+          "description": "Defeat Captain Nerissa Wake at the harbor table",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 150,
+        "echo_dust": 50,
+        "pack_count": 1,
+        "card_id": "TID-C-0025",
+        "reputation_gain": 25
+      }
+    },
+    {
+      "id": "quest_side_velvet_cipher",
+      "chapter": 2,
+      "title": "Side Quest: Whispers on Lantern Row",
+      "category": "side_story",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_vesper_noctis",
+      "description": "Uncover the Nocturne cipher in Lantern Row and duel Vesper of the Crescent Mask under twilight rules.",
+      "objectives": [
+        {
+          "id": "obj_inspect_loft",
+          "description": "Inspect your Duelist Loft Apartment with Toma Wick",
+          "target_count": 1
+        },
+        {
+          "id": "obj_duel_vesper",
+          "description": "Challenge Vesper of the Crescent Mask",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 165,
+        "echo_dust": 60,
+        "pack_count": 1,
+        "card_id": "NOC-C-0025",
+        "reputation_gain": 30
+      }
+    },
+    {
+      "id": "quest_side_ninth_hour_conjunction",
+      "chapter": 2,
+      "title": "Side Quest: The Ninth Hour Conjunction",
+      "category": "side_story",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_astromancer_celeste",
+      "description": "Ascend to the Accord Institute Observatory and test your deck against Astromancer Celeste’s Alignment predictions.",
+      "objectives": [
+        {
+          "id": "obj_visit_observatory",
+          "description": "Speak with Astromancer Celeste at the Accord Institute",
+          "target_count": 1
+        },
+        {
+          "id": "obj_duel_celeste",
+          "description": "Complete an Alignment duel against Astromancer Celeste",
+          "target_count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 75,
+        "pack_count": 1,
+        "card_id": "STR-C-0025",
+        "reputation_gain": 35
+      }
+    }
+  ]
+}

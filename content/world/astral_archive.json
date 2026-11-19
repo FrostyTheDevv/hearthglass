@@ -1,0 +1,106 @@
+{
+  "region_id": "astral_archive",
+  "region_name": "The Astral Archive",
+  "recommended_level": "14 - 20 (Campaign Climax)",
+  "description": "Perched above the cloud veil upon Mount Solitude, the Astral Archive contains celestial observatories, crystalline starlight mirrors, and the grand culmination of the Convergence mystery.",
+  "districts": [
+    {
+      "id": "astral_observatory_beyond_dawn",
+      "name": "The Observatory Beyond Dawn",
+      "flavor": "A tiered marble promontory where giant brass astrolabes align with constellations that predate the First Resonance.",
+      "connected_to": ["ironreach_dynamo_vaults", "astral_auroral_scriptorium"],
+      "ambience": "stellar_celestial_drone",
+      "poi": ["The Prime Astrolabe", "Dawn Horizon Terrace"]
+    },
+    {
+      "id": "astral_auroral_scriptorium",
+      "name": "The Auroral Scriptorium",
+      "flavor": "Endless shelves of floating starlight scrolls and crystallized card tablets penned by the original Convergence scholars.",
+      "connected_to": ["astral_observatory_beyond_dawn", "astral_celestial_spire"],
+      "ambience": "whispering_parchment_chimes",
+      "poi": ["The Grand Reading Desk", "Vault of Star-Maps"]
+    },
+    {
+      "id": "astral_celestial_spire",
+      "name": "The Celestial Spire",
+      "flavor": "A spindle of pure, translucent glass where the eight elemental leylines converge into a blinding vertical pillar of Aether.",
+      "connected_to": ["astral_auroral_scriptorium", "astral_sanctum_of_the_first_conjunction"],
+      "ambience": "high_harmonic_resonance",
+      "poi": ["Prism Focus Array", "The Leyline Nexus"]
+    },
+    {
+      "id": "astral_sanctum_of_the_first_conjunction",
+      "name": "Sanctum of the First Conjunction",
+      "flavor": "The legendary arena where the Grand Champion must duel the Avatar of the Convergence to decide the fate of the Great Accord.",
+      "connected_to": ["astral_celestial_spire"],
+      "ambience": "climactic_orchestral_overtone",
+      "poi": ["The Throne of Stars", "The Final Convergence Arena"]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "npc_astromancer_celeste_climax",
+      "name": "Grand Astromancer Celeste",
+      "faction": "starweave",
+      "title": "Archivist of the Final Dawn",
+      "location": "astral_observatory_beyond_dawn",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "You have walked from the docks of Lumenport, through the roots and the iron gorges, to stand beneath our stars.",
+        "friendly": "The alignment is nearing totality. The eight banners must unite or dissolve into dissonance.",
+        "bonded": "You bear the true resonance of the Wanderer. Stand beside me at the Zenith.",
+        "victory": "Breathtaking! You weave the cards as constellations in the night sky.",
+        "defeat": "The light was too blinding. Recalibrate your perspective, champion."
+      },
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "relationship_gain": 15,
+        "bonus_card_id": "STR-C-0019"
+      }
+    },
+    {
+      "id": "npc_avatar_of_convergence",
+      "name": "The Convergence Sovereign",
+      "faction": "neutral",
+      "title": "Keeper of the Astral Accord",
+      "location": "astral_sanctum_of_the_first_conjunction",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 10,
+      "dialogue": {
+        "greeting": "I am the echo of every duel fought upon this earth. Show me that your victory was earned, not gifted.",
+        "friendly": "Few mortals cross this threshold with their minds unbroken by the Aether.",
+        "bonded": "The Great Accord shall endure in your hands.",
+        "victory": "It is done. The cards have spoken, and the four realms are bound anew.",
+        "defeat": "Return to the hearth, Wanderer, until your resolve outshines the stars."
+      },
+      "rewards": {
+        "crowns": 500,
+        "echo_dust": 200,
+        "relationship_gain": 20,
+        "bonus_card_id": "NEU-C-0020"
+      }
+    }
+  ],
+  "quests": [
+    {
+      "id": "quest_astral_zenith_alignment",
+      "title": "Act 4 Chapter 1: The Zenith Alignment",
+      "giver_npc_id": "npc_astromancer_celeste_climax",
+      "objective": "Align the 3 celestial focal lenses in the Observatory Beyond Dawn by defeating the Archive Guardians.",
+      "crown_reward": 400,
+      "dust_reward": 150,
+      "xp_reward": 750
+    },
+    {
+      "id": "quest_astral_final_convergence",
+      "title": "Act 4 Climax: The Final Convergence Duel",
+      "giver_npc_id": "npc_avatar_of_convergence",
+      "objective": "Defeat the Convergence Sovereign in a master 1v1 duel to complete the main Hearthglass campaign.",
+      "crown_reward": 1000,
+      "dust_reward": 500,
+      "xp_reward": 2000
+    }
+  ]
+}

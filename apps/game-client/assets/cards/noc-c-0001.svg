@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 1024" width="768" height="1024">
+  <defs>
+    <linearGradient id="bgGrad_NOC-C-0001" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#090918"/>
+      <stop offset="55%" stop-color="#1c1a40"/>
+      <stop offset="100%" stop-color="#05050d"/>
+    </linearGradient>
+    <radialGradient id="auraGrad_NOC-C-0001" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.52"/>
+      <stop offset="65%" stop-color="#818cf8" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#05050d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="768" height="1024" fill="url(#bgGrad_NOC-C-0001)"/>
+  <rect width="768" height="1024" fill="url(#auraGrad_NOC-C-0001)"/>
+  
+      <polygon points="0,1024 110,520 290,640 480,490 660,610 768,480 768,1024" fill="#05050d" opacity="0.85"/>
+    
+  
+        <g transform="translate(371.5, 512.1) scale(0.9600000000000001)">
+          <polygon points="0,-260 95,-110 55,210 -55,210 -95,-110" fill="#05050d" stroke="#e11d48" stroke-width="6"/>
+          <path d="M -260 -190 L -45 -30 L -195 75 Z" fill="#818cf8" opacity="0.9"/>
+          <path d="M 260 -210 L 45 -30 L 195 75 Z" fill="#e11d48" opacity="0.9"/>
+          <polygon points="0,-195 45,-125 0,-60 -45,-125" fill="#e2e8f0"/>
+        </g>
+      
+  <g><circle cx="209" cy="653" r="3" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="329" cy="860" r="9" fill="#e11d48" opacity="0.65"/>
+    <circle cx="64" cy="722" r="8" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="552" cy="530" r="6" fill="#e11d48" opacity="0.65"/>
+    <circle cx="450" cy="305" r="7" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="58" cy="519" r="4" fill="#e11d48" opacity="0.65"/>
+    <circle cx="731" cy="495" r="9" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="59" cy="879" r="4" fill="#e11d48" opacity="0.65"/>
+    <circle cx="641" cy="620" r="6" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="666" cy="76" r="9" fill="#e11d48" opacity="0.65"/>
+    <circle cx="182" cy="415" r="5" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="636" cy="269" r="3" fill="#e11d48" opacity="0.65"/>
+    <circle cx="682" cy="745" r="7" fill="#e2e8f0" opacity="0.65"/>
+    <circle cx="41" cy="712" r="9" fill="#e11d48" opacity="0.65"/></g>
+</svg>

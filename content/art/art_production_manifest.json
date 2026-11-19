@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0.0",
+  "default_provider": "studio_stylized_svg",
+  "budget_limit_usd": 0,
+  "spent_usd": 0,
+  "jobs": [
+    {
+      "job_id": "artjob_1795057236332_qyfpw",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T03:00:36.333Z",
+      "completed_at": "2026-11-19T03:00:36.335Z",
+      "error": null
+    },
+    {
+      "job_id": "artjob_1795058853871_bkxrb",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T03:27:33.871Z",
+      "completed_at": "2026-11-19T03:27:33.874Z",
+      "error": null
+    },
+    {
+      "job_id": "artjob_1795063164887_qvuls",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T04:39:24.887Z",
+      "completed_at": "2026-11-19T04:39:24.888Z",
+      "error": null
+    },
+    {
+      "job_id": "artjob_1795063364032_adqaf",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T04:42:44.032Z",
+      "completed_at": "2026-11-19T04:42:44.034Z",
+      "error": null
+    },
+    {
+      "job_id": "artjob_1795065009527_6d8xo",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T05:10:09.527Z",
+      "completed_at": "2026-11-19T05:10:09.530Z",
+      "error": null
+    },
+    {
+      "job_id": "artjob_1795065098093_nqt2f",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-19T05:11:38.093Z",
+      "completed_at": "2026-11-19T05:11:38.095Z",
+      "error": null
+    }
+  ],
+  "card_records": {
+    "EMB-C-0001": {
+      "card_id": "EMB-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_emb-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/EMB-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/EMB-C-0001.svg",
+      "web_preview_url": "/assets/cards/EMB-C-0001.svg",
+      "exported_web_url": "/assets/cards/EMB-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Young volcanic-armored initiate lunging forward with a glowing copper blade. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Compact agile warrior with flared furnace pauldrons; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Emberclad forge practice hall in Slag-Gate Basalt Causeway (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Harsh under-lighting from molten floor grates; dominant colors copper, charcoal, ember_orange, ash_white. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.255Z",
+      "candidates": [
+        {
+          "id": "cand_emb-c-0001_v1",
+          "candidate_id": "cand_emb-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/EMB-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.257Z"
+        }
+      ]
+    },
+    "VER-C-0001": {
+      "card_id": "VER-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_ver-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/VER-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/VER-C-0001.svg",
+      "web_preview_url": "/assets/cards/VER-C-0001.svg",
+      "exported_web_url": "/assets/cards/VER-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Woodland caretaker kneeling beside glowing emerald fern-crystals. Faction Style (Verdant Pact — Mycelium Under-Bough Hollows): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Robed figure with antler-like wooden staff and leaf cloak; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: Whisperleaf glade in Mycelium Under-Bough Hollows (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dappled sunbeams through canopy mist; dominant colors emerald, moss_green, muted_gold. Visual Effects & Mood: sprouting emerald leaves and golden vitality rings. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.261Z",
+      "candidates": [
+        {
+          "id": "cand_ver-c-0001_v1",
+          "candidate_id": "cand_ver-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/VER-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.262Z"
+        }
+      ]
+    },
+    "IRN-C-0001": {
+      "card_id": "IRN-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_irn-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/IRN-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/IRN-C-0001.svg",
+      "web_preview_url": "/assets/cards/IRN-C-0001.svg",
+      "exported_web_url": "/assets/cards/IRN-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Compact brass-and-steel clockwork infantryman saluting with a halberd. Faction Style (Iron Choir — Ironreach Induction Railhead): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Geometric soldier with visible chest Mainspring and blue ocular visor; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Ironreach parade deck in Ironreach Induction Railhead (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Crisp blue arc-light from the chest core; dominant colors steel_gray, brass, electric_blue. Visual Effects & Mood: form-fitting hard-light Aether forcefield shell. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.267Z",
+      "candidates": [
+        {
+          "id": "cand_irn-c-0001_v1",
+          "candidate_id": "cand_irn-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/IRN-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.267Z"
+        }
+      ]
+    },
+    "TID-C-0001": {
+      "card_id": "TID-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_tid-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/TID-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/TID-C-0001.svg",
+      "web_preview_url": "/assets/cards/TID-C-0001.svg",
+      "exported_web_url": "/assets/cards/TID-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Agile coral-armored scout vaulting over a cresting wave with a twin-pronged spear. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Dynamic lunging figure with finned greaves and flowing water ribbon; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Lumenport Old Harbor breakwater in Coral Spire of the Pelagic Sanctum (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Caustic water reflections across pearl armor; dominant colors azure, turquoise, pearl_white. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.271Z",
+      "candidates": [
+        {
+          "id": "cand_tid-c-0001_v1",
+          "candidate_id": "cand_tid-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/TID-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.271Z"
+        }
+      ]
+    },
+    "GLS-C-0001": {
+      "card_id": "GLS-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_gls-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/GLS-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/GLS-C-0001.svg",
+      "web_preview_url": "/assets/cards/GLS-C-0001.svg",
+      "exported_web_url": "/assets/cards/GLS-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Fencer wielding a crystalline rapier that splits light into violet and cyan spectra. Faction Style (Glassborne — Quartz-Facet Proving Gallery): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Poised fencer stance with geometric crystal cape; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Mirror Labyrinth practice court in Quartz-Facet Proving Gallery (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Sharp prismatic light dispersion; dominant colors violet, silver, translucent_cyan. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.275Z",
+      "candidates": [
+        {
+          "id": "cand_gls-c-0001_v1",
+          "candidate_id": "cand_gls-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/GLS-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.275Z"
+        }
+      ]
+    },
+    "NOC-C-0001": {
+      "card_id": "NOC-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_noc-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/NOC-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/NOC-C-0001.svg",
+      "web_preview_url": "/assets/cards/NOC-C-0001.svg",
+      "exported_web_url": "/assets/cards/NOC-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Masked figure crouching on a wet gargoyle beneath a crescent moon. Faction Style (Nocturne — The Hollow Masquerade Manor): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Sharp cloaked silhouette with silver crescent blades; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: Lumenport Underground Passage in The Hollow Masquerade Manor (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Pale moonlight rim on dark velvet cloak; dominant colors midnight_blue, indigo, silver. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction; kinetic wind-streaks and blurred forward momentum. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.286Z",
+      "candidates": [
+        {
+          "id": "cand_noc-c-0001_v1",
+          "candidate_id": "cand_noc-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/NOC-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.286Z"
+        }
+      ]
+    },
+    "STR-C-0001": {
+      "card_id": "STR-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_str-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/STR-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/STR-C-0001.svg",
+      "web_preview_url": "/assets/cards/STR-C-0001.svg",
+      "exported_web_url": "/assets/cards/STR-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Young astronomer holding a glowing brass-and-starlight armillary sphere. Faction Style (Starweave — The Observatory Beyond Dawn): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Robed student with floating constellation lines above palm; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: Lumenport Observatory terrace in The Observatory Beyond Dawn (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Golden starlight projected onto the face; dominant colors midnight_purple, gold, celestial_blue. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.291Z",
+      "candidates": [
+        {
+          "id": "cand_str-c-0001_v1",
+          "candidate_id": "cand_str-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/STR-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.291Z"
+        }
+      ]
+    },
+    "GRV-C-0001": {
+      "card_id": "GRV-C-0001",
+      "status": "integrated_into_game",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false,
+      "approved": false,
+      "preferred_candidate_id": "cand_grv-c-0001_v1",
+      "provider_id": "studio_stylized_svg",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "godot_asset_path": "res://assets/cards/GRV-C-0001.svg",
+      "exported_godot_path": "res://assets/cards/GRV-C-0001.svg",
+      "web_preview_url": "/assets/cards/GRV-C-0001.svg",
+      "exported_web_url": "/assets/cards/GRV-C-0001.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal warrior intertwined with burgundy moss and glowing green amber ribs. Faction Style (Gravewild — Sunken Ossuary of the First Age): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Stooped ancient soldier with moss-draped spear and shield; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Fossil marsh in Sunken Ossuary of the First Age (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Eerie green memory-glow inside the ribcage; dominant colors bone_white, deep_burgundy, moss_black, sickly_green. Visual Effects & Mood: emerging spectral phoenix-seed or lingering Echo core. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "updated_at": "2026-11-19T03:27:10.296Z",
+      "candidates": [
+        {
+          "id": "cand_grv-c-0001_v1",
+          "candidate_id": "cand_grv-c-0001_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/GRV-C-0001.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": true,
+          "created_at": "2026-11-19T03:27:10.296Z"
+        }
+      ]
+    },
+    "EMB-C-0019": {
+      "card_id": "EMB-C-0019",
+      "status": "integrated_into_game",
+      "approved": true,
+      "preferred_candidate_id": "cand_emb-c-0019_v1",
+      "provider_id": "studio_stylized_svg",
+      "godot_asset_path": "res://assets/cards/EMB-C-0019.svg",
+      "exported_godot_path": "res://assets/cards/EMB-C-0019.svg",
+      "web_preview_url": "/assets/cards/EMB-C-0019.svg",
+      "exported_web_url": "/assets/cards/EMB-C-0019.svg",
+      "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Emberclad pikeman thrusting a glowing halberd over a slag trench. Faction Style (Emberclad): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, andslag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Broad stance with extended diagonal polearm; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Caldera Foundry of the Ashpeaks. Lighting & Color Palette: Fierce forge-fire rim lighting and rising ember sparks; dominant colors molten_orange, charcoal_black, volcanic_red. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "candidates": [
+        {
+          "id": "cand_emb-c-0019_v1",
+          "candidate_id": "cand_emb-c-0019_v1",
+          "variant_seed": 1,
+          "provider_id": "studio_stylized_svg",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v1.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "approved": true,
+          "created_at": "2026-11-19T03:00:36.335Z",
+          "concept_approved": true,
+          "final_production_approved": false
+        },
+        {
+          "id": "cand_emb-c-0019_v2",
+          "candidate_id": "cand_emb-c-0019_v2",
+          "variant_seed": 2,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v2.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": false,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-19T03:27:33.874Z"
+        },
+        {
+          "id": "cand_emb-c-0019_v3",
+          "candidate_id": "cand_emb-c-0019_v3",
+          "variant_seed": 3,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v3.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": false,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-19T04:39:24.888Z"
+        },
+        {
+          "id": "cand_emb-c-0019_v4",
+          "candidate_id": "cand_emb-c-0019_v4",
+          "variant_seed": 4,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v4.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": false,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-19T04:42:44.034Z"
+        },
+        {
+          "id": "cand_emb-c-0019_v5",
+          "candidate_id": "cand_emb-c-0019_v5",
+          "variant_seed": 5,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v5.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": false,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-19T05:10:09.530Z"
+        },
+        {
+          "id": "cand_emb-c-0019_v6",
+          "candidate_id": "cand_emb-c-0019_v6",
+          "variant_seed": 6,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v6.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": false,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-19T05:11:38.095Z"
+        }
+      ],
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "updated_at": "2026-11-19T05:11:38.107Z",
+      "art_tier": "stylized_vector_concept",
+      "concept_approved": true,
+      "final_production_approved": false
+    }
+  }
+}

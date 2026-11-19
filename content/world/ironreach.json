@@ -1,0 +1,107 @@
+{
+  "region_id": "ironreach",
+  "region_name": "Ironreach",
+  "subregion": "The Ironreach Canyons",
+  "recommended_level": "8 - 14",
+  "description": "A sheer, acoustically reverberant ironstone rift valley spanned by colossal brass viaducts, rhythmic piston foundries, and the clockwork cloisters of the Iron Choir.",
+  "districts": [
+    {
+      "id": "ironreach_gantry_approach",
+      "name": "Grand Gantry of the Seventh Chime",
+      "flavor": "Suspended bronze acoustic bridges that vibrate in four-four martial cadence high above the thunderous forge flues.",
+      "connected_to": ["lumenport_arrival_square", "ironreach_proving_floor"],
+      "ambience": "harmonic_gear_whir",
+      "poi": ["The Resonating Viaduct", "Chime Tower Lookout"]
+    },
+    {
+      "id": "ironreach_proving_floor",
+      "name": "The Clockwork Proving Floor",
+      "flavor": "An interlocking gear-plated testing ground where Choir duelists calibrate armor and test mechanical synergy.",
+      "connected_to": ["ironreach_gantry_approach", "ironreach_bellspire_cloister"],
+      "ambience": "pneumatic_exhaust_rhythm",
+      "poi": ["Trial Arena Alpha", "Armorer's Inspection Depot"]
+    },
+    {
+      "id": "ironreach_bellspire_cloister",
+      "name": "Bell-Spire of Saint Automaton",
+      "flavor": "The sacred tower housing the Great Metronome whose steady sweep synchronizes all acoustic automata in the canyon.",
+      "connected_to": ["ironreach_proving_floor", "ironreach_dynamo_vaults"],
+      "ambience": "deep_reverberant_bells",
+      "poi": ["The Great Metronome Chamber", "Choir Archives"]
+    },
+    {
+      "id": "ironreach_dynamo_vaults",
+      "name": "The Harmonic Dynamo Vaults",
+      "flavor": "Spinning copper gyro-turbines that capture static discharges from canyon storms to refine pure resonance cores.",
+      "connected_to": ["ironreach_bellspire_cloister"],
+      "ambience": "electrical_spark_resonance",
+      "poi": ["Core Capacitor 07", "Vance's Heavy Foundry"]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "npc_artificer_vance_iron",
+      "name": "Master Artificer Vance",
+      "faction": "iron_choir",
+      "title": "Grand Machinist of the Seventh Chime",
+      "location": "ironreach_proving_floor",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 35,
+      "dialogue": {
+        "greeting": "Careful where you place your boots, initiate. Every plate on this floor is balanced to the ounce.",
+        "friendly": "Your deck shows signs of sound calibration. Aether flows true when resistance is eliminated.",
+        "bonded": "Take this harmonic damper. In the final archive, raw starweave frequencies will shatter unshielded glass.",
+        "victory": "Superb cadence! Your timing broke through my reinforced bulwark.",
+        "defeat": "Steel does not yield to haste. Tighten your deck's defensive curve."
+      },
+      "rewards": {
+        "crowns": 180,
+        "echo_dust": 60,
+        "relationship_gain": 12,
+        "bonus_card_id": "IRN-C-0019"
+      }
+    },
+    {
+      "id": "npc_clocksmith_greta",
+      "name": "Clocksmith Greta",
+      "faction": "iron_choir",
+      "title": "Keeper of the Metronome",
+      "location": "ironreach_bellspire_cloister",
+      "deck_id": "deck_iron_choir_bulwark",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Listen closely. If the tick falters by half a second, the whole canyon slips out of tempo.",
+        "friendly": "The Choir sings not out of pride, but precision. Have you calibrated your Relics?",
+        "bonded": "You understand the rhythm now. When you face the Astral Archive, keep our cadence in your mind.",
+        "victory": "A sharp sequence! You struck between the second and third stroke.",
+        "defeat": "You rushed your hand. The bell dictates the pace, duelist."
+      },
+      "rewards": {
+        "crowns": 140,
+        "echo_dust": 45,
+        "relationship_gain": 10,
+        "bonus_card_id": "IRN-C-0001"
+      }
+    }
+  ],
+  "quests": [
+    {
+      "id": "quest_ironreach_cadence_trial",
+      "title": "Act 3: The Cadence of the Gantry",
+      "giver_npc_id": "npc_artificer_vance_iron",
+      "objective": "Defeat Master Artificer Vance on the Clockwork Proving Floor using a legal 40-card deck.",
+      "crown_reward": 250,
+      "dust_reward": 80,
+      "xp_reward": 450
+    },
+    {
+      "id": "quest_ironreach_metronome_synchrony",
+      "title": "Synchronizing the Bell-Spire",
+      "giver_npc_id": "npc_clocksmith_greta",
+      "objective": "Overcome the automated defense gauntlet in the Bell-Spire to secure the resonance tuning fork.",
+      "crown_reward": 300,
+      "dust_reward": 90,
+      "xp_reward": 550
+    }
+  ]
+}
