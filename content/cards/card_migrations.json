@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Explicit authorized change manifest for balance patches and intentional card migrations.",
+  "approved_migrations": []
+}
