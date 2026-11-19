@@ -25,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build Rust Engine Binary for Server Bridge
+        run: cargo build --manifest-path services/battle-server/Cargo.toml
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
