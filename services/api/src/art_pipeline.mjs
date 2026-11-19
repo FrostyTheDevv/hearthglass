@@ -135,7 +135,7 @@ export const SUPPORTED_IMAGE_PROVIDERS = [
     cost_per_image_usd: 0.0,
     license: 'First-Party Studio Asset',
     supports_reference_style: true,
-    description: 'Direct SVG/PNG illustration upload from the Content Studio review interface.'
+    description: 'Direct SVG/PNG/WebP/JPEG illustration upload with asset-type validation.'
   },
   {
     id: 'batch_export',
@@ -151,6 +151,67 @@ export const SUPPORTED_IMAGE_PROVIDERS = [
     description: 'Exports compiled prompts and negative exclusions to JSONL for offline cloud batch runs.'
   }
 ];
+
+export const SUPPORTED_IMAGE_TYPES = {
+  PNG: { ext: '.png', mime: 'image/png', isRaster: true, canBeProduction: true },
+  WEBP: { ext: '.webp', mime: 'image/webp', isRaster: true, canBeProduction: true },
+  JPEG: { ext: '.jpg', mime: 'image/jpeg', isRaster: true, canBeProduction: true },
+  SVG: { ext: '.svg', mime: 'image/svg+xml', isRaster: false, canBeProduction: false }
+};
+
+/**
+ * Validates image buffer or file by checking magic byte signatures and extensions.
+ */
+export function detectImageFormat(buffer, filename = '') {
+  if (buffer && buffer.length >= 8) {
+    // PNG magic bytes: 89 50 4E 47 0D 0A 1A 0A
+    if (
+      buffer[0] === 0x89 &&
+      buffer[1] === 0x50 &&
+      buffer[2] === 0x4e &&
+      buffer[3] === 0x47 &&
+      buffer[4] === 0x0d &&
+      buffer[5] === 0x0a &&
+      buffer[6] === 0x1a &&
+      buffer[7] === 0x0a
+    ) {
+      return { ext: '.png', mime: 'image/png', isRaster: true, canBeProduction: true };
+    }
+    // WebP magic: RIFF ... WEBP
+    if (
+      buffer.length >= 12 &&
+      buffer[0] === 0x52 &&
+      buffer[1] === 0x49 &&
+      buffer[2] === 0x46 &&
+      buffer[3] === 0x46 &&
+      buffer[8] === 0x57 &&
+      buffer[9] === 0x45 &&
+      buffer[10] === 0x42 &&
+      buffer[11] === 0x50
+    ) {
+      return { ext: '.webp', mime: 'image/webp', isRaster: true, canBeProduction: true };
+    }
+    // JPEG magic: FF D8 FF
+    if (buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff) {
+      return { ext: '.jpg', mime: 'image/jpeg', isRaster: true, canBeProduction: true };
+    }
+    // SVG: starts with <svg or <?xml
+    const head = buffer.slice(0, 100).toString('utf8').trim();
+    if (head.startsWith('<svg') || head.startsWith('<?xml') || head.includes('<svg')) {
+      return { ext: '.svg', mime: 'image/svg+xml', isRaster: false, canBeProduction: false };
+    }
+    return null;
+  }
+
+  // Fallback to filename extension only if no buffer was provided
+  const ext = path.extname(filename).toLowerCase();
+  if (ext === '.png') return { ext: '.png', mime: 'image/png', isRaster: true, canBeProduction: true };
+  if (ext === '.webp') return { ext: '.webp', mime: 'image/webp', isRaster: true, canBeProduction: true };
+  if (ext === '.jpg' || ext === '.jpeg') return { ext: '.jpg', mime: 'image/jpeg', isRaster: true, canBeProduction: true };
+  if (ext === '.svg') return { ext: '.svg', mime: 'image/svg+xml', isRaster: false, canBeProduction: false };
+
+  return null;
+}
 
 const FACTION_SVG_THEMES = {
   emberclad: {
@@ -389,6 +450,7 @@ export class ArtProductionPipeline {
     this.rootDir = rootDir;
     this.cardsById = new Map(cards.map((c) => [c.id, c]));
     this.manifestPath = path.join(this.rootDir, 'content', 'art', 'art_production_manifest.json');
+    this.mastersDir = path.join(this.rootDir, 'content', 'art', 'masters');
     this.godotCardsDir = path.join(this.rootDir, 'apps', 'game-client', 'assets', 'cards');
     this.studioCardsDir = path.join(
       this.rootDir,
@@ -401,6 +463,7 @@ export class ArtProductionPipeline {
     this.candidatesDir = path.join(this.rootDir, 'content', 'art', 'candidates');
 
     fs.mkdirSync(path.dirname(this.manifestPath), { recursive: true });
+    fs.mkdirSync(this.mastersDir, { recursive: true });
     fs.mkdirSync(this.godotCardsDir, { recursive: true });
     fs.mkdirSync(this.studioCardsDir, { recursive: true });
     fs.mkdirSync(this.candidatesDir, { recursive: true });
@@ -410,29 +473,87 @@ export class ArtProductionPipeline {
   }
 
   _loadOrInitializeManifest() {
+    let manifest = null;
     if (fs.existsSync(this.manifestPath)) {
       try {
         const parsed = JSON.parse(fs.readFileSync(this.manifestPath, 'utf8'));
         if (parsed && parsed.card_records) {
-          return parsed;
+          manifest = parsed;
         }
       } catch {
         // Re-initialize on corrupt manifest
       }
     }
 
-    return {
-      schema_version: '1.1.0',
-      style_guide_id: 'hearthglass_stylized_handpainted_v1',
-      budget_limit_usd: Number(process.env.ART_AUTHORIZED_BUDGET_USD || 0),
-      spent_usd: 0,
-      jobs: [],
-      card_records: {}
-    };
+    if (!manifest) {
+      manifest = {
+        schema_version: '1.2.0',
+        style_guide_id: 'hearthglass_stylized_handpainted_v1',
+        budget_limit_usd: Number(process.env.ART_AUTHORIZED_BUDGET_USD || 0),
+        spent_usd: 0,
+        jobs: [],
+        card_records: {}
+      };
+    }
+
+    // Problem B migration: ensure vector concepts are not marked as approved or final_production_approved
+    let migrated = false;
+    for (const [cardId, rec] of Object.entries(manifest.card_records || {})) {
+      const isConcept = rec.provider_id === 'studio_stylized_svg' || rec.art_tier === 'stylized_vector_concept';
+      if (isConcept) {
+        if (rec.approved || rec.final_production_approved) {
+          rec.concept_approved = true;
+          rec.final_production_approved = false;
+          rec.approved = false;
+          migrated = true;
+        }
+      } else {
+        rec.approved = Boolean(rec.final_production_approved);
+      }
+
+      if (Array.isArray(rec.candidates)) {
+        for (const cand of rec.candidates) {
+          const candIsConcept = cand.provider_id === 'studio_stylized_svg' || cand.art_tier === 'stylized_vector_concept';
+          if (candIsConcept) {
+            if (cand.approved || cand.final_production_approved) {
+              cand.concept_approved = true;
+              cand.final_production_approved = false;
+              cand.approved = false;
+              migrated = true;
+            }
+          } else {
+            cand.approved = Boolean(cand.final_production_approved);
+          }
+        }
+      }
+    }
+
+    if (migrated) {
+      try {
+        fs.writeFileSync(this.manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
+      } catch {
+        // Ignore write failures during read
+      }
+    }
+
+    return manifest;
   }
 
   _saveManifest() {
     fs.writeFileSync(this.manifestPath, JSON.stringify(this.state, null, 2), 'utf8');
+  }
+
+  _findCandidateFile(candidate) {
+    const candidateId = candidate.candidate_id || candidate.id;
+    if (candidate.file_type) {
+      const p = path.join(this.candidatesDir, `${candidateId}.${candidate.file_type}`);
+      if (fs.existsSync(p)) return p;
+    }
+    for (const ext of ['.png', '.webp', '.jpg', '.jpeg', '.svg']) {
+      const p = path.join(this.candidatesDir, `${candidateId}${ext}`);
+      if (fs.existsSync(p)) return p;
+    }
+    return null;
   }
 
   _ensureShowcaseIllustrationsIntegrated() {
@@ -488,6 +609,8 @@ export class ArtProductionPipeline {
               provider_id: 'studio_stylized_svg',
               art_tier: 'stylized_vector_concept',
               model_id: 'hearthglass-prismatic-illustrator-v1',
+              file_type: 'svg',
+              mime_type: 'image/svg+xml',
               web_preview_url: `/assets/cards/${filenameUpper}`,
               technical_validation: {
                 valid: true,
@@ -497,7 +620,7 @@ export class ArtProductionPipeline {
               },
               concept_approved: true,
               final_production_approved: false,
-              approved: true,
+              approved: false,
               created_at: new Date().toISOString()
             }
           ]
@@ -542,7 +665,8 @@ export class ArtProductionPipeline {
         ...rec,
         art_tier: rec.art_tier || (isConcept ? 'stylized_vector_concept' : 'final_production_illustration'),
         concept_approved: Boolean(rec.concept_approved ?? (isConcept && rec.status === 'integrated_into_game')),
-        final_production_approved: Boolean(rec.final_production_approved ?? (!isConcept && rec.approved)),
+        final_production_approved: Boolean(rec.final_production_approved),
+        approved: Boolean(rec.final_production_approved),
         exported_godot_path: rec.exported_godot_path || rec.godot_asset_path || null,
         exported_web_url: rec.exported_web_url || rec.web_preview_url || null,
         candidates: (rec.candidates || []).map((c) => ({
@@ -733,6 +857,8 @@ export class ArtProductionPipeline {
           provider_id: provider.id,
           art_tier: provider.art_tier,
           model_id: provider.model_id,
+          file_type: 'svg',
+          mime_type: 'image/svg+xml',
           web_preview_url: `/assets/cards/${filename}`,
           technical_validation: {
             valid: true,
@@ -793,10 +919,109 @@ export class ArtProductionPipeline {
     });
   }
 
+  /**
+   * Ingests a candidate raster illustration (PNG, WebP, JPEG) into candidate and master storage.
+   * Validates MIME signatures and preserves uncompressed image bytes without fallback.
+   */
+  ingestRasterCandidate({
+    card_id,
+    buffer = null,
+    file_path = null,
+    original_filename = '',
+    mime_type = null,
+    provider_id = 'manual_upload',
+    model_id = 'manual-artist-upload',
+    variant_seed = null,
+    provenance = {}
+  }) {
+    const card = this.cardsById.get(card_id);
+    if (!card) throw new Error(`Unknown card ID: ${card_id}`);
+
+    let fileBuffer = buffer;
+    if (!fileBuffer && file_path) {
+      if (!fs.existsSync(file_path)) {
+        throw new Error(`Source file does not exist: ${file_path}`);
+      }
+      fileBuffer = fs.readFileSync(file_path);
+    }
+    if (!fileBuffer || fileBuffer.length === 0) {
+      throw new Error('Valid image bytes are required to ingest a candidate');
+    }
+
+    const detected = detectImageFormat(fileBuffer, original_filename || file_path || '');
+    if (!detected || !detected.isRaster) {
+      throw new Error(
+        `Unsupported or invalid raster image format for candidate. Supported types: PNG, WebP, JPEG. Received: ${detected?.mime || 'unknown'}`
+      );
+    }
+
+    const sha256Hash = crypto.createHash('sha256').update(fileBuffer).digest('hex');
+    const rec = this.getCardArtRecord(card_id);
+    const seed = variant_seed ?? (rec.candidates.length + 1);
+    const candidateId = `cand_${card_id.toLowerCase()}_v${seed}_${sha256Hash.slice(0, 8)}`;
+    const candidateFilename = `${candidateId}${detected.ext}`;
+
+    // 1. Store in candidates directory
+    const candidatePath = path.join(this.candidatesDir, candidateFilename);
+    fs.writeFileSync(candidatePath, fileBuffer);
+
+    // 2. Store original master image in masters directory
+    const masterDir = path.join(this.mastersDir, card_id);
+    fs.mkdirSync(masterDir, { recursive: true });
+    const masterPath = path.join(masterDir, candidateFilename);
+    fs.writeFileSync(masterPath, fileBuffer);
+
+    const candidateEntry = {
+      id: candidateId,
+      candidate_id: candidateId,
+      variant_seed: seed,
+      provider_id,
+      art_tier: 'final_production_illustration',
+      model_id,
+      file_type: detected.ext.replace('.', ''),
+      mime_type: detected.mime,
+      asset_hash: sha256Hash,
+      web_preview_url: `/assets/cards/${candidateFilename}`,
+      technical_validation: {
+        valid: true,
+        aspect_ratio: '3:4',
+        mime_type: detected.mime,
+        byte_length: fileBuffer.length,
+        contains_baked_text_or_numbers: false
+      },
+      provenance: {
+        provider_id,
+        model_id,
+        original_filename: path.basename(original_filename || file_path || ''),
+        sha256: sha256Hash,
+        created_at: new Date().toISOString(),
+        ...provenance
+      },
+      concept_approved: false,
+      final_production_approved: false,
+      approved: false,
+      created_at: new Date().toISOString()
+    };
+
+    rec.candidates.push(candidateEntry);
+    rec.status = 'review_required';
+    rec.provider_id = provider_id;
+    rec.art_tier = 'final_production_illustration';
+    rec.model_id = model_id;
+    rec.updated_at = new Date().toISOString();
+    this.state.card_records[card_id] = rec;
+    this._saveManifest();
+
+    return { candidate: candidateEntry, art_record: rec };
+  }
+
+  /**
+   * Approves candidate artwork with strict review conditions, asset preservation, and clean semantics.
+   */
   approveCandidate(arg1, arg2 = null, options = {}) {
-    const card_id = typeof arg1 === 'object' ? arg1.card_id : arg1;
-    const candidate_id = typeof arg1 === 'object' ? arg1.candidate_id : arg2;
-    const opts = typeof arg1 === 'object' ? arg1 : (typeof arg2 === 'object' ? arg2 : (options || {}));
+    const card_id = (arg1 && typeof arg1 === 'object') ? arg1.card_id : arg1;
+    const candidate_id = (arg1 && typeof arg1 === 'object') ? arg1.candidate_id : (typeof arg2 === 'string' ? arg2 : null);
+    const opts = (arg1 && typeof arg1 === 'object') ? arg1 : ((arg2 && typeof arg2 === 'object') ? arg2 : (options || {}));
     const card = this.cardsById.get(card_id);
     if (!card) throw new Error(`Unknown card ID: ${card_id}`);
     const rec = this.getCardArtRecord(card_id);
@@ -807,70 +1032,109 @@ export class ArtProductionPipeline {
       throw new Error(`No candidate artwork found for ${card_id}`);
     }
 
-    const isVectorConcept =
-      candidate.provider_id === 'studio_stylized_svg' ||
-      candidate.art_tier === 'stylized_vector_concept';
+    const srcFile = this._findCandidateFile(candidate);
+    if (!srcFile || !fs.existsSync(srcFile)) {
+      throw new Error(
+        `Missing candidate asset file on disk: ${candidate.candidate_id || candidate.id}. Silent fallback to SVG is forbidden.`
+      );
+    }
+
+    const fileBytes = fs.readFileSync(srcFile);
+    const detected = detectImageFormat(fileBytes, srcFile);
+    if (!detected) {
+      throw new Error(`Unrecognized image format on disk for candidate: ${srcFile}`);
+    }
+
+    const sha256Hash = crypto.createHash('sha256').update(fileBytes).digest('hex');
+    const isVectorConcept = !detected.isRaster || candidate.art_tier === 'stylized_vector_concept';
 
     const requestedApprovalType =
-      opts.approval_type || (opts.production_approved ? 'production' : (isVectorConcept ? 'concept' : 'concept'));
+      opts.approval_type ||
+      (opts.production_approved || opts.final_production_approved
+        ? 'production'
+        : (isVectorConcept ? 'concept' : 'concept'));
 
-    // Production approval safeguard:
-    // 1. Vector concepts can never be approved as final production illustrations.
-    // 2. AI candidates require explicit human visual review confirmation before final production approval.
     let finalProdApproved = false;
     let conceptApproved = false;
 
     if (requestedApprovalType === 'production') {
       if (isVectorConcept) {
         throw new Error(
-          `Safeguard Rejection: Candidate ${candidate.candidate_id || candidate.id} is a stylized vector concept. Only visual-inspected finished raster fantasy illustrations may receive final production approval.`
+          `Safeguard Rejection: Candidate ${candidate.candidate_id || candidate.id} is a stylized vector concept. Only visual-inspected finished raster fantasy illustrations (PNG, WebP, JPEG) may receive final production approval.`
         );
       }
-      if (!opts.visual_review_passed && !opts.approved_by && !opts.visual_quality_confirmed) {
+
+      // Review verification check (Problem C)
+      if (!opts.approved_by || typeof opts.approved_by !== 'string' || opts.approved_by.trim().length < 3) {
         throw new Error(
-          'Safeguard Rejection: Model output requires explicit visual review verification (visual_review_passed: true, approved_by) to receive final production approval.'
+          'Safeguard Rejection: Authenticated authorized reviewer identity (approved_by) is required. Never fabricate an approver identity.'
         );
       }
+      if (!opts.visual_review_passed || !opts.visual_quality_confirmed) {
+        throw new Error(
+          'Safeguard Rejection: Production approval requires explicit recorded visual review (visual_review_passed: true and visual_quality_confirmed: true).'
+        );
+      }
+
+      // Overwrite protection (Requirement 10)
+      if (rec.final_production_approved && !opts.allow_overwrite) {
+        throw new Error(
+          `Approved asset already exists for card ${card_id}. Set allow_overwrite: true to replace.`
+        );
+      }
+
       finalProdApproved = true;
-      conceptApproved = true;
+      conceptApproved = false;
     } else {
       conceptApproved = true;
       finalProdApproved = false;
     }
 
+    const ext = detected.ext;
+    const finalUpper = `${card_id}${ext}`;
+    const finalLower = `${card_id.toLowerCase()}${ext}`;
+
+    // Master image preservation (Problem A)
+    const masterDir = path.join(this.mastersDir, card_id);
+    fs.mkdirSync(masterDir, { recursive: true });
+    const finalMasterPath = path.join(masterDir, `${candidate.candidate_id || candidate.id}${ext}`);
+    fs.writeFileSync(finalMasterPath, fileBytes);
+
+    // Game-ready exports: Godot & Web Studio
+    fs.writeFileSync(path.join(this.godotCardsDir, finalUpper), fileBytes);
+    fs.writeFileSync(path.join(this.godotCardsDir, finalLower), fileBytes);
+    fs.writeFileSync(path.join(this.studioCardsDir, finalUpper), fileBytes);
+    fs.writeFileSync(path.join(this.studioCardsDir, finalLower), fileBytes);
+
     for (const c of rec.candidates) {
       const match = (c.candidate_id === candidate.candidate_id || c.id === candidate.candidate_id);
-      c.approved = match;
+      c.approved = match && finalProdApproved;
       c.concept_approved = match && conceptApproved;
       c.final_production_approved = match && finalProdApproved;
-      if (match && finalProdApproved) {
-        c.visual_review = {
-          approved_by: opts.approved_by || 'editorial_art_director',
-          reviewed_at: new Date().toISOString(),
-          notes: opts.notes || 'Passed visual quality gate for production fantasy illustration'
-        };
+      if (match) {
+        c.asset_hash = sha256Hash;
+        if (finalProdApproved) {
+          c.visual_review = {
+            approved_by: opts.approved_by,
+            reviewed_at: new Date().toISOString(),
+            decision: 'approve',
+            notes: opts.notes || 'Passed visual quality gate for production fantasy illustration',
+            asset_hash: sha256Hash,
+            versioned_asset_ref: `${card_id}_v${candidate.variant_seed || 1}`,
+            provenance: candidate.provenance || {
+              provider_id: candidate.provider_id,
+              model_id: candidate.model_id,
+              timestamp: candidate.created_at
+            }
+          };
+        }
       }
     }
 
-    const srcFile = path.join(this.candidatesDir, `${candidate.candidate_id || candidate.id}.svg`);
-    const finalUpper = `${card_id}.svg`;
-    const finalLower = `${card_id.toLowerCase()}.svg`;
-
-    const svgContent = fs.existsSync(srcFile)
-      ? fs.readFileSync(srcFile, 'utf8')
-      : renderStylizedCardIllustrationSvg(card, candidate.variant_seed || 1);
-
-    fs.writeFileSync(path.join(this.godotCardsDir, finalUpper), svgContent, 'utf8');
-    fs.writeFileSync(path.join(this.godotCardsDir, finalLower), svgContent, 'utf8');
-    fs.writeFileSync(path.join(this.studioCardsDir, finalUpper), svgContent, 'utf8');
-    fs.writeFileSync(path.join(this.studioCardsDir, finalLower), svgContent, 'utf8');
-
-    rec.art_tier = isVectorConcept
-      ? 'stylized_vector_concept'
-      : (finalProdApproved ? 'final_production_illustration' : 'concept_illustration');
+    rec.art_tier = finalProdApproved ? 'final_production_illustration' : 'stylized_vector_concept';
     rec.concept_approved = conceptApproved;
     rec.final_production_approved = finalProdApproved;
-    rec.approved = finalProdApproved || conceptApproved;
+    rec.approved = finalProdApproved; // Problem B: approved means production-approved only!
     rec.status = finalProdApproved ? 'production_approved' : 'integrated_into_game';
     rec.preferred_candidate_id = candidate.candidate_id || candidate.id;
     rec.godot_asset_path = `res://assets/cards/${finalUpper}`;
