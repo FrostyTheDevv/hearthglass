@@ -18,6 +18,8 @@ tools/godot/
 *.zip
 *.pdb
 *.dll
+*.pck
+apps/game-client/build/
 
 # Environment & local secrets
 .env

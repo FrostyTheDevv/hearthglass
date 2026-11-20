@@ -133,8 +133,15 @@ func _handle_ws_message(msg: Dictionary) -> void:
 		command_rejected.emit(str(msg.get("error", "Command rejected by server")))
 
 func _resolve_rust_binary_path() -> String:
+	var exe_dir := OS.get_executable_path().get_base_dir()
 	var root_dir := ProjectSettings.globalize_path("res://../..")
-	var candidates := [
+	var candidates: Array[String] = [
+		exe_dir.path_join("hearthglass-battle-server.exe"),
+		exe_dir.path_join("bin/hearthglass-battle-server.exe"),
+		exe_dir.path_join("target/debug/hearthglass-battle-server.exe"),
+		exe_dir.path_join("services/battle-server/target/debug/hearthglass-battle-server.exe"),
+		exe_dir.path_join("hearthglass-battle-server"),
+		exe_dir.path_join("bin/hearthglass-battle-server"),
 		root_dir.path_join("services/battle-server/target/debug/hearthglass-battle-server.exe"),
 		root_dir.path_join("services/battle-server/target/debug/hearthglass-battle-server"),
 		root_dir.path_join("target/debug/hearthglass-battle-server.exe"),
@@ -263,7 +270,7 @@ func apply_command(ui_state: Dictionary, cmd: Dictionary, _catalogue: Dictionary
 func _translate_ui_command_to_rust(cmd: Dictionary, ui_state: Dictionary) -> Dictionary:
 	var ctype: String = str(cmd.get("type", ""))
 	var player: int = int(cmd.get("player", local_player_slot))
-	if ctype == "play_card":
+	if ctype == "play_card" or ctype == "play_tactic":
 		var h_idx: int = int(cmd.get("hand_index", 0))
 		var hand: Array = ui_state["players"][player]["hand"]
 		var cid: String = str(hand[h_idx]["card_id"]) if h_idx < hand.size() else ""
@@ -274,13 +281,20 @@ func _translate_ui_command_to_rust(cmd: Dictionary, ui_state: Dictionary) -> Dic
 		elif card_type == "environment":
 			return {"type": "play_environment", "player": player, "hand_index": h_idx}
 		else:
-			return {
+			var t_lane = cmd.get("target_lane", null)
+			var t_pos = cmd.get("target_position", null)
+			var rust_cmd: Dictionary = {
 				"type": "play_tactic",
 				"player": player,
-				"hand_index": h_idx,
-				"target_lane": int(cmd.get("target_lane", 0)),
-				"target_position": str(cmd.get("target_position", "front"))
+				"hand_index": h_idx
 			}
+			if t_lane != null and int(t_lane) >= 0 and int(t_lane) < 3:
+				rust_cmd["target_lane"] = int(t_lane)
+				if t_pos != null and (str(t_pos) == "front" or str(t_pos) == "rear"):
+					rust_cmd["target_position"] = str(t_pos)
+				else:
+					rust_cmd["target_position"] = "front"
+			return rust_cmd
 	elif ctype == "attack_lane":
 		var lane: int = int(cmd.get("lane", 0))
 		var pos: String = str(cmd.get("position", "front"))
