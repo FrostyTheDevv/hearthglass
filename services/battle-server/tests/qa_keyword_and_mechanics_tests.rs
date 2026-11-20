@@ -547,20 +547,31 @@ fn test_keyword_silence_removes_abilities_keywords_and_counters() {
 }
 
 // =========================================================================
-// 2. DEFECT REPRODUCTION: ALL_ENEMY_CREATURES AOE RESOLUTION GAP
+// 2. CANONICAL QUALITY GATE: ALL_ENEMY_CREATURES AOE RESOLUTION
 // =========================================================================
 
 #[test]
-fn test_defect_audit_all_enemy_creatures_aoe_resolution() {
+fn test_canonical_all_enemy_creatures_aoe_resolution_quality_gate() {
     let (catalogue, decks) = load_catalogue_and_decks();
     let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 201).unwrap();
 
-    // Player 1 has 3 creatures deployed across 3 lanes
-    state.players[1].lanes[0].front = Some(create_custom_unit(20001, "ENEMY_0", "E0", 1, 2, 3, vec![]));
-    state.players[1].lanes[1].front = Some(create_custom_unit(20002, "ENEMY_1", "E1", 1, 2, 3, vec![]));
-    state.players[1].lanes[2].front = Some(create_custom_unit(20003, "ENEMY_2", "E2", 1, 2, 3, vec![]));
+    // 1. Setup Allied Units for Player 0 (must NOT be damaged by enemy AoE)
+    state.players[0].lanes[0].front = Some(create_custom_unit(10001, "ALLY_0", "A0", 0, 2, 4, vec![]));
+    state.players[0].lanes[1].rear = Some(create_custom_unit(10002, "ALLY_1", "A1", 0, 1, 3, vec![]));
 
-    // Player 0 plays EMB-T-0043: Cinder-Vent Eruption
+    // 2. Setup Enemy Units for Player 1 across all 3 lanes with diverse defensive mechanics:
+    // Lane 0: Front = 3 HP standard, Rear = 3 HP with Ward
+    state.players[1].lanes[0].front = Some(create_custom_unit(20001, "ENEMY_0_F", "E0_F", 1, 2, 3, vec![]));
+    state.players[1].lanes[0].rear = Some(create_custom_unit(20002, "ENEMY_0_R", "E0_R", 1, 1, 3, vec!["ward"]));
+
+    // Lane 1: Front = 3 HP with Shield, Rear = 1 HP with Rebirth
+    state.players[1].lanes[1].front = Some(create_custom_unit(20003, "ENEMY_1_F", "E1_F", 1, 2, 3, vec!["shield"]));
+    state.players[1].lanes[1].rear = Some(create_custom_unit(20004, "ENEMY_1_R", "E1_R", 1, 1, 1, vec!["rebirth"]));
+
+    // Lane 2: Front = 3 HP standard
+    state.players[1].lanes[2].front = Some(create_custom_unit(20005, "ENEMY_2_F", "E2_F", 1, 2, 3, vec![]));
+
+    // 3. Player 0 plays EMB-T-0043: Cinder-Vent Eruption
     // Card ability: operation: deal_damage, target: all_enemy_creatures, amount: 1
     state.players[0].aether = 10;
     state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
@@ -574,21 +585,127 @@ fn test_defect_audit_all_enemy_creatures_aoe_resolution() {
         },
         &catalogue,
     );
-    assert!(res.accepted);
+    assert!(res.accepted, "Cinder-Vent Eruption must be accepted by rules engine");
 
-    // AUDIT OBSERVATION / DEFECT DEMONSTRATION:
-    // In lib.rs, `deal_damage` has NO match arm for `all_enemy_creatures`.
-    // It falls through to `_ => {}`, causing all 3 enemy creatures to remain at 3 health!
-    let e0_hp = state.players[1].lanes[0].front.as_ref().unwrap().health;
-    let e1_hp = state.players[1].lanes[1].front.as_ref().unwrap().health;
-    let e2_hp = state.players[1].lanes[2].front.as_ref().unwrap().health;
+    // =========================================================================
+    // CANONICAL GAMEPLAY REQUIREMENTS:
+    // =========================================================================
 
-    // Documenting verified defect:
-    println!(
-        "[QA AUDIT VERIFIED DEFECT] EMB-T-0043 ('all_enemy_creatures' AoE damage) resolved with E0 HP={}, E1 HP={}, E2 HP={} (Expected 2, Actual 3 due to missing Rust match arm)",
-        e0_hp, e1_hp, e2_hp
+    // Requirement A: Allied units must remain completely unchanged
+    let ally_0_hp = state.players[0].lanes[0].front.as_ref().unwrap().health;
+    let ally_1_hp = state.players[0].lanes[1].rear.as_ref().unwrap().health;
+    assert_eq!(ally_0_hp, 4, "Allied unit 0 in Lane 0 Front must not take friendly AoE damage");
+    assert_eq!(ally_1_hp, 3, "Allied unit 1 in Lane 1 Rear must not take friendly AoE damage");
+
+    // Requirement B: One AoE damage should reduce each valid unshielded 3-HP enemy to 2 HP
+    let e0_f = state.players[1].lanes[0].front.as_ref().expect("E0 Front must exist");
+    assert_eq!(e0_f.health, 2, "Enemy 0 Front (3 HP) must be reduced to 2 HP by 1 AoE damage");
+
+    let e2_f = state.players[1].lanes[2].front.as_ref().expect("E2 Front must exist");
+    assert_eq!(e2_f.health, 2, "Enemy 2 Front (3 HP) must be reduced to 2 HP by 1 AoE damage");
+
+    // Requirement C: Defensive mechanics follow canonical rules
+    // Ward on Lane 0 Rear should absorb hostile tactic damage, consuming Ward, retaining 3 HP
+    let e0_r = state.players[1].lanes[0].rear.as_ref().expect("E0 Rear must exist");
+    assert_eq!(e0_r.health, 3, "Enemy 0 Rear with Ward must retain 3 HP after absorbing AoE spell");
+    assert!(!e0_r.has_keyword("ward"), "Ward must be consumed after absorbing AoE spell");
+
+    // Shield on Lane 1 Front should absorb damage, retaining 3 HP, consuming Shield
+    let e1_f = state.players[1].lanes[1].front.as_ref().expect("E1 Front must exist");
+    assert_eq!(e1_f.health, 3, "Enemy 1 Front with Shield must retain 3 HP after absorbing AoE damage");
+    assert_eq!(e1_f.counters.get("shield").copied().unwrap_or(0), 0, "Shield counter must be consumed");
+
+    // Requirement D: Destroyed creatures must trigger applicable death effects
+    // Rebirth on Lane 1 Rear (1 HP) takes 1 damage, dies, and spawns Echo Remnant (0/1 token)
+    let e1_r = state.players[1].lanes[1].rear.as_ref().expect("E1 Rear should have Rebirth remnant");
+    assert!(e1_r.is_token, "Destroyed Rebirth creature must spawn Echo Remnant token");
+    assert_eq!(e1_r.health, 1, "Echo Remnant token has 1 HP");
+
+    // Requirement E: 2v2 Tag must hit the opposing shared board exactly once (not twice)
+    let tag_decks = [
+        &decks.decks[0],
+        &decks.decks[1],
+        &decks.decks[2],
+        &decks.decks[3],
+    ];
+    let mut state_2v2 = MatchState::new_2v2(tag_decks, &catalogue, 203).unwrap();
+    // Team 1 shared board is at players[1].lanes
+    state_2v2.players[1].lanes[0].front = Some(create_custom_unit(50001, "TAG_ENEMY", "TE0", 1, 2, 4, vec![]));
+    state_2v2.players[0].aether = 10;
+    state_2v2.players[0].hand[0].card_id = "EMB-T-0043".to_string();
+
+    let res_2v2 = state_2v2.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
     );
-    assert_eq!(e0_hp, 3, "Confirms unhandled 'all_enemy_creatures' in Rust engine deal_damage");
-    assert_eq!(e1_hp, 3, "Confirms unhandled 'all_enemy_creatures' in Rust engine deal_damage");
-    assert_eq!(e2_hp, 3, "Confirms unhandled 'all_enemy_creatures' in Rust engine deal_damage");
+    assert!(res_2v2.accepted, "2v2 tactic command must be accepted");
+
+    // In 2v2, 1 damage AoE should reduce 4 HP to 3 HP (exactly 1 damage, not duplicated to 2 damage)
+    let tag_e_hp = state_2v2.players[1].lanes[0].front.as_ref().unwrap().health;
+    assert_eq!(tag_e_hp, 3, "2v2 AoE must not hit the shared board twice (expected 4 - 1 = 3 HP)");
+}
+
+// =========================================================================
+// 3. CANONICAL FACTION COUNTER LIFECYCLE & INTEGRITY AUDIT
+// =========================================================================
+
+#[test]
+fn test_faction_counter_lifecycle_tracking_and_silence() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 202).unwrap();
+
+    // Deploy units on Player 1's side carrying the 5 canonical faction resource counters:
+    // assembly (Iron Choir), current (Tidebound), refraction (Glassborne), veil (Nocturne), reclaim (Gravewild)
+    let mut u0 = create_custom_unit(30001, "IRN_UNIT", "Iron Unit", 1, 2, 4, vec![]);
+    u0.counters.insert("assembly".to_string(), 3);
+
+    let mut u1 = create_custom_unit(30002, "TID_UNIT", "Tide Unit", 1, 3, 3, vec![]);
+    u1.counters.insert("current".to_string(), 2);
+
+    let mut u2 = create_custom_unit(30003, "GLS_UNIT", "Glass Unit", 1, 2, 3, vec![]);
+    u2.counters.insert("refraction".to_string(), 4);
+
+    let mut u3 = create_custom_unit(30004, "NOC_UNIT", "Nocturne Unit", 1, 1, 2, vec![]);
+    u3.counters.insert("veil".to_string(), 1);
+
+    let mut u4 = create_custom_unit(30005, "GRV_UNIT", "Grave Unit", 1, 3, 5, vec![]);
+    u4.counters.insert("reclaim".to_string(), 2);
+
+    state.players[1].lanes[0].front = Some(u0);
+    state.players[1].lanes[0].rear = Some(u1);
+    state.players[1].lanes[1].front = Some(u2);
+    state.players[1].lanes[1].rear = Some(u3);
+    state.players[1].lanes[2].front = Some(u4);
+
+    // Verify all 5 resource counters are accurately tracked in the unit state
+    assert_eq!(state.players[1].lanes[0].front.as_ref().unwrap().counters.get("assembly"), Some(&3));
+    assert_eq!(state.players[1].lanes[0].rear.as_ref().unwrap().counters.get("current"), Some(&2));
+    assert_eq!(state.players[1].lanes[1].front.as_ref().unwrap().counters.get("refraction"), Some(&4));
+    assert_eq!(state.players[1].lanes[1].rear.as_ref().unwrap().counters.get("veil"), Some(&1));
+    assert_eq!(state.players[1].lanes[2].front.as_ref().unwrap().counters.get("reclaim"), Some(&2));
+
+    // Player 0 (active player) casts NEU-T-0042 targeting Enemy Lane 0 Front (Iron Unit with assembly=3)
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "NEU-T-0042".to_string();
+
+    let res = state.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted, "NEU-T-0042 silence tactic must be accepted");
+
+    // Silence must strip all resource counters from the unit
+    let silenced_u0 = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert!(silenced_u0.silenced);
+    assert!(silenced_u0.counters.is_empty(), "Silence must clear all counter maps (including assembly)");
 }
