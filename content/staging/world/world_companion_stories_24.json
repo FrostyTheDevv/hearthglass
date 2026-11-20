@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.2.0",
+  "title": "Hearthglass Canonical 24 Companion Stories",
+  "total_stories": 24,
+  "companions_count": 8,
+  "stories": [
+    {
+      "id": "comp_npc_soren_whisperleaf_t1",
+      "companion_npc_id": "npc_soren_whisperleaf",
+      "companion_name": "Soren of Whisperleaf",
+      "tier": 1,
+      "title": "Trust & First Resonances: Soren of Whisperleaf",
+      "narrative_hook": "Soren of Whisperleaf invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_soren_whisperleaf_t1_1",
+          "description": "Visit Soren of Whisperleaf at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_soren_whisperleaf_t1_2",
+          "description": "Win a sparring duel using cards aligned with verdant pact.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_soren_whisperleaf_t2",
+      "companion_npc_id": "npc_soren_whisperleaf",
+      "companion_name": "Soren of Whisperleaf",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Soren of Whisperleaf",
+      "narrative_hook": "A crisis in verdant pact territory threatens Soren of Whisperleaf's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_soren_whisperleaf_t2_1",
+          "description": "Travel to the regional landmark associated with Soren of Whisperleaf.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_soren_whisperleaf_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Soren of Whisperleaf.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Verdant Symbiosis: Allied creatures heal +1 upon entering lane."
+      }
+    },
+    {
+      "id": "comp_npc_soren_whisperleaf_t3",
+      "companion_npc_id": "npc_soren_whisperleaf",
+      "companion_name": "Soren of Whisperleaf",
+      "tier": 3,
+      "title": "The Unbroken Accord: Soren of Whisperleaf",
+      "narrative_hook": "Soren of Whisperleaf stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_soren_whisperleaf_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Soren of Whisperleaf's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_soren_whisperleaf_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "SOR-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_kaelen_forge_t1",
+      "companion_npc_id": "npc_kaelen_forge",
+      "companion_name": "Kaelen Emberforge",
+      "tier": 1,
+      "title": "Trust & First Resonances: Kaelen Emberforge",
+      "narrative_hook": "Kaelen Emberforge invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_kaelen_forge_t1_1",
+          "description": "Visit Kaelen Emberforge at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_kaelen_forge_t1_2",
+          "description": "Win a sparring duel using cards aligned with emberclad.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_kaelen_forge_t2",
+      "companion_npc_id": "npc_kaelen_forge",
+      "companion_name": "Kaelen Emberforge",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Kaelen Emberforge",
+      "narrative_hook": "A crisis in emberclad territory threatens Kaelen Emberforge's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_kaelen_forge_t2_1",
+          "description": "Travel to the regional landmark associated with Kaelen Emberforge.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_kaelen_forge_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Kaelen Emberforge.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Slag Vanguard: First allied vanguard each turn gets +1 Attack."
+      }
+    },
+    {
+      "id": "comp_npc_kaelen_forge_t3",
+      "companion_npc_id": "npc_kaelen_forge",
+      "companion_name": "Kaelen Emberforge",
+      "tier": 3,
+      "title": "The Unbroken Accord: Kaelen Emberforge",
+      "narrative_hook": "Kaelen Emberforge stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_kaelen_forge_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Kaelen Emberforge's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_kaelen_forge_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "KAE-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_lyra_vane_t1",
+      "companion_npc_id": "npc_lyra_vane",
+      "companion_name": "Lyra Vane",
+      "tier": 1,
+      "title": "Trust & First Resonances: Lyra Vane",
+      "narrative_hook": "Lyra Vane invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_lyra_vane_t1_1",
+          "description": "Visit Lyra Vane at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_lyra_vane_t1_2",
+          "description": "Win a sparring duel using cards aligned with glassborne.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_lyra_vane_t2",
+      "companion_npc_id": "npc_lyra_vane",
+      "companion_name": "Lyra Vane",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Lyra Vane",
+      "narrative_hook": "A crisis in glassborne territory threatens Lyra Vane's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_lyra_vane_t2_1",
+          "description": "Travel to the regional landmark associated with Lyra Vane.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_lyra_vane_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Lyra Vane.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Prism Deflection: First spell played each round grants 1 Ward shield."
+      }
+    },
+    {
+      "id": "comp_npc_lyra_vane_t3",
+      "companion_npc_id": "npc_lyra_vane",
+      "companion_name": "Lyra Vane",
+      "tier": 3,
+      "title": "The Unbroken Accord: Lyra Vane",
+      "narrative_hook": "Lyra Vane stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_lyra_vane_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Lyra Vane's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_lyra_vane_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "LYR-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_captain_nerissa_t1",
+      "companion_npc_id": "npc_captain_nerissa",
+      "companion_name": "Captain Nerissa Wake",
+      "tier": 1,
+      "title": "Trust & First Resonances: Captain Nerissa Wake",
+      "narrative_hook": "Captain Nerissa Wake invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_captain_nerissa_t1_1",
+          "description": "Visit Captain Nerissa Wake at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_captain_nerissa_t1_2",
+          "description": "Win a sparring duel using cards aligned with tidebound.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_captain_nerissa_t2",
+      "companion_npc_id": "npc_captain_nerissa",
+      "companion_name": "Captain Nerissa Wake",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Captain Nerissa Wake",
+      "narrative_hook": "A crisis in tidebound territory threatens Captain Nerissa Wake's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_captain_nerissa_t2_1",
+          "description": "Travel to the regional landmark associated with Captain Nerissa Wake.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_captain_nerissa_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Captain Nerissa Wake.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Tidal Maneuver: Once per turn, shift one allied creature to adjacent lane."
+      }
+    },
+    {
+      "id": "comp_npc_captain_nerissa_t3",
+      "companion_npc_id": "npc_captain_nerissa",
+      "companion_name": "Captain Nerissa Wake",
+      "tier": 3,
+      "title": "The Unbroken Accord: Captain Nerissa Wake",
+      "narrative_hook": "Captain Nerissa Wake stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_captain_nerissa_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Captain Nerissa Wake's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_captain_nerissa_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "CAP-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_morwen_ossuary_t1",
+      "companion_npc_id": "npc_morwen_ossuary",
+      "companion_name": "Keeper Morwen Vale",
+      "tier": 1,
+      "title": "Trust & First Resonances: Keeper Morwen Vale",
+      "narrative_hook": "Keeper Morwen Vale invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_morwen_ossuary_t1_1",
+          "description": "Visit Keeper Morwen Vale at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_morwen_ossuary_t1_2",
+          "description": "Win a sparring duel using cards aligned with gravewild.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_morwen_ossuary_t2",
+      "companion_npc_id": "npc_morwen_ossuary",
+      "companion_name": "Keeper Morwen Vale",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Keeper Morwen Vale",
+      "narrative_hook": "A crisis in gravewild territory threatens Keeper Morwen Vale's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_morwen_ossuary_t2_1",
+          "description": "Travel to the regional landmark associated with Keeper Morwen Vale.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_morwen_ossuary_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Keeper Morwen Vale.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Lantern Memory: When an allied creature perishes, add 1 Echo Dust to hand."
+      }
+    },
+    {
+      "id": "comp_npc_morwen_ossuary_t3",
+      "companion_npc_id": "npc_morwen_ossuary",
+      "companion_name": "Keeper Morwen Vale",
+      "tier": 3,
+      "title": "The Unbroken Accord: Keeper Morwen Vale",
+      "narrative_hook": "Keeper Morwen Vale stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_morwen_ossuary_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Keeper Morwen Vale's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_morwen_ossuary_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "MOR-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_astromancer_celeste_t1",
+      "companion_npc_id": "npc_astromancer_celeste",
+      "companion_name": "Astromancer Celeste Oryn",
+      "tier": 1,
+      "title": "Trust & First Resonances: Astromancer Celeste Oryn",
+      "narrative_hook": "Astromancer Celeste Oryn invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_astromancer_celeste_t1_1",
+          "description": "Visit Astromancer Celeste Oryn at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_astromancer_celeste_t1_2",
+          "description": "Win a sparring duel using cards aligned with starweave.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_astromancer_celeste_t2",
+      "companion_npc_id": "npc_astromancer_celeste",
+      "companion_name": "Astromancer Celeste Oryn",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Astromancer Celeste Oryn",
+      "narrative_hook": "A crisis in starweave territory threatens Astromancer Celeste Oryn's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_astromancer_celeste_t2_1",
+          "description": "Travel to the regional landmark associated with Astromancer Celeste Oryn.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_astromancer_celeste_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Astromancer Celeste Oryn.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Celestial Scry: Scry the top card of your deck at round start."
+      }
+    },
+    {
+      "id": "comp_npc_astromancer_celeste_t3",
+      "companion_npc_id": "npc_astromancer_celeste",
+      "companion_name": "Astromancer Celeste Oryn",
+      "tier": 3,
+      "title": "The Unbroken Accord: Astromancer Celeste Oryn",
+      "narrative_hook": "Astromancer Celeste Oryn stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_astromancer_celeste_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Astromancer Celeste Oryn's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_astromancer_celeste_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "AST-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_vesper_noctis_t1",
+      "companion_npc_id": "npc_vesper_noctis",
+      "companion_name": "Vesper of the Crescent Mask",
+      "tier": 1,
+      "title": "Trust & First Resonances: Vesper of the Crescent Mask",
+      "narrative_hook": "Vesper of the Crescent Mask invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_vesper_noctis_t1_1",
+          "description": "Visit Vesper of the Crescent Mask at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_vesper_noctis_t1_2",
+          "description": "Win a sparring duel using cards aligned with nocturne.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_vesper_noctis_t2",
+      "companion_npc_id": "npc_vesper_noctis",
+      "companion_name": "Vesper of the Crescent Mask",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Vesper of the Crescent Mask",
+      "narrative_hook": "A crisis in nocturne territory threatens Vesper of the Crescent Mask's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_vesper_noctis_t2_1",
+          "description": "Travel to the regional landmark associated with Vesper of the Crescent Mask.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_vesper_noctis_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Vesper of the Crescent Mask.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Shadow Veil: Allied tactics cannot be countered on turn 1."
+      }
+    },
+    {
+      "id": "comp_npc_vesper_noctis_t3",
+      "companion_npc_id": "npc_vesper_noctis",
+      "companion_name": "Vesper of the Crescent Mask",
+      "tier": 3,
+      "title": "The Unbroken Accord: Vesper of the Crescent Mask",
+      "narrative_hook": "Vesper of the Crescent Mask stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_vesper_noctis_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Vesper of the Crescent Mask's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_vesper_noctis_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "VES-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    },
+    {
+      "id": "comp_npc_instructor_hale_t1",
+      "companion_npc_id": "npc_instructor_hale",
+      "companion_name": "Tactical Instructor Garrick Hale",
+      "tier": 1,
+      "title": "Trust & First Resonances: Tactical Instructor Garrick Hale",
+      "narrative_hook": "Tactical Instructor Garrick Hale invites you to a quiet duel to assess your personal tactical philosophy.",
+      "objectives": [
+        {
+          "id": "comp_npc_instructor_hale_t1_1",
+          "description": "Visit Tactical Instructor Garrick Hale at their preferred district and share a discussion.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_instructor_hale_t1_2",
+          "description": "Win a sparring duel using cards aligned with iron choir.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 25,
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "relationship_bonus": 15,
+        "companion_camp_dialogue_unlocked": true
+      }
+    },
+    {
+      "id": "comp_npc_instructor_hale_t2",
+      "companion_npc_id": "npc_instructor_hale",
+      "companion_name": "Tactical Instructor Garrick Hale",
+      "tier": 2,
+      "title": "The Crucible of Conviction: Tactical Instructor Garrick Hale",
+      "narrative_hook": "A crisis in iron choir territory threatens Tactical Instructor Garrick Hale's standing; they request your aid in an urgent joint trial.",
+      "objectives": [
+        {
+          "id": "comp_npc_instructor_hale_t2_1",
+          "description": "Travel to the regional landmark associated with Tactical Instructor Garrick Hale.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_instructor_hale_t2_2",
+          "description": "Complete a 2v2 Tag challenge fighting shoulder-to-shoulder with Tactical Instructor Garrick Hale.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 50,
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 120,
+        "relationship_bonus": 20,
+        "companion_tag_passive_unlocked": "Disciplined Bulwark: Allied bulwarks gain +1 Armor in center lane."
+      }
+    },
+    {
+      "id": "comp_npc_instructor_hale_t3",
+      "companion_npc_id": "npc_instructor_hale",
+      "companion_name": "Tactical Instructor Garrick Hale",
+      "tier": 3,
+      "title": "The Unbroken Accord: Tactical Instructor Garrick Hale",
+      "narrative_hook": "Tactical Instructor Garrick Hale stands at a fateful crossroads. Together, you forge an eternal bond that permanently cements their partnership.",
+      "objectives": [
+        {
+          "id": "comp_npc_instructor_hale_t3_1",
+          "description": "Overcome the ultimate ideological rival duel challenging Tactical Instructor Garrick Hale's legacy.",
+          "count": 1
+        },
+        {
+          "id": "comp_npc_instructor_hale_t3_2",
+          "description": "Present a custom attuned master card to seal your lifelong allegiance.",
+          "count": 1
+        }
+      ],
+      "unlock_relationship_threshold": 80,
+      "rewards": {
+        "crowns": 800,
+        "echo_dust": 250,
+        "relationship_bonus": 30,
+        "companion_exclusive_card_id": "INS-C-0019",
+        "companion_status": "bonded_champion"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1111 @@
+{
+  "schema_version": "1.2.0",
+  "title": "Hearthglass Canonical 16 Dungeons",
+  "total_dungeons": 16,
+  "dungeons": [
+    {
+      "id": "dung_lumen_sunken_lighthouse_vault",
+      "name": "The Sunken Lighthouse Vault",
+      "region_id": "lumenport",
+      "recommended_level": 5,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_sunken_lighthouse_vault_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_lumen_sunken_lighthouse_vault_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_sunken_lighthouse_vault_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_lumen_sunken_lighthouse_vault_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_sunken_lighthouse_vault_boss",
+              "opponent_name": "Lord of the Submerged Wake",
+              "is_boss": true,
+              "deck_id": "deck_tide_star_navigation",
+              "passive_field_rule": "Tidal Swell: End of round, all creatures in Left Lane shift to Center Lane.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Tidal Swell: End of round, all creatures in Left Lane shift to Center Lane."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 500,
+        "echo_dust": 150,
+        "xp_reward": 600,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_lumen_sunken_lighthouse_vault"
+      }
+    },
+    {
+      "id": "dung_lumen_smuggler_shadow_canals",
+      "name": "The Smuggler's Shadow Canals",
+      "region_id": "lumenport",
+      "recommended_level": 6,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_smuggler_shadow_canals_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_nocturne_grave_echo",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_lumen_smuggler_shadow_canals_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_nocturne_grave_echo",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_smuggler_shadow_canals_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_nocturne_grave_echo",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_lumen_smuggler_shadow_canals_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_nocturne_grave_echo",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_smuggler_shadow_canals_boss",
+              "opponent_name": "Vesper's Phantom Shade",
+              "is_boss": true,
+              "deck_id": "deck_nocturne_grave_echo",
+              "passive_field_rule": "Veiled Mist: All creatures gain Stealth during the first turn after being summoned.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Veiled Mist: All creatures gain Stealth during the first turn after being summoned."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 550,
+        "echo_dust": 165,
+        "xp_reward": 650,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_lumen_smuggler_shadow_canals"
+      }
+    },
+    {
+      "id": "dung_lumen_salt_warehouse_catacombs",
+      "name": "The Abandoned Salt Warehouse Catacombs",
+      "region_id": "lumenport",
+      "recommended_level": 7,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_salt_warehouse_catacombs_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_lumen_salt_warehouse_catacombs_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_salt_warehouse_catacombs_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_lumen_salt_warehouse_catacombs_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_salt_warehouse_catacombs_boss",
+              "opponent_name": "Crystalline Slag Behemoth",
+              "is_boss": true,
+              "deck_id": "deck_ember_iron_forge",
+              "passive_field_rule": "Corrosive Salt: Creatures with Armor take 1 extra damage from Tactics.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Corrosive Salt: Creatures with Armor take 1 extra damage from Tactics."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 600,
+        "echo_dust": 180,
+        "xp_reward": 700,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_lumen_salt_warehouse_catacombs"
+      }
+    },
+    {
+      "id": "dung_lumen_tidebreaker_cellars",
+      "name": "The Tidebreaker Deep Cellars",
+      "region_id": "lumenport",
+      "recommended_level": 8,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_tidebreaker_cellars_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_ember_tide_steam",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_lumen_tidebreaker_cellars_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_ember_tide_steam",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_tidebreaker_cellars_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_ember_tide_steam",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_lumen_tidebreaker_cellars_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_ember_tide_steam",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_lumen_tidebreaker_cellars_boss",
+              "opponent_name": "Reef Marauder Admiral",
+              "is_boss": true,
+              "deck_id": "deck_ember_tide_steam",
+              "passive_field_rule": "Crushing Depth: Deploying cards costs 1 additional Aether if hand has 5+ cards.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Crushing Depth: Deploying cards costs 1 additional Aether if hand has 5+ cards."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 650,
+        "echo_dust": 195,
+        "xp_reward": 750,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_lumen_tidebreaker_cellars"
+      }
+    },
+    {
+      "id": "dung_verd_sporemist_hollows",
+      "name": "The Spore-Mist Hollows",
+      "region_id": "verdant_expanse",
+      "recommended_level": 9,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_sporemist_hollows_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_verdant_grave_cycle",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_verd_sporemist_hollows_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_verdant_grave_cycle",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_sporemist_hollows_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_verdant_grave_cycle",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_verd_sporemist_hollows_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_verdant_grave_cycle",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_sporemist_hollows_boss",
+              "opponent_name": "Ancient Fungal Mycelium Avatar",
+              "is_boss": true,
+              "deck_id": "deck_verdant_grave_cycle",
+              "passive_field_rule": "Spore Cloud: When a creature perishes, deal 1 damage to its lane neighbor.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Spore Cloud: When a creature perishes, deal 1 damage to its lane neighbor."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 700,
+        "echo_dust": 210,
+        "xp_reward": 800,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_verd_sporemist_hollows"
+      }
+    },
+    {
+      "id": "dung_verd_elder_yew_roots",
+      "name": "The Hollow Trunk of the Elder Yew",
+      "region_id": "verdant_expanse",
+      "recommended_level": 10,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_elder_yew_roots_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_verdant_tide_harmony",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_verd_elder_yew_roots_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_verdant_tide_harmony",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_elder_yew_roots_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_verdant_tide_harmony",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_verd_elder_yew_roots_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_verdant_tide_harmony",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_elder_yew_roots_boss",
+              "opponent_name": "Ironbark Primeval Sentinel",
+              "is_boss": true,
+              "deck_id": "deck_verdant_tide_harmony",
+              "passive_field_rule": "Worldroot Regeneration: Wounded creatures recover 1 Health each round.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Worldroot Regeneration: Wounded creatures recover 1 Health each round."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 750,
+        "echo_dust": 225,
+        "xp_reward": 850,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_verd_elder_yew_roots"
+      }
+    },
+    {
+      "id": "dung_verd_bramble_cairn_crypts",
+      "name": "The Bramble-Cairn Crypts",
+      "region_id": "verdant_expanse",
+      "recommended_level": 11,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_bramble_cairn_crypts_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_nocturne_grave_nightfall",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_verd_bramble_cairn_crypts_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_nocturne_grave_nightfall",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_bramble_cairn_crypts_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_nocturne_grave_nightfall",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_verd_bramble_cairn_crypts_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_nocturne_grave_nightfall",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_bramble_cairn_crypts_boss",
+              "opponent_name": "Grave-Briar Lich Medium",
+              "is_boss": true,
+              "deck_id": "deck_nocturne_grave_nightfall",
+              "passive_field_rule": "Thorny Grave: Discarding a card summons a 1/1 Bramble Token in a random lane.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Thorny Grave: Discarding a card summons a 1/1 Bramble Token in a random lane."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 800,
+        "echo_dust": 240,
+        "xp_reward": 900,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_verd_bramble_cairn_crypts"
+      }
+    },
+    {
+      "id": "dung_verd_petal_chasm_conservatory",
+      "name": "The Petal-Chasm Conservatory",
+      "region_id": "verdant_expanse",
+      "recommended_level": 12,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_petal_chasm_conservatory_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_verdant_iron_resonance",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_verd_petal_chasm_conservatory_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_verdant_iron_resonance",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_petal_chasm_conservatory_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_verdant_iron_resonance",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_verd_petal_chasm_conservatory_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_verdant_iron_resonance",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_verd_petal_chasm_conservatory_boss",
+              "opponent_name": "Sun-Dew Matron Primus",
+              "is_boss": true,
+              "deck_id": "deck_verdant_iron_resonance",
+              "passive_field_rule": "Solar Blossom: Creatures in Center Lane gain +1 Attack.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Solar Blossom: Creatures in Center Lane gain +1 Attack."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 850,
+        "echo_dust": 255,
+        "xp_reward": 950,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_verd_petal_chasm_conservatory"
+      }
+    },
+    {
+      "id": "dung_iron_overheated_slag_core",
+      "name": "The Overheated Slag Core",
+      "region_id": "ironreach",
+      "recommended_level": 13,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_overheated_slag_core_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_iron_overheated_slag_core_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_overheated_slag_core_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_iron_overheated_slag_core_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_ember_iron_forge",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_overheated_slag_core_boss",
+              "opponent_name": "Colossus Overheat Titan 09",
+              "is_boss": true,
+              "deck_id": "deck_ember_iron_forge",
+              "passive_field_rule": "Molten Floor: Creatures suffer 1 thermal damage whenever they attack.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Molten Floor: Creatures suffer 1 thermal damage whenever they attack."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 900,
+        "echo_dust": 270,
+        "xp_reward": 1000,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_iron_overheated_slag_core"
+      }
+    },
+    {
+      "id": "dung_iron_clockwork_testing_vaults",
+      "name": "The Clockwork Testing Vaults",
+      "region_id": "ironreach",
+      "recommended_level": 14,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_clockwork_testing_vaults_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_iron_glass_citadel",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_iron_clockwork_testing_vaults_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_iron_glass_citadel",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_clockwork_testing_vaults_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_iron_glass_citadel",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_iron_clockwork_testing_vaults_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_iron_glass_citadel",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_clockwork_testing_vaults_boss",
+              "opponent_name": "Automaton Overseer Calibrus",
+              "is_boss": true,
+              "deck_id": "deck_iron_glass_citadel",
+              "passive_field_rule": "Gear Lock: Relics deal 1 damage to opposing board when activated.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Gear Lock: Relics deal 1 damage to opposing board when activated."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 950,
+        "echo_dust": 285,
+        "xp_reward": 1050,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_iron_clockwork_testing_vaults"
+      }
+    },
+    {
+      "id": "dung_iron_resonance_sub_basement",
+      "name": "The Resonant Sub-Basement",
+      "region_id": "ironreach",
+      "recommended_level": 15,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_resonance_sub_basement_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_iron_tide_dreadnought",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_iron_resonance_sub_basement_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_iron_tide_dreadnought",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_resonance_sub_basement_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_iron_tide_dreadnought",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_iron_resonance_sub_basement_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_iron_tide_dreadnought",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_resonance_sub_basement_boss",
+              "opponent_name": "The Echo Acoustic Echo",
+              "is_boss": true,
+              "deck_id": "deck_iron_tide_dreadnought",
+              "passive_field_rule": "Acoustic Shockwave: Spells and Tactics echo, dealing 1 damage to rear lane.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Acoustic Shockwave: Spells and Tactics echo, dealing 1 damage to rear lane."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1000,
+        "echo_dust": 300,
+        "xp_reward": 1100,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_iron_resonance_sub_basement"
+      }
+    },
+    {
+      "id": "dung_iron_abandoned_mine_ignis",
+      "name": "The Abandoned Mine of Ignis",
+      "region_id": "ironreach",
+      "recommended_level": 16,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_abandoned_mine_ignis_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_star_ember_supernova",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_iron_abandoned_mine_ignis_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_star_ember_supernova",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_abandoned_mine_ignis_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_star_ember_supernova",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_iron_abandoned_mine_ignis_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_star_ember_supernova",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_iron_abandoned_mine_ignis_boss",
+              "opponent_name": "Pyraxis Sub-Caldera Drake",
+              "is_boss": true,
+              "deck_id": "deck_star_ember_supernova",
+              "passive_field_rule": "Volatile Ignis Gas: Destroyed creatures explode for 2 damage to all in lane.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Volatile Ignis Gas: Destroyed creatures explode for 2 damage to all in lane."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1050,
+        "echo_dust": 315,
+        "xp_reward": 1150,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_iron_abandoned_mine_ignis"
+      }
+    },
+    {
+      "id": "dung_astral_scriptorium_labyrinth",
+      "name": "The Scriptorium Labyrinth",
+      "region_id": "astral_archive",
+      "recommended_level": 17,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_scriptorium_labyrinth_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_glass_star_celestial",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_astral_scriptorium_labyrinth_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_glass_star_celestial",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_scriptorium_labyrinth_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_glass_star_celestial",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_astral_scriptorium_labyrinth_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_glass_star_celestial",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_scriptorium_labyrinth_boss",
+              "opponent_name": "Grand Archivist Phantasm",
+              "is_boss": true,
+              "deck_id": "deck_glass_star_celestial",
+              "passive_field_rule": "Written Fate: Players draw 2 cards at start of turn instead of 1.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Written Fate: Players draw 2 cards at start of turn instead of 1."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1100,
+        "echo_dust": 330,
+        "xp_reward": 1200,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_astral_scriptorium_labyrinth"
+      }
+    },
+    {
+      "id": "dung_astral_star_pylon_sublevels",
+      "name": "The Star-Pylon Sub-Levels",
+      "region_id": "astral_archive",
+      "recommended_level": 18,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_star_pylon_sublevels_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_astral_star_pylon_sublevels_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_star_pylon_sublevels_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_astral_star_pylon_sublevels_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_tide_star_navigation",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_star_pylon_sublevels_boss",
+              "opponent_name": "Celestial Pylon Construct",
+              "is_boss": true,
+              "deck_id": "deck_tide_star_navigation",
+              "passive_field_rule": "Meteoric Gravity: Creatures cannot shift lanes once deployed.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Meteoric Gravity: Creatures cannot shift lanes once deployed."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1150,
+        "echo_dust": 345,
+        "xp_reward": 1250,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_astral_star_pylon_sublevels"
+      }
+    },
+    {
+      "id": "dung_astral_zenith_mirror_gallery",
+      "name": "The Zenith Mirror Gallery",
+      "region_id": "astral_archive",
+      "recommended_level": 19,
+      "floors_count": 3,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_zenith_mirror_gallery_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_glass_star_prism",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_astral_zenith_mirror_gallery_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_glass_star_prism",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_zenith_mirror_gallery_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_glass_star_prism",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_astral_zenith_mirror_gallery_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_glass_star_prism",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_zenith_mirror_gallery_boss",
+              "opponent_name": "Seraphina's Refractive Mirror-Self",
+              "is_boss": true,
+              "deck_id": "deck_glass_star_prism",
+              "passive_field_rule": "Reflective Ward: 50% chance targeting tactics reflect to random opposing unit.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Reflective Ward: 50% chance targeting tactics reflect to random opposing unit."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1200,
+        "echo_dust": 360,
+        "xp_reward": 1300,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_astral_zenith_mirror_gallery"
+      }
+    },
+    {
+      "id": "dung_astral_comet_chamber_crypt",
+      "name": "The Comet-Chamber Crypt",
+      "region_id": "astral_archive",
+      "recommended_level": 20,
+      "floors_count": 4,
+      "floors": [
+        {
+          "floor_number": 1,
+          "name": "Vestibule & Outer Gates",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_comet_chamber_crypt_enc_1",
+              "opponent_name": "Corridor Sentinel",
+              "deck_id": "deck_accord_grand_alliance",
+              "reward_dust": 25
+            },
+            {
+              "encounter_id": "dung_astral_comet_chamber_crypt_enc_2",
+              "opponent_name": "Patrolling Guardian",
+              "deck_id": "deck_accord_grand_alliance",
+              "reward_dust": 30
+            }
+          ],
+          "environmental_hazard": "Minor ambient interference (-1 Attack on summon turn)."
+        },
+        {
+          "floor_number": 2,
+          "name": "Inner Corridors & Relic Vault",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_comet_chamber_crypt_enc_3",
+              "opponent_name": "Sub-Commander Automaton",
+              "deck_id": "deck_accord_grand_alliance",
+              "reward_dust": 45
+            },
+            {
+              "encounter_id": "dung_astral_comet_chamber_crypt_enc_4",
+              "opponent_name": "Elite Leyline Ward",
+              "deck_id": "deck_accord_grand_alliance",
+              "reward_dust": 50
+            }
+          ],
+          "environmental_hazard": "Intense atmospheric turbulence (Spells cost +1 Aether)."
+        },
+        {
+          "floor_number": 3,
+          "name": "Sanctum of the Guardian",
+          "encounters": [
+            {
+              "encounter_id": "dung_astral_comet_chamber_crypt_boss",
+              "opponent_name": "Primordial Comet Sovereign",
+              "is_boss": true,
+              "deck_id": "deck_accord_grand_alliance",
+              "passive_field_rule": "Total Alignment: Legendary creatures cost 2 less Aether.",
+              "reward_dust": 120
+            }
+          ],
+          "environmental_hazard": "Total Alignment: Legendary creatures cost 2 less Aether."
+        }
+      ],
+      "completion_rewards": {
+        "crowns": 1250,
+        "echo_dust": 375,
+        "xp_reward": 1350,
+        "guaranteed_card_pack": 1,
+        "relic_discovery_id": "relic_dung_astral_comet_chamber_crypt"
+      }
+    }
+  ]
+}

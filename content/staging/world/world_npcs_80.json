@@ -1,0 +1,2653 @@
+{
+  "schema_version": "1.2.0",
+  "title": "Hearthglass Canonical 80 Named NPCs",
+  "total_npcs": 80,
+  "region_counts": {
+    "lumenport": 20,
+    "verdant_expanse": 20,
+    "ironreach": 20,
+    "astral_archive": 20
+  },
+  "npcs": [
+    {
+      "id": "npc_lyra_vane",
+      "name": "Lyra Vane",
+      "faction": "glassborne",
+      "title": "Glassborne Archivist & Rival Duelist",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "location": "interior_training_facility",
+      "role": "companion",
+      "deck_id": "deck_glass_star_prism",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Lyra Vane, Glassborne Archivist & Rival Duelist of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Lyra Vane was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "lumenport_accord_institute",
+        "afternoon": "lumenport_accord_institute",
+        "evening": "interior_training_facility"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "GLS-C-0001"
+      }
+    },
+    {
+      "id": "npc_kaelen_forge",
+      "name": "Kaelen Emberforge",
+      "faction": "emberclad",
+      "title": "Emberclad Circuit Challenger",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "interior_harbor_cafe",
+      "role": "companion",
+      "deck_id": "deck_ember_nocturne_blitz",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Kaelen Emberforge, Emberclad Circuit Challenger of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Kaelen Emberforge was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "interior_harbor_cafe"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "EMB-C-0002"
+      }
+    },
+    {
+      "id": "npc_master_vance",
+      "name": "Master Artificer Vance",
+      "faction": "iron_choir",
+      "title": "Proprietor of the Resonance Emporium",
+      "region_id": "lumenport",
+      "district_id": "lumenport_central_card_market",
+      "location": "interior_card_shop",
+      "role": "merchant",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Master Artificer Vance, Proprietor of the Resonance Emporium of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Master Artificer Vance was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "lumenport_central_card_market",
+        "afternoon": "lumenport_central_card_market",
+        "evening": "interior_card_shop"
+      },
+      "gameplay_purpose": "MERCHANT duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "IRN-C-0003"
+      }
+    },
+    {
+      "id": "npc_soren_whisperleaf",
+      "name": "Soren of Whisperleaf",
+      "faction": "verdant_pact",
+      "title": "Verdant Pact Envoy & Tag Partner",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "lumenport_arrival_square",
+      "role": "companion",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Soren of Whisperleaf, Verdant Pact Envoy & Tag Partner of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Soren of Whisperleaf was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "lumenport_arrival_square"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "VER-C-0004"
+      }
+    },
+    {
+      "id": "npc_captain_nerissa",
+      "name": "Captain Nerissa Wake",
+      "faction": "tidebound",
+      "title": "Tidebound Harbor Fleetmaster",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "interior_harbor_cafe",
+      "role": "companion",
+      "deck_id": "deck_tide_star_navigation",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Captain Nerissa Wake, Tidebound Harbor Fleetmaster of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of tidebound.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Captain Nerissa Wake was inducted during the great harmonic alignment, preserving the traditions of the tidebound."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "interior_harbor_cafe"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "TID-C-0005"
+      }
+    },
+    {
+      "id": "npc_vesper_noctis",
+      "name": "Vesper of the Crescent Mask",
+      "faction": "nocturne",
+      "title": "Nocturne Information Broker",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "location": "interior_harbor_cafe",
+      "role": "companion",
+      "deck_id": "deck_nocturne_grave_nightfall",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Vesper of the Crescent Mask, Nocturne Information Broker of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of nocturne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Vesper of the Crescent Mask was inducted during the great harmonic alignment, preserving the traditions of the nocturne."
+      },
+      "schedule": {
+        "morning": "lumenport_residential_district",
+        "afternoon": "lumenport_residential_district",
+        "evening": "interior_harbor_cafe"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "NOC-T-0006"
+      }
+    },
+    {
+      "id": "npc_astromancer_celeste",
+      "name": "Astromancer Celeste Oryn",
+      "faction": "starweave",
+      "title": "Starweave Chair of Celestial Alignment",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "location": "interior_artificer_workshop",
+      "role": "companion",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 21,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Astromancer Celeste Oryn, Starweave Chair of Celestial Alignment of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Astromancer Celeste Oryn was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "lumenport_accord_institute",
+        "afternoon": "lumenport_accord_institute",
+        "evening": "interior_artificer_workshop"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "STR-R-0007"
+      }
+    },
+    {
+      "id": "npc_morwen_ossuary",
+      "name": "Keeper Morwen Vale",
+      "faction": "gravewild",
+      "title": "Gravewild Memorial Medium",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "location": "lumenport_residential_district",
+      "role": "companion",
+      "deck_id": "deck_nocturne_grave_echo",
+      "initial_relationship": 22,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Keeper Morwen Vale, Gravewild Memorial Medium of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of gravewild.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Keeper Morwen Vale was inducted during the great harmonic alignment, preserving the traditions of the gravewild."
+      },
+      "schedule": {
+        "morning": "lumenport_residential_district",
+        "afternoon": "lumenport_residential_district",
+        "evening": "lumenport_residential_district"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "GRV-E-0008"
+      }
+    },
+    {
+      "id": "npc_marshal_corin",
+      "name": "Grand Marshal Corin Thorne",
+      "faction": "neutral",
+      "title": "Commissioner of the Tournament Hall",
+      "region_id": "lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "location": "interior_tournament_registration",
+      "role": "tournament_official",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 23,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Grand Marshal Corin Thorne, Commissioner of the Tournament Hall of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Grand Marshal Corin Thorne was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_grand_tournament_hall",
+        "afternoon": "lumenport_grand_tournament_hall",
+        "evening": "interior_tournament_registration"
+      },
+      "gameplay_purpose": "TOURNAMENT_OFFICIAL duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "NEU-C-0009"
+      }
+    },
+    {
+      "id": "npc_mira_solis",
+      "name": "Mira Solis",
+      "faction": "neutral",
+      "title": "Hostess of the Anchor & Aether Café",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "interior_harbor_cafe",
+      "role": "social_hub",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 24,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Mira Solis, Hostess of the Anchor & Aether Café of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Mira Solis was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "interior_harbor_cafe"
+      },
+      "gameplay_purpose": "SOCIAL_HUB duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "NEU-C-0010"
+      }
+    },
+    {
+      "id": "npc_instructor_hale",
+      "name": "Tactical Instructor Garrick Hale",
+      "faction": "iron_choir",
+      "title": "Master of Lane Geometry",
+      "region_id": "lumenport",
+      "district_id": "lumenport_duelist_plaza",
+      "location": "interior_training_facility",
+      "role": "companion",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Tactical Instructor Garrick Hale, Master of Lane Geometry of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Tactical Instructor Garrick Hale was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "lumenport_duelist_plaza",
+        "afternoon": "lumenport_duelist_plaza",
+        "evening": "interior_training_facility"
+      },
+      "gameplay_purpose": "COMPANION duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "IRN-C-0011"
+      }
+    },
+    {
+      "id": "npc_eluned_glass",
+      "name": "Eluned Prismwright",
+      "faction": "glassborne",
+      "title": "Master of Echo Illustration & Optics",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "location": "interior_artificer_workshop",
+      "role": "crafter",
+      "deck_id": "deck_glass_nocturne_mirage",
+      "initial_relationship": 26,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Eluned Prismwright, Master of Echo Illustration & Optics of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Eluned Prismwright was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "lumenport_accord_institute",
+        "afternoon": "lumenport_accord_institute",
+        "evening": "interior_artificer_workshop"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "GLS-C-0012"
+      }
+    },
+    {
+      "id": "npc_toma_wick",
+      "name": "Toma Wick",
+      "faction": "neutral",
+      "title": "Lantern Row Quartermaster & Collector",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "location": "interior_player_apartment",
+      "role": "collector",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 27,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Toma Wick, Lantern Row Quartermaster & Collector of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Toma Wick was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_residential_district",
+        "afternoon": "lumenport_residential_district",
+        "evening": "interior_player_apartment"
+      },
+      "gameplay_purpose": "COLLECTOR duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "NEU-C-0013"
+      }
+    },
+    {
+      "id": "npc_brynja_slagheart",
+      "name": "Forge-Captain Brynja Slagheart",
+      "faction": "emberclad",
+      "title": "Emberclad Siege Commander",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "lumenport_arrival_square",
+      "role": "trainer",
+      "deck_id": "deck_ember_nocturne_blitz",
+      "initial_relationship": 28,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Forge-Captain Brynja Slagheart, Emberclad Siege Commander of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Forge-Captain Brynja Slagheart was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "lumenport_arrival_square"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "EMB-C-0014"
+      }
+    },
+    {
+      "id": "npc_brother_cassian",
+      "name": "Conductor Cassian Bell",
+      "faction": "iron_choir",
+      "title": "Iron Choir Harmonic Chronicler",
+      "region_id": "lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "location": "lumenport_grand_tournament_hall",
+      "role": "lore_keeper",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 29,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Conductor Cassian Bell, Iron Choir Harmonic Chronicler of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Conductor Cassian Bell was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "lumenport_grand_tournament_hall",
+        "afternoon": "lumenport_grand_tournament_hall",
+        "evening": "lumenport_grand_tournament_hall"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "IRN-T-0015"
+      }
+    },
+    {
+      "id": "npc_sylvi_thorn",
+      "name": "Sylvi Thornweaver",
+      "faction": "verdant_pact",
+      "title": "Verdant Botanist & Spore Alchemist",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "location": "lumenport_residential_district",
+      "role": "crafter",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Sylvi Thornweaver, Verdant Botanist & Spore Alchemist of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Sylvi Thornweaver was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "lumenport_residential_district",
+        "afternoon": "lumenport_residential_district",
+        "evening": "lumenport_residential_district"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-T-0016"
+      }
+    },
+    {
+      "id": "npc_bramwell_coin",
+      "name": "Bramwell Coin-Counter",
+      "faction": "neutral",
+      "title": "Chief Appraiser of the Card Market",
+      "region_id": "lumenport",
+      "district_id": "lumenport_central_card_market",
+      "location": "lumenport_central_card_market",
+      "role": "merchant",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Bramwell Coin-Counter, Chief Appraiser of the Card Market of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Bramwell Coin-Counter was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_central_card_market",
+        "afternoon": "lumenport_central_card_market",
+        "evening": "lumenport_central_card_market"
+      },
+      "gameplay_purpose": "MERCHANT duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "NEU-C-0017"
+      }
+    },
+    {
+      "id": "npc_fenna_swift",
+      "name": "Fenna Swiftfoot",
+      "faction": "neutral",
+      "title": "Accord Courier & Caravan Scout",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "lumenport_arrival_square",
+      "role": "quest_giver",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Fenna Swiftfoot, Accord Courier & Caravan Scout of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Fenna Swiftfoot was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "lumenport_arrival_square"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "NEU-C-0018"
+      }
+    },
+    {
+      "id": "npc_archon_valen",
+      "name": "Archon Valen of the Accord",
+      "faction": "neutral",
+      "title": "Chancellor of the Accord Institute",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "location": "lumenport_accord_institute",
+      "role": "lore_keeper",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Archon Valen of the Accord, Chancellor of the Accord Institute of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Archon Valen of the Accord was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_accord_institute",
+        "afternoon": "lumenport_accord_institute",
+        "evening": "lumenport_accord_institute"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "NEU-C-0019"
+      }
+    },
+    {
+      "id": "npc_port_warden_brand",
+      "name": "Port Warden Brand",
+      "faction": "neutral",
+      "title": "Chief Watchman of Old Harbor Pier",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "location": "lumenport_arrival_square",
+      "role": "quest_giver",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Port Warden Brand, Chief Watchman of Old Harbor Pier of lumenport. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Port Warden Brand was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "lumenport_arrival_square",
+        "afternoon": "lumenport_arrival_square",
+        "evening": "lumenport_arrival_square"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in lumenport.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "NEU-C-0020"
+      }
+    },
+    {
+      "id": "npc_elder_orla",
+      "name": "Elder Orla of the Canopy",
+      "faction": "verdant_pact",
+      "title": "First Keeper of the Living Boughs",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "location": "verdant_sporewood_sanctuary",
+      "role": "quest_giver",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Elder Orla of the Canopy, First Keeper of the Living Boughs of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Elder Orla of the Canopy was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_sporewood_sanctuary",
+        "afternoon": "verdant_sporewood_sanctuary",
+        "evening": "verdant_sporewood_sanctuary"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-C-0021"
+      }
+    },
+    {
+      "id": "npc_ranger_bram",
+      "name": "Ranger Bram",
+      "faction": "verdant_pact",
+      "title": "Rootbridge Scout & Duelist",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "location": "verdant_rootbridge_crossing",
+      "role": "trainer",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 21,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Ranger Bram, Rootbridge Scout & Duelist of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Ranger Bram was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_rootbridge_crossing",
+        "afternoon": "verdant_rootbridge_crossing",
+        "evening": "verdant_rootbridge_crossing"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "VER-C-0022"
+      }
+    },
+    {
+      "id": "npc_alchemist_fenn",
+      "name": "Fenn the Spore-Collector",
+      "faction": "neutral",
+      "title": "Travelling Concocter & Merchant",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "verdant_old_growth_glen",
+      "role": "merchant",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 22,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Fenn the Spore-Collector, Travelling Concocter & Merchant of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Fenn the Spore-Collector was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "verdant_old_growth_glen"
+      },
+      "gameplay_purpose": "MERCHANT duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "NEU-C-0023"
+      }
+    },
+    {
+      "id": "npc_thornweaver_myra",
+      "name": "Thornweaver Myra",
+      "faction": "verdant_pact",
+      "title": "Hermit of the Whispering Canopy",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "location": "verdant_whispering_canopy",
+      "role": "duelist",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 23,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Thornweaver Myra, Hermit of the Whispering Canopy of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Thornweaver Myra was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_whispering_canopy",
+        "afternoon": "verdant_whispering_canopy",
+        "evening": "verdant_whispering_canopy"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "VER-C-0024"
+      }
+    },
+    {
+      "id": "npc_grove_speaker_elowen",
+      "name": "Grove-Speaker Elowen",
+      "faction": "verdant_pact",
+      "title": "Voice of the Twelve White Birches",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "location": "lm_ver_twelve_birches",
+      "role": "lore_keeper",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 24,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Grove-Speaker Elowen, Voice of the Twelve White Birches of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Grove-Speaker Elowen was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_rootbridge_crossing",
+        "afternoon": "verdant_rootbridge_crossing",
+        "evening": "lm_ver_twelve_birches"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "VER-C-0025"
+      }
+    },
+    {
+      "id": "npc_sylvanus_rootbinder",
+      "name": "Arch-Druid Sylvanus Rootbinder",
+      "faction": "verdant_pact",
+      "title": "Keeper of the Worldroot",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "location": "lm_ver_elder_yew_cathedral",
+      "role": "boss",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Arch-Druid Sylvanus Rootbinder, Keeper of the Worldroot of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Arch-Druid Sylvanus Rootbinder was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_sporewood_sanctuary",
+        "afternoon": "verdant_sporewood_sanctuary",
+        "evening": "lm_ver_elder_yew_cathedral"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-C-0026"
+      }
+    },
+    {
+      "id": "npc_seed_keeper_mirella",
+      "name": "Seed-Keeper Mirella",
+      "faction": "verdant_pact",
+      "title": "Curator of the Sun-Dew Vaults",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "location": "lm_ver_sundew_conservatory",
+      "role": "collector",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 26,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Seed-Keeper Mirella, Curator of the Sun-Dew Vaults of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Seed-Keeper Mirella was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_whispering_canopy",
+        "afternoon": "verdant_whispering_canopy",
+        "evening": "lm_ver_sundew_conservatory"
+      },
+      "gameplay_purpose": "COLLECTOR duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "VER-T-0027"
+      }
+    },
+    {
+      "id": "npc_canopy_matriarch_oakhaven",
+      "name": "Canopy Matriarch Oakhaven",
+      "faction": "verdant_pact",
+      "title": "Defender of Briar-Gate",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "lm_ver_briargate_march",
+      "role": "tournament_official",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 27,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Canopy Matriarch Oakhaven, Defender of Briar-Gate of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Canopy Matriarch Oakhaven was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "lm_ver_briargate_march"
+      },
+      "gameplay_purpose": "TOURNAMENT_OFFICIAL duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "VER-T-0028"
+      }
+    },
+    {
+      "id": "npc_stag_rider_kestin",
+      "name": "Stag-Rider Kestin",
+      "faction": "verdant_pact",
+      "title": "Captain of the Briar Outriders",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "location": "verdant_rootbridge_crossing",
+      "role": "duelist",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 28,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Stag-Rider Kestin, Captain of the Briar Outriders of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Stag-Rider Kestin was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_rootbridge_crossing",
+        "afternoon": "verdant_rootbridge_crossing",
+        "evening": "verdant_rootbridge_crossing"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "VER-T-0029"
+      }
+    },
+    {
+      "id": "npc_mycelium_sage_thall",
+      "name": "Mycelium Sage Thall",
+      "faction": "verdant_pact",
+      "title": "Spore-Net Diviner",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "lm_ver_mycelium_hollows",
+      "role": "lore_keeper",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 29,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Mycelium Sage Thall, Spore-Net Diviner of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Mycelium Sage Thall was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "lm_ver_mycelium_hollows"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "VER-R-0030"
+      }
+    },
+    {
+      "id": "npc_bloom_herbalist_lyanna",
+      "name": "Bloom Herbalist Lyanna",
+      "faction": "verdant_pact",
+      "title": "Nectar Distiller of the Glades",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "location": "lm_ver_sundew_conservatory",
+      "role": "crafter",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Bloom Herbalist Lyanna, Nectar Distiller of the Glades of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Bloom Herbalist Lyanna was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_whispering_canopy",
+        "afternoon": "verdant_whispering_canopy",
+        "evening": "lm_ver_sundew_conservatory"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-R-0031"
+      }
+    },
+    {
+      "id": "npc_woodcarver_torv",
+      "name": "Woodcarver Torv",
+      "faction": "neutral",
+      "title": "Ironwood Artisan & Totem Smith",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "location": "verdant_whispering_canopy",
+      "role": "crafter",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Woodcarver Torv, Ironwood Artisan & Totem Smith of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Woodcarver Torv was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "verdant_whispering_canopy",
+        "afternoon": "verdant_whispering_canopy",
+        "evening": "verdant_whispering_canopy"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "NEU-C-0032"
+      }
+    },
+    {
+      "id": "npc_amberfall_ferryman_jorn",
+      "name": "Ferryman Jorn",
+      "faction": "neutral",
+      "title": "Gorge Boatman of Amberfall",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "location": "verdant_rootbridge_crossing",
+      "role": "quest_giver",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Ferryman Jorn, Gorge Boatman of Amberfall of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Ferryman Jorn was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "verdant_rootbridge_crossing",
+        "afternoon": "verdant_rootbridge_crossing",
+        "evening": "verdant_rootbridge_crossing"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "NEU-C-0033"
+      }
+    },
+    {
+      "id": "npc_fern_stalker_cora",
+      "name": "Fern-Stalker Cora",
+      "faction": "verdant_pact",
+      "title": "Deep Wood Scout",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "verdant_old_growth_glen",
+      "role": "duelist",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Fern-Stalker Cora, Deep Wood Scout of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Fern-Stalker Cora was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "verdant_old_growth_glen"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "VER-C-0034"
+      }
+    },
+    {
+      "id": "npc_briar_warden_varik",
+      "name": "Briar-Warden Varik",
+      "faction": "verdant_pact",
+      "title": "Sentinel of the Thorn Palisade",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "lm_ver_briargate_march",
+      "role": "trainer",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Briar-Warden Varik, Sentinel of the Thorn Palisade of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Briar-Warden Varik was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "lm_ver_briargate_march"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "VER-C-0035"
+      }
+    },
+    {
+      "id": "npc_canopy_lookout_talia",
+      "name": "Canopy Lookout Talia",
+      "faction": "verdant_pact",
+      "title": "High Bough Spotter",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "location": "verdant_whispering_canopy",
+      "role": "quest_giver",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Canopy Lookout Talia, High Bough Spotter of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Canopy Lookout Talia was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_whispering_canopy",
+        "afternoon": "verdant_whispering_canopy",
+        "evening": "verdant_whispering_canopy"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "VER-C-0036"
+      }
+    },
+    {
+      "id": "npc_pact_envoy_ren",
+      "name": "Pact Envoy Ren",
+      "faction": "verdant_pact",
+      "title": "Diplomat of the Living Boughs",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "location": "verdant_sporewood_sanctuary",
+      "role": "quest_giver",
+      "deck_id": "deck_verdant_tide_harmony",
+      "initial_relationship": 21,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Pact Envoy Ren, Diplomat of the Living Boughs of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Pact Envoy Ren was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_sporewood_sanctuary",
+        "afternoon": "verdant_sporewood_sanctuary",
+        "evening": "verdant_sporewood_sanctuary"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "VER-C-0037"
+      }
+    },
+    {
+      "id": "npc_spore_tender_brin",
+      "name": "Spore-Tender Brin",
+      "faction": "verdant_pact",
+      "title": "Cultivator of Bioluminescent Moss",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "location": "lm_ver_mycelium_hollows",
+      "role": "crafter",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 22,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Spore-Tender Brin, Cultivator of Bioluminescent Moss of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Spore-Tender Brin was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_sporewood_sanctuary",
+        "afternoon": "verdant_sporewood_sanctuary",
+        "evening": "lm_ver_mycelium_hollows"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "VER-C-0038"
+      }
+    },
+    {
+      "id": "npc_wildroot_medium_vanya",
+      "name": "Wildroot Medium Vanya",
+      "faction": "gravewild",
+      "title": "Borderland Spirit Chanter",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "location": "verdant_old_growth_glen",
+      "role": "duelist",
+      "deck_id": "deck_verdant_grave_cycle",
+      "initial_relationship": 23,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Wildroot Medium Vanya, Borderland Spirit Chanter of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of gravewild.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Wildroot Medium Vanya was inducted during the great harmonic alignment, preserving the traditions of the gravewild."
+      },
+      "schedule": {
+        "morning": "verdant_old_growth_glen",
+        "afternoon": "verdant_old_growth_glen",
+        "evening": "verdant_old_growth_glen"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "GRV-C-0039"
+      }
+    },
+    {
+      "id": "npc_elder_treant_ironbark",
+      "name": "Ironbark the Ancient",
+      "faction": "verdant_pact",
+      "title": "Awakened Patriarch of Elder Yew",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "location": "lm_ver_elder_yew_cathedral",
+      "role": "boss",
+      "deck_id": "deck_verdant_iron_resonance",
+      "initial_relationship": 24,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Ironbark the Ancient, Awakened Patriarch of Elder Yew of verdant expanse. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of verdant pact.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Ironbark the Ancient was inducted during the great harmonic alignment, preserving the traditions of the verdant pact."
+      },
+      "schedule": {
+        "morning": "verdant_sporewood_sanctuary",
+        "afternoon": "verdant_sporewood_sanctuary",
+        "evening": "lm_ver_elder_yew_cathedral"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in verdant_expanse.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "VER-C-0040"
+      }
+    },
+    {
+      "id": "npc_artificer_vance_iron",
+      "name": "Master Artificer Vance",
+      "faction": "iron_choir",
+      "title": "Grand Machinist of the Seventh Chime",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "quest_giver",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Master Artificer Vance, Grand Machinist of the Seventh Chime of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Master Artificer Vance was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "IRN-C-0041"
+      }
+    },
+    {
+      "id": "npc_clocksmith_greta",
+      "name": "Clocksmith Greta",
+      "faction": "iron_choir",
+      "title": "Keeper of the Metronome",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "location": "ironreach_bellspire_cloister",
+      "role": "trainer",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 26,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Clocksmith Greta, Keeper of the Metronome of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Clocksmith Greta was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_bellspire_cloister",
+        "afternoon": "ironreach_bellspire_cloister",
+        "evening": "ironreach_bellspire_cloister"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "IRN-T-0042"
+      }
+    },
+    {
+      "id": "npc_dynamo_vorne",
+      "name": "Dynamo Architect Vorne",
+      "faction": "iron_choir",
+      "title": "Chief Engineer of the Induction Rail",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "lm_irn_induction_railhead",
+      "role": "boss",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 27,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Dynamo Architect Vorne, Chief Engineer of the Induction Rail of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Dynamo Architect Vorne was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "lm_irn_induction_railhead"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "IRN-T-0043"
+      }
+    },
+    {
+      "id": "npc_vespera_conductor",
+      "name": "Conductor-General Vespera",
+      "faction": "iron_choir",
+      "title": "First Baton of the Seventh Chime",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "lm_irn_seventh_chime_gantry",
+      "role": "boss",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 28,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Conductor-General Vespera, First Baton of the Seventh Chime of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Conductor-General Vespera was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "lm_irn_seventh_chime_gantry"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "IRN-T-0044"
+      }
+    },
+    {
+      "id": "npc_aegis_ix",
+      "name": "Prime Automaton Aegis-IX",
+      "faction": "iron_choir",
+      "title": "Sentient Bulwark of Saint Automaton",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "location": "lm_irn_bellspire_automaton",
+      "role": "boss",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 29,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Prime Automaton Aegis-IX, Sentient Bulwark of Saint Automaton of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Prime Automaton Aegis-IX was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_bellspire_cloister",
+        "afternoon": "ironreach_bellspire_cloister",
+        "evening": "lm_irn_bellspire_automaton"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "IRN-R-0045"
+      }
+    },
+    {
+      "id": "npc_forge_master_vaelor",
+      "name": "Grand Master Vaelor of the Seventh Anvil",
+      "faction": "emberclad",
+      "title": "High Artificer of Hammerfall",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "trainer",
+      "deck_id": "deck_ember_nocturne_blitz",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Grand Master Vaelor of the Seventh Anvil, High Artificer of Hammerfall of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Grand Master Vaelor of the Seventh Anvil was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "EMB-R-0046"
+      }
+    },
+    {
+      "id": "npc_crucible_matron_hespa",
+      "name": "Crucible Matron Hespa",
+      "faction": "emberclad",
+      "title": "Warden of the Slag-Gate",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "ironreach_gantry_approach",
+      "role": "duelist",
+      "deck_id": "deck_ember_iron_forge",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Crucible Matron Hespa, Warden of the Slag-Gate of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Crucible Matron Hespa was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "ironreach_gantry_approach"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "EMB-R-0047"
+      }
+    },
+    {
+      "id": "npc_siege_master_durgan",
+      "name": "Siege-Master Durgan Ashhand",
+      "faction": "emberclad",
+      "title": "Breaker of Pyraxis",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "trainer",
+      "deck_id": "deck_ember_nocturne_blitz",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Siege-Master Durgan Ashhand, Breaker of Pyraxis of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Siege-Master Durgan Ashhand was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "EMB-E-0048"
+      }
+    },
+    {
+      "id": "npc_pyre_artificer_torren",
+      "name": "Pyre-Artificer Torren",
+      "faction": "emberclad",
+      "title": "Alchemist of Ignis Coal",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "location": "ironreach_dynamo_vaults",
+      "role": "crafter",
+      "deck_id": "deck_ember_iron_forge",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Pyre-Artificer Torren, Alchemist of Ignis Coal of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Pyre-Artificer Torren was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_dynamo_vaults",
+        "afternoon": "ironreach_dynamo_vaults",
+        "evening": "ironreach_dynamo_vaults"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "EMB-C-0049"
+      }
+    },
+    {
+      "id": "npc_railhead_engineer_titus",
+      "name": "Chief Engineer Titus",
+      "faction": "iron_choir",
+      "title": "Master of the Induction Rails",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "lm_irn_induction_railhead",
+      "role": "quest_giver",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Chief Engineer Titus, Master of the Induction Rails of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Chief Engineer Titus was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "lm_irn_induction_railhead"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "IRN-C-0050"
+      }
+    },
+    {
+      "id": "npc_piston_smith_bron",
+      "name": "Piston-Smith Bron",
+      "faction": "iron_choir",
+      "title": "Master of Pneumatic Forges",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "crafter",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Piston-Smith Bron, Master of Pneumatic Forges of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Piston-Smith Bron was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "IRN-C-0051"
+      }
+    },
+    {
+      "id": "npc_harmonic_tuner_sela",
+      "name": "Harmonic Tuner Sela",
+      "faction": "iron_choir",
+      "title": "Acoustic Calibrator",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "location": "ironreach_bellspire_cloister",
+      "role": "lore_keeper",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 21,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Harmonic Tuner Sela, Acoustic Calibrator of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Harmonic Tuner Sela was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_bellspire_cloister",
+        "afternoon": "ironreach_bellspire_cloister",
+        "evening": "ironreach_bellspire_cloister"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "IRN-C-0052"
+      }
+    },
+    {
+      "id": "npc_dynamo_operator_kellan",
+      "name": "Dynamo Operator Kellan",
+      "faction": "iron_choir",
+      "title": "High Voltage Technician",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "location": "ironreach_dynamo_vaults",
+      "role": "duelist",
+      "deck_id": "deck_iron_glass_citadel",
+      "initial_relationship": 22,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Dynamo Operator Kellan, High Voltage Technician of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Dynamo Operator Kellan was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_dynamo_vaults",
+        "afternoon": "ironreach_dynamo_vaults",
+        "evening": "ironreach_dynamo_vaults"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "IRN-C-0053"
+      }
+    },
+    {
+      "id": "npc_gear_carver_moris",
+      "name": "Gear-Carver Moris",
+      "faction": "neutral",
+      "title": "Precision Horologist",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "ironreach_gantry_approach",
+      "role": "merchant",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 23,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Gear-Carver Moris, Precision Horologist of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Gear-Carver Moris was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "ironreach_gantry_approach"
+      },
+      "gameplay_purpose": "MERCHANT duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "NEU-R-0054"
+      }
+    },
+    {
+      "id": "npc_furnace_tender_rhea",
+      "name": "Furnace-Tender Rhea",
+      "faction": "emberclad",
+      "title": "Keeper of the Slag Vats",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "duelist",
+      "deck_id": "deck_ember_iron_forge",
+      "initial_relationship": 24,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Furnace-Tender Rhea, Keeper of the Slag Vats of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Furnace-Tender Rhea was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "EMB-C-0055"
+      }
+    },
+    {
+      "id": "npc_choir_chorister_oriel",
+      "name": "Choir Chorister Oriel",
+      "faction": "iron_choir",
+      "title": "Vocalist of the Bronze Chimes",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "lm_irn_seventh_chime_gantry",
+      "role": "lore_keeper",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Choir Chorister Oriel, Vocalist of the Bronze Chimes of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Choir Chorister Oriel was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "lm_irn_seventh_chime_gantry"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "IRN-C-0056"
+      }
+    },
+    {
+      "id": "npc_rail_conductor_maren",
+      "name": "Rail Conductor Maren",
+      "faction": "neutral",
+      "title": "Express Freight Conductor",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "lm_irn_induction_railhead",
+      "role": "quest_giver",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 26,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Rail Conductor Maren, Express Freight Conductor of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Rail Conductor Maren was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "lm_irn_induction_railhead"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "NEU-R-0057"
+      }
+    },
+    {
+      "id": "npc_automat_inspector_dalen",
+      "name": "Automaton Inspector Dalen",
+      "faction": "iron_choir",
+      "title": "Quality Surveyor of the Proving Ground",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "location": "ironreach_proving_floor",
+      "role": "trainer",
+      "deck_id": "deck_iron_tide_dreadnought",
+      "initial_relationship": 27,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Automaton Inspector Dalen, Quality Surveyor of the Proving Ground of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of iron choir.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Automaton Inspector Dalen was inducted during the great harmonic alignment, preserving the traditions of the iron choir."
+      },
+      "schedule": {
+        "morning": "ironreach_proving_floor",
+        "afternoon": "ironreach_proving_floor",
+        "evening": "ironreach_proving_floor"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "IRN-T-0058"
+      }
+    },
+    {
+      "id": "npc_brass_merchant_hobb",
+      "name": "Brass Merchant Hobb",
+      "faction": "neutral",
+      "title": "Scrap Metal Factor & Pack Broker",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "location": "ironreach_gantry_approach",
+      "role": "merchant",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 28,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Brass Merchant Hobb, Scrap Metal Factor & Pack Broker of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Brass Merchant Hobb was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "ironreach_gantry_approach",
+        "afternoon": "ironreach_gantry_approach",
+        "evening": "ironreach_gantry_approach"
+      },
+      "gameplay_purpose": "MERCHANT duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "NEU-E-0059"
+      }
+    },
+    {
+      "id": "npc_slag_diver_cassia",
+      "name": "Slag-Diver Cassia",
+      "faction": "emberclad",
+      "title": "Salvager of the Molten River",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "location": "ironreach_dynamo_vaults",
+      "role": "duelist",
+      "deck_id": "deck_ember_nocturne_blitz",
+      "initial_relationship": 29,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Slag-Diver Cassia, Salvager of the Molten River of ironreach. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of emberclad.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Slag-Diver Cassia was inducted during the great harmonic alignment, preserving the traditions of the emberclad."
+      },
+      "schedule": {
+        "morning": "ironreach_dynamo_vaults",
+        "afternoon": "ironreach_dynamo_vaults",
+        "evening": "ironreach_dynamo_vaults"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in ironreach.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "EMB-R-0060"
+      }
+    },
+    {
+      "id": "npc_astromancer_celeste_climax",
+      "name": "Grand Astromancer Celeste",
+      "faction": "starweave",
+      "title": "Archivist of the Final Dawn",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "astral_observatory_beyond_dawn",
+      "role": "boss",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Grand Astromancer Celeste, Archivist of the Final Dawn of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Grand Astromancer Celeste was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "astral_observatory_beyond_dawn"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "STR-C-0001"
+      }
+    },
+    {
+      "id": "npc_avatar_of_convergence",
+      "name": "The Convergence Sovereign",
+      "faction": "neutral",
+      "title": "Keeper of the Astral Accord",
+      "region_id": "astral_archive",
+      "district_id": "astral_sanctum_of_the_first_conjunction",
+      "location": "astral_sanctum_of_the_first_conjunction",
+      "role": "boss",
+      "deck_id": "deck_accord_grand_alliance",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am The Convergence Sovereign, Keeper of the Astral Accord of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of neutral.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "The Convergence Sovereign was inducted during the great harmonic alignment, preserving the traditions of the neutral."
+      },
+      "schedule": {
+        "morning": "astral_sanctum_of_the_first_conjunction",
+        "afternoon": "astral_sanctum_of_the_first_conjunction",
+        "evening": "astral_sanctum_of_the_first_conjunction"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "NEU-E-0062"
+      }
+    },
+    {
+      "id": "npc_comet_ranger_orion",
+      "name": "Comet-Ranger Orion",
+      "faction": "starweave",
+      "title": "First Bow of the Star-Bridge",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "lm_str_ninth_hour_starbridge",
+      "role": "trainer",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Comet-Ranger Orion, First Bow of the Star-Bridge of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Comet-Ranger Orion was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "lm_str_ninth_hour_starbridge"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "STR-C-0003"
+      }
+    },
+    {
+      "id": "npc_solarius_paladin",
+      "name": "Crownbearer Solarius",
+      "faction": "starweave",
+      "title": "Paladin of the Zenith Meridian",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "lm_str_zenith_meridian",
+      "role": "boss",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Crownbearer Solarius, Paladin of the Zenith Meridian of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Crownbearer Solarius was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "lm_str_zenith_meridian"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "STR-C-0004"
+      }
+    },
+    {
+      "id": "npc_star_seer_aurelia",
+      "name": "Star-Seer Aurelia",
+      "faction": "starweave",
+      "title": "Oracle of the Observatory Beyond Dawn",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "lm_str_observatory_beyond_dawn",
+      "role": "lore_keeper",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Star-Seer Aurelia, Oracle of the Observatory Beyond Dawn of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Star-Seer Aurelia was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "lm_str_observatory_beyond_dawn"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "STR-C-0005"
+      }
+    },
+    {
+      "id": "npc_orrery_keeper_zephyr",
+      "name": "Orrery-Keeper Zephyr",
+      "faction": "starweave",
+      "title": "Artificer of the Nine Brass Planets",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "astral_auroral_scriptorium",
+      "role": "crafter",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 20,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Orrery-Keeper Zephyr, Artificer of the Nine Brass Planets of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Orrery-Keeper Zephyr was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "astral_auroral_scriptorium"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "STR-T-0006"
+      }
+    },
+    {
+      "id": "npc_chronicler_astraea",
+      "name": "Chronicler Astraea",
+      "faction": "starweave",
+      "title": "Scribe of the Gold Star-Plates",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "lm_str_astral_archive_rotunda",
+      "role": "lore_keeper",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 21,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Chronicler Astraea, Scribe of the Gold Star-Plates of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Chronicler Astraea was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "lm_str_astral_archive_rotunda"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "STR-R-0007"
+      }
+    },
+    {
+      "id": "npc_arch_refractor_seraphina",
+      "name": "Arch-Refractor Seraphina",
+      "faction": "glassborne",
+      "title": "Prelate of the Glass Cathedral",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "location": "astral_celestial_spire",
+      "role": "boss",
+      "deck_id": "deck_glass_nocturne_mirage",
+      "initial_relationship": 22,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Arch-Refractor Seraphina, Prelate of the Glass Cathedral of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Arch-Refractor Seraphina was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "astral_celestial_spire",
+        "afternoon": "astral_celestial_spire",
+        "evening": "astral_celestial_spire"
+      },
+      "gameplay_purpose": "BOSS duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "GLS-E-0008"
+      }
+    },
+    {
+      "id": "npc_blade_dancer_caelum",
+      "name": "Blade-Dancer Caelum",
+      "faction": "glassborne",
+      "title": "Champion of the Quartz Proving Gallery",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "location": "astral_celestial_spire",
+      "role": "duelist",
+      "deck_id": "deck_glass_star_prism",
+      "initial_relationship": 23,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Blade-Dancer Caelum, Champion of the Quartz Proving Gallery of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Blade-Dancer Caelum was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "astral_celestial_spire",
+        "afternoon": "astral_celestial_spire",
+        "evening": "astral_celestial_spire"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "GLS-C-0009"
+      }
+    },
+    {
+      "id": "npc_lens_scholar_isolde",
+      "name": "Lens-Scholar Isolde",
+      "faction": "glassborne",
+      "title": "Keeper of the Ten Thousand Reflections",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "astral_auroral_scriptorium",
+      "role": "collector",
+      "deck_id": "deck_glass_nocturne_mirage",
+      "initial_relationship": 24,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Lens-Scholar Isolde, Keeper of the Ten Thousand Reflections of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Lens-Scholar Isolde was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "astral_auroral_scriptorium"
+      },
+      "gameplay_purpose": "COLLECTOR duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "GLS-C-0010"
+      }
+    },
+    {
+      "id": "npc_astral_herald_thorne",
+      "name": "Astral Herald Thorne",
+      "faction": "starweave",
+      "title": "Emissary of the Star Sea",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "astral_observatory_beyond_dawn",
+      "role": "quest_giver",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 25,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Astral Herald Thorne, Emissary of the Star Sea of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Astral Herald Thorne was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "astral_observatory_beyond_dawn"
+      },
+      "gameplay_purpose": "QUEST_GIVER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 100,
+        "echo_dust": 30,
+        "relationship_gain": 10,
+        "bonus_card_id": "STR-C-0011"
+      }
+    },
+    {
+      "id": "npc_comet_forger_nyx",
+      "name": "Comet-Forger Nyx",
+      "faction": "starweave",
+      "title": "Smith of Meteoric Iron",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "lm_str_cometfall_terrace",
+      "role": "crafter",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 26,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Comet-Forger Nyx, Smith of Meteoric Iron of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Comet-Forger Nyx was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "lm_str_cometfall_terrace"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 115,
+        "echo_dust": 38,
+        "relationship_gain": 12,
+        "bonus_card_id": "STR-C-0012"
+      }
+    },
+    {
+      "id": "npc_star_weaver_mira",
+      "name": "Star-Weaver Mira",
+      "faction": "starweave",
+      "title": "Illuminator of Astral Constellations",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "astral_auroral_scriptorium",
+      "role": "crafter",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 27,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Star-Weaver Mira, Illuminator of Astral Constellations of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Star-Weaver Mira was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "astral_auroral_scriptorium"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 130,
+        "echo_dust": 46,
+        "relationship_gain": 14,
+        "bonus_card_id": "STR-C-0013"
+      }
+    },
+    {
+      "id": "npc_zenith_scribe_aldus",
+      "name": "Zenith Scribe Aldus",
+      "faction": "starweave",
+      "title": "Keeper of the Star Tablets",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "astral_auroral_scriptorium",
+      "role": "lore_keeper",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 28,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Zenith Scribe Aldus, Keeper of the Star Tablets of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Zenith Scribe Aldus was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "astral_auroral_scriptorium"
+      },
+      "gameplay_purpose": "LORE_KEEPER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 145,
+        "echo_dust": 54,
+        "relationship_gain": 16,
+        "bonus_card_id": "STR-C-0014"
+      }
+    },
+    {
+      "id": "npc_celestial_scout_koren",
+      "name": "Celestial Scout Koren",
+      "faction": "starweave",
+      "title": "Watcher of the Outer Void",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "lm_str_ninth_hour_starbridge",
+      "role": "duelist",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 29,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Celestial Scout Koren, Watcher of the Outer Void of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Celestial Scout Koren was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "lm_str_ninth_hour_starbridge"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 62,
+        "relationship_gain": 18,
+        "bonus_card_id": "STR-T-0015"
+      }
+    },
+    {
+      "id": "npc_mirror_artisan_valeria",
+      "name": "Mirror Artisan Valeria",
+      "faction": "glassborne",
+      "title": "Polisher of the Celestial Prism",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "location": "astral_celestial_spire",
+      "role": "crafter",
+      "deck_id": "deck_glass_nocturne_mirage",
+      "initial_relationship": 15,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Mirror Artisan Valeria, Polisher of the Celestial Prism of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Mirror Artisan Valeria was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "astral_celestial_spire",
+        "afternoon": "astral_celestial_spire",
+        "evening": "astral_celestial_spire"
+      },
+      "gameplay_purpose": "CRAFTER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 175,
+        "echo_dust": 70,
+        "relationship_gain": 10,
+        "bonus_card_id": "GLS-T-0016"
+      }
+    },
+    {
+      "id": "npc_void_astronomer_lydon",
+      "name": "Void Astronomer Lydon",
+      "faction": "starweave",
+      "title": "Surveyor of the Horizon Veil",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "astral_observatory_beyond_dawn",
+      "role": "duelist",
+      "deck_id": "deck_glass_star_celestial",
+      "initial_relationship": 16,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Void Astronomer Lydon, Surveyor of the Horizon Veil of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Void Astronomer Lydon was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "astral_observatory_beyond_dawn"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 78,
+        "relationship_gain": 12,
+        "bonus_card_id": "STR-R-0017"
+      }
+    },
+    {
+      "id": "npc_constellation_guard_braun",
+      "name": "Constellation Guard Braun",
+      "faction": "starweave",
+      "title": "Shield-Captain of the Zenith Stairs",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "location": "lm_str_ninth_hour_starbridge",
+      "role": "trainer",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 17,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Constellation Guard Braun, Shield-Captain of the Zenith Stairs of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Constellation Guard Braun was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_observatory_beyond_dawn",
+        "afternoon": "astral_observatory_beyond_dawn",
+        "evening": "lm_str_ninth_hour_starbridge"
+      },
+      "gameplay_purpose": "TRAINER duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 205,
+        "echo_dust": 86,
+        "relationship_gain": 14,
+        "bonus_card_id": "STR-E-0018"
+      }
+    },
+    {
+      "id": "npc_prismatic_monk_elias",
+      "name": "Prismatic Monk Elias",
+      "faction": "glassborne",
+      "title": "Meditator of the Pure Light",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "location": "astral_celestial_spire",
+      "role": "duelist",
+      "deck_id": "deck_glass_star_prism",
+      "initial_relationship": 18,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Prismatic Monk Elias, Meditator of the Pure Light of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of glassborne.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Prismatic Monk Elias was inducted during the great harmonic alignment, preserving the traditions of the glassborne."
+      },
+      "schedule": {
+        "morning": "astral_celestial_spire",
+        "afternoon": "astral_celestial_spire",
+        "evening": "astral_celestial_spire"
+      },
+      "gameplay_purpose": "DUELIST duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 94,
+        "relationship_gain": 16,
+        "bonus_card_id": "GLS-C-0019"
+      }
+    },
+    {
+      "id": "npc_chronos_archivist_selene",
+      "name": "Chronos Archivist Selene",
+      "faction": "starweave",
+      "title": "Keeper of the Celestial Clock",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "location": "astral_auroral_scriptorium",
+      "role": "collector",
+      "deck_id": "deck_star_ember_supernova",
+      "initial_relationship": 19,
+      "dialogue": {
+        "greeting": "Greetings, duelist. I am Chronos Archivist Selene, Keeper of the Celestial Clock of astral archive. May your resonance hold steady across the Three Lanes.",
+        "friendly": "Your conduct honors the Accord. I welcome your company and the insights your deck brings to our domain.",
+        "bonded": "Few duelists share our profound understanding of the leylines. I consider you a steadfast ally of starweave.",
+        "victory": "A masterstroke! Your tactical timing caught my formation completely off-guard.",
+        "defeat": "The leylines favored my defense this time. Recalibrate your curve and challenge me once more.",
+        "quest_prompt": "There is a pressing matter regarding our regional leylines that requires a skilled duelist's intervention. Will you assist me?",
+        "lore_tidbit": "Chronos Archivist Selene was inducted during the great harmonic alignment, preserving the traditions of the starweave."
+      },
+      "schedule": {
+        "morning": "astral_auroral_scriptorium",
+        "afternoon": "astral_auroral_scriptorium",
+        "evening": "astral_auroral_scriptorium"
+      },
+      "gameplay_purpose": "COLLECTOR duties, regional card sparring, archetype mastery, and story progression in astral_archive.",
+      "rewards": {
+        "crowns": 235,
+        "echo_dust": 102,
+        "relationship_gain": 18,
+        "bonus_card_id": "STR-C-0020"
+      }
+    }
+  ]
+}

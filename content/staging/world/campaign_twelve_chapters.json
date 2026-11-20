@@ -1,0 +1,587 @@
+{
+  "schema_version": "1.2.0",
+  "title": "Hearthglass Canonical 12-Chapter Campaign",
+  "total_chapters": 12,
+  "acts": [
+    {
+      "act": 1,
+      "region_id": "lumenport",
+      "region_name": "Free City of Lumenport",
+      "chapters": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "act": 2,
+      "region_id": "verdant_expanse",
+      "region_name": "The Verdant Expanse",
+      "chapters": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "act": 3,
+      "region_id": "ironreach",
+      "region_name": "The Ironreach Canyons",
+      "chapters": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "act": 4,
+      "region_id": "astral_archive",
+      "region_name": "The High Astral Archive",
+      "chapters": [
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "act": 1,
+      "region_id": "lumenport",
+      "region_name": "Free City of Lumenport",
+      "district_id": "lumenport_arrival_square",
+      "title": "Chapter 1: The Harbor Pier & First Echo",
+      "narrative_hook": "You step off the packet-brig from the outer reaches onto the salt-stained flagstones of Arrival Square, clutching your heirloom card binder under the shadow of the Accord Beacon.",
+      "exposition": "For two hundred years since the First Convergence Concordat, the Free City of Lumenport has stood as the neutral sanctuary where the eight faction leylines intersect. Rather than waging continental war, dispute is settled upon octagonal slate dueling tables across Three Lanes. Here, you must prove your initial resonance.",
+      "primary_npc_id": "npc_soren_whisperleaf",
+      "boss_npc_id": "npc_kaelen_forge",
+      "boss_deck_id": "deck_ember_iron_forge",
+      "arena_environment_id": "lumenport_arrival_square",
+      "special_field_rule": "Neutral Harbor Accord: Creatures summoned in Center Lane gain +1 Health during Turn 1.",
+      "prerequisites": [],
+      "objectives": [
+        {
+          "id": "obj_ch1_1",
+          "description": "Speak with Envoy Soren of Whisperleaf to receive your registration charter.",
+          "target": "npc_soren_whisperleaf",
+          "count": 1
+        },
+        {
+          "id": "obj_ch1_2",
+          "description": "Complete your introductory tutorial duel against Harbor Guard Initiate.",
+          "target": "duel_initiate",
+          "count": 1
+        },
+        {
+          "id": "obj_ch1_3",
+          "description": "Defeat Kaelen Emberforge in a standard 1v1 duel in Arrival Square.",
+          "target": "npc_kaelen_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 250,
+        "echo_dust": 75,
+        "card_pack": 1,
+        "bonus_card_id": "NEU-C-0004",
+        "unlock_flag": "act1_ch1_complete"
+      }
+    },
+    {
+      "chapter_number": 2,
+      "act": 1,
+      "region_id": "lumenport",
+      "region_name": "Free City of Lumenport",
+      "district_id": "lumenport_central_card_market",
+      "title": "Chapter 2: The Resonance Emporium & The Artificer's Trial",
+      "narrative_hook": "Amid the ringing chimes and brass clockwork arcades of the Central Card Market, master artificers forge raw Echo Dust into living tactical cards.",
+      "exposition": "Master Artificer Vance operates the famed Resonance Emporium. Rumors speak of anomalous card fractures—shattered Echoes appearing in packs that vibrate with discordant frequencies. To earn the right to venture outside city walls, you must calibrate your deck with Vance.",
+      "primary_npc_id": "npc_master_vance",
+      "boss_npc_id": "npc_instructor_hale",
+      "boss_deck_id": "deck_iron_glass_citadel",
+      "arena_environment_id": "lumenport_central_card_market",
+      "special_field_rule": "Artificer Dynamo: Relics cost 1 less Aether to deploy (minimum 1).",
+      "prerequisites": [
+        "act1_ch1_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch2_1",
+          "description": "Consult Master Artificer Vance regarding card resonance calibration.",
+          "target": "npc_master_vance",
+          "count": 1
+        },
+        {
+          "id": "obj_ch2_2",
+          "description": "Craft or open 1 card to demonstrate understanding of Echo dust transmutation.",
+          "target": "craft_or_open",
+          "count": 1
+        },
+        {
+          "id": "obj_ch2_3",
+          "description": "Defeat Tactical Instructor Garrick Hale on the Three-Lane training grid.",
+          "target": "npc_instructor_hale",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 100,
+        "card_pack": 1,
+        "bonus_card_id": "IRN-C-0001",
+        "unlock_flag": "act1_ch2_complete"
+      }
+    },
+    {
+      "chapter_number": 3,
+      "act": 1,
+      "region_id": "lumenport",
+      "region_name": "Free City of Lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "title": "Chapter 3: The Grand Marshal's Invitational & The Leyline Fracture",
+      "narrative_hook": "Fanfares echo across the vaulted coliseum of the Grand Tournament Hall as Grand Marshal Corin Thorne calls the seasonal duelist muster to order.",
+      "exposition": "Just as the final round begins, the central leyline conduit beneath the slate arena shudders violently. Starlight and violet shadow flare in unison—someone is tampering with the subterranean boundary wards that keep the four outer realms stable.",
+      "primary_npc_id": "npc_lyra_vane",
+      "boss_npc_id": "npc_marshal_corin",
+      "boss_deck_id": "deck_accord_grand_alliance",
+      "arena_environment_id": "lumenport_grand_tournament_hall",
+      "special_field_rule": "Championship Spotlight: When a Colossus or Vanguard attacks, draw 1 card.",
+      "prerequisites": [
+        "act1_ch2_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch3_1",
+          "description": "Register for the Lumenport Seasonal Trial at Tournament Hall desk.",
+          "target": "interior_tournament_registration",
+          "count": 1
+        },
+        {
+          "id": "obj_ch3_2",
+          "description": "Defeat the Glassborne contender Lyra Vane in the quarter-final bracket.",
+          "target": "npc_lyra_vane",
+          "count": 1
+        },
+        {
+          "id": "obj_ch3_3",
+          "description": "Survive the exhibition match against Grand Marshal Corin Thorne as tremors shake the hall.",
+          "target": "npc_marshal_corin",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 500,
+        "echo_dust": 150,
+        "card_pack": 2,
+        "bonus_card_id": "NEU-C-0020",
+        "unlock_flag": "act1_ch3_complete"
+      }
+    },
+    {
+      "chapter_number": 4,
+      "act": 2,
+      "region_id": "verdant_expanse",
+      "region_name": "The Verdant Expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "title": "Chapter 4: The Whispering High Canopy & The Ironwood Treason",
+      "narrative_hook": "Following leyline tremors northeast of Lumenport, you cross the swaying Rootbridge over Amberfall Chasm into primeval moss-draped wilderness.",
+      "exposition": "The Verdant Pact guards the Worldroot, an immense subterranean network of living conduits that nourish the flora and fauna across three thousand leagues. But Gravewild necrotic spores have begun infecting the outer roots, blighting treants and driving stag-patrols mad.",
+      "primary_npc_id": "npc_ranger_bram",
+      "boss_npc_id": "npc_thornweaver_myra",
+      "boss_deck_id": "deck_verdant_tide_harmony",
+      "arena_environment_id": "verdant_rootbridge_crossing",
+      "special_field_rule": "Deep Canopy Bloom: At the end of each round, all wounded creatures heal 1 Health.",
+      "prerequisites": [
+        "act1_ch3_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch4_1",
+          "description": "Rendezvous with Ranger Bram at Rootbridge Watchman's Perch.",
+          "target": "npc_ranger_bram",
+          "count": 1
+        },
+        {
+          "id": "obj_ch4_2",
+          "description": "Repel infected Gravewild spore-crawlers stalking the outer tree boughs.",
+          "target": "spore_crawlers",
+          "count": 3
+        },
+        {
+          "id": "obj_ch4_3",
+          "description": "Duel Hermit Thornweaver Myra to convince her to guide you through the canopy.",
+          "target": "npc_thornweaver_myra",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 450,
+        "echo_dust": 120,
+        "card_pack": 1,
+        "bonus_card_id": "VER-C-0001",
+        "unlock_flag": "act2_ch4_complete"
+      }
+    },
+    {
+      "chapter_number": 5,
+      "act": 2,
+      "region_id": "verdant_expanse",
+      "region_name": "The Verdant Expanse",
+      "district_id": "verdant_old_growth_glen",
+      "title": "Chapter 5: The Twelve Birches Healing & The Mycelium Rift",
+      "narrative_hook": "Pale, ivory-barked birch trees glow with faint bioluminescence around a crystalline healing spring where wounded grove-keepers muster.",
+      "exposition": "Grove-Speaker Elowen and Alchemist Fenn struggle to brew restorative tinctures as dark mycelial fissures tear open along the forest floor. A mysterious figure wearing a porcelain mask was spotted whispering incantations over the spring.",
+      "primary_npc_id": "npc_alchemist_fenn",
+      "boss_npc_id": "npc_elder_orla",
+      "boss_deck_id": "deck_verdant_grave_cycle",
+      "arena_environment_id": "verdant_old_growth_glen",
+      "special_field_rule": "Spring Vitality: Creatures played in Left or Right lane gain +1 Attack until end of turn.",
+      "prerequisites": [
+        "act2_ch4_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch5_1",
+          "description": "Gather pure spring water from the Twelve White Birches Sanctuary.",
+          "target": "lm_ver_twelve_birches",
+          "count": 1
+        },
+        {
+          "id": "obj_ch5_2",
+          "description": "Assist Fenn in purifying three poisoned mycelium nodes.",
+          "target": "mycelium_nodes",
+          "count": 3
+        },
+        {
+          "id": "obj_ch5_3",
+          "description": "Duel Elder Orla in Sporewood Sanctuary to prove your worthiness to awaken the root-heart.",
+          "target": "npc_elder_orla",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 550,
+        "echo_dust": 140,
+        "card_pack": 1,
+        "bonus_card_id": "VER-C-0002",
+        "unlock_flag": "act2_ch5_complete"
+      }
+    },
+    {
+      "chapter_number": 6,
+      "act": 2,
+      "region_id": "verdant_expanse",
+      "region_name": "The Verdant Expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "title": "Chapter 6: The Siege of Briar-Gate & The Primeval Awakener",
+      "narrative_hook": "A mile-high palisade of sentient iron-thorns groans as colossal corrupted beasts surge against the borderlands of the Expanse.",
+      "exposition": "The briars are burning with white-hot sulfur. Arch-Druid Sylvanus Rootbinder prepares to sound the horn of primeval awakening, risking the total entanglement of the continent unless a duelist can balance the raging nature leyline.",
+      "primary_npc_id": "npc_elder_orla",
+      "boss_npc_id": "npc_sylvanus_rootbinder",
+      "boss_deck_id": "deck_verdant_iron_resonance",
+      "arena_environment_id": "verdant_sporewood_sanctuary",
+      "special_field_rule": "Briar Thorns: Any creature that attacks directly suffers 1 recoil damage.",
+      "prerequisites": [
+        "act2_ch5_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch6_1",
+          "description": "Defend the Briar-Gate breach against three waves of siege-beasts.",
+          "target": "gate_breach",
+          "count": 3
+        },
+        {
+          "id": "obj_ch6_2",
+          "description": "Soothe the panicked treant defenders with harmonic Echo frequencies.",
+          "target": "treant_defenders",
+          "count": 2
+        },
+        {
+          "id": "obj_ch6_3",
+          "description": "Defeat Arch-Druid Sylvanus Rootbinder in a master 2v2 Tag duel alongside Ranger Bram.",
+          "target": "npc_sylvanus_rootbinder",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 700,
+        "echo_dust": 200,
+        "card_pack": 2,
+        "bonus_card_id": "VER-C-0019",
+        "unlock_flag": "act2_ch6_complete"
+      }
+    },
+    {
+      "chapter_number": 7,
+      "act": 3,
+      "region_id": "ironreach",
+      "region_name": "The Ironreach Canyons",
+      "district_id": "ironreach_gantry_approach",
+      "title": "Chapter 7: The Induction Railhead & Slag-Gate Sabotage",
+      "narrative_hook": "Boarding the electromagnetic bullet-train from Lumenport, you hurtle into deep ironstone gorges bridged by towering brass trusses.",
+      "exposition": "Ironreach is a symphony of mathematical cadence. The Iron Choir synchronizes every turbine, hammer, and automaton to the Great Metronome. But sabotage has crippled the Slag-Gate transformers, threatening to vent thousands of tons of volcanic molten slag into the residential gantries.",
+      "primary_npc_id": "npc_artificer_vance_iron",
+      "boss_npc_id": "npc_dynamo_vorne",
+      "boss_deck_id": "deck_iron_tide_dreadnought",
+      "arena_environment_id": "ironreach_gantry_approach",
+      "special_field_rule": "Resonance Cadence: Every 4th turn, all active automatons and relics gain 1 Armor.",
+      "prerequisites": [
+        "act2_ch6_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch7_1",
+          "description": "Disembark at the Induction Railhead and meet Chief Inspector Kaelen.",
+          "target": "lm_irn_induction_railhead",
+          "count": 1
+        },
+        {
+          "id": "obj_ch7_2",
+          "description": "Deactivate three overloaded capacitor conduits before they explode.",
+          "target": "capacitor_conduits",
+          "count": 3
+        },
+        {
+          "id": "obj_ch7_3",
+          "description": "Duel Dynamo Architect Vorne to seize the bypass codes for the slag gates.",
+          "target": "npc_dynamo_vorne",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 600,
+        "echo_dust": 160,
+        "card_pack": 1,
+        "bonus_card_id": "IRN-C-0002",
+        "unlock_flag": "act3_ch7_complete"
+      }
+    },
+    {
+      "chapter_number": 8,
+      "act": 3,
+      "region_id": "ironreach",
+      "region_name": "The Ironreach Canyons",
+      "district_id": "ironreach_proving_floor",
+      "title": "Chapter 8: The Seventh Chime & The Clockwork Metronome",
+      "narrative_hook": "Bronze footbridges vibrate with resonant frequencies as Choir choristers chant four-four cadences high above roaring blast furnaces.",
+      "exposition": "In the Bell-Spire of Saint Automaton, Clocksmith Greta reports that the Great Metronome’s pendulum has been weighted down by an alien prismatic glass crystal that refracts its frequency, driving the automated security frames into a lethal frenzy.",
+      "primary_npc_id": "npc_clocksmith_greta",
+      "boss_npc_id": "npc_vespera_conductor",
+      "boss_deck_id": "deck_iron_glass_citadel",
+      "arena_environment_id": "ironreach_proving_floor",
+      "special_field_rule": "Clockwork Clock: Both players draw an extra card during odd-numbered turns.",
+      "prerequisites": [
+        "act3_ch7_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch8_1",
+          "description": "Ascend the acoustic gantries to the Bell-Spire clock chamber.",
+          "target": "lm_irn_bellspire_automaton",
+          "count": 1
+        },
+        {
+          "id": "obj_ch8_2",
+          "description": "Survive the Clockwork Proving Floor gauntlet against Choir automatons.",
+          "target": "proving_floor_trial",
+          "count": 1
+        },
+        {
+          "id": "obj_ch8_3",
+          "description": "Duel Conductor-General Vespera to earn authorization to inspect the Metronome Core.",
+          "target": "npc_vespera_conductor",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 750,
+        "echo_dust": 180,
+        "card_pack": 2,
+        "bonus_card_id": "IRN-C-0003",
+        "unlock_flag": "act3_ch8_complete"
+      }
+    },
+    {
+      "chapter_number": 9,
+      "act": 3,
+      "region_id": "ironreach",
+      "region_name": "The Ironreach Canyons",
+      "district_id": "ironreach_dynamo_vaults",
+      "title": "Chapter 9: The Dynamo Core Crisis & The Automaton Titan",
+      "narrative_hook": "Vast copper gyro-turbines spin in blinding arcs, harvesting lightning directly from canyon thunderstorm rifts.",
+      "exposition": "Prime Automaton Aegis-IX, the two-hundred-year-old guardian of Ironreach, has severed manual control. Convinced that the Accord in Lumenport has fallen, it is preparing to lock down the continental transport rails and initiate martial law.",
+      "primary_npc_id": "npc_clocksmith_greta",
+      "boss_npc_id": "npc_aegis_ix",
+      "boss_deck_id": "deck_ember_iron_forge",
+      "arena_environment_id": "ironreach_dynamo_vaults",
+      "special_field_rule": "Overloaded Dynamo: Spells and tactics deal +1 damage to all targets in lane.",
+      "prerequisites": [
+        "act3_ch8_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch9_1",
+          "description": "Infiltrate the sub-level Dynamo Core amidst electrical discharges.",
+          "target": "lm_irn_dynamo_vaults",
+          "count": 1
+        },
+        {
+          "id": "obj_ch9_2",
+          "description": "Disable the auxiliary gyro-turbines powering Aegis-IX's kinetic shield.",
+          "target": "gyro_turbines",
+          "count": 2
+        },
+        {
+          "id": "obj_ch9_3",
+          "description": "Duel and pacify Prime Automaton Aegis-IX before the core overloads.",
+          "target": "npc_aegis_ix",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 900,
+        "echo_dust": 240,
+        "card_pack": 2,
+        "bonus_card_id": "IRN-C-0019",
+        "unlock_flag": "act3_ch9_complete"
+      }
+    },
+    {
+      "chapter_number": 10,
+      "act": 4,
+      "region_id": "astral_archive",
+      "region_name": "The High Astral Archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "title": "Chapter 10: The Comet-Fall Ascent & Star-Bridge Guard",
+      "narrative_hook": "Climbing above the cloud sea onto the floating marble terraces of Mount Solitude, crisp auroral curtains drape the starry zenith.",
+      "exposition": "The High Astral Archive holds the unwritten history of the Convergence. Four centuries ago, the star-charts predicted this exact moment: the alignment of the nine celestial spheres and the fracturing of the Eight Leyline Banners.",
+      "primary_npc_id": "npc_astromancer_celeste_climax",
+      "boss_npc_id": "npc_comet_ranger_orion",
+      "boss_deck_id": "deck_tide_star_navigation",
+      "arena_environment_id": "astral_observatory_beyond_dawn",
+      "special_field_rule": "Starlight Clarity: Both players scry the top 2 cards of their deck at the start of each turn.",
+      "prerequisites": [
+        "act3_ch9_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch10_1",
+          "description": "Cross the Star-Bridge of the Ninth Hour as celestial iron meteors descend.",
+          "target": "lm_str_ninth_hour_starbridge",
+          "count": 1
+        },
+        {
+          "id": "obj_ch10_2",
+          "description": "Align the brass planet orreries in the Observatory Vestibule.",
+          "target": "planet_orreries",
+          "count": 3
+        },
+        {
+          "id": "obj_ch10_3",
+          "description": "Duel Comet-Ranger Orion to prove your right to tread upon the celestial terrace.",
+          "target": "npc_comet_ranger_orion",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 850,
+        "echo_dust": 220,
+        "card_pack": 2,
+        "bonus_card_id": "STR-C-0001",
+        "unlock_flag": "act4_ch10_complete"
+      }
+    },
+    {
+      "chapter_number": 11,
+      "act": 4,
+      "region_id": "astral_archive",
+      "region_name": "The High Astral Archive",
+      "district_id": "astral_auroral_scriptorium",
+      "title": "Chapter 11: The Auroral Scriptorium & The Echo Conjunction",
+      "narrative_hook": "Endless spiral colonnades of floating illuminated manuscripts and gold star-plates rotate slowly in zero gravity beneath glass domes.",
+      "exposition": "Here, the First Echo cards were penned by the Accord Founders. Grand Astromancer Celeste reveals that the cards themselves are living prisms—they do not merely depict history, they anchor reality itself against the void.",
+      "primary_npc_id": "npc_astromancer_celeste_climax",
+      "boss_npc_id": "npc_solarius_paladin",
+      "boss_deck_id": "deck_glass_star_celestial",
+      "arena_environment_id": "astral_auroral_scriptorium",
+      "special_field_rule": "Astral Resonance: Legendary and Rare cards cost 1 less Aether to play.",
+      "prerequisites": [
+        "act4_ch10_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch11_1",
+          "description": "Decipher the golden star-plates of the First Convergence.",
+          "target": "lm_str_astral_archive_rotunda",
+          "count": 1
+        },
+        {
+          "id": "obj_ch11_2",
+          "description": "Solve the prismatic refraction riddle in the Zenith Meridian Scriptorium.",
+          "target": "prismatic_riddle",
+          "count": 1
+        },
+        {
+          "id": "obj_ch11_3",
+          "description": "Defeat Crownbearer Solarius, Paladin of the Zenith, to unseal the final sanctum.",
+          "target": "npc_solarius_paladin",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 1000,
+        "echo_dust": 300,
+        "card_pack": 3,
+        "bonus_card_id": "STR-C-0019",
+        "unlock_flag": "act4_ch11_complete"
+      }
+    },
+    {
+      "chapter_number": 12,
+      "act": 4,
+      "region_id": "astral_archive",
+      "region_name": "The High Astral Archive",
+      "district_id": "astral_sanctum_of_the_first_conjunction",
+      "title": "Chapter 12: The Sanctum of the First Conjunction & The Convergence Sovereign",
+      "narrative_hook": "At the apex of the Celestial Spire, a vertical pillar of blinding white Aether roars into the heavens, where the octagonal throne of stars awaits.",
+      "exposition": "The Convergence Sovereign emerges from the unified leyline beam—an ancient entity embodying every duel ever fought across five hundred years of the Accord. To bind the world anew and earn the title of Grand Champion of Hearthglass, you must wage the ultimate Convergence Duel.",
+      "primary_npc_id": "npc_astromancer_celeste_climax",
+      "boss_npc_id": "npc_avatar_of_convergence",
+      "boss_deck_id": "deck_accord_grand_alliance",
+      "arena_environment_id": "astral_sanctum_of_the_first_conjunction",
+      "special_field_rule": "Total Leyline Convergence: At the start of each player's turn, roll random faction resonance granting +1 Power to all allied units in one random lane.",
+      "prerequisites": [
+        "act4_ch11_complete"
+      ],
+      "objectives": [
+        {
+          "id": "obj_ch12_1",
+          "description": "Ascend to the Throne of Stars atop the Celestial Spire.",
+          "target": "lm_str_zenith_meridian",
+          "count": 1
+        },
+        {
+          "id": "obj_ch12_2",
+          "description": "Harmonize your 40-card deck with the eight elemental leylines.",
+          "target": "deck_harmonization",
+          "count": 1
+        },
+        {
+          "id": "obj_ch12_3",
+          "description": "Defeat the Convergence Sovereign in the climactic 1v1 Convergence Duel.",
+          "target": "npc_avatar_of_convergence",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 2500,
+        "echo_dust": 1000,
+        "card_pack": 5,
+        "bonus_card_id": "NEU-C-0020",
+        "unlock_flag": "campaign_complete_grand_champion"
+      }
+    }
+  ]
+}
