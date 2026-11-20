@@ -271,7 +271,7 @@ func _dispatch_command(cmd: Dictionary) -> void:
 		if not res.get("accepted", false):
 			inspector_label.text = "Action Rejected by Rust Engine: " + str(res.get("error", ""))
 		elif match_state.get("outcome") == "player_victory":
-			var rewards := GameState.award_duel_victory(GameState.selected_npc_id)
+			var rewards := GameState.process_match_rewards(match_state, GameState.selected_npc_id)
 			inspector_label.text = "VICTORY! Earned +%d Crowns and +%d Echo Dust!" % [
 				int(rewards.get("crowns", 100)),
 				int(rewards.get("echo_dust", 30))

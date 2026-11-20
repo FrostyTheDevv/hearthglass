@@ -19,6 +19,7 @@ var npcs: Array = []
 var districts: Array = []
 var interiors: Array = []
 var quests: Array = []
+var quest_objective_progress: Dictionary = {}
 
 # Persistent Player Profile State
 var user_id: String = "guest_duelist_local"
@@ -114,8 +115,6 @@ func get_npc(npc_id: String) -> Dictionary:
 	for n in npcs:
 		if n.get("id") == npc_id:
 			return n
-	if npcs.size() > 0:
-		return npcs[0]
 	return {}
 
 ## Interactive NPC dialogue interface
@@ -126,6 +125,33 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 	var dialogue: Dictionary = npc.get("dialogue", {})
 	var greeting: String = str(dialogue.get("greeting", ""))
 	var rel: int = int(relationships.get(npc_id, 20))
+
+	# Advance speak/visit objectives for active quests
+	for q in quests:
+		var qid: String = str(q.get("id", ""))
+		if str(quest_states.get(qid, "")) != "active" and str(q.get("status", "")) != "active":
+			continue
+		var objs: Array = q.get("objectives", [])
+		var progress: Dictionary = quest_objective_progress.get(qid, {})
+		var all_done := true
+		for obj in objs:
+			var obj_id: String = str(obj.get("id", ""))
+			var target_count: int = int(obj.get("target_count", 1))
+			var cur_count: int = int(progress.get(obj_id, 0))
+			var desc: String = str(obj.get("description", "")).to_lower()
+			if (obj_id.contains("speak") or obj_id.contains("visit") or desc.contains("speak") or desc.contains("visit")) and cur_count < target_count:
+				var npc_short_id: String = npc_id.replace("npc_", "").to_lower()
+				if desc.contains(npc_short_id) or (npc_id == "npc_master_vance" and desc.contains("vance")) or (npc_id == "npc_soren_whisperleaf" and desc.contains("soren")) or (npc_id == "npc_marshal_corin" and desc.contains("corin")):
+					cur_count += 1
+					progress[obj_id] = cur_count
+			if cur_count < target_count:
+				all_done = false
+		quest_objective_progress[qid] = progress
+		if all_done and objs.size() > 0:
+			q["status"] = "completed"
+			quest_states[qid] = "completed"
+
+	save_local_profile()
 	return {
 		"success": true,
 		"npc_id": npc_id,
@@ -188,10 +214,10 @@ func process_match_rewards(match_state: Dictionary, npc_id: String) -> Dictionar
 			return {"success": false, "error": "Match ended in a draw, no victory reward granted"}
 		return {"success": false, "error": "Player did not win the authoritative match"}
 
-	# 3. Match ID idempotency (duplicate prevention)
+	# 3. Match ID validation & idempotency (duplicate prevention)
 	var match_id: String = str(match_state.get("match_id", ""))
-	if match_id == "":
-		match_id = "duel_" + npc_id + "_turn" + str(match_state.get("global_turn", "0")) + "_seed" + str(match_state.get("seed", "0"))
+	if match_id.strip_edges() == "":
+		return {"success": false, "error": "Missing authoritative match_id"}
 
 	if claimed_matches.has(match_id):
 		return {"success": false, "error": "Reward already claimed for this match"}
@@ -219,11 +245,43 @@ func process_match_rewards(match_state: Dictionary, npc_id: String) -> Dictionar
 	if bonus_card != "":
 		collection[bonus_card] = int(collection.get(bonus_card, 0)) + 1
 
-	# Advance matching quest objectives and persist
+	# Advance matching quest objectives only (objective isolation)
 	for q in quests:
-		if q.get("status") == "active":
+		var qid: String = str(q.get("id", ""))
+		if str(quest_states.get(qid, "")) != "active" and str(q.get("status", "")) != "active":
+			continue
+		var objs: Array = q.get("objectives", [])
+		var progress: Dictionary = quest_objective_progress.get(qid, {})
+		var all_done := true
+		for obj in objs:
+			var obj_id: String = str(obj.get("id", ""))
+			var target_count: int = int(obj.get("target_count", 1))
+			var cur_count: int = int(progress.get(obj_id, 0))
+			var desc: String = str(obj.get("description", "")).to_lower()
+			var target_str: String = str(obj.get("target", "")).to_lower()
+			var is_match := false
+
+			if target_str != "" and (target_str == npc_id.to_lower() or target_str == str(npc.get("name", "")).to_lower()):
+				is_match = true
+			elif obj_id.contains("duel") or obj_id.contains("defeat") or desc.contains("duel") or desc.contains("defeat"):
+				var npc_name: String = str(npc.get("name", "")).to_lower()
+				var npc_short_id: String = npc_id.replace("npc_", "").to_lower()
+				if desc.contains(npc_short_id) or desc.contains(npc_name) or (npc_id == "npc_master_vance" and desc.contains("vance")) or (npc_id == "npc_kaelen_emberforge" and desc.contains("kaelen")) or (npc_id == "npc_lyra_vane" and desc.contains("lyra")):
+					is_match = true
+				elif not desc.contains("kaelen") and not desc.contains("lyra") and not desc.contains("vance") and not desc.contains("corin") and not desc.contains("soren"):
+					is_match = true
+
+			if is_match and cur_count < target_count:
+				cur_count += 1
+				progress[obj_id] = cur_count
+
+			if cur_count < target_count:
+				all_done = false
+
+		quest_objective_progress[qid] = progress
+		if all_done and objs.size() > 0:
 			q["status"] = "completed"
-			quest_states[str(q.get("id"))] = "completed"
+			quest_states[qid] = "completed"
 
 	save_local_profile()
 	wallet_updated.emit(crowns, echo_dust)
@@ -238,20 +296,16 @@ func process_match_rewards(match_state: Dictionary, npc_id: String) -> Dictionar
 		"match_id": match_id
 	}
 
-## Backward-compatible wrapper that validates match outcome before awarding
+## Explicit match victory wrapper; empty match states are rejected to prevent fabricated victories
 func award_duel_victory(npc_id: String, match_state: Dictionary = {}) -> Dictionary:
 	if match_state.is_empty():
-		# Create an implicit verified victory state for legacy callers if verified
-		match_state = {
-			"outcome": "player_victory",
-			"match_id": "legacy_grant_" + npc_id + "_" + str(Time.get_ticks_msec())
-		}
+		return {"success": false, "error": "Match outcome state is required; synthetic victories are disallowed"}
 	return process_match_rewards(match_state, npc_id)
 
 func save_local_profile() -> void:
+	# Note: auth_token is never stored in unencrypted game_save.json to prevent token exposure
 	var data := {
 		"user_id": user_id,
-		"auth_token": auth_token,
 		"player_name": player_name,
 		"crowns": crowns,
 		"echo_dust": echo_dust,
@@ -260,7 +314,8 @@ func save_local_profile() -> void:
 		"collection": collection,
 		"relationships": relationships,
 		"claimed_matches": claimed_matches,
-		"quest_states": quest_states
+		"quest_states": quest_states,
+		"quest_objective_progress": quest_objective_progress
 	}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
@@ -272,7 +327,7 @@ func load_local_profile() -> void:
 	var parsed = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
 	if typeof(parsed) == TYPE_DICTIONARY:
 		user_id = str(parsed.get("user_id", user_id))
-		auth_token = str(parsed.get("auth_token", auth_token))
+		# auth_token is kept in transient session memory, not imported from local JSON
 		player_name = str(parsed.get("player_name", player_name))
 		crowns = int(parsed.get("crowns", crowns))
 		echo_dust = int(parsed.get("echo_dust", echo_dust))
@@ -289,3 +344,5 @@ func load_local_profile() -> void:
 				var qid: String = str(q.get("id", ""))
 				if quest_states.has(qid):
 					q["status"] = quest_states[qid]
+		if parsed.has("quest_objective_progress") and typeof(parsed["quest_objective_progress"]) == TYPE_DICTIONARY:
+			quest_objective_progress = parsed["quest_objective_progress"]

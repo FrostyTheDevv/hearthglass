@@ -39,21 +39,29 @@ func _ready() -> void:
 	print("  [OK] Lumenport 3D navigation and camera pivot active.")
 
 	# STEP 3: NPC Dialogue & Quest Acceptance
-	print("\n[STEP 3] Interacting with NPC (Master Artificer Vance)...")
-	var interaction: Dictionary = GameState.interact_with_npc("npc_master_vance")
-	assert(bool(interaction.get("success", false)), "NPC interaction interface must succeed")
-	var greeting: String = str(interaction.get("greeting", ""))
-	assert(greeting != "", "NPC must have valid dialogue greeting")
-	print("  NPC Name:  ", interaction.get("name"))
-	print("  NPC Title: ", interaction.get("title"))
-	print("  Dialogue:  \"", greeting, "\"")
+	print("\n[STEP 3] Interacting with NPCs and Accepting Quests...")
+	# 1. Speak with Envoy Soren (satisfies obj_speak_soren)
+	var soren_interact: Dictionary = GameState.interact_with_npc("npc_soren_whisperleaf")
+	assert(bool(soren_interact.get("success", false)), "Soren interaction interface must succeed")
+	print("  NPC: ", soren_interact.get("name"), " - \"", soren_interact.get("greeting"), "\"")
 
-	# Real Quest Interaction: Call accept_quest interface and track persistent state
-	var quest_accepted := GameState.accept_quest("quest_ch2_market_resonance")
-	assert(quest_accepted, "Quest acceptance interface must return true for Master Vance quest")
-	assert(GameState.get_quest_status("quest_ch2_market_resonance") == "active", "Quest state must be 'active'")
-	print("  Quest Interface: 'quest_ch2_market_resonance' accepted and tracked in persistent state.")
-	print("  [OK] Branching NPC dialogue and quest tracking functional.")
+	# 2. Speak with Master Vance
+	var vance_interact: Dictionary = GameState.interact_with_npc("npc_master_vance")
+	assert(bool(vance_interact.get("success", false)), "Vance interaction interface must succeed")
+	print("  NPC: ", vance_interact.get("name"), " - \"", vance_interact.get("greeting"), "\"")
+
+	# Accept Quest 1: Arrival in Lumenport (requires Soren dialogue + Kaelen Emberforge duel)
+	var q1_accepted := GameState.accept_quest("quest_ch1_first_echo")
+	assert(q1_accepted, "Quest 1 acceptance must succeed")
+	assert(GameState.get_quest_status("quest_ch1_first_echo") == "active", "Quest 1 must be active")
+
+	# Accept Quest 2: Plaza Qualifier (requires Lyra Vane duel - must NOT complete when Kaelen is defeated)
+	var q2_accepted := GameState.accept_quest("quest_ch3_plaza_qualifier")
+	assert(q2_accepted, "Quest 2 acceptance must succeed")
+	assert(GameState.get_quest_status("quest_ch3_plaza_qualifier") == "active", "Quest 2 must be active")
+
+	print("  Active Quests Tracked: 'quest_ch1_first_echo' & 'quest_ch3_plaza_qualifier'")
+	print("  [OK] Branching NPC dialogue and multi-quest tracking functional.")
 
 	# STEP 4: Visit Resonance Emporium Workshop & Deck Builder
 	print("\n[STEP 4] Visiting Resonance Emporium & Deck Builder...")
@@ -130,18 +138,37 @@ func _ready() -> void:
 	assert(not draw_res.get("success", false), "Draw match must be rejected")
 	print("  [TEST 7C PASSED] Draw match rejected: ", draw_res.get("error"))
 
-	# TEST 7D: Authentic Player Victory Grants Authoritative Rewards
+	# TEST 7D: Missing match_id must be rejected
+	var missing_id_state := {"outcome": {"player_victory": 0}, "match_id": ""}
+	var missing_id_res := GameState.process_match_rewards(missing_id_state, "npc_master_vance")
+	assert(not missing_id_res.get("success", false), "Missing match ID must be rejected")
+	print("  [TEST 7D PASSED] Missing match ID rejected: ", missing_id_res.get("error"))
+
+	# TEST 7E: Unknown NPC ID must return empty dictionary and be rejected
+	var unknown_npc := GameState.get_npc("npc_nonexistent_ghost")
+	assert(unknown_npc.is_empty(), "Unknown NPC must return empty dictionary, never first NPC")
+	var wrong_npc_state := {"outcome": {"player_victory": 0}, "match_id": "auth_test_wrong_npc_" + str(Time.get_ticks_msec())}
+	var wrong_npc_res := GameState.process_match_rewards(wrong_npc_state, "npc_nonexistent_ghost")
+	assert(not wrong_npc_res.get("success", false), "Wrong NPC encounter must be rejected")
+	print("  [TEST 7E PASSED] Unknown NPC lookup returns empty dictionary and wrong encounter is rejected")
+
+	# TEST 7F: Synthetic empty victory wrapper must be rejected
+	var synth_res := GameState.award_duel_victory("npc_master_vance", {})
+	assert(not synth_res.get("success", false), "Fabricated/empty victory state must be rejected")
+	print("  [TEST 7F PASSED] Fabricated victory compatibility path rejected: ", synth_res.get("error"))
+
+	# TEST 7G: Authentic Player Victory Grants Authoritative Rewards
 	var initial_crowns := GameState.crowns
 	var initial_dust := GameState.echo_dust
-	var test_match_id := "auth_victory_vance_" + str(Time.get_ticks_msec())
+	var test_match_id := "auth_victory_kaelen_" + str(Time.get_ticks_msec())
 	var victory_state := {
 		"outcome": {"player_victory": 0},
 		"match_id": test_match_id,
 		"global_turn": final_turn
 	}
-	var victory_res := GameState.process_match_rewards(victory_state, "npc_master_vance")
+	var victory_res := GameState.process_match_rewards(victory_state, "npc_kaelen_forge")
 	assert(bool(victory_res.get("success", false)), "Authentic victory must be accepted")
-	print("  [TEST 7D PASSED] Authentic Victory Accepted: +%d Crowns, +%d Dust, +%d Relationship" % [
+	print("  [TEST 7G PASSED] Authentic Victory Accepted: +%d Crowns, +%d Dust, +%d Relationship" % [
 		int(victory_res.get("crowns", 0)),
 		int(victory_res.get("echo_dust", 0)),
 		int(victory_res.get("relationship_gain", 0))
@@ -149,13 +176,18 @@ func _ready() -> void:
 	assert(GameState.crowns == initial_crowns + int(victory_res.get("crowns", 0)), "Crowns must increase")
 	assert(GameState.echo_dust == initial_dust + int(victory_res.get("echo_dust", 0)), "Dust must increase")
 
-	# TEST 7E: Duplicate claim attempt must be rejected (Idempotency)
-	var dup_res := GameState.process_match_rewards(victory_state, "npc_master_vance")
+	# TEST 7H: Duplicate claim attempt must be rejected (Idempotency)
+	var dup_res := GameState.process_match_rewards(victory_state, "npc_kaelen_forge")
 	assert(not dup_res.get("success", false), "Duplicate match claim must be rejected")
-	print("  [TEST 7E PASSED] Duplicate reward claim rejected: ", dup_res.get("error"))
+	print("  [TEST 7H PASSED] Duplicate reward claim rejected: ", dup_res.get("error"))
+
+	# TEST 7I: Quest Objective Isolation
+	assert(GameState.get_quest_status("quest_ch1_first_echo") == "completed", "Kaelen duel quest must be completed")
+	assert(GameState.get_quest_status("quest_ch3_plaza_qualifier") == "active", "Unrelated Lyra Vane tournament quest must remain active and uncompleted")
+	print("  [TEST 7I PASSED] Quest objective isolation verified: Kaelen duel completed Chapter 1 but did not complete unrelated Lyra Vane tournament quest.")
 
 	arena.queue_free()
-	print("  [OK] Outcome-dependent reward security fully verified.")
+	print("  [OK] Outcome-dependent reward security and objective isolation fully verified.")
 
 	# STEP 8: Return to World & Quest Advancement
 	print("\n[STEP 8] Returning to Lumenport & Checking World State...")
@@ -166,8 +198,8 @@ func _ready() -> void:
 	assert(hud_text.contains(str(GameState.echo_dust)), "HUD must reflect new dust balance")
 
 	# Verify quest marked completed in GameState and persistent quest_states
-	assert(GameState.get_quest_status("quest_ch2_market_resonance") == "completed", "Quest must be marked completed in persistent GameState")
-	print("  Advancing Quest: 'quest_ch2_market_resonance' status is now: ", GameState.get_quest_status("quest_ch2_market_resonance"))
+	assert(GameState.get_quest_status("quest_ch1_first_echo") == "completed", "Quest must be marked completed in persistent GameState")
+	print("  Advancing Quest: 'quest_ch1_first_echo' status is now: ", GameState.get_quest_status("quest_ch1_first_echo"))
 	hub.queue_free()
 	print("  [OK] Smooth transition back to 3D world hub verified.")
 
@@ -184,11 +216,11 @@ func _ready() -> void:
 
 	assert(GameState.crowns == saved_crowns, "Crowns must reload accurately")
 	assert(GameState.echo_dust == saved_dust, "Echo Dust must reload accurately")
-	assert(GameState.get_quest_status("quest_ch2_market_resonance") == "completed", "Quest state must reload as completed")
+	assert(GameState.get_quest_status("quest_ch1_first_echo") == "completed", "Quest state must reload as completed")
 	print("  Reloaded Profile: Crowns=%d, Echo Dust=%d, QuestStatus=%s" % [
 		GameState.crowns,
 		GameState.echo_dust,
-		GameState.get_quest_status("quest_ch2_market_resonance")
+		GameState.get_quest_status("quest_ch1_first_echo")
 	])
 	print("  [OK] Persistence integrity verified.")
 
