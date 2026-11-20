@@ -1297,6 +1297,71 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         return sendJson(200, exported);
       }
 
+      if (req.method === 'POST' && pathname === '/v1/art/revisions') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const body = await readJsonBody();
+        try {
+          const rev = artPipeline.requestRevisions(body.card_id, body.candidate_id, body.notes);
+          return sendJson(200, rev);
+        } catch (err) {
+          return sendJson(400, { error: err.message });
+        }
+      }
+
+      if (req.method === 'POST' && pathname === '/v1/art/rollback') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const body = await readJsonBody();
+        try {
+          const rolled = artPipeline.rollbackToVersion(body.card_id, body.target_version);
+          return sendJson(200, rolled);
+        } catch (err) {
+          return sendJson(400, { error: err.message });
+        }
+      }
+
+      if (req.method === 'GET' && pathname === '/v1/art/factions') {
+        return sendJson(200, artPipeline.factionReferenceSheets || {});
+      }
+
+      if (req.method === 'POST' && pathname === '/v1/art/test-adapter') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const body = await readJsonBody();
+        try {
+          const result = await artPipeline.testProviderAdapter(body.provider_id, {
+            mockOnly: body.mock_only !== false
+          });
+          return sendJson(200, { provider_id: body.provider_id, result });
+        } catch (err) {
+          return sendJson(400, { error: err.message });
+        }
+      }
+
+      if (req.method === 'POST' && pathname === '/v1/art/upload') {
+        const userId = await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const profile = await db.getFullPlayerProfile(userId);
+        const body = await readJsonBody();
+        try {
+          let buffer = null;
+          if (body.base64_data) {
+            buffer = Buffer.from(body.base64_data, 'base64');
+          }
+          const ingested = artPipeline.ingestRasterCandidate({
+            card_id: body.card_id,
+            buffer,
+            original_filename: body.filename || `${body.card_id}.png`,
+            provider_id: 'manual_upload',
+            model_id: 'manual-artist-upload',
+            provenance: {
+              uploaded_by: profile.username || userId,
+              note: body.note || 'Direct upload via Content Studio'
+            }
+          });
+          return sendJson(200, ingested);
+        } catch (err) {
+          return sendJson(400, { error: err.message });
+        }
+      }
+
       // 7. Authoritative Rust Match Endpoints (1v1 PvE, 1v1 PvP, and 2v2 Tag)
       if (req.method === 'POST' && pathname === '/v1/matches') {
         const userId = await getAuthenticatedUserId();
