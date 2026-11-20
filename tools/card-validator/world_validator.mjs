@@ -760,8 +760,9 @@ export function validateWorldContent(options = {}) {
     // Canonical 640 metrics under merged PR #5 (ca73a75 / 8273cf8)
     canonical_640_pr5_compatible: 640,
     canonical_640_pr5_gaps: 0,
-    canonical_640_deep_behavioral_asserted: 29,
-    canonical_640_deep_assertion_pending: 611
+    canonical_640_deep_behavioral_asserted: 14,
+    canonical_640_deep_assertion_pending: 626,
+    canonical_excluded_deck_and_generic_tested: 15
   };
 
   const summary = {

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5.0",
-  "audit_timestamp": "2026-11-20T14:40:53.884Z",
+  "audit_timestamp": "2026-11-20T14:50:53.923Z",
   "canonical_catalogue_file": "content/cards/foundations_v1.json",
   "staged_catalogue_file": "content/staging/cards/expansion_160_staging_catalogue.json",
   "audited_engine_revisions": {
@@ -16,39 +16,335 @@
     "pr5_engine_compatible": 640,
     "pr5_engine_gaps_count": 0,
     "pr5_remaining_gaps": [],
-    "canonical_deep_behavioral_asserted_count": 29,
-    "canonical_deep_assertion_pending_count": 611,
+    "canonical_deep_behavioral_asserted_count": 14,
+    "canonical_deep_assertion_pending_count": 626,
     "canonical_test_proven_cards": [
-      "EMB-C-0001",
-      "EMB-C-0002",
-      "EMB-C-0003",
       "EMB-C-0019",
-      "EMB-E-0008",
       "EMB-T-0006",
       "EMB-T-0043",
       "GLS-C-0001",
-      "GRV-C-0001",
       "GRV-C-0019",
       "GRV-C-0023",
       "GRV-C-0040",
-      "IRN-C-0001",
       "IRN-C-0019",
-      "NEU-C-0001",
-      "NEU-C-0002",
-      "NEU-C-0003",
-      "NEU-C-0004",
-      "NEU-R-0007",
-      "NEU-T-0006",
       "NEU-T-0042",
       "NEU-T-0044",
       "STR-T-0027",
       "TID-C-0001",
-      "TID-C-0003",
-      "VER-C-0001",
-      "VER-C-0002",
       "VER-C-0019",
       "VER-T-0043"
-    ]
+    ],
+    "canonical_test_proven_cards_mapping": [
+      {
+        "card_id": "EMB-T-0006",
+        "card_name": "Molten Reckoning",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+        "assertion_scope": "Plays tactic dealing 4 damage; asserts command acceptance, damage resolution, and Ward trigger event emission"
+      },
+      {
+        "card_id": "EMB-C-0019",
+        "card_name": "Cinderpike Halberdier",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Attacks enemy leader; asserts heat counter increment on card (counters.get(\"heat\") == 1)"
+      },
+      {
+        "card_id": "EMB-T-0043",
+        "card_name": "Cinder-Vent Eruption",
+        "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+        "test_function": "test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes",
+        "assertion_scope": "Plays AoE tactic; asserts 1 damage across all front and rear enemy lanes without hitting friendly units"
+      },
+      {
+        "card_id": "VER-C-0019",
+        "card_name": "Briarhorn Stag",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Attacks enemy leader; asserts bloom growth counter increment and +1/+1 stat modification (3/4 stats)"
+      },
+      {
+        "card_id": "VER-T-0043",
+        "card_name": "Entangling Root-Surge",
+        "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+        "test_function": "test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures",
+        "assertion_scope": "Plays AoE tactic; asserts exhaust keyword attachment across all enemy creatures"
+      },
+      {
+        "card_id": "IRN-C-0019",
+        "card_name": "Piston-Pike Automaton",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Summons unit; asserts on_summon assembly counter attachment (counters.get(\"assembly\") == 1) and shield keyword"
+      },
+      {
+        "card_id": "TID-C-0001",
+        "card_name": "Reefstep Scout",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+        "assertion_scope": "Moves lane via skirmish; asserts on_move current counter attachment and +1/+1 stat modification (3 attack)"
+      },
+      {
+        "card_id": "GLS-C-0001",
+        "card_name": "Prismblade Apprentice",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+        "assertion_scope": "Summons unit with Ward; targeted by hostile tactic; asserts Ward negates all damage (health remains 2) and is consumed"
+      },
+      {
+        "card_id": "STR-T-0027",
+        "card_name": "Chart the Meridian",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Plays tactic; asserts scry/draw hand count preservation (hand.len() == hand_before)"
+      },
+      {
+        "card_id": "GRV-C-0019",
+        "card_name": "Barrow-Hound Stalker",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Summons and destroys unit; asserts Rebirth token replacement on board, card in discard, and Reclaim return to hand with reclaimed=true"
+      },
+      {
+        "card_id": "GRV-C-0023",
+        "card_name": "Wicker-Lantern Guide",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Summons unit; asserts on_summon reclaim_from_discard returns fallen card from discard to hand (discard.len() == 0)"
+      },
+      {
+        "card_id": "GRV-C-0040",
+        "card_name": "Ossuary Tomb-Warden",
+        "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+        "test_function": "test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures",
+        "assertion_scope": "Summons unit; asserts on_summon corrode counter application and stat reduction across all enemy creatures"
+      },
+      {
+        "card_id": "NEU-T-0042",
+        "card_name": "Disruptive Counter-Chime",
+        "test_file": "services/battle-server/tests/qa_keyword_and_mechanics_tests.rs",
+        "test_function": "test_keyword_silence_removes_abilities_keywords_and_counters",
+        "assertion_scope": "Plays silence tactic; asserts target unit is silenced, counters cleared, and non-guard keywords stripped"
+      },
+      {
+        "card_id": "NEU-T-0044",
+        "card_name": "Focused Volley",
+        "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+        "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+        "assertion_scope": "Plays 4-damage tactic; asserts lethal creature destruction and discard placement"
+      }
+    ],
+    "canonical_excluded_cards_audit": [
+      {
+        "card_id": "EMB-C-0002",
+        "card_name": "Cinderplate Sentinel",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "EMB-E-0008",
+        "card_name": "Crucible of the First Flame",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "IRN-C-0001",
+        "card_name": "Cogline Recruit",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "VER-C-0002",
+        "card_name": "Thornback Defender",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "NEU-C-0001",
+        "card_name": "Traveling Sellsword",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks and generic 640 execute test"
+      },
+      {
+        "card_id": "NEU-C-0002",
+        "card_name": "Caravan Ironhide",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks and generic 640 execute test"
+      },
+      {
+        "card_id": "NEU-C-0004",
+        "card_name": "Wandering Archivist",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "NEU-T-0006",
+        "card_name": "Measured Strike",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "NEU-R-0007",
+        "card_name": "Simple Wardstone",
+        "reason": "Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)"
+      },
+      {
+        "card_id": "TID-C-0003",
+        "card_name": "Mistwake Dancer",
+        "reason": "Only present in generic 640 execute test (reposition comment in loop)"
+      },
+      {
+        "card_id": "EMB-C-0003",
+        "card_name": "Coalglass Artificer",
+        "reason": "Only mentioned in code comment in test_keyword_swift_and_first_turn_attack_restriction (actual unit is mock TEST_SWIFT)"
+      },
+      {
+        "card_id": "EMB-C-0001",
+        "card_name": "Ashborne Initiate",
+        "reason": "Used as swift body to test opening turn attack prohibition and generic unit body; after_this_attacks heat ability is not tested"
+      },
+      {
+        "card_id": "VER-C-0001",
+        "card_name": "Mossveil Tender",
+        "reason": "Used only as passive rear target body in reach test; on_summon ability is not tested"
+      },
+      {
+        "card_id": "NEU-C-0003",
+        "card_name": "Clocktower Lookout",
+        "reason": "Used as reach attacker body to test positional reach rule; contains no ability effect AST (abilities: [])"
+      },
+      {
+        "card_id": "GRV-C-0001",
+        "card_name": "Bonefield Wanderer",
+        "reason": "Created via mock test helper create_custom_unit instead of executing catalogue card definition"
+      }
+    ],
+    "source_validation": {
+      "verified_count": 14,
+      "total_mapped": 14,
+      "all_verified": true,
+      "excluded_count": 15,
+      "details": [
+        {
+          "card_id": "EMB-T-0006",
+          "card_name": "Molten Reckoning",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+          "assertion_scope": "Plays tactic dealing 4 damage; asserts command acceptance, damage resolution, and Ward trigger event emission",
+          "verified": true,
+          "source_line": 389
+        },
+        {
+          "card_id": "EMB-C-0019",
+          "card_name": "Cinderpike Halberdier",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Attacks enemy leader; asserts heat counter increment on card (counters.get(\"heat\") == 1)",
+          "verified": true,
+          "source_line": 444
+        },
+        {
+          "card_id": "EMB-T-0043",
+          "card_name": "Cinder-Vent Eruption",
+          "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+          "test_function": "test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes",
+          "assertion_scope": "Plays AoE tactic; asserts 1 damage across all front and rear enemy lanes without hitting friendly units",
+          "verified": true,
+          "source_line": 83
+        },
+        {
+          "card_id": "VER-C-0019",
+          "card_name": "Briarhorn Stag",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Attacks enemy leader; asserts bloom growth counter increment and +1/+1 stat modification (3/4 stats)",
+          "verified": true,
+          "source_line": 486
+        },
+        {
+          "card_id": "VER-T-0043",
+          "card_name": "Entangling Root-Surge",
+          "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+          "test_function": "test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures",
+          "assertion_scope": "Plays AoE tactic; asserts exhaust keyword attachment across all enemy creatures",
+          "verified": true,
+          "source_line": 231
+        },
+        {
+          "card_id": "IRN-C-0019",
+          "card_name": "Piston-Pike Automaton",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Summons unit; asserts on_summon assembly counter attachment (counters.get(\"assembly\") == 1) and shield keyword",
+          "verified": true,
+          "source_line": 519
+        },
+        {
+          "card_id": "TID-C-0001",
+          "card_name": "Reefstep Scout",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+          "assertion_scope": "Moves lane via skirmish; asserts on_move current counter attachment and +1/+1 stat modification (3 attack)",
+          "verified": true,
+          "source_line": 356
+        },
+        {
+          "card_id": "GLS-C-0001",
+          "card_name": "Prismblade Apprentice",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish",
+          "assertion_scope": "Summons unit with Ward; targeted by hostile tactic; asserts Ward negates all damage (health remains 2) and is consumed",
+          "verified": true,
+          "source_line": 389
+        },
+        {
+          "card_id": "STR-T-0027",
+          "card_name": "Chart the Meridian",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Plays tactic; asserts scry/draw hand count preservation (hand.len() == hand_before)",
+          "verified": true,
+          "source_line": 538
+        },
+        {
+          "card_id": "GRV-C-0019",
+          "card_name": "Barrow-Hound Stalker",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Summons and destroys unit; asserts Rebirth token replacement on board, card in discard, and Reclaim return to hand with reclaimed=true",
+          "verified": true,
+          "source_line": 560
+        },
+        {
+          "card_id": "GRV-C-0023",
+          "card_name": "Wicker-Lantern Guide",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Summons unit; asserts on_summon reclaim_from_discard returns fallen card from discard to hand (discard.len() == 0)",
+          "verified": true,
+          "source_line": 560
+        },
+        {
+          "card_id": "GRV-C-0040",
+          "card_name": "Ossuary Tomb-Warden",
+          "test_file": "services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs",
+          "test_function": "test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures",
+          "assertion_scope": "Summons unit; asserts on_summon corrode counter application and stat reduction across all enemy creatures",
+          "verified": true,
+          "source_line": 259
+        },
+        {
+          "card_id": "NEU-T-0042",
+          "card_name": "Disruptive Counter-Chime",
+          "test_file": "services/battle-server/tests/qa_keyword_and_mechanics_tests.rs",
+          "test_function": "test_keyword_silence_removes_abilities_keywords_and_counters",
+          "assertion_scope": "Plays silence tactic; asserts target unit is silenced, counters cleared, and non-guard keywords stripped",
+          "verified": true,
+          "source_line": 523
+        },
+        {
+          "card_id": "NEU-T-0044",
+          "card_name": "Focused Volley",
+          "test_file": "services/battle-server/tests/rules_engine_tests.rs",
+          "test_function": "test_all_eight_faction_mechanics_and_advanced_combat_resolutions",
+          "assertion_scope": "Plays 4-damage tactic; asserts lethal creature destruction and discard placement",
+          "verified": true,
+          "source_line": 577
+        }
+      ]
+    }
   },
   "total_staged_cards_audited": 160,
   "classification_counts": {

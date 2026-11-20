@@ -23,7 +23,7 @@ By analyzing the authoritative Git commit lineage and auditing against the basel
 3. A schema-accurate field-by-field audit protecting ID, name, faction, type, rarity, cost (`cost`), stats (`attack`, `health`), keywords, complete abilities/effect AST, and rules metadata.
 4. A three-level validation hierarchy distinguishing Schema Validity (Level 1), Rust Capability Compatibility (Level 2), and Behavioral Verification (Level 3).
 5. A comparative audit contrasting baseline engine capabilities (`1b1e179`), intermediate remediations (`9315bc9`), and merged master capabilities (`ca73a75` / `8273cf8`), verifying 100% capability coverage across both Foundations 640 (0 gaps) and Staged 160 (0 gaps).
-6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test source evidence (29 canonical baseline cards tested, 0 staged expansion cards tested in dedicated unit tests, 160 staged cards pending deep secondary-effect assertions).
+6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test source evidence (14 canonical baseline cards with verified effect assertions, 15 cards excluded due to deck-building/generic scope, 0 staged expansion cards tested in dedicated unit tests, 160 staged cards pending deep secondary-effect assertions).
 
 ---
 
@@ -101,7 +101,7 @@ To prevent conflating schema validity with execution reality, the engine audit e
 flowchart TD
     L1["LEVEL 1: Schema Validity\n(160/160 Staged | 640/640 Canonical)\nRecognized triggers, operations, targets in JSON"]
     L2["LEVEL 2: Rust Capability Compatibility\n(160/160 Staged | 640/640 Canonical under Merged Master ca73a75 / 8273cf8)\nOperation-Target handled in battle-server match arms"]
-    L3["LEVEL 3: Behavioral Verification\n(640/640 Broad Execution Tested | 29 Canonical Deep Asserted | 0 Staged Deep Asserted / 160 Pending)\nExecutable Rust tests proving board state mutations"]
+    L3["LEVEL 3: Behavioral Verification\n(640/640 Broad Execution Tested | 14 Canonical Effect Asserted | 0 Staged Deep Asserted / 160 Pending)\nExecutable Rust tests proving board state mutations"]
 
     L1 --> L2
     L2 --> L3
@@ -163,33 +163,56 @@ To maintain strict truth-in-advertising and prevent associating generic tests wi
   - Relics occupy relic slot; Environments occupy active environment slot.
   - Battle state emits matching `BattleEvent` instances.
 
-#### 2. Deep Behavioral State-Delta Assertions (29 Canonical Baseline Cards Only)
-- **Backing Test Suites:**
-  - `services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs`
-  - `services/battle-server/tests/qa_keyword_and_mechanics_tests.rs`
-  - `services/battle-server/tests/rules_engine_tests.rs`
-- **Specific Rust Test Identifiers:**
-  - `test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes`: Multi-target health deduction across all front/rear lanes.
-  - `test_aoe_deal_damage_respects_ward_and_shield`: Ward and Shield damage negation on AoE.
-  - `test_aoe_deal_damage_triggers_rebirth_on_lethal`: Rebirth resurrection trigger and graveyard dispatch.
-  - `test_aoe_2v2_tag_damage_never_duplicates_or_hits_allies`: 2v2 target boundary enforcement.
-  - `test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures`: Multi-target keyword attachment.
-  - `test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures`: Multi-target counter application.
-  - `test_glassborne_refraction_reflects_combat_damage_back_to_attacker`: Combat damage reflection.
-  - `test_glassborne_refraction_does_not_reflect_when_silenced`: Silence disabling faction passives.
-  - `test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish`: Core keyword state transitions.
-  - `test_all_eight_faction_mechanics_and_advanced_combat_resolutions`: Faction combat resolutions.
-- **Test-Proven Card Identifiers (29 Canonical Cards):**
-  - Emberclad (7): `EMB-C-0001`, `EMB-C-0002`, `EMB-C-0003`, `EMB-T-0006`, `EMB-E-0008`, `EMB-C-0019`, `EMB-T-0043`
-  - Verdant Pact (4): `VER-C-0001`, `VER-C-0002`, `VER-C-0019`, `VER-T-0043`
-  - Iron Choir (2): `IRN-C-0001`, `IRN-C-0019`
-  - Tidebound (2): `TID-C-0001`, `TID-C-0003`
-  - Glassborne (1): `GLS-C-0001`
-  - Starweave (1): `STR-T-0027`
-  - Gravewild (4): `GRV-C-0001`, `GRV-C-0019`, `GRV-C-0023`, `GRV-C-0040`
-  - Neutral Accord (8): `NEU-C-0001`, `NEU-C-0002`, `NEU-C-0003`, `NEU-C-0004`, `NEU-T-0006`, `NEU-R-0007`, `NEU-T-0042`, `NEU-T-0044`
+#### 2. Deep Behavioral State-Delta Assertions (14 Retained Canonical Cards)
+To ensure absolute fidelity, only cards whose specific effects/abilities are directly exercised and asserted in dedicated Rust test functions are credited as Level 3 verified. All occurrences are verified via automated source validation (`validateTestProvenCardSources()`):
 
-#### 3. Staged 160 Level 3 Status: 0 Deep Assertions / 160 Pending
+```
++------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
+| Card ID    | Card Name                 | Backing Test Function             | Relevant Assertion Scope                                    |
++------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
+| EMB-T-0006 | Molten Reckoning          | test_keywords_ward_shield_...     | Plays 4-damage tactic; asserts command accepted & Ward event|
+| EMB-C-0019 | Cinderpike Halberdier     | test_all_eight_faction_mechanics..| Attacks leader; asserts heat counter incremented to 1       |
+| EMB-T-0043 | Cinder-Vent Eruption      | test_aoe_deal_damage_hits_all_... | Plays AoE tactic; asserts 1 damage across front & rear enemy|
+| VER-C-0019 | Briarhorn Stag            | test_all_eight_faction_mechanics..| Attacks leader; asserts growth counter & +1/+1 buff (3/4)   |
+| VER-T-0043 | Entangling Root-Surge     | test_aoe_grant_keyword_exhaust_...| Plays AoE tactic; asserts exhaust keyword granted across enemy|
+| IRN-C-0019 | Piston-Pike Automaton     | test_all_eight_faction_mechanics..| Summons; asserts assembly counter increment & shield keyword|
+| TID-C-0001 | Reefstep Scout            | test_keywords_ward_shield_...     | Moves lane via skirmish; asserts current counter & +1/+1    |
+| GLS-C-0001 | Prismblade Apprentice     | test_keywords_ward_shield_...     | Summons with Ward; asserts hostile tactic negated & consumed|
+| STR-T-0027 | Chart the Meridian        | test_all_eight_faction_mechanics..| Plays tactic; asserts scry/draw hand count preservation     |
+| GRV-C-0019 | Barrow-Hound Stalker      | test_all_eight_faction_mechanics..| Destroyed; asserts Rebirth token & Reclaim hand receipt     |
+| GRV-C-0023 | Wicker-Lantern Guide      | test_all_eight_faction_mechanics..| Summons; asserts on_summon reclaim retrieves card to hand   |
+| GRV-C-0040 | Ossuary Tomb-Warden       | test_aoe_add_counter_corrode_...  | Summons; asserts on_summon corrode counter debuff across lane|
+| NEU-T-0042 | Disruptive Counter-Chime  | test_keyword_silence_removes_...  | Plays silence tactic; asserts counters cleared & debuffed   |
+| NEU-T-0044 | Focused Volley            | test_all_eight_faction_mechanics..| Plays 4-damage tactic; asserts lethal creature destruction  |
++------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
+```
+
+#### 3. Excluded Test Occurrences (15 Excluded Cards)
+The following 15 card IDs appear in test source code but are strictly excluded from Level 3 deep behavioral counts because they do not exercise that card's specific effect AST:
+
+```
++------------+---------------------------+---------------------------------------------------------------------------------+
+| Card ID    | Card Name                 | Exclusion Audit Reason                                                          |
++------------+---------------------------+---------------------------------------------------------------------------------+
+| EMB-C-0002 | Cinderplate Sentinel      | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| EMB-E-0008 | Crucible of First Flame   | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| IRN-C-0001 | Cogline Recruit           | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| VER-C-0002 | Thornback Defender        | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| NEU-C-0001 | Traveling Sellsword       | Present only in test_deck_construction_rules... and generic 640 execute test   |
+| NEU-C-0002 | Caravan Ironhide          | Present only in test_deck_construction_rules... and generic 640 execute test   |
+| NEU-C-0004 | Wandering Archivist       | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| NEU-T-0006 | Measured Strike           | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| NEU-R-0007 | Simple Wardstone          | Present only in test_deck_construction_rules_reject_illegal_decks (deck rule)   |
+| TID-C-0003 | Mistwake Dancer           | Present only in generic 640 execute test (reposition comment in execute loop)   |
+| EMB-C-0003 | Coalglass Artificer       | Only referenced in code comment in test_keyword_swift... (unit is TEST_SWIFT)   |
+| EMB-C-0001 | Ashborne Initiate         | Used as swift body on turn 1 to test attack prohibition; heat ability not tested|
+| VER-C-0001 | Mossveil Tender           | Used only as passive rear target body in reach test; on_summon not tested       |
+| NEU-C-0003 | Clocktower Lookout        | Used to test reach keyword rule bypass; contains no ability effect AST ([])     |
+| GRV-C-0001 | Bonefield Wanderer        | Created via mock helper create_custom_unit instead of catalogue definition      |
++------------+---------------------------+---------------------------------------------------------------------------------+
+```
+
+#### 4. Staged 160 Level 3 Status: 0 Deep Assertions / 160 Pending
 - **Staged Deep Asserted Count:** Exactly **0** staged expansion cards appear in dedicated unit tests in Rust source files.
 - **Staged Broad Tested Count:** All **160** staged expansion cards pass broad execution testing (deployment, cost deduction, board placement).
 - **Staged Deep Assertion Pending:** All **160** staged expansion cards remain pending dedicated secondary-effect unit tests in the Rust test suite.

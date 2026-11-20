@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { validateWorldContent } from '../../../tools/card-validator/world_validator.mjs';
-import { classifyCardComparison } from '../../../tools/card-validator/reconcile_cards.mjs';
+import { classifyCardComparison, CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING, EXCLUDED_TEST_CARDS_AUDIT, validateTestProvenCardSources } from '../../../tools/card-validator/reconcile_cards.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,8 +48,18 @@ test('Hearthglass World Content & Card Staging Canonical Validation Suite', asyn
     // Canonical 640 under merged PR #5 (ca73a75 / 8273cf8)
     assert.equal(res.rustVerificationCounts.canonical_640_pr5_compatible, 640);
     assert.equal(res.rustVerificationCounts.canonical_640_pr5_gaps, 0);
-    assert.equal(res.rustVerificationCounts.canonical_640_deep_behavioral_asserted, 29);
-    assert.equal(res.rustVerificationCounts.canonical_640_deep_assertion_pending, 611);
+    assert.equal(res.rustVerificationCounts.canonical_640_deep_behavioral_asserted, 14);
+    assert.equal(res.rustVerificationCounts.canonical_640_deep_assertion_pending, 626);
+    assert.equal(res.rustVerificationCounts.canonical_excluded_deck_and_generic_tested, 15);
+  });
+
+  await t.test('2.1. Validates automated test-proven source verification for 14 effect-asserted cards and 15 exclusions', () => {
+    assert.equal(CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING.length, 14);
+    assert.equal(EXCLUDED_TEST_CARDS_AUDIT.length, 15);
+    const sourceVal = validateTestProvenCardSources();
+    assert.equal(sourceVal.all_verified, true, `Source validation failed for cards: ${sourceVal.details.filter(d => !d.verified).map(d => d.card_id).join(', ')}`);
+    assert.equal(sourceVal.verified_count, 14);
+    assert.equal(sourceVal.excluded_count, 15);
   });
 
   await t.test('3. Validates complete 12-chapter campaign across 4 canonical regions', () => {

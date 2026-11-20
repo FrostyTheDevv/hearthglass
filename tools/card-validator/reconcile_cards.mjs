@@ -12,6 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -160,27 +161,205 @@ export const RUST_TEST_IDENTIFIERS = {
 };
 
 /**
- * Canonical baseline cards with explicit, test-proven behavioral assertions in the Rust test files:
+ * Canonical cards with explicit, effect-specific behavioral test assertions in Rust test sources:
  * - services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs
  * - services/battle-server/tests/qa_keyword_and_mechanics_tests.rs
  * - services/battle-server/tests/rules_engine_tests.rs
  *
- * Source-verified: Exactly 29 canonical baseline cards appear in card-specific behavioral test assertions.
- * Exactly 0 staged expansion cards appear in card-specific test assertions (all 160 staged cards are broad-execution tested).
+ * Each card is tied to its exact test file, test function ID, and verified assertion scope.
  */
-export const CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS = new Set([
-  'EMB-C-0001', 'EMB-C-0002', 'EMB-C-0003', 'EMB-T-0006', 'EMB-E-0008', 'EMB-C-0019', 'EMB-T-0043',
-  'VER-C-0001', 'VER-C-0002', 'VER-C-0019', 'VER-T-0043',
-  'IRN-C-0001', 'IRN-C-0019',
-  'TID-C-0001', 'TID-C-0003',
-  'GLS-C-0001',
-  'STR-T-0027',
-  'GRV-C-0001', 'GRV-C-0019', 'GRV-C-0023', 'GRV-C-0040',
-  'NEU-C-0001', 'NEU-C-0002', 'NEU-C-0003', 'NEU-C-0004', 'NEU-T-0006', 'NEU-R-0007', 'NEU-T-0042', 'NEU-T-0044'
-]);
+export const CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING = [
+  {
+    card_id: 'EMB-T-0006',
+    card_name: 'Molten Reckoning',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    assertion_scope: 'Plays tactic dealing 4 damage; asserts command acceptance, damage resolution, and Ward trigger event emission'
+  },
+  {
+    card_id: 'EMB-C-0019',
+    card_name: 'Cinderpike Halberdier',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Attacks enemy leader; asserts heat counter increment on card (counters.get("heat") == 1)'
+  },
+  {
+    card_id: 'EMB-T-0043',
+    card_name: 'Cinder-Vent Eruption',
+    test_file: 'services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs',
+    test_function: 'test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes',
+    assertion_scope: 'Plays AoE tactic; asserts 1 damage across all front and rear enemy lanes without hitting friendly units'
+  },
+  {
+    card_id: 'VER-C-0019',
+    card_name: 'Briarhorn Stag',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Attacks enemy leader; asserts bloom growth counter increment and +1/+1 stat modification (3/4 stats)'
+  },
+  {
+    card_id: 'VER-T-0043',
+    card_name: 'Entangling Root-Surge',
+    test_file: 'services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs',
+    test_function: 'test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures',
+    assertion_scope: 'Plays AoE tactic; asserts exhaust keyword attachment across all enemy creatures'
+  },
+  {
+    card_id: 'IRN-C-0019',
+    card_name: 'Piston-Pike Automaton',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Summons unit; asserts on_summon assembly counter attachment (counters.get("assembly") == 1) and shield keyword'
+  },
+  {
+    card_id: 'TID-C-0001',
+    card_name: 'Reefstep Scout',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    assertion_scope: 'Moves lane via skirmish; asserts on_move current counter attachment and +1/+1 stat modification (3 attack)'
+  },
+  {
+    card_id: 'GLS-C-0001',
+    card_name: 'Prismblade Apprentice',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    assertion_scope: 'Summons unit with Ward; targeted by hostile tactic; asserts Ward negates all damage (health remains 2) and is consumed'
+  },
+  {
+    card_id: 'STR-T-0027',
+    card_name: 'Chart the Meridian',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Plays tactic; asserts scry/draw hand count preservation (hand.len() == hand_before)'
+  },
+  {
+    card_id: 'GRV-C-0019',
+    card_name: 'Barrow-Hound Stalker',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Summons and destroys unit; asserts Rebirth token replacement on board, card in discard, and Reclaim return to hand with reclaimed=true'
+  },
+  {
+    card_id: 'GRV-C-0023',
+    card_name: 'Wicker-Lantern Guide',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Summons unit; asserts on_summon reclaim_from_discard returns fallen card from discard to hand (discard.len() == 0)'
+  },
+  {
+    card_id: 'GRV-C-0040',
+    card_name: 'Ossuary Tomb-Warden',
+    test_file: 'services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs',
+    test_function: 'test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures',
+    assertion_scope: 'Summons unit; asserts on_summon corrode counter application and stat reduction across all enemy creatures'
+  },
+  {
+    card_id: 'NEU-T-0042',
+    card_name: 'Disruptive Counter-Chime',
+    test_file: 'services/battle-server/tests/qa_keyword_and_mechanics_tests.rs',
+    test_function: 'test_keyword_silence_removes_abilities_keywords_and_counters',
+    assertion_scope: 'Plays silence tactic; asserts target unit is silenced, counters cleared, and non-guard keywords stripped'
+  },
+  {
+    card_id: 'NEU-T-0044',
+    card_name: 'Focused Volley',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    assertion_scope: 'Plays 4-damage tactic; asserts lethal creature destruction and discard placement'
+  }
+];
+
+/**
+ * Detailed audit of cards present in test files but excluded from deep behavioral effect counts
+ * due to only testing deck building, generic 640 execution, comment references, or dummy positioning.
+ */
+export const EXCLUDED_TEST_CARDS_AUDIT = [
+  { card_id: 'EMB-C-0002', card_name: 'Cinderplate Sentinel', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'EMB-E-0008', card_name: 'Crucible of the First Flame', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'IRN-C-0001', card_name: 'Cogline Recruit', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'VER-C-0002', card_name: 'Thornback Defender', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'NEU-C-0001', card_name: 'Traveling Sellsword', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks and generic 640 execute test' },
+  { card_id: 'NEU-C-0002', card_name: 'Caravan Ironhide', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks and generic 640 execute test' },
+  { card_id: 'NEU-C-0004', card_name: 'Wandering Archivist', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'NEU-T-0006', card_name: 'Measured Strike', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'NEU-R-0007', card_name: 'Simple Wardstone', reason: 'Only present in test_deck_construction_rules_reject_illegal_decks (deck building rule check; no effect tested)' },
+  { card_id: 'TID-C-0003', card_name: 'Mistwake Dancer', reason: 'Only present in generic 640 execute test (reposition comment in loop)' },
+  { card_id: 'EMB-C-0003', card_name: 'Coalglass Artificer', reason: 'Only mentioned in code comment in test_keyword_swift_and_first_turn_attack_restriction (actual unit is mock TEST_SWIFT)' },
+  { card_id: 'EMB-C-0001', card_name: 'Ashborne Initiate', reason: 'Used as swift body to test opening turn attack prohibition and generic unit body; after_this_attacks heat ability is not tested' },
+  { card_id: 'VER-C-0001', card_name: 'Mossveil Tender', reason: 'Used only as passive rear target body in reach test; on_summon ability is not tested' },
+  { card_id: 'NEU-C-0003', card_name: 'Clocktower Lookout', reason: 'Used as reach attacker body to test positional reach rule; contains no ability effect AST (abilities: [])' },
+  { card_id: 'GRV-C-0001', card_name: 'Bonefield Wanderer', reason: 'Created via mock test helper create_custom_unit instead of executing catalogue card definition' }
+];
+
+export const CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS = new Set(
+  CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING.map(m => m.card_id)
+);
 
 // Backwards-compatibility export (empty set since 0 staged cards are in Rust test sources)
 export const DEEP_BEHAVIORAL_ASSERTED_CARD_IDS = new Set();
+
+/**
+ * Automated source validator that inspects Rust test files to verify that every mapped card
+ * actually appears in its assigned test function.
+ */
+export function validateTestProvenCardSources() {
+  const fileCache = new Map();
+  function getFileContent(filePath) {
+    if (fileCache.has(filePath)) return fileCache.get(filePath);
+    const absPath = path.resolve(ROOT, filePath);
+    if (fs.existsSync(absPath)) {
+      const content = fs.readFileSync(absPath, 'utf8');
+      fileCache.set(filePath, content);
+      return content;
+    }
+    try {
+      const content = execSync(`git show 8273cf8:${filePath}`, { encoding: 'utf8', cwd: ROOT });
+      fileCache.set(filePath, content);
+      return content;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const results = [];
+  for (const entry of CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING) {
+    const content = getFileContent(entry.test_file);
+    if (!content) {
+      results.push({ card_id: entry.card_id, verified: false, error: `File not found: ${entry.test_file}` });
+      continue;
+    }
+    const lines = content.split('\n');
+    let curFn = '';
+    let found = false;
+    let foundLine = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const fnMatch = lines[i].match(/fn\s+([a-zA-Z0-9_]+)\s*\(/);
+      if (fnMatch) curFn = fnMatch[1];
+      if (curFn === entry.test_function && lines[i].includes(entry.card_id)) {
+        found = true;
+        foundLine = i + 1;
+        break;
+      }
+    }
+    results.push({
+      card_id: entry.card_id,
+      card_name: entry.card_name,
+      test_file: entry.test_file,
+      test_function: entry.test_function,
+      assertion_scope: entry.assertion_scope,
+      verified: found,
+      source_line: foundLine
+    });
+  }
+
+  return {
+    verified_count: results.filter(r => r.verified).length,
+    total_mapped: CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+    all_verified: results.every(r => r.verified),
+    excluded_count: EXCLUDED_TEST_CARDS_AUDIT.length,
+    details: results
+  };
+}
 
 /**
  * Classifies a staged card relative to its canonical counterpart.
@@ -442,7 +621,10 @@ export function runReconciliation() {
       pr5_remaining_gaps: foundationsPR5Gaps,
       canonical_deep_behavioral_asserted_count: CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
       canonical_deep_assertion_pending_count: foundations.cards.length - CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
-      canonical_test_proven_cards: Array.from(CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS).sort()
+      canonical_test_proven_cards: Array.from(CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS).sort(),
+      canonical_test_proven_cards_mapping: CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING,
+      canonical_excluded_cards_audit: EXCLUDED_TEST_CARDS_AUDIT,
+      source_validation: validateTestProvenCardSources()
     },
     total_staged_cards_audited: reconciliationReport.length,
     classification_counts: classificationCounts,
