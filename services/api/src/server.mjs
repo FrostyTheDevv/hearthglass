@@ -395,12 +395,13 @@ function normalizeBattleCommand(cmd, defaultPlayer = 0) {
   }
 }
 
-export async function createServer({ dataDir = null, databaseUrl = process.env.DATABASE_URL } = {}) {
+export async function createServer({ dataDir = null, artDir = null, databaseUrl = process.env.DATABASE_URL } = {}) {
   const db = new HearthglassDatabase({ dataDir, databaseUrl });
   await db.init();
   const rustBridge = new RustBattleEngineBridge();
   const artPipeline = new ArtProductionPipeline({
     rootDir: ROOT,
+    workDir: artDir || (dataDir ? path.join(dataDir, 'art') : null),
     cards: bundleData.cards
   });
 
@@ -809,11 +810,10 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       // Static Card Artwork Assets (/assets/cards/*)
       if (req.method === 'GET' && pathname.startsWith('/assets/cards/')) {
         const fileName = path.basename(pathname.replace('/assets/cards/', ''));
-        const assetPath = path.join(
-          ROOT,
-          'apps/content-studio/public/assets/cards',
-          fileName
-        );
+        let assetPath = path.join(artPipeline.studioCardsDir, fileName);
+        if (!fs.existsSync(assetPath)) {
+          assetPath = path.join(ROOT, 'apps/content-studio/public/assets/cards', fileName);
+        }
         if (!fs.existsSync(assetPath)) {
           return sendJson(404, { error: `Card artwork asset not found: ${fileName}` });
         }
@@ -1423,7 +1423,8 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         const exported = artPipeline.exportBatchPrompts({
           faction: body.faction || null,
           missingOnly: Boolean(body.missing_only),
-          outputFilename: body.output_filename || body.outputFilename
+          outputFilename: body.output_filename || body.outputFilename,
+          outputDir: body.output_dir || null
         });
         return sendJson(200, exported);
       }
