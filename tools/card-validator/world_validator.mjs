@@ -9,7 +9,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { isRustCapabilityHandled, RUST_CAPABILITY_HANDLED_TARGETS } from './reconcile_cards.mjs';
+import { 
+  isRustCapabilityHandled, 
+  RUST_CAPABILITY_HANDLED_TARGETS,
+  CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING,
+  CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING,
+  EXCLUDED_TEST_CARDS_AUDIT
+} from './reconcile_cards.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -739,6 +745,27 @@ export function validateWorldContent(options = {}) {
     }
   }
 
+  // 12. Cross-validate Card Reconciliation Report (if present)
+  const reportPath = path.join(ROOT, 'content/staging/cards/card_reconciliation_report.json');
+  if (fs.existsSync(reportPath)) {
+    const reportData = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    const rAudit = reportData.foundations_640_audit;
+    if (rAudit) {
+      if (rAudit.canonical_deep_behavioral_asserted_count !== CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length) {
+        errors.push(`card_reconciliation_report.json mismatch: expected canonical_deep_behavioral_asserted_count ${CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length}, found ${rAudit.canonical_deep_behavioral_asserted_count}`);
+      }
+      if (rAudit.canonical_deep_assertion_pending_count !== (totalCards - CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length)) {
+        errors.push(`card_reconciliation_report.json mismatch: expected canonical_deep_assertion_pending_count ${totalCards - CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length}, found ${rAudit.canonical_deep_assertion_pending_count}`);
+      }
+      if (rAudit.canonical_partial_effect_asserted_count !== CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING.length) {
+        errors.push(`card_reconciliation_report.json mismatch: expected canonical_partial_effect_asserted_count ${CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING.length}, found ${rAudit.canonical_partial_effect_asserted_count}`);
+      }
+      if (rAudit.canonical_excluded_deck_and_generic_count !== EXCLUDED_TEST_CARDS_AUDIT.length) {
+        errors.push(`card_reconciliation_report.json mismatch: expected canonical_excluded_deck_and_generic_count ${EXCLUDED_TEST_CARDS_AUDIT.length}, found ${rAudit.canonical_excluded_deck_and_generic_count}`);
+      }
+    }
+  }
+
   const valid = errors.length === 0;
 
   const rustVerificationCounts = {
@@ -760,10 +787,10 @@ export function validateWorldContent(options = {}) {
     // Canonical 640 metrics under merged PR #5 (ca73a75 / 8273cf8)
     canonical_640_pr5_compatible: 640,
     canonical_640_pr5_gaps: 0,
-    canonical_640_deep_behavioral_asserted: 8,
-    canonical_640_deep_assertion_pending: 632,
-    canonical_partial_effect_asserted: 6,
-    canonical_excluded_deck_and_generic_tested: 15
+    canonical_640_deep_behavioral_asserted: CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+    canonical_640_deep_assertion_pending: totalCards - CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+    canonical_partial_effect_asserted: CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+    canonical_excluded_deck_and_generic_tested: EXCLUDED_TEST_CARDS_AUDIT.length
   };
 
   const summary = {

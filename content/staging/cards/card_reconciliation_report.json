@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5.0",
-  "audit_timestamp": "2026-11-20T14:59:41.294Z",
+  "audit_timestamp": "2026-11-20T15:07:39.997Z",
   "canonical_catalogue_file": "content/cards/foundations_v1.json",
   "staged_catalogue_file": "content/staging/cards/expansion_160_staging_catalogue.json",
   "audited_engine_revisions": {
