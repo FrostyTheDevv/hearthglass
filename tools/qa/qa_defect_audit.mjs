@@ -292,9 +292,10 @@ export function runFullQaAudit(options = {}) {
     findings.resolved_defects.push({
       id: 'DEFECT-003',
       severity: 'P1 - AI TACTICAL TUNING',
-      title: 'NpcAi::choose_command implements 4-tier difficulty heuristics',
+      title: 'NpcAi::choose_command implements 4-tier AiDifficulty heuristics',
+      subsystem: 'services/battle-server',
       status: 'RESOLVED (BEHAVIORALLY VERIFIED)',
-      remediation_owner: 'AI / Rules Lead'
+      remediation_owner: 'Rules / AI Lead (MAIN PR #5)'
     });
   }
 
