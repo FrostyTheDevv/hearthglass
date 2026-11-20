@@ -122,6 +122,24 @@ func _rebuild_visuals() -> void:
 				break
 
 	if not tex_loaded:
+		# Fall back to canonical faction illustration archetype
+		var prefix := cid.split("-")[0].to_lower()
+		var faction_candidate := "res://assets/cards/%s-c-0001.svg" % prefix
+		var f_abs := ProjectSettings.globalize_path(faction_candidate)
+		if FileAccess.file_exists(f_abs):
+			var f_img := Image.new()
+			if f_img.load(f_abs) == OK:
+				var f_tex := ImageTexture.create_from_image(f_img)
+				var f_rect := TextureRect.new()
+				f_rect.name = "ArtTextureRect"
+				f_rect.texture = f_tex
+				f_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+				f_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+				f_rect.custom_minimum_size = Vector2(168, 92)
+				art_holder.add_child(f_rect)
+				tex_loaded = true
+
+	if not tex_loaded:
 		var fallback_lbl := Label.new()
 		fallback_lbl.text = "[%s]\n%s" % [
 			faction.replace("_", " ").to_upper(),

@@ -81,6 +81,20 @@ func _run_all_tests() -> void:
 		_fail_exit("Test 6 Failed: World-to-Battle Transition")
 		return
 
+	total_tests += 1
+	if _test_main_menu_and_hero_selection():
+		passed_count += 1
+	else:
+		_fail_exit("Test 7 Failed: Main Menu & Hero Selection")
+		return
+
+	total_tests += 1
+	if _test_interiors_and_quest_journal():
+		passed_count += 1
+	else:
+		_fail_exit("Test 8 Failed: Interiors & Quest Journal Systems")
+		return
+
 	print("----------------------------------------------------------------------")
 	print("   ALL GODOT ENGINE SMOKE TESTS PASSED: %d / %d OK" % [passed_count, total_tests])
 	print("======================================================================")
@@ -370,4 +384,94 @@ func _test_world_to_battle_transition() -> bool:
 		return false
 
 	print("  [OK] World-to-Battle transitions and save/reload persistence verified.")
+	return true
+
+func _test_main_menu_and_hero_selection() -> bool:
+	print("\n[SMOKE TEST 7] Instantiating and validating Main Menu & Hero Selection...")
+	var scene_res := load("res://scenes/ui/main_menu.tscn")
+	if not scene_res:
+		printerr("Failed to load res://scenes/ui/main_menu.tscn")
+		return false
+
+	var menu_instance = scene_res.instantiate()
+	if not menu_instance:
+		printerr("Failed to instantiate main_menu.tscn")
+		return false
+
+	root.add_child(menu_instance)
+
+	var roster: Array = menu_instance.HERO_ROSTER
+	print("  -> Found %d playable duelists in hero roster" % [roster.size()])
+	if roster.size() != 4:
+		printerr("Expected 4 playable heroes, got: ", roster.size())
+		menu_instance.queue_free()
+		return false
+
+	# Test Hero Selection
+	menu_instance._select_hero(1) # Lyra of the Glass
+	print("  -> Selected Hero: '%s' with starting deck '%s'" % [game_state.player_name, game_state.active_deck_id])
+	if game_state.player_name != "Lyra of the Glass" or game_state.active_deck_id != "deck_glass_nocturne_mirage":
+		printerr("Hero selection failed to update GameState!")
+		menu_instance.queue_free()
+		return false
+
+	# Reset to Aerin Vanguard
+	menu_instance._select_hero(0)
+	print("  -> Reset to Default Hero: '%s'" % [game_state.player_name])
+
+	menu_instance.queue_free()
+	print("  [OK] Main Menu & Hero Selection validated successfully.")
+	return true
+
+func _test_interiors_and_quest_journal() -> bool:
+	print("\n[SMOKE TEST 8] Testing Enterable Interiors and Quest Journal Systems in Lumenport...")
+	var scene_res := load("res://scenes/world/lumenport_hub.tscn")
+	if not scene_res:
+		printerr("Failed to load res://scenes/world/lumenport_hub.tscn")
+		return false
+
+	var hub_instance = scene_res.instantiate()
+	root.add_child(hub_instance)
+
+	# 1. Interior Portals Check
+	var portals: Array = hub_instance.get("interior_markers")
+	print("  -> Registered %d enterable interior portals (Target: 6)" % [portals.size()])
+	if portals.size() != 6:
+		printerr("Expected 6 interior portals, got: ", portals.size())
+		hub_instance.queue_free()
+		return false
+
+	# 2. Enter Interior Simulation
+	hub_instance._enter_interior("interior_harbor_cafe", "The Salty Seagull Harbor Cafe")
+	if not hub_instance.get("is_inside_interior"):
+		printerr("Failed to enter interior!")
+		hub_instance.queue_free()
+		return false
+	print("  -> Entered Interior: %s (is_inside_interior=true)" % [hub_instance.get("current_interior_id")])
+
+	# 3. Exit Interior Simulation
+	hub_instance._exit_interior()
+	if hub_instance.get("is_inside_interior"):
+		printerr("Failed to exit interior!")
+		hub_instance.queue_free()
+		return false
+	print("  -> Exited Interior: Returned to exterior streets (is_inside_interior=false)")
+
+	# 4. Quest Journal Toggle
+	hub_instance.toggle_quest_journal()
+	if not hub_instance.quest_journal_modal.visible:
+		printerr("Quest journal modal failed to open!")
+		hub_instance.queue_free()
+		return false
+
+	var q_count: int = hub_instance.quest_list_container.get_child_count()
+	print("  -> Quest Journal populated with %d Act I quests (Target: 8)" % [q_count])
+	if q_count != 8:
+		printerr("Expected 8 Act I quests in journal, got: ", q_count)
+		hub_instance.queue_free()
+		return false
+
+	hub_instance.toggle_quest_journal()
+	hub_instance.queue_free()
+	print("  [OK] Interiors and Quest Journal systems verified.")
 	return true

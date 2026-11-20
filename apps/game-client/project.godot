@@ -13,7 +13,7 @@ config_version=5
 config/name="Hearthglass — Convergence Duels"
 config/description="Original Isometric Open-World Card-Battling RPG"
 config/version="0.1.0"
-run/main_scene="res://scenes/world/lumenport_hub.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
