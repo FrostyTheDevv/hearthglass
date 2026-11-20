@@ -657,6 +657,28 @@
                 <select id="artProviderSelect" class="input-box"></select>
                 <button class="btn-primary" id="btnGenerateFactionArt">Generate Current Faction Filter</button>
                 <button class="btn-secondary" id="btnExportBatchJsonl">Export 320 Batch JSONL</button>
+                <button class="btn-secondary" id="btnToggleProvidersPanel">Providers &amp; GPU Workers</button>
+                <button class="btn-secondary" id="btnViewFactionSheet">Faction Style Guide</button>
+              </div>
+            </div>
+
+            <!-- Provider & Remote GPU Worker Dashboard Panel -->
+            <div id="providersPanel" style="display:none;margin-top:10px;padding:10px;background:#060d1b;border:1px solid rgba(243,198,105,0.3);border-radius:6px;font-size:0.75rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <strong style="color:var(--accent-gold);">IMAGE GENERATION PROVIDERS &amp; REMOTE GPU WORKER NODES</strong>
+                <button class="btn-secondary" style="padding:2px 6px;font-size:0.7rem;" onclick="document.getElementById('providersPanel').style.display='none'">✕ Close</button>
+              </div>
+              <div id="providersTableContainer">Loading provider statuses...</div>
+            </div>
+
+            <!-- Faction Reference Sheet Modal Container -->
+            <div id="factionSheetModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;padding:24px;overflow-y:auto;">
+              <div style="max-width:850px;margin:30px auto;background:#0d1628;border:1px solid var(--accent-gold);border-radius:8px;padding:20px;box-shadow:0 0 30px rgba(0,0,0,0.9);">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid rgba(243,198,105,0.3);padding-bottom:8px;">
+                  <h2 style="color:var(--accent-gold);font-size:1.1rem;margin:0;">HEARTHGLASS FACTION REFERENCE SHEETS &amp; VISUAL DIRECTIVES</h2>
+                  <button class="btn-secondary" onclick="document.getElementById('factionSheetModal').style.display='none'">✕ Close</button>
+                </div>
+                <div id="factionSheetContent" style="font-size:0.8rem;line-height:1.5;"></div>
               </div>
             </div>
 
@@ -1299,16 +1321,105 @@
       state.artStatus = status;
       document.getElementById('hudArtCount').textContent = status.counts.integrated_into_game;
       document.getElementById('artStatusSummaryLine').innerHTML =
-        `Total Cards: <strong>${status.total_cards}</strong> • Briefs Ready: <strong>${status.counts.brief_ready}</strong> • Awaiting Review: <strong>${status.counts.review_required}</strong> • Approved &amp; Exported to Godot: <strong style="color:var(--success);">${status.counts.integrated_into_game}</strong> • Budget Remaining: <strong>$${status.budget.remaining_usd}</strong>`;
+        `Total Cards: <strong>${status.total_cards}</strong> • Briefs Ready: <strong>${status.counts.brief_ready}</strong> • Awaiting Review: <strong>${status.counts.review_required}</strong> • Revisions Requested: <strong>${status.counts.revisions_requested || 0}</strong> • Production Approved: <strong style="color:var(--success);">${status.counts.final_production_artwork_approved || 0}</strong> • Integrated in Godot: <strong>${status.counts.integrated_into_game}</strong> • Budget Remaining: <strong>$${status.budget.remaining_usd}</strong>`;
 
       const provSel = document.getElementById('artProviderSelect');
       if (provSel.options.length === 0 && status.providers) {
         provSel.innerHTML = status.providers.map(p =>
-          `<option value="${p.id}">${p.name} (${p.configured ? 'READY' : 'ENV KEY NEEDED'} • $${p.cost_per_image_usd}/img)</option>`
+          `<option value="${p.id}">${p.name} (${p.configured ? 'READY' : 'KEY NEEDED'} • $${p.cost_per_image_usd}/img)</option>`
         ).join('');
         provSel.value = 'studio_stylized_svg';
       }
+      renderProvidersTable(status.providers || []);
     }
+
+    function renderProvidersTable(providers) {
+      const container = document.getElementById('providersTableContainer');
+      if (!container) return;
+      container.innerHTML = `
+        <table style="width:100%;border-collapse:collapse;font-size:0.72rem;color:var(--text-light);margin-top:4px;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(243,198,105,0.3);text-align:left;">
+              <th style="padding:4px;">Provider Name</th>
+              <th style="padding:4px;">Type / Model</th>
+              <th style="padding:4px;">Adapter Mode</th>
+              <th style="padding:4px;">Cost/Img</th>
+              <th style="padding:4px;">Status Note</th>
+              <th style="padding:4px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${providers.map(p => {
+              const modeColor = p.adapter_mode === 'live_tested' ? 'var(--success)'
+                : p.adapter_mode === 'mock_tested' ? 'var(--accent-cyan)'
+                : p.adapter_mode === 'built_in' ? 'var(--accent-gold)'
+                : 'var(--danger)';
+              return `
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                  <td style="padding:4px;"><strong>${p.name}</strong></td>
+                  <td style="padding:4px;color:var(--text-muted);">${p.provider_type} • <code>${p.model_id}</code></td>
+                  <td style="padding:4px;"><span style="color:${modeColor};font-weight:700;">[${(p.adapter_mode || 'unconfigured').toUpperCase()}]</span></td>
+                  <td style="padding:4px;">$${p.cost_per_image_usd}</td>
+                  <td style="padding:4px;color:var(--text-muted);">${p.status_note}</td>
+                  <td style="padding:4px;">
+                    <button class="btn-secondary" style="padding:2px 6px;font-size:0.68rem;" onclick="testProviderMockContract('${p.id}')">Test Mock Contract</button>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    window.testProviderMockContract = async (providerId) => {
+      const res = await fetch('/v1/art/test-adapter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ provider_id: providerId, mock_only: true })
+      }).then(r => r.json());
+      if (res.result) {
+        alert(`Adapter ${providerId} mock verification passed!\nNotes: ${res.result.notes}`);
+      } else {
+        alert(`Adapter test failed: ${res.error || 'Unknown error'}`);
+      }
+      await refreshArtStatus();
+    };
+
+    document.getElementById('btnToggleProvidersPanel')?.addEventListener('click', () => {
+      const p = document.getElementById('providersPanel');
+      p.style.display = p.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('btnViewFactionSheet')?.addEventListener('click', async () => {
+      const data = await fetch('/v1/art/factions').then(r => r.json());
+      const factions = data.factions || {};
+      const modal = document.getElementById('factionSheetModal');
+      const content = document.getElementById('factionSheetContent');
+      content.innerHTML = Object.entries(factions).map(([fKey, f]) => {
+        const pal = f.color_palette || {};
+        return `
+          <div style="margin-bottom:16px;background:#091222;border:1px solid rgba(243,198,105,0.25);border-radius:6px;padding:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <strong style="color:var(--accent-gold);font-size:0.95rem;">${f.name.toUpperCase()}</strong>
+              <span style="font-size:0.72rem;color:var(--accent-cyan);">${f.philosophy}</span>
+            </div>
+            <div style="display:flex;gap:6px;margin:8px 0;">
+              ${Object.entries(pal).map(([k, hex]) => `
+                <div style="display:flex;flex-direction:column;align-items:center;font-size:0.65rem;">
+                  <div style="width:28px;height:18px;background:${hex};border-radius:3px;border:1px solid #fff;"></div>
+                  <span style="color:var(--text-muted);margin-top:2px;">${k}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div style="margin-top:4px;"><strong>Materials:</strong> ${Array.isArray(f.materials) ? f.materials.join('; ') : ''}</div>
+            <div style="margin-top:4px;"><strong>Lighting:</strong> ${f.lighting_style}</div>
+            <div style="margin-top:4px;font-style:italic;color:var(--accent-gold);">"${f.prompt_prefix}"</div>
+          </div>
+        `;
+      }).join('');
+      modal.style.display = 'block';
+    });
 
     function renderArtStudioView() {
       refreshArtStatus();
@@ -1360,22 +1471,74 @@
       const rec = detail.art_record;
       const iden = card.identity || {};
 
+      const versionHistoryHtml = (rec.version_history || []).length > 0
+        ? `
+          <div style="background:#060d1a;border:1px solid rgba(243,198,105,0.25);border-radius:6px;padding:8px;margin-top:8px;">
+            <strong style="font-size:0.75rem;color:var(--accent-gold);">PRODUCTION ASSET VERSION HISTORY:</strong>
+            <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px;">
+              ${rec.version_history.map(v => `
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;background:rgba(255,255,255,0.04);padding:4px 6px;border-radius:4px;">
+                  <span><strong>v${v.version}</strong> • ${v.art_tier} • ${v.file_type.toUpperCase()} • <code>${(v.asset_hash || '').slice(0, 8)}</code></span>
+                  <div style="display:flex;gap:4px;align-items:center;">
+                    <span style="color:var(--text-muted);">${v.approved_by}</span>
+                    <button class="btn-secondary" style="padding:1px 5px;font-size:0.65rem;" onclick="rollbackCardVersion('${card.id}', ${v.version})">Rollback</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `
+        : '';
+
       const candidatesHtml = (rec.candidates || []).length > 0
-        ? rec.candidates.map(cand => `
-            <div style="background:#081020;border:1px solid ${cand.approved ? 'var(--success)' : 'rgba(255,255,255,0.15)'};border-radius:6px;padding:8px;display:flex;gap:10px;align-items:center;">
-              <img src="${cand.web_preview_url}" style="width:64px;height:84px;object-fit:cover;border-radius:4px;border:1px solid var(--border-gold);" />
-              <div style="flex:1;font-size:0.73rem;">
-                <div><strong>${cand.candidate_id}</strong> (${cand.provider_id})</div>
-                <div style="color:var(--text-muted);">768x1024 • No baked text: ✓</div>
-                <div style="display:flex;gap:6px;margin-top:5px;">
-                  <button class="btn-primary" style="padding:3px 8px;font-size:0.7rem;" onclick="approveCardCandidate('${card.id}', '${cand.candidate_id}')">
-                    ${cand.approved ? '✓ Approved in Godot' : 'Approve & Export to Godot'}
-                  </button>
-                  <button class="btn-secondary" style="padding:3px 8px;font-size:0.7rem;" onclick="rejectCardCandidate('${card.id}', '${cand.candidate_id}')">Reject</button>
+        ? rec.candidates.map(cand => {
+            const isRaster = cand.art_tier === 'final_production_illustration' || cand.file_type !== 'svg';
+            const tierBadge = isRaster
+              ? '<span style="color:var(--success);font-weight:700;">[🎨 PRODUCTION RASTER ILLUSTRATION]</span>'
+              : '<span style="color:var(--accent-gold);font-weight:700;">[📐 VECTOR CONCEPT PROTOTYPE]</span>';
+            const statusBadge = cand.final_production_approved
+              ? '<span style="color:var(--success);">★ Production Approved</span>'
+              : cand.concept_approved
+              ? '<span style="color:var(--accent-cyan);">✓ Concept Approved</span>'
+              : '<span style="color:var(--text-muted);">Awaiting Review</span>';
+
+            return `
+              <div style="background:#081020;border:1px solid ${cand.approved ? 'var(--success)' : 'rgba(255,255,255,0.15)'};border-radius:6px;padding:8px;display:flex;gap:10px;align-items:flex-start;">
+                <img src="${cand.web_preview_url}" style="width:72px;height:96px;object-fit:cover;border-radius:4px;border:1px solid var(--border-gold);" />
+                <div style="flex:1;font-size:0.73rem;">
+                  <div>${tierBadge}</div>
+                  <div><strong>${cand.candidate_id}</strong> (${cand.provider_id} • ${(cand.file_type || '').toUpperCase()})</div>
+                  <div style="color:var(--text-muted);">Status: ${statusBadge} • 768x1024 • No baked text: ✓</div>
+                  <div style="color:var(--text-muted);font-size:0.68rem;">Hash: <code>${(cand.asset_hash || '').slice(0, 12)}...</code></div>
+
+                  <!-- Visual Review Quality Checklist -->
+                  <div style="margin:6px 0;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-weight:700;color:var(--accent-gold);margin-bottom:3px;">Art Director Quality Gate:</div>
+                    <label style="display:flex;gap:4px;align-items:center;font-size:0.68rem;">
+                      <input type="checkbox" id="chkReview_${cand.candidate_id}" checked /> Aspect ratio 3:4 &amp; No baked stats/frames
+                    </label>
+                    <label style="display:flex;gap:4px;align-items:center;font-size:0.68rem;margin-top:2px;">
+                      <input type="checkbox" id="chkPalette_${cand.candidate_id}" checked /> Faction silhouette &amp; palette consistency confirmed
+                    </label>
+                  </div>
+
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;">
+                    ${isRaster ? `
+                      <button class="btn-primary" style="padding:3px 8px;font-size:0.7rem;" onclick="approveCardCandidate('${card.id}', '${cand.candidate_id}', 'production')">
+                        ${cand.final_production_approved ? '✓ Approved in Godot' : 'Approve for Production'}
+                      </button>
+                    ` : `
+                      <button class="btn-primary" style="padding:3px 8px;font-size:0.7rem;" onclick="approveCardCandidate('${card.id}', '${cand.candidate_id}', 'concept')">
+                        ${cand.concept_approved ? '✓ Approved as Concept' : 'Approve as Concept'}
+                      </button>
+                    `}
+                    <button class="btn-secondary" style="padding:3px 8px;font-size:0.7rem;" onclick="requestCardRevisions('${card.id}', '${cand.candidate_id}')">Request Revisions</button>
+                    <button class="btn-secondary" style="padding:3px 8px;font-size:0.7rem;" onclick="rejectCardCandidate('${card.id}', '${cand.candidate_id}')">Reject</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          `).join('')
+            `;
+          }).join('')
         : `<div style="color:var(--text-muted);font-size:0.75rem;">No candidate images generated yet. Click "Generate Illustration" below.</div>`;
 
       document.getElementById('artWorkbenchContainer').innerHTML = `
@@ -1384,7 +1547,9 @@
           <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
             <strong style="color:var(--accent-gold);font-size:0.95rem;">${card.name} (${card.id})</strong>
             <span style="font-size:0.74rem;color:var(--accent-cyan);">Status: <strong>${rec.status.toUpperCase()}</strong></span>
+            <span style="font-size:0.72rem;color:var(--text-muted);">Tier: <strong>${rec.art_tier}</strong></span>
             <span style="font-size:0.72rem;color:var(--text-muted);">Godot Path: ${rec.exported_godot_path || 'Pending Approval'}</span>
+            ${rec.revision_notes ? `<div style="font-size:0.72rem;color:var(--danger);background:rgba(225,29,72,0.1);padding:4px;border-radius:4px;"><strong>Revisions Requested:</strong> ${rec.revision_notes}</div>` : ''}
             <div style="font-size:0.74rem;margin-top:4px;"><strong>Biography:</strong> ${iden.collection_biography || card.lore}</div>
             <div style="font-size:0.72rem;color:#a5b8d8;"><strong>Origin:</strong> ${iden.origin || ''}</div>
           </div>
@@ -1393,12 +1558,23 @@
         <div>
           <label style="font-size:0.74rem;color:var(--accent-gold);font-weight:700;">COMPILED AI ART GENERATION PROMPT (NO BAKED STATS):</label>
           <textarea id="workbenchPromptInput" class="input-box" rows="4" style="width:100%;margin-top:4px;">${rec.custom_prompt || card.art?.prompt || ''}</textarea>
-          <div style="display:flex;gap:6px;margin-top:6px;">
+          <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
             <button class="btn-secondary" onclick="saveCustomPrompt('${card.id}')">Save Prompt</button>
             <button class="btn-primary" onclick="generateCardArtwork('${card.id}', 1)">Generate Illustration</button>
             <button class="btn-secondary" onclick="generateCardArtwork('${card.id}', 2)">+2 Variants</button>
           </div>
         </div>
+
+        <!-- Direct Artist Raster Illustration Upload -->
+        <div style="background:#091426;border:1px dashed rgba(243,198,105,0.4);border-radius:6px;padding:8px;">
+          <strong style="font-size:0.75rem;color:var(--accent-gold);">UPLOAD FINISHED ARTIST RASTER ILLUSTRATION (PNG/WEBP/JPEG):</strong>
+          <div style="display:flex;gap:6px;align-items:center;margin-top:4px;">
+            <input type="file" id="workbenchUploadInput" accept=".png,.webp,.jpg,.jpeg" style="font-size:0.72rem;flex:1;" />
+            <button class="btn-primary" style="padding:3px 8px;font-size:0.7rem;" onclick="uploadSelectedCardRaster('${card.id}')">Upload Candidate</button>
+          </div>
+        </div>
+
+        ${versionHistoryHtml}
 
         <div>
           <strong style="font-size:0.76rem;color:var(--accent-gold);">CANDIDATE GENERATIONS &amp; GODOT EXPORT:</strong>
@@ -1419,7 +1595,7 @@
 
     window.generateCardArtwork = async (cardId, variantCount = 1) => {
       const providerId = document.getElementById('artProviderSelect').value || 'studio_stylized_svg';
-      await fetch('/v1/art/generate', {
+      const res = await fetch('/v1/art/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1427,23 +1603,101 @@
           provider_id: providerId,
           variant_count: variantCount
         })
-      });
+      }).then(r => r.json());
+      if (res.job && res.job.status === 'awaiting_provider_credentials') {
+        alert(`Operational Workflow Notice:\n${res.job.error}\n\nConfigure the required environment variable or use studio_stylized_svg / manual_upload.`);
+      }
       await selectStudioCard(cardId);
       await refreshArtStatus();
     };
 
-    window.approveCardCandidate = async (cardId, candidateId) => {
+    window.approveCardCandidate = async (cardId, candidateId, approvalType = 'production') => {
+      const chkReview = document.getElementById(`chkReview_${candidateId}`);
+      const chkPalette = document.getElementById(`chkPalette_${candidateId}`);
+      const reviewPassed = chkReview ? chkReview.checked : true;
+      const paletteConfirmed = chkPalette ? chkPalette.checked : true;
+
       const res = await fetch('/v1/art/approve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ card_id: cardId, candidate_id: candidateId })
+        body: JSON.stringify({
+          card_id: cardId,
+          candidate_id: candidateId,
+          approval_type: approvalType,
+          visual_review_passed: reviewPassed,
+          visual_quality_confirmed: paletteConfirmed,
+          allow_overwrite: true,
+          notes: 'Approved via Hearthglass Content Studio Quality Gate'
+        })
       }).then(r => r.json());
+
+      if (res.error) {
+        alert(`Approval rejected:\n${res.error}`);
+        return;
+      }
       if (res.art_record && state.cardsById[cardId]) {
         state.cardsById[cardId].art.art_status = res.art_record.status;
         state.cardsById[cardId].art.web_asset_url = res.art_record.exported_web_url;
       }
       await selectStudioCard(cardId);
       renderArtStudioView();
+    };
+
+    window.requestCardRevisions = async (cardId, candidateId) => {
+      const notes = prompt('Enter visual revision feedback for art director/artist:', 'Adjust lighting contrast and refine creature silhouette');
+      if (!notes) return;
+      await fetch('/v1/art/revisions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, candidate_id: candidateId, notes })
+      });
+      await selectStudioCard(cardId);
+      await refreshArtStatus();
+    };
+
+    window.rollbackCardVersion = async (cardId, version) => {
+      if (!confirm(`Rollback ${cardId} to production version ${version}?`)) return;
+      const res = await fetch('/v1/art/rollback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card_id: cardId, target_version: version })
+      }).then(r => r.json());
+      if (res.error) {
+        alert(`Rollback failed:\n${res.error}`);
+        return;
+      }
+      await selectStudioCard(cardId);
+      renderArtStudioView();
+    };
+
+    window.uploadSelectedCardRaster = async (cardId) => {
+      const fileInput = document.getElementById('workbenchUploadInput');
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        alert('Please choose a PNG, WebP, or JPEG image file first.');
+        return;
+      }
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64Data = reader.result.split(',')[1];
+        const res = await fetch('/v1/art/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            card_id: cardId,
+            filename: file.name,
+            base64_data: base64Data,
+            note: 'Manual artist upload via workbench'
+          })
+        }).then(r => r.json());
+        if (res.error) {
+          alert(`Upload error:\n${res.error}`);
+          return;
+        }
+        await selectStudioCard(cardId);
+        await refreshArtStatus();
+      };
+      reader.readAsDataURL(file);
     };
 
     window.rejectCardCandidate = async (cardId, candidateId) => {
@@ -1459,7 +1713,7 @@
     document.getElementById('btnGenerateFactionArt').addEventListener('click', async () => {
       const faction = state.filterFaction === 'all' ? 'emberclad' : state.filterFaction;
       const providerId = document.getElementById('artProviderSelect').value || 'studio_stylized_svg';
-      await fetch('/v1/art/generate', {
+      const res = await fetch('/v1/art/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1467,7 +1721,10 @@
           provider_id: providerId,
           variant_count: 1
         })
-      });
+      }).then(r => r.json());
+      if (res.job && res.job.status === 'awaiting_provider_credentials') {
+        alert(`Operational Workflow Notice:\n${res.job.error}`);
+      }
       await selectStudioCard(state.selectedStudioCardId);
       renderArtStudioView();
     });

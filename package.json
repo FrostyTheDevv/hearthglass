@@ -11,12 +11,12 @@
     "test:api": "node --test services/api/tests/api.test.mjs",
     "test:cards": "node tools/card-validator/validate.mjs",
     "test:security": "node --test services/api/tests/security_auth.test.mjs services/api/tests/economy_security.test.mjs",
-    "test:art": "node --test services/api/tests/art_pipeline_raster.test.mjs",
+    "test:art": "node --test services/api/tests/art_pipeline_raster.test.mjs services/api/tests/art_pipeline_adapters.test.mjs",
+    "test": "node tools/card-validator/validate.mjs && node --test services/api/tests/art_pipeline_raster.test.mjs services/api/tests/art_pipeline_adapters.test.mjs services/api/tests/security_auth.test.mjs services/api/tests/economy_security.test.mjs services/api/tests/api.test.mjs",
     "qa:gate": "node tools/qa/qa_defect_audit.mjs",
     "qa:gate:ci": "node tools/qa/qa_defect_audit.mjs --ci",
     "qa:gate:diagnostic": "node tools/qa/qa_defect_audit.mjs --diagnostic-only",
-    "test:qa": "node --test services/api/tests/qa_concurrency_and_replay.test.mjs services/api/tests/qa_release_gate.test.mjs",
-    "test": "node tools/card-validator/validate.mjs && node --test services/api/tests/art_pipeline_raster.test.mjs services/api/tests/security_auth.test.mjs services/api/tests/economy_security.test.mjs services/api/tests/api.test.mjs"
+    "test:qa": "node --test services/api/tests/qa_concurrency_and_replay.test.mjs services/api/tests/qa_release_gate.test.mjs"
   },
   "engines": {
     "node": ">=20.0.0"

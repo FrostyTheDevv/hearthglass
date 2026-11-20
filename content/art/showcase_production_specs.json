@@ -1,0 +1,218 @@
+{
+  "$schema": "hearthglass_showcase_production_specs_v1",
+  "milestone": "first_target_8_signature_illustrations",
+  "style_guide_id": "hearthglass_stylized_handpainted_v1",
+  "resolution": "768x1024",
+  "aspect_ratio": "3:4",
+  "total_showcase_cards": 8,
+  "cards": [
+    {
+      "card_id": "EMB-C-0001",
+      "name": "Ashborne Initiate",
+      "faction": "emberclad",
+      "type": "creature",
+      "role": "vanguard",
+      "canonical_stats": { "cost": 1, "attack": 2, "health": 2 },
+      "abilities_and_mechanics": "Swift. Heat Counter mechanic: after attacking, gains Heat counters (+1 Attack per Heat, takes self-damage at >= 3 Heat).",
+      "lore": "Every apprentice of the Cinder Anvil learns to strike while their gauntlets still glow white-hot.",
+      "visual_specification": {
+        "subject": "A determined young Emberclad martial apprentice lunging forward in a dynamic vanguard combat stance, wearing heavy sculpted volcanic obsidian gauntlets and blackened iron armguards that glow white-hot at the knuckles with molten heat cracks.",
+        "creature_character_details": "Athletic silhouette, soot-streaked face with amber-orange fiery eyes, dark crimson tunic with hammered brass buckles, heat haze rising off skin.",
+        "environment": "The subterranean volcanic Cinder Anvil forge, glowing rivers of magma cascading down basalt stone steps, floating embers and smoldering soot motes in the air.",
+        "abilities_depicted": "Intense thermal kinetic energy radiating from the clenched fists, orange-white flame arc tracing the swift strike motion.",
+        "camera_and_lighting": "Dynamic low-angle heroic framing, intense under-lighting from bubbling lava below, high-contrast rim lighting from the molten gauntlets, deep charcoal shadows."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Emberclad faction, Ashborne Initiate vanguard creature. A determined volcanic apprentice warrior lunging forward in combat stance, heavy sculpted obsidian and blackened iron gauntlets glowing white-hot with molten heat cracks, orange-white flame arc tracing movement. Subterranean Cinder Anvil forge with lava cascades, basalt steps, floating fiery embers. Dramatic low-angle heroic lighting, rich painterly textures, deep crimson shadows, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, 3d render plastic sheen",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Ashborne Initiate",
+        "Emberclad volcanic color palette strictly adhered to (#ff5d2e, #ffb347, #120709)",
+        "Obsidian gauntlets glow white-hot indicating Heat counter mechanic",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "VER-C-0001",
+      "name": "Mossveil Tender",
+      "faction": "verdant_pact",
+      "type": "creature",
+      "role": "support",
+      "canonical_stats": { "cost": 1, "attack": 1, "health": 3 },
+      "abilities_and_mechanics": "On Summon: Grant an allied creature 1 Growth counter (+1/+1) and restore 1 Vitality to your Leader.",
+      "lore": "She coaxes dormant Echo seeds out of cracked cobblestone and rusted battle armor alike.",
+      "visual_specification": {
+        "subject": "A serene, mystical Verdant Pact druid tender kneeling gracefully upon an ancient stone pedestal, gently cupping both hands as a cluster of glowing emerald Echo seeds bursts into verdant life.",
+        "creature_character_details": "Slender woodland elf or dryad silhouette, woven living ironwood bark mantle, hair adorned with flowering white moss and miniature fungi, gentle focused expression.",
+        "environment": "Deep ancient sacred grove of the Verdant Pact, massive moss-covered elder tree roots, soft morning fog rolling between ferns, petrified cobblestones with sprouting clover.",
+        "abilities_depicted": "Swirling spiral of luminous emerald spores and tendrils of healing life-energy rising from her fingertips, depicting the Growth and Vitality restoration abilities.",
+        "camera_and_lighting": "Eye-level intimate focal composition, dappled golden-green canopy sunlight filtering through leaves, radiant emerald bioluminescent glow illuminating her face and hands."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Verdant Pact faction, Mossveil Tender support creature. A serene woodland druid maiden kneeling in an ancient sacred grove, cupping glowing emerald Echo seeds bursting into life. Living ironwood bark mantle, moss and small fungi in hair, swirling luminous emerald spores and vines. Massive mossy tree roots, soft morning fog, dappled golden-green canopy sunlight, lush painterly brushwork, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, mechanical objects",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Mossveil Tender",
+        "Verdant Pact primordial woodland palette strictly adhered to (#37d67a, #9be564, #07140f)",
+        "Sprouting Echo seeds and healing spores clearly convey Growth/Vitality mechanics",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "IRN-C-0001",
+      "name": "Cogline Recruit",
+      "faction": "iron_choir",
+      "type": "creature",
+      "role": "vanguard",
+      "canonical_stats": { "cost": 1, "attack": 1, "health": 3 },
+      "abilities_and_mechanics": "Shield (1). Assembly counter (+1 Attack when controlling a Relic or another Construct).",
+      "lore": "Mass-cast in the Third Foundry, each unit marches in flawless three-four cadence.",
+      "visual_specification": {
+        "subject": "A disciplined Iron Choir clockwork construct infantryman standing at attention with unwavering military precision, holding a tower shield formed of interlocking brass gears and a riveted spear.",
+        "creature_character_details": "Segmented polished ecclesiastical brass plate armor, porcelain choir faceplate with glowing blue optical slits, visible pneumatic glass cylinders with churning cyan aether, brass gear halo.",
+        "environment": "The Third Foundry of the Iron Choir, grand cathedral factory with soaring vaulted ceilings, rhythmic steam pistons, massive interlocking floor gears, and stained-glass rose windows.",
+        "abilities_depicted": "A translucent hexagonal cyan aether barrier shimmering in front of its shield (Shield 1), and glowing internal mechanical gear engagement (Assembly counter).",
+        "camera_and_lighting": "Strictly symmetrical ground-level vanguard framing, cold cathedral shaft lighting intersecting with radiant warm brass reflections and electric cyan aether discharges."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Iron Choir faction, Cogline Recruit vanguard creature. A disciplined clockwork infantry construct standing at attention with brass tower shield and spear, porcelain choir faceplate with glowing blue eyes, visible churning cyan aether tubes. Industrial cathedral Third Foundry, massive vaulted gear-train ceiling, steam vents, stained-glass windows. Hexagonal cyan aether shield barrier. Symmetrical majestic lighting, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, organic gore, messy anatomy",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Cogline Recruit",
+        "Iron Choir clockwork ecclesiastical palette strictly adhered to (#d4a359, #4de1ff, #0b101a)",
+        "Interlocking gear shield and cyan aether tubes clearly convey Shield and Assembly mechanics",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "TID-C-0001",
+      "name": "Reefstep Scout",
+      "faction": "tidebound",
+      "type": "creature",
+      "role": "vanguard",
+      "canonical_stats": { "cost": 1, "attack": 2, "health": 2 },
+      "abilities_and_mechanics": "Skirmish. Current: When changing lanes or summoned into an unoccupied lane, gain +1/+1.",
+      "lore": "He reads the undertow of the arena tiles as easily as coastal currents.",
+      "visual_specification": {
+        "subject": "An agile Tidebound coastal scout leaping effortlessly across wet, wave-battered coral reef rocks, balancing with spear in hand as a cresting sea wave crashes around him.",
+        "creature_character_details": "Athletic, lithe swimmer build, scaled cerulean and pearl chitin armor, flowing sea-glass fin accents along forearms, coral-carved scouting spyglass at his hip, keen ocean-blue eyes.",
+        "environment": "Stormy ocean shoreline at twilight, bioluminescent tidepools with glowing cyan anemones, sharp coral shoals, turquoise surf churning into white sea foam.",
+        "abilities_depicted": "Swirling ribbons of water and luminous aquatic currents curling around his boots as he shifts momentum (depicting the Skirmish and Current lane-shifting abilities).",
+        "camera_and_lighting": "Dynamic diagonal three-quarter action shot, underwater caustic light ripples bouncing off his iridescent armor, moody twilight sky with glowing cyan surf rim light."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Tidebound faction, Reefstep Scout vanguard creature. An agile aquatic coastal scout leaping across wet coral reef rocks with coral spear, iridescent pearl and cerulean chitin armor, sea-glass fin accents. Churning turquoise ocean wave, bioluminescent tidepool glow, ribbons of rushing water curling around boots. Dynamic diagonal action angle, underwater caustic refractions, dramatic twilight sky, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, fire, dry desert",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Reefstep Scout",
+        "Tidebound oceanic palette strictly adhered to (#22d3ee, #38bdf8, #04101e)",
+        "Water ribbons and leaping motion capture Skirmish and Current lane mobility",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "GLS-C-0001",
+      "name": "Prismblade Apprentice",
+      "faction": "glassborne",
+      "type": "creature",
+      "role": "vanguard",
+      "canonical_stats": { "cost": 1, "attack": 2, "health": 2 },
+      "abilities_and_mechanics": "Ward. When Ward is consumed or when it attacks, gain +1 Attack.",
+      "lore": "Trained in the Mirror Galleries, she strikes from three angles with a single lunge.",
+      "visual_specification": {
+        "subject": "A graceful Glassborne duelist lunging in an exquisite fencing salute, wielding a slender rapier made of solid faceted violet-cyan crystal that refracts light into rainbow beams.",
+        "creature_character_details": "Noble duelist silhouette, fitted silvery-violet velvet coat with crystalline shoulder-guards, mirrored mask covering upper face, elegant poised stance.",
+        "environment": "The grand Mirror Galleries of the Glassborne, an infinite hall of towering faceted mirrors, violet twilight marble floor, and floating geometric crystal chandeliers.",
+        "abilities_depicted": "A shimmering crystalline prismatic barrier hovering around her (Ward), with two translucent light-refraction mirror silhouettes lunging in tandem alongside her blade.",
+        "camera_and_lighting": "Dramatic one-point perspective corridor composition, sharp prismatic rainbow light flares, specular crystal highlights, deep violet and cyan gradient atmosphere."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Glassborne faction, Prismblade Apprentice vanguard creature. An elegant crystalline duelist lunging in fencing stance, holding a slender faceted crystal rapier that refracts rainbow light. Shimmering prismatic geometric Ward barrier around her, two mirrored light silhouettes striking in tandem. Grand Mirror Gallery with infinite reflections, violet twilight marble floor, crystal chandeliers. Razor-sharp lighting, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, rough rustic dirt",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Prismblade Apprentice",
+        "Glassborne crystalline palette strictly adhered to (#c084fc, #67e8f9, #0c091c)",
+        "Prismatic Ward barrier and triple-angle reflection capture Ward and Attack gain mechanics",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "NOC-C-0001",
+      "name": "Crescent Alley Stalker",
+      "faction": "nocturne",
+      "type": "creature",
+      "role": "assassin",
+      "canonical_stats": { "cost": 1, "attack": 2, "health": 1 },
+      "abilities_and_mechanics": "Stealth, Swift. Veil: Enters concealed. Gains +1 Attack when breaking Stealth to attack.",
+      "lore": "By the time the streetlamp flickers back on, the duel has already tilted.",
+      "visual_specification": {
+        "subject": "A deadly Nocturne assassin stepping out from deep midnight fog on a rain-slicked cobbled rooftop, drawing twin obsidian curved daggers bathed in faint crimson moonlight.",
+        "creature_character_details": "Lean, agile predator silhouette, hooded midnight-blue velvet cloak with jagged raven feather trim, silver filigree plague-doctor or domino mask, glowing indigo eyes in shadow.",
+        "environment": "A misty gothic city alleyway in Lumenport's Crescent District, towering wrought-iron balconies, a flickering gas streetlamp enveloped in mist, a blood-red crescent moon in the sky.",
+        "abilities_depicted": "Lower body and trailing cloak dissolving into tendrils of black smoke and raven feathers (Stealth and Veil concealment), blades glimmering with crimson kinetic strike energy.",
+        "camera_and_lighting": "High-angle dramatic perspective from rooftop edge, strong blood-moon rim lighting, flickering amber streetlamp in background, deep velvety chiaroscuro shadows."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Nocturne faction, Crescent Alley Stalker assassin creature. A cloaked umbral assassin stepping from midnight fog on a rain-slicked gothic rooftop, drawing twin obsidian daggers glowing with crimson moonlight. Hooded midnight-velvet cloak dissolving into raven feathers and shadow smoke, silver mask, glowing indigo eyes. Crescent moonlit alleyway, wrought-iron spires, flickering streetlamp. Dramatic chiaroscuro lighting, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, bright daytime sun",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Crescent Alley Stalker",
+        "Nocturne gothic umbral palette strictly adhered to (#818cf8, #e11d48, #05050d)",
+        "Shadow dissolve and blood-moon daggers clearly convey Stealth and Veil mechanics",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "STR-C-0001",
+      "name": "Astrolabe Student",
+      "faction": "starweave",
+      "type": "creature",
+      "role": "caster",
+      "canonical_stats": { "cost": 1, "attack": 1, "health": 3 },
+      "abilities_and_mechanics": "On Summon: Gain 1 Alignment counter and inspect/prepare top card (+1/+0 when Alignment >= 1).",
+      "lore": "First-year initiates chart the drift of thirty-six minor constellations before their first duel.",
+      "visual_specification": {
+        "subject": "An inquisitive young celestial scholar standing beside a colossal brass armillary sphere, tracing glowing star charts in the air with a quill carved from meteoric crystal.",
+        "creature_character_details": "Youthful scholar silhouette, flowing midnight-indigo robes embroidered with golden constellation charts, floating brass rings orbiting around his shoulders, starry luminescence in his gaze.",
+        "environment": "The high observatory terrace of the Celestial Spire, marble balcony overlooking a swirling violet-gold cosmic nebula, ancient astrolabes, star globes, and parchment scrolls.",
+        "abilities_depicted": "Miniature golden orbiting constellation diagrams and glowing astrological glyphs aligning in a ring before him (depicting the Alignment counter and card preparation ability).",
+        "camera_and_lighting": "Warm golden starlight from the astrological glyphs illuminating the scholar's face, deep cosmic indigo and gold starlight nebula background, delicate painterly stardust."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Starweave faction, Astrolabe Student caster creature. A young celestial scholar standing beside a glowing brass armillary sphere, tracing golden constellation charts in the air. Midnight-indigo robes with star embroidery, floating brass rings, glowing amber eyes. High observatory terrace overlooking swirling violet-gold nebula and cosmic sky, ancient astrolabes. Warm golden astrological lighting, rich painterly details, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, muddy dull colors",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Astrolabe Student",
+        "Starweave cosmic celestial palette strictly adhered to (#fbbf24, #60a5fa, #070414)",
+        "Armillary sphere and aligning golden star glyphs capture Alignment and Scrying mechanics",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    },
+    {
+      "card_id": "GRV-C-0001",
+      "name": "Bonefield Wanderer",
+      "faction": "gravewild",
+      "type": "creature",
+      "role": "vanguard",
+      "canonical_stats": { "cost": 1, "attack": 2, "health": 2 },
+      "abilities_and_mechanics": "Rebirth: When destroyed, summon a 1/1 Echo Remnant token in its place (once per card).",
+      "lore": "Fossilized bone bound by wild briars remembers the shield-wall it held a thousand years ago.",
+      "visual_specification": {
+        "subject": "A towering ancient construct warrior assembled from fossilized leviathan ribs, mossy skulls, and twisted black swamp briars, trudging through murky marshland with a fractured bone shield.",
+        "creature_character_details": "Imposing hulking barrow-guardian silhouette, bleached ancient bones held together by glowing lime-green spectral briars, solitary pale flame burning inside the skull visor.",
+        "environment": "The mist-shrouded barrow-swamp of the Gravewild, sunken burial mounds, weeping dead willows draped in moss, stagnant dark water reflecting eerie will-o'-the-wisps.",
+        "abilities_depicted": "A faint, translucent glowing spectral spirit silhouette (the Echo Remnant) hovering directly behind the bone frame, ready to emerge upon its destruction (Rebirth mechanic).",
+        "camera_and_lighting": "Low-angle imposing vanguard composition, eerie neon lime-green will-o'-the-wisp glow casting sharp silhouettes, murky swamp fog in background, rich bone and peat textures."
+      },
+      "compiled_prompt": "Hearthglass hand-painted fantasy card illustration, Gravewild faction, Bonefield Wanderer vanguard creature. A towering ancient construct made of bleached leviathan bones and thorny black swamp briars, fractured bone shield, glowing lime-green flame in skull. Translucent spectral spirit Echo Remnant hovering behind it. Murky mist-shrouded barrow-swamp, sunken burial mounds, eerie neon will-o'-the-wisp light. Low-angle imposing atmospheric framing, 768x1024 vertical 3:4 aspect ratio, no baked text, no card frame, no numbers.",
+      "negative_prompt": "baked text, numbers, card frames, mana icons, stat badges, watermark, signature, modern clothing, blurry, low resolution, photorealistic grain, clean shiny metal",
+      "quality_checklist": [
+        "Card identity and name clearly recognizable as Bonefield Wanderer",
+        "Gravewild barrow ossuary palette strictly adhered to (#a3e635, #be123c, #0a0b09)",
+        "Bone framework and translucent hovering spectral silhouette clearly convey Rebirth mechanic",
+        "Zero text, zero numbers, zero card frames in artwork",
+        "Exact 768x1024 3:4 resolution suitable for Godot TextureRect import"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "$schema": "hearthglass_faction_reference_v1",
+  "style_guide_id": "hearthglass_stylized_handpainted_v1",
+  "target_resolution": {
+    "width": 768,
+    "height": 1024,
+    "aspect_ratio": "3:4"
+  },
+  "global_exclusions": [
+    "baked text",
+    "numbers",
+    "card frames",
+    "mana cost icons",
+    "attack health badges",
+    "watermarks",
+    "artist signatures",
+    "chibi proportions",
+    "modern technology",
+    "photographic grain",
+    "low poly geometry"
+  ],
+  "factions": {
+    "emberclad": {
+      "name": "Emberclad",
+      "identity": "Volcanic warriors, fire cultists, magma-smiths, and obsidian behemoths.",
+      "philosophy": "Unyielding martial dominance, relentless momentum, and burning sacrifice.",
+      "color_palette": {
+        "primary": "#ff5d2e",
+        "secondary": "#ffb347",
+        "accent": "#ffd875",
+        "shadow": "#120709",
+        "midtones": "#4c1415",
+        "energy_glow": "#ff3b14",
+        "metal": "#8a4b2d"
+      },
+      "materials": [
+        "Carved volcanic obsidian",
+        "Blackened wrought iron with glowing heat fissures",
+        "Hammered bronze and dark brass filigree",
+        "Molten slag and basalt stone"
+      ],
+      "lighting_style": "Dramatic harsh under-lighting from magma rivers, glowing embers floating upward, smoldering heat haze, deep crimson shadows.",
+      "architectural_motifs": "Ziggurats cut into volcanic caldera walls, furnace conduits, colossal fire braziers, jagged obsidian spikes.",
+      "creature_anatomy": "Imposing, muscular silhouettes; cracked stone or hardened magma-chitin skin; molten veins pulsing beneath basalt plating.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Emberclad faction, volcanic molten aesthetic, warm dramatic directional lighting, rich brushwork, dynamic composition, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "verdant_pact": {
+      "name": "Verdant Pact",
+      "identity": "Ancient druids, woodland protectors, fungal shamans, and primordial beast-weavers.",
+      "philosophy": "Symbiotic harmony, cyclical life and decay, fungal reclamation, and patient overgrown power.",
+      "color_palette": {
+        "primary": "#37d67a",
+        "secondary": "#9be564",
+        "accent": "#f2d16b",
+        "shadow": "#07140f",
+        "midtones": "#13462f",
+        "energy_glow": "#29b865",
+        "wood": "#3d2817"
+      },
+      "materials": [
+        "Living ironwood bark",
+        "Woven root-strand armor",
+        "Bioluminescent moss and bracket fungi",
+        "Carved sacred petrified wood with runic moss"
+      ],
+      "lighting_style": "Soft dappled sunlight piercing through dense canopy, ethereal bioluminescent spore halos, morning mist, luminous emerald rim light.",
+      "architectural_motifs": "Hollowed elder tree sanctorums, canopy rope bridges, megalithic standing stones choked with ivy, living arbor domes.",
+      "creature_anatomy": "Antlered silhouettes, root-woven sinew, fungal gills, feathered raptor plumage, symbiotic floral growths.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Verdant Pact faction, ancient primordial woodland aesthetic, dappled canopy lighting with glowing emerald spores, lush painterly textures, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "iron_choir": {
+      "name": "Iron Choir",
+      "identity": "Theocratic clockwork engineers, cathedral automations, aether-singers, and sacred smiths.",
+      "philosophy": "Mechanical perfection, divine harmonic order, calculated symmetry, and aetheric discipline.",
+      "color_palette": {
+        "primary": "#d4a359",
+        "secondary": "#4de1ff",
+        "accent": "#eef5ff",
+        "shadow": "#0b101a",
+        "midtones": "#24354f",
+        "energy_glow": "#38bdf8",
+        "brass": "#c4923e"
+      },
+      "materials": [
+        "Polished ecclesiastical brass",
+        "Tempered damascene gunmetal steel",
+        "Pneumatic glass tubes with glowing blue aether",
+        "Engraved pipe-organ gold and lapis lazuli inlays"
+      ],
+      "lighting_style": "Chiaroscuro stained-glass shaft lighting, crisp cyan aetheric arc flash, glowing vacuum tubes, solemn cathedral ambiance.",
+      "architectural_motifs": "Gothic flying buttresses made of interlocking gears, colossal clockwork pipe organs, grand basilica rose windows, pendulum vaults.",
+      "creature_anatomy": "Armored automations with porcelain choir faceplates, brass articulated joints, clockwork halos, robes draped over mechanical frames.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Iron Choir faction, gothic clockwork steampunk aesthetic, polished brass and cyan aether lighting, cathedral architecture, exquisite details, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "tidebound": {
+      "name": "Tidebound",
+      "identity": "Deep-sea corsairs, abyssal sirens, benthic leviathans, and pearl-sorcerers.",
+      "philosophy": "Fluid adaptability, crushing pressure, abyssal mysteries, and surging tidal force.",
+      "color_palette": {
+        "primary": "#22d3ee",
+        "secondary": "#38bdf8",
+        "accent": "#e0f2fe",
+        "shadow": "#04101e",
+        "midtones": "#0d416b",
+        "energy_glow": "#06b6d4",
+        "pearl": "#f0fdfa"
+      },
+      "materials": [
+        "Iridescent pearl nacre",
+        "Blackened benthic leviathan bone",
+        "Verdigris bronze diving harness",
+        "Coral chitin armor and bioluminescent sea-silk"
+      ],
+      "lighting_style": "Underwater caustic wave refractions, bioluminescent cyan ribbons piercing dark oceanic abyss, soft pearl luster, mist and sea spray.",
+      "architectural_motifs": "Submerged coral palaces, sunken galleon wreckage converted into fortress spires, kelp forest sanctuaries, spiral sea-shell towers.",
+      "creature_anatomy": "Fin silhouettes, translucent aquatic membranes, glowing angler photophores, cephalopod tendrils, sleek hydro-dynamic plating.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Tidebound faction, oceanic abyssal depth aesthetic, underwater caustic light refractions with glowing cyan bioluminescence, rich aquatic atmosphere, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "glassborne": {
+      "name": "Glassborne",
+      "identity": "Prismatic crystal duelists, mirror-weavers, stained-glass golems, and geometric mages.",
+      "philosophy": "Geometric purity, light refraction, crystalline resilience, and razor-sharp elegance.",
+      "color_palette": {
+        "primary": "#c084fc",
+        "secondary": "#67e8f9",
+        "accent": "#f8fafc",
+        "shadow": "#0c091c",
+        "midtones": "#36276b",
+        "energy_glow": "#a855f7",
+        "crystal": "#e9d5ff"
+      },
+      "materials": [
+        "Faceted prismatic quartz crystal",
+        "Silvery mirror-plates",
+        "Lead-framed stained-glass mosaics",
+        "Liquid mercury filigree"
+      ],
+      "lighting_style": "Rainbow dispersion caustics, sharp crystalline internal reflections, high-key violet twilight, glowing prismatic beams.",
+      "architectural_motifs": "Mirrored spires reaching into purple stratosphere, stained-glass geodesic domes, floating faceted crystal obelisks, reflection pavilions.",
+      "creature_anatomy": "Translucent gemstone limbs, faceted geometric silhouettes, floating stained glass plates as pauldrons, refractive eyes.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Glassborne faction, crystalline prismatic aesthetic, sharp faceted refraction and radiant violet-cyan spectrum lighting, elegant high fantasy, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "nocturne": {
+      "name": "Nocturne",
+      "identity": "Umbral assassins, blood-moon aristocrats, raven night-stalkers, and shadow dancers.",
+      "philosophy": "Stealth, predatory opportunism, deceptive glamour, and fatal precision.",
+      "color_palette": {
+        "primary": "#818cf8",
+        "secondary": "#e11d48",
+        "accent": "#e2e8f0",
+        "shadow": "#05050d",
+        "midtones": "#1c1a40",
+        "energy_glow": "#6366f1",
+        "blood_crimson": "#9f1239"
+      },
+      "materials": [
+        "Midnight velvet and silk",
+        "Shadow-forged obsidian daggers",
+        "Raven feather capes",
+        "Polished silver filigree and crimson garnet gems"
+      ],
+      "lighting_style": "Dramatic moonlit chiaroscuro, blood-red moon rim lighting, deep velvety shadows, mist-veiled lanterns, candlelight accents.",
+      "architectural_motifs": "Gothic bell-towers with roosting gargoyles, wrought-iron manor gates, misty cobbled alleyways, moonlit cemetery balconies.",
+      "creature_anatomy": "Lean, predatory, agile silhouettes; clawed fingertips; raven wings; pale aristocratic visage behind ornate masquerade masks.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Nocturne faction, dark gothic umbral aesthetic, blood moon rim lighting, mist and deep velvety shadows, theatrical chiaroscuro, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "starweave": {
+      "name": "Starweave",
+      "identity": "Celestial navigators, astrological weavers, comet knights, and astral entities.",
+      "philosophy": "Destiny reading, cosmic knowledge, infinite expansion, and stellar harmony.",
+      "color_palette": {
+        "primary": "#fbbf24",
+        "secondary": "#60a5fa",
+        "accent": "#fef3c7",
+        "shadow": "#070414",
+        "midtones": "#2d1b69",
+        "energy_glow": "#f59e0b",
+        "deep_space": "#1e1b4b"
+      },
+      "materials": [
+        "Meteoric star-metal (adamantite)",
+        "Spun starlight thread and celestial silks",
+        "Gilded armillary sphere rings",
+        "Lapis lazuli encrusted with diamond constellations"
+      ],
+      "lighting_style": "Nebula glow, swirling celestial dust, pinpoint sparkling starlight, radiant golden solar coronal flares.",
+      "architectural_motifs": "Observatories atop mountain peaks, floating celestial rings, marble astrolabe plazas, crystal telescopes pointed at cosmic voids.",
+      "creature_anatomy": "Glowing constellation patterns traced along skin, flowing star-dusted robes, winged seraphic forms, floating orbiting satellites.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Starweave faction, celestial cosmic fantasy aesthetic, glowing constellation patterns, deep indigo space with golden stellar light, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "gravewild": {
+      "name": "Gravewild",
+      "identity": "Ossuary necromancers, spectral bone-tenders, swamp barrow-wights, and rot-shamans.",
+      "philosophy": "Cycle of dissolution, bone as eternal foundation, spectral memory, and marsh decay.",
+      "color_palette": {
+        "primary": "#a3e635",
+        "secondary": "#be123c",
+        "accent": "#e5e7eb",
+        "shadow": "#0a0b09",
+        "midtones": "#2f242c",
+        "energy_glow": "#84cc16",
+        "bone": "#f5f5f4"
+      },
+      "materials": [
+        "Carved bleached animal and leviathan bone",
+        "Toxic peat moss and twisted black briars",
+        "Rough burlap mourning shrouds",
+        "Rusted tomb iron and spectral ectoplasm"
+      ],
+      "lighting_style": "Sickly will-o'-the-wisp neon lime glow, murky swamp fog, dim twilight through dead weeping willows, eerie phosphorescence.",
+      "architectural_motifs": "Ossuary crypts built entirely of stacked skulls, sunken barrow mounds, crooked mausoleum arches, black iron graveyard fences.",
+      "creature_anatomy": "Exposed bone structures, skeletal appendages woven with glowing toxic vines, hollow spectral eyes, draped tattered burial garments.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Gravewild faction, spectral barrow ossuary aesthetic, eerie lime-green will-o'-the-wisp lighting, bleached bone and dark marsh textures, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    },
+    "neutral": {
+      "name": "Neutral (Lumenport Accord)",
+      "identity": "Lumenport city folk, mercenaries, tavern keepers, card duelists, merchants, and scholars.",
+      "philosophy": "Commerce, pragmatic neutrality, open-world exploration, and convergence mastery.",
+      "color_palette": {
+        "primary": "#eab308",
+        "secondary": "#94a3b8",
+        "accent": "#f8fafc",
+        "shadow": "#0c0f17",
+        "midtones": "#333f58",
+        "energy_glow": "#facc15",
+        "leather": "#78350f"
+      },
+      "materials": [
+        "Waxed saddle leather and heavy wool",
+        "Forged high-carbon steel and copper rivets",
+        "Weathered Lumenport oak and river stone",
+        "Pewter mugs and parchment scrolls"
+      ],
+      "lighting_style": "Warm tavern hearth glow, golden hour sunlight reflecting off harbor cobblestones, gas-lamp streetlights.",
+      "architectural_motifs": "Timber-framed harborside inns, grand city gates, market canopies, stone docks with moored trade vessels.",
+      "creature_anatomy": "Diverse fantasy adventurers, humans, dwarves, elves, beastfolk; practical travel gear, belts with pouches and potion vials.",
+      "prompt_prefix": "Hearthglass hand-painted fantasy card illustration, Lumenport world setting, warm cozy tavern and harbor aesthetic, rich cobblestone and leather textures, welcoming golden light, 768x1024 vertical 3:4 aspect ratio, no text, no frame"
+    }
+  }
+}
