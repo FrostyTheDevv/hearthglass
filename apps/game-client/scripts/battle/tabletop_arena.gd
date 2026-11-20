@@ -3,24 +3,40 @@ extends Control
 ## Powered exclusively by the authoritative Rust battle engine (`services/battle-server`)
 ## and live WebSocket multiplayer (`ws://127.0.0.1:4173/v1/ws`).
 ##
-## Visual Features:
-##  - Polished 3D Tabletop Presentation with mahogany/slate duel table and runic lanes.
-##  - Runic Resonate pulse visualization (2+ lanes controlled).
-##  - Responsive card hover, selection, and drag/click to slot.
-##  - Creature summoning scale/glow effects with faction color bursts.
-##  - Dynamic Attack Lunges, Screen Shake, and Floating Combat Text (-X DMG, GUARDED, WARDED).
-##  - Status Keyword Badges (Guard, Reach, Ward, Pierce, Stealth, Ready).
-##  - Dramatic Victory & Defeat screens displaying authoritative reward payouts.
-##  - Seamless World-to-Battle transitions preserving authoritative Rust engine state.
+## Targeting & Strategic Interaction System:
+##  - Supports targeting allied creatures, enemy creatures, empty slots, lanes, and Leaders.
+##  - Highlights legal targets dynamically based on card requirements and battlefield state.
+##  - Explains invalid selections clearly (e.g. Stealth, Vanguard guarding Rear, occupied slot).
+##  - Provides an explicit "Cancel Action" button and Right-Click / Escape cancellation.
+##  - Resumes normal input immediately after rejected actions.
+##  - Preserves 100% Rust authority; Godot client never determines combat outcomes.
+##  - Displays only actually granted rewards or explicit already-claimed / zero-reward status.
 
 const CardFrameWidgetScript := preload("res://scripts/ui/card_frame_widget.gd")
 
+enum InteractionMode {
+	NEUTRAL,
+	SUMMON_TARGET,
+	TACTIC_TARGET,
+	ATTACK_TARGET
+}
+
 var match_state: Dictionary = {}
+var current_mode: InteractionMode = InteractionMode.NEUTRAL
 var selected_hand_index: int = -1
+var pending_hand_index: int = -1
+var pending_card_def: Dictionary = {}
+var pending_tactic_target_type: String = "" # "enemy_creature" | "ally_creature" | "open_ally_slot" | "enemy_leader" | "ally_leader" | "none"
+var pending_attacker_lane: int = -1
+var pending_attacker_pos: String = ""
 
 # UI Containers & Nodes
 var header_label: Label
 var resonate_banner: Label
+var targeting_instruction_label: Label
+var btn_cancel_action: Button
+var enemy_leader_btn: Button
+var ally_leader_btn: Button
 var lanes_container: HBoxContainer
 var hand_container: HBoxContainer
 var inspector_label: RichTextLabel
@@ -39,15 +55,13 @@ var end_game_subtitle: Label
 var end_game_details: RichTextLabel
 var end_game_actions_hbox: HBoxContainer
 
-# Sound effects audio player
-var sfx_player: AudioStreamPlayer
-
 func _ready() -> void:
 	ConvergenceRules.match_state_received.connect(_on_online_match_state_received)
 	ConvergenceRules.command_rejected.connect(func(err: String):
+		_cancel_interaction()
 		if inspector_label:
-			inspector_label.text = "Server Rejected Command: " + err
-		_spawn_floating_text(Vector2(800, 450), "REJECTED: " + err, Color(1.0, 0.35, 0.35))
+			inspector_label.text = "[color=#ff5555][b]Action Rejected by Server:[/b][/color] " + err
+		_spawn_floating_text(Vector2(600, 380), "REJECTED: " + err, Color(1.0, 0.35, 0.35))
 	)
 	ConvergenceRules.pvp_queued.connect(func():
 		if inspector_label:
@@ -57,6 +71,16 @@ func _ready() -> void:
 	_init_rust_match(GameState.selected_match_format)
 	_build_tabletop_ui()
 	_refresh_tabletop()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if current_mode != InteractionMode.NEUTRAL:
+			_cancel_interaction()
+			get_viewport().set_input_as_handled()
+	elif event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		if current_mode != InteractionMode.NEUTRAL:
+			_cancel_interaction()
+			get_viewport().set_input_as_handled()
 
 func _init_rust_match(format: String = "standard_1v1") -> void:
 	var player_deck := GameState.get_active_deck()
@@ -78,9 +102,22 @@ func _init_rust_match(format: String = "standard_1v1") -> void:
 
 func _on_online_match_state_received(new_state: Dictionary) -> void:
 	match_state = new_state
-	selected_hand_index = -1
+	_cancel_interaction()
 	_refresh_tabletop()
 	_check_game_over()
+
+func _cancel_interaction() -> void:
+	current_mode = InteractionMode.NEUTRAL
+	selected_hand_index = -1
+	pending_card_def.clear()
+	pending_tactic_target_type = ""
+	pending_attacker_lane = -1
+	pending_attacker_pos = ""
+	if btn_cancel_action:
+		btn_cancel_action.visible = false
+	if targeting_instruction_label:
+		targeting_instruction_label.text = ""
+	_refresh_tabletop()
 
 func _build_tabletop_ui() -> void:
 	# 1. Dark Runic Tabletop Background (Mahogany & Slate)
@@ -89,7 +126,6 @@ func _build_tabletop_ui() -> void:
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(bg)
 
-	# Decorative Table Felt Panel
 	var table_felt := PanelContainer.new()
 	table_felt.set_anchors_preset(Control.PRESET_FULL_RECT)
 	var t_style := StyleBoxFlat.new()
@@ -103,12 +139,12 @@ func _build_tabletop_ui() -> void:
 
 	var main_vbox := VBoxContainer.new()
 	main_vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
-	main_vbox.add_theme_constant_override("separation", 6)
+	main_vbox.add_theme_constant_override("separation", 5)
 	add_child(main_vbox)
 
 	# 2. Top Header Status & Match Controls Bar
 	var top_bar := HBoxContainer.new()
-	top_bar.add_theme_constant_override("separation", 10)
+	top_bar.add_theme_constant_override("separation", 8)
 	main_vbox.add_child(top_bar)
 
 	header_label = Label.new()
@@ -116,18 +152,25 @@ func _build_tabletop_ui() -> void:
 	header_label.add_theme_font_size_override("font_size", 13)
 	top_bar.add_child(header_label)
 
+	btn_cancel_action = Button.new()
+	btn_cancel_action.text = "✖ Cancel Target Selection (Esc/Right-Click)"
+	btn_cancel_action.visible = false
+	btn_cancel_action.add_theme_color_override("font_color", Color(1.0, 0.45, 0.45))
+	btn_cancel_action.pressed.connect(_cancel_interaction)
+	top_bar.add_child(btn_cancel_action)
+
 	btn_pvp_queue = Button.new()
-	btn_pvp_queue.text = "Queue 1v1 PvP (WS)"
+	btn_pvp_queue.text = "Queue 1v1 PvP"
 	btn_pvp_queue.pressed.connect(func(): ConvergenceRules.queue_1v1_pvp())
 	top_bar.add_child(btn_pvp_queue)
 
 	btn_tag_pvp_queue = Button.new()
-	btn_tag_pvp_queue.text = "Queue 4-Client 2v2 Tag"
+	btn_tag_pvp_queue.text = "Queue 2v2 Tag"
 	btn_tag_pvp_queue.pressed.connect(func(): ConvergenceRules.queue_2v2_pvp())
 	top_bar.add_child(btn_tag_pvp_queue)
 
 	btn_tag_2v2 = Button.new()
-	btn_tag_2v2.text = "Co-op 2v2 Tag (45 Vit)"
+	btn_tag_2v2.text = "Offline 2v2 Tag"
 	btn_tag_2v2.pressed.connect(func():
 		_init_rust_match("tag_2v2")
 		_refresh_tabletop()
@@ -135,7 +178,7 @@ func _build_tabletop_ui() -> void:
 	top_bar.add_child(btn_tag_2v2)
 
 	btn_mulligan = Button.new()
-	btn_mulligan.text = "Mulligan 2 Cards"
+	btn_mulligan.text = "Mulligan"
 	btn_mulligan.pressed.connect(_on_mulligan_pressed)
 	top_bar.add_child(btn_mulligan)
 
@@ -150,24 +193,52 @@ func _build_tabletop_ui() -> void:
 	btn_return.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/world/lumenport_hub.tscn"))
 	top_bar.add_child(btn_return)
 
-	# Resonate Banner Indicator
+	# Banners & Targeting Prompts
+	var banners_hbox := HBoxContainer.new()
+	banners_hbox.add_theme_constant_override("separation", 12)
+	main_vbox.add_child(banners_hbox)
+
 	resonate_banner = Label.new()
-	resonate_banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	resonate_banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	resonate_banner.add_theme_font_size_override("font_size", 12)
 	resonate_banner.add_theme_color_override("font_color", Color(0.35, 0.95, 0.75))
-	main_vbox.add_child(resonate_banner)
+	banners_hbox.add_child(resonate_banner)
+
+	targeting_instruction_label = Label.new()
+	targeting_instruction_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	targeting_instruction_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	targeting_instruction_label.add_theme_font_size_override("font_size", 12)
+	targeting_instruction_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35))
+	banners_hbox.add_child(targeting_instruction_label)
+
+	# Leader Targeting Interaction Bar
+	var leader_bar := HBoxContainer.new()
+	leader_bar.add_theme_constant_override("separation", 10)
+	main_vbox.add_child(leader_bar)
+
+	enemy_leader_btn = Button.new()
+	enemy_leader_btn.text = "Target Enemy Leader (Direct Attack / Spell)"
+	enemy_leader_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	enemy_leader_btn.pressed.connect(_on_enemy_leader_clicked)
+	leader_bar.add_child(enemy_leader_btn)
+
+	ally_leader_btn = Button.new()
+	ally_leader_btn.text = "Target Ally Leader (Heal / Shield Ability)"
+	ally_leader_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	ally_leader_btn.pressed.connect(_on_ally_leader_clicked)
+	leader_bar.add_child(ally_leader_btn)
 
 	# 3. Middle Battlefield + Sidebar Split
 	var mid_hbox := HBoxContainer.new()
 	mid_hbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	mid_hbox.add_theme_constant_override("separation", 10)
+	mid_hbox.add_theme_constant_override("separation", 8)
 	main_vbox.add_child(mid_hbox)
 
 	# 3-Lane Combat Grid
 	lanes_container = HBoxContainer.new()
 	lanes_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	lanes_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	lanes_container.add_theme_constant_override("separation", 12)
+	lanes_container.add_theme_constant_override("separation", 10)
 	mid_hbox.add_child(lanes_container)
 
 	# Right Sidebar: Card Inspector & Live Authoritative Battle Log
@@ -177,19 +248,19 @@ func _build_tabletop_ui() -> void:
 	mid_hbox.add_child(right_sidebar)
 
 	var insp_panel := PanelContainer.new()
-	insp_panel.custom_minimum_size = Vector2(350, 210)
+	insp_panel.custom_minimum_size = Vector2(350, 200)
 	var ip_style := StyleBoxFlat.new()
 	ip_style.bg_color = Color(0.07, 0.11, 0.19)
 	ip_style.border_color = Color(0.25, 0.45, 0.68)
 	ip_style.set_border_width_all(1)
 	ip_style.set_corner_radius_all(6)
-	ip_style.set_content_margin_all(10)
+	ip_style.set_content_margin_all(8)
 	insp_panel.add_theme_stylebox_override("panel", ip_style)
 	right_sidebar.add_child(insp_panel)
 
 	inspector_label = RichTextLabel.new()
 	inspector_label.bbcode_enabled = true
-	inspector_label.text = "[color=#ffdd44][b]RUST BATTLE AUTHORITY ACTIVE[/b][/color]\nSelect a card in your hand to inspect it, then click an allied Front (Vanguard) or Rear (Support) lane slot to summon."
+	inspector_label.text = "[color=#ffdd44][b]RUST BATTLE AUTHORITY ACTIVE[/b][/color]\nSelect a card in your hand to inspect it, then choose a legal target or battlefield slot."
 	insp_panel.add_child(inspector_label)
 
 	var log_panel := PanelContainer.new()
@@ -208,7 +279,7 @@ func _build_tabletop_ui() -> void:
 	log_label.bbcode_enabled = true
 	log_panel.add_child(log_label)
 
-	# 4. Bottom Hand Bar (Data-Driven CardFrameWidget)
+	# 4. Bottom Hand Bar
 	var hand_scroll := ScrollContainer.new()
 	hand_scroll.custom_minimum_size = Vector2(0, 255)
 	main_vbox.add_child(hand_scroll)
@@ -217,7 +288,7 @@ func _build_tabletop_ui() -> void:
 	hand_container.add_theme_constant_override("separation", 10)
 	hand_scroll.add_child(hand_container)
 
-	# 5. Effects Overlay Layer (Floating combat text, animations)
+	# 5. Effects Overlay Layer
 	fx_layer = Control.new()
 	fx_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
 	fx_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -231,52 +302,44 @@ func _build_end_game_modal() -> void:
 	end_game_modal.set_anchors_preset(Control.PRESET_FULL_RECT)
 	var m_style := StyleBoxFlat.new()
 	m_style.bg_color = Color(0.03, 0.05, 0.09, 0.94)
-	m_style.set_content_margin_all(60)
+	m_style.set_content_margin_all(50)
 	end_game_modal.add_theme_stylebox_override("panel", m_style)
 	end_game_modal.visible = false
 	add_child(end_game_modal)
 
 	var mvbox := VBoxContainer.new()
-	mvbox.add_theme_constant_override("separation", 20)
+	mvbox.add_theme_constant_override("separation", 18)
 	end_game_modal.add_child(mvbox)
 
 	end_game_title = Label.new()
 	end_game_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	end_game_title.add_theme_font_size_override("font_size", 34)
+	end_game_title.add_theme_font_size_override("font_size", 32)
 	mvbox.add_child(end_game_title)
 
 	end_game_subtitle = Label.new()
 	end_game_subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	end_game_subtitle.add_theme_font_size_override("font_size", 16)
+	end_game_subtitle.add_theme_font_size_override("font_size", 15)
 	mvbox.add_child(end_game_subtitle)
-
-	var det_panel := PanelContainer.new()
-	det_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	var dp_style := StyleBoxFlat.new()
-	dp_style.bg_color = Color(0.07, 0.11, 0.18)
-	dp_style.set_corner_radius_all(8)
-	dp_style.set_content_margin_all(20)
-	det_panel.add_theme_stylebox_override("panel", dp_style)
-	mvbox.add_child(det_panel)
 
 	end_game_details = RichTextLabel.new()
 	end_game_details.bbcode_enabled = true
-	det_panel.add_child(end_game_details)
+	end_game_details.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	mvbox.add_child(end_game_details)
 
 	end_game_actions_hbox = HBoxContainer.new()
 	end_game_actions_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	end_game_actions_hbox.add_theme_constant_override("separation", 20)
+	end_game_actions_hbox.add_theme_constant_override("separation", 16)
 	mvbox.add_child(end_game_actions_hbox)
 
-	var btn_return := Button.new()
-	btn_return.text = "Return to Lumenport [E]"
-	btn_return.custom_minimum_size = Vector2(200, 48)
-	btn_return.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/world/lumenport_hub.tscn"))
-	end_game_actions_hbox.add_child(btn_return)
+	var btn_leave := Button.new()
+	btn_leave.text = "Return to Lumenport"
+	btn_leave.custom_minimum_size = Vector2(200, 44)
+	btn_leave.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/world/lumenport_hub.tscn"))
+	end_game_actions_hbox.add_child(btn_leave)
 
 	var btn_rematch := Button.new()
-	btn_rematch.text = "Rematch Duel"
-	btn_rematch.custom_minimum_size = Vector2(160, 48)
+	btn_rematch.text = "Play Another Duel"
+	btn_rematch.custom_minimum_size = Vector2(200, 44)
 	btn_rematch.pressed.connect(func():
 		end_game_modal.visible = false
 		_init_rust_match(GameState.selected_match_format)
@@ -284,14 +347,8 @@ func _build_end_game_modal() -> void:
 	)
 	end_game_actions_hbox.add_child(btn_rematch)
 
-	var btn_deck := Button.new()
-	btn_deck.text = "Adjust Deck in Emporium"
-	btn_deck.custom_minimum_size = Vector2(200, 48)
-	btn_deck.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/deck_builder.tscn"))
-	end_game_actions_hbox.add_child(btn_deck)
-
 func _refresh_tabletop() -> void:
-	if not match_state.has("players") or match_state["players"].size() < 2:
+	if match_state.is_empty() or not match_state.has("players"):
 		return
 
 	var my_slot: int = ConvergenceRules.local_player_slot
@@ -308,10 +365,9 @@ func _refresh_tabletop() -> void:
 		env_text = str(match_state["active_environment"].get("name", "Active"))
 
 	var fmt_label := "2v2 TAG" if str(match_state.get("format", "")).contains("2v2") else ("1v1 PVP" if ConvergenceRules.is_online_pvp else "1v1 PVE")
-	header_label.text = "[%s] TURN %d (Seat %d) | %s: %d/%d Vit | Aether: %d/%d | Resonate: %s  ||  VS  %s: %d/%d Vit | Env: %s" % [
+	header_label.text = "[%s] TURN %d | %s: %d/%d Vit | Aether: %d/%d | Resonate: %s  ||  VS  %s: %d/%d Vit | Env: %s" % [
 		fmt_label,
 		int(match_state.get("global_turn", 1)),
-		int(match_state.get("active_player", 0)),
 		str(p_me.get("name", "Player")),
 		int(p_board.get("vitality", 30)),
 		max_vit,
@@ -324,20 +380,55 @@ func _refresh_tabletop() -> void:
 		env_text
 	]
 
-	# Resonate Banner Glow
+	# Update Resonate Banner
 	if bool(p_board.get("resonate_active", false)):
-		resonate_banner.text = "✦ RESONATE ACTIVE ✦ (2+ Lanes Controlled — Faction Synergies Empowered)"
+		resonate_banner.text = "✦ RESONATE ACTIVE ✦ (2+ Lanes Controlled)"
 		resonate_banner.add_theme_color_override("font_color", Color(0.35, 0.98, 0.70))
 	elif bool(p_opp.get("resonate_active", false)):
 		resonate_banner.text = "⚠ OPPONENT RESONATING ⚠ (Enemy Controls 2+ Lanes)"
 		resonate_banner.add_theme_color_override("font_color", Color(1.0, 0.45, 0.35))
 	else:
-		resonate_banner.text = "Lane Control Neutral — Control 2 or more lanes to trigger Resonate"
+		resonate_banner.text = "Lane Control Neutral (Hold 2+ lanes to trigger Resonate)"
 		resonate_banner.add_theme_color_override("font_color", Color(0.65, 0.75, 0.88))
+
+	# Update Targeting Mode Prompts
+	btn_cancel_action.visible = (current_mode != InteractionMode.NEUTRAL)
+	if current_mode == InteractionMode.SUMMON_TARGET:
+		targeting_instruction_label.text = "Select an open ally Vanguard (Front) or Support (Rear) slot to summon %s" % pending_card_def.get("name", "Creature")
+	elif current_mode == InteractionMode.TACTIC_TARGET:
+		targeting_instruction_label.text = "Choose a valid target for %s (Targeting: %s)" % [pending_card_def.get("name", "Tactic"), pending_tactic_target_type]
+	elif current_mode == InteractionMode.ATTACK_TARGET:
+		targeting_instruction_label.text = "Attacker selected (Lane %d). Click an enemy Vanguard, or enemy Leader if lane is clear." % (pending_attacker_lane + 1)
+	else:
+		targeting_instruction_label.text = ""
 
 	btn_mulligan.disabled = bool(p_me.get("mulligan_done", false)) or int(match_state.get("global_turn", 1)) > 4
 
-	# Rebuild 3 Lanes
+	# Update Leader Targeting Buttons
+	if current_mode == InteractionMode.ATTACK_TARGET:
+		var can_attack_leader := (p_opp["lanes"][pending_attacker_lane]["front"] == null and p_opp["lanes"][pending_attacker_lane]["rear"] == null)
+		enemy_leader_btn.text = "⚔ ATTACK ENEMY LEADER (%d Vit) — [LEGAL TARGET]" % int(p_opp.get("vitality", 30)) if can_attack_leader else "Enemy Leader (%d Vit) [Guarded by Lane Creatures]" % int(p_opp.get("vitality", 30))
+		enemy_leader_btn.disabled = not can_attack_leader
+		enemy_leader_btn.modulate = Color(1.0, 0.85, 0.35) if can_attack_leader else Color(0.6, 0.6, 0.6)
+	elif current_mode == InteractionMode.TACTIC_TARGET and pending_tactic_target_type == "enemy_leader":
+		enemy_leader_btn.text = "✦ TARGET ENEMY LEADER (%d Vit) — [LEGAL SPELL TARGET]" % int(p_opp.get("vitality", 30))
+		enemy_leader_btn.disabled = false
+		enemy_leader_btn.modulate = Color(0.4, 0.95, 1.0)
+	else:
+		enemy_leader_btn.text = "Enemy Leader: %s (%d Vit)" % [str(p_opp.get("name", "Opponent")), int(p_opp.get("vitality", 30))]
+		enemy_leader_btn.disabled = true
+		enemy_leader_btn.modulate = Color(0.8, 0.8, 0.8)
+
+	if current_mode == InteractionMode.TACTIC_TARGET and pending_tactic_target_type == "ally_leader":
+		ally_leader_btn.text = "✦ TARGET ALLY LEADER (%d Vit) — [LEGAL SPELL TARGET]" % int(p_board.get("vitality", 30))
+		ally_leader_btn.disabled = false
+		ally_leader_btn.modulate = Color(0.35, 1.0, 0.7)
+	else:
+		ally_leader_btn.text = "Your Leader: %s (%d Vit)" % [str(p_me.get("name", "Player")), int(p_board.get("vitality", 30))]
+		ally_leader_btn.disabled = true
+		ally_leader_btn.modulate = Color(0.8, 0.8, 0.8)
+
+	# Rebuild 3 Lanes with Dynamic Targeting Highlights
 	for child in lanes_container.get_children():
 		child.queue_free()
 
@@ -372,7 +463,7 @@ func _refresh_tabletop() -> void:
 			l_header.add_theme_color_override("font_color", Color(0.70, 0.80, 0.92))
 		lvbox.add_child(l_header)
 
-		# 4 Slots: Enemy Rear -> Enemy Front -> Allied Front (Guards Rear) -> Allied Rear
+		# 4 Slots: Enemy Rear -> Enemy Front -> Allied Front (Vanguard) -> Allied Rear (Support)
 		lvbox.add_child(_create_slot_widget(opp_board_slot, l_idx, "rear", "Enemy Rear"))
 		lvbox.add_child(_create_slot_widget(opp_board_slot, l_idx, "front", "Enemy Front [Vanguard]"))
 		lvbox.add_child(_create_slot_widget(my_board_slot, l_idx, "front", "Your Front [Vanguard]"))
@@ -405,7 +496,11 @@ func _create_slot_widget(owner_idx: int, lane_idx: int, pos: String, label_prefi
 	var btn := Button.new()
 	btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	var my_board_slot: int = ConvergenceRules.local_player_slot % 2
+	var is_ally: bool = (owner_idx == my_board_slot)
 	var unit = match_state["players"][owner_idx]["lanes"][lane_idx][pos]
+
+	var status_tag := ""
+	var is_legal_target := false
 
 	if unit != null:
 		var kws: Array = unit.get("keywords", [])
@@ -414,44 +509,251 @@ func _create_slot_widget(owner_idx: int, lane_idx: int, pos: String, label_prefi
 		if kws.has("reach"): kw_badges += " [🏹 Reach]"
 		if kws.has("ward"): kw_badges += " [✨ Ward]"
 		if kws.has("piercing"): kw_badges += " [🗡 Pierce]"
+		if kws.has("stealth"): kw_badges += " [👥 Stealth]"
 
-		var ready_tag := " ⚡ [READY - ATTACK]" if (owner_idx == my_board_slot and unit.get("ready", false)) else ""
-		btn.text = "%s:\n%s (⚔ %d / ♥ %d/%d)%s%s" % [
+		# Targeting state evaluation
+		if current_mode == InteractionMode.TACTIC_TARGET:
+			if not is_ally and (pending_tactic_target_type == "enemy_creature" or pending_tactic_target_type == "enemy_in_lane"):
+				if kws.has("stealth"):
+					status_tag = " [UNAVAILABLE - STEALTH]"
+					btn.modulate = Color(0.6, 0.4, 0.4)
+				else:
+					status_tag = " [✦ LEGAL SPELL TARGET]"
+					is_legal_target = true
+					btn.modulate = Color(0.35, 0.95, 1.0)
+			elif is_ally and pending_tactic_target_type == "ally_creature":
+				status_tag = " [✦ LEGAL ALLY TARGET]"
+				is_legal_target = true
+				btn.modulate = Color(0.35, 1.0, 0.75)
+			else:
+				status_tag = " [UNAVAILABLE]"
+				btn.modulate = Color(0.5, 0.5, 0.5)
+		elif current_mode == InteractionMode.ATTACK_TARGET:
+			if is_ally:
+				if lane_idx == pending_attacker_lane and pos == pending_attacker_pos:
+					status_tag = " [ACTIVE ATTACKER]"
+					btn.modulate = Color(1.0, 0.90, 0.40)
+				else:
+					status_tag = ""
+					btn.modulate = Color(0.8, 0.85, 0.9)
+			else:
+				# Enemy target evaluation
+				var enemy_front = match_state["players"][owner_idx]["lanes"][lane_idx]["front"]
+				var attacker_unit = match_state["players"][my_board_slot]["lanes"][pending_attacker_lane][pending_attacker_pos]
+				var attacker_kws: Array = attacker_unit.get("keywords", []) if attacker_unit != null else []
+				var has_reach := attacker_kws.has("reach")
+
+				if kws.has("stealth"):
+					status_tag = " [CANNOT TARGET - STEALTH]"
+					btn.modulate = Color(0.6, 0.4, 0.4)
+				elif pos == "front" and lane_idx == pending_attacker_lane:
+					status_tag = " [⚔ LEGAL ATTACK TARGET]"
+					is_legal_target = true
+					btn.modulate = Color(1.0, 0.55, 0.40)
+				elif pos == "rear" and lane_idx == pending_attacker_lane:
+					if enemy_front == null or has_reach:
+						status_tag = " [⚔ LEGAL ATTACK TARGET]"
+						is_legal_target = true
+						btn.modulate = Color(1.0, 0.55, 0.40)
+					else:
+						status_tag = " [GUARDED BY VANGUARD]"
+						btn.modulate = Color(0.6, 0.4, 0.4)
+				else:
+					status_tag = " [DIFFERENT LANE]"
+					btn.modulate = Color(0.5, 0.5, 0.5)
+		else:
+			# Neutral mode
+			if is_ally:
+				if unit.get("ready", false):
+					status_tag = " ⚡ [READY - CLICK TO ATTACK]"
+					btn.modulate = Color(0.75, 1.0, 0.85)
+				else:
+					btn.modulate = Color(0.85, 0.90, 0.98)
+			else:
+				btn.modulate = Color(1.0, 0.85, 0.85)
+
+		btn.text = "%s:\n%s (⚔ %d / ♥ %d)%s%s" % [
 			label_prefix,
 			unit["name"],
 			int(unit["attack"]),
 			int(unit["health"]),
-			int(unit.get("max_health", unit["health"])),
 			kw_badges,
-			ready_tag
+			status_tag
 		]
-		if owner_idx == my_board_slot:
-			if unit.get("ready", false):
-				btn.modulate = Color(0.75, 1.0, 0.85)
+	else:
+		# Empty slot
+		if current_mode == InteractionMode.SUMMON_TARGET:
+			if is_ally:
+				btn.text = "%s\n✦ [CLICK TO SUMMON]" % label_prefix
+				btn.modulate = Color(0.35, 1.0, 0.75)
+				is_legal_target = true
 			else:
-				btn.modulate = Color(0.85, 0.90, 0.98)
+				btn.text = "%s\n[Enemy Slot - Unavailable]" % label_prefix
+				btn.modulate = Color(0.4, 0.4, 0.4)
+		elif current_mode == InteractionMode.TACTIC_TARGET and is_ally and pending_tactic_target_type == "open_ally_slot":
+			btn.text = "%s\n✦ [LEGAL OPEN SLOT TARGET]" % label_prefix
+			btn.modulate = Color(0.35, 0.95, 1.0)
+			is_legal_target = true
+		elif current_mode == InteractionMode.ATTACK_TARGET and is_ally:
+			btn.text = "%s\n✦ [CLICK TO MOVE CREATURE]" % label_prefix
+			btn.modulate = Color(0.4, 0.8, 1.0)
+			is_legal_target = true
 		else:
-			btn.modulate = Color(1.0, 0.82, 0.82)
-	else:
-		btn.text = "%s\n[Empty Tabletop Slot]" % label_prefix
-		if owner_idx == my_board_slot and selected_hand_index >= 0:
-			btn.modulate = Color(0.55, 0.92, 1.0)
-		else:
-			btn.modulate = Color(0.65, 0.70, 0.78)
+			btn.text = "%s\n[Empty Tabletop Slot]" % label_prefix
+			btn.modulate = Color(0.6, 0.65, 0.75)
 
-	if owner_idx == my_board_slot:
-		btn.pressed.connect(func(): _on_ally_slot_clicked(lane_idx, pos))
-	else:
-		# Clicking enemy slot with active selected attacker
-		btn.pressed.connect(func():
+	# Slot click dispatch
+	btn.pressed.connect(func(): _on_slot_clicked(owner_idx, lane_idx, pos, unit, is_legal_target))
+	return btn
+
+func _on_ally_slot_clicked(lane_idx: int, pos: String) -> void:
+	var my_board_slot: int = ConvergenceRules.local_player_slot % 2
+	var unit = match_state["players"][my_board_slot]["lanes"][lane_idx][pos]
+	_on_slot_clicked(my_board_slot, lane_idx, pos, unit, true)
+
+func _on_slot_clicked(owner_idx: int, lane_idx: int, pos: String, unit, is_legal: bool) -> void:
+	var my_board_slot: int = ConvergenceRules.local_player_slot % 2
+	var is_ally: bool = (owner_idx == my_board_slot)
+
+	if current_mode == InteractionMode.SUMMON_TARGET:
+		if is_ally and unit == null:
+			SoundManager.play_card_play()
+			var h_idx := pending_hand_index
+			_cancel_interaction()
 			_dispatch_command({
 				"player": ConvergenceRules.local_player_slot,
-				"type": "attack_lane",
+				"type": "summon_creature",
+				"hand_index": h_idx,
 				"lane": lane_idx,
-				"position": "front"
+				"position": pos
 			})
-		)
-	return btn
+		elif is_ally and unit != null:
+			_show_rejection_explanation("Invalid Selection: Slot is already occupied by %s." % unit.get("name", "creature"))
+		else:
+			_show_rejection_explanation("Invalid Selection: Cannot summon an allied creature into an enemy slot.")
+
+	elif current_mode == InteractionMode.TACTIC_TARGET:
+		if not is_legal:
+			if unit != null and unit.get("keywords", []).has("stealth"):
+				_show_rejection_explanation("Invalid Target: Cannot directly target a creature with Stealth.")
+			elif pending_tactic_target_type == "enemy_creature" and is_ally:
+				_show_rejection_explanation("Invalid Target: Tactic requires an enemy creature target.")
+			elif pending_tactic_target_type == "ally_creature" and not is_ally:
+				_show_rejection_explanation("Invalid Target: Tactic requires an allied creature target.")
+			elif unit == null:
+				_show_rejection_explanation("Invalid Target: This ability requires an active creature, not an empty slot.")
+			else:
+				_show_rejection_explanation("Invalid Target for %s." % pending_card_def.get("name", "Tactic"))
+			return
+
+		SoundManager.play_card_play()
+		var h_idx := pending_hand_index
+		_cancel_interaction()
+		_dispatch_command({
+			"player": ConvergenceRules.local_player_slot,
+			"type": "play_tactic",
+			"hand_index": h_idx,
+			"target_lane": lane_idx,
+			"target_position": pos
+		})
+
+	elif current_mode == InteractionMode.ATTACK_TARGET:
+		if is_ally:
+			if unit == null:
+				# Move creature
+				SoundManager.play_button_click()
+				var from_l := pending_attacker_lane
+				var from_p := pending_attacker_pos
+				_cancel_interaction()
+				_dispatch_command({
+					"player": ConvergenceRules.local_player_slot,
+					"type": "move_creature",
+					"from_lane": from_l,
+					"from_position": from_p,
+					"to_lane": lane_idx,
+					"to_position": pos
+				})
+			elif lane_idx != pending_attacker_lane or pos != pending_attacker_pos:
+				# Switch attacker to another allied ready unit
+				if unit.get("ready", false):
+					pending_attacker_lane = lane_idx
+					pending_attacker_pos = pos
+					SoundManager.play_button_click()
+					_refresh_tabletop()
+		else:
+			# Enemy target click
+			if not is_legal:
+				if unit != null and unit.get("keywords", []).has("stealth"):
+					_show_rejection_explanation("Invalid Target: Cannot attack a creature with Stealth.")
+				elif lane_idx != pending_attacker_lane:
+					_show_rejection_explanation("Invalid Target: Attacks can only target enemy units in the same lane (Lane %d)." % (pending_attacker_lane + 1))
+				elif pos == "rear":
+					_show_rejection_explanation("Invalid Target: The enemy Vanguard in Front guards the Rear. Defeat Front first or use Reach.")
+				return
+
+			SoundManager.play_attack_clash()
+			var a_l := pending_attacker_lane
+			var a_p := pending_attacker_pos
+			_cancel_interaction()
+			_dispatch_command({
+				"player": ConvergenceRules.local_player_slot,
+				"type": "attack_creature",
+				"attacker_lane": a_l,
+				"attacker_position": a_p,
+				"defender_lane": lane_idx,
+				"defender_position": pos
+			})
+
+	else:
+		# Neutral mode: clicking an ally unit starts attack selection
+		if is_ally and unit != null and unit.get("ready", false):
+			current_mode = InteractionMode.ATTACK_TARGET
+			pending_attacker_lane = lane_idx
+			pending_attacker_pos = pos
+			SoundManager.play_button_click()
+			inspector_label.text = "[color=#66ffbb][b]Attacker Selected: %s[/b][/color]\nClick an enemy Vanguard in Lane %d to attack, or click an empty allied slot to move." % [unit.get("name", ""), lane_idx + 1]
+			_refresh_tabletop()
+
+func _on_enemy_leader_clicked() -> void:
+	if current_mode == InteractionMode.ATTACK_TARGET:
+		var a_l := pending_attacker_lane
+		var a_p := pending_attacker_pos
+		SoundManager.play_attack_clash()
+		_cancel_interaction()
+		_dispatch_command({
+			"player": ConvergenceRules.local_player_slot,
+			"type": "attack_leader",
+			"attacker_lane": a_l,
+			"attacker_position": a_p
+		})
+	elif current_mode == InteractionMode.TACTIC_TARGET and pending_tactic_target_type == "enemy_leader":
+		SoundManager.play_card_play()
+		var h_idx := pending_hand_index
+		_cancel_interaction()
+		_dispatch_command({
+			"player": ConvergenceRules.local_player_slot,
+			"type": "play_tactic",
+			"hand_index": h_idx,
+			"target_lane": 0,
+			"target_position": "front"
+		})
+
+func _on_ally_leader_clicked() -> void:
+	if current_mode == InteractionMode.TACTIC_TARGET and pending_tactic_target_type == "ally_leader":
+		SoundManager.play_card_play()
+		var h_idx := pending_hand_index
+		_cancel_interaction()
+		_dispatch_command({
+			"player": ConvergenceRules.local_player_slot,
+			"type": "play_tactic",
+			"hand_index": h_idx,
+			"target_lane": 0,
+			"target_position": "front"
+		})
+
+func _show_rejection_explanation(reason: String) -> void:
+	inspector_label.text = "[color=#ff5555][b]Targeting Rejection:[/b][/color]\n" + reason
+	_spawn_floating_text(Vector2(600, 360), reason, Color(1.0, 0.4, 0.4))
 
 func _dispatch_command(cmd: Dictionary) -> void:
 	if ConvergenceRules.is_online_pvp:
@@ -466,13 +768,16 @@ func _dispatch_command(cmd: Dictionary) -> void:
 			var ctype: String = str(cmd.get("type", ""))
 			if ctype == "summon_creature":
 				_spawn_floating_text(Vector2(600, 420), "✦ CREATURE SUMMONED ✦", Color(0.35, 0.95, 0.80))
-			elif ctype == "attack_lane":
+			elif ctype == "attack_creature" or ctype == "attack_leader" or ctype == "attack_lane":
 				_spawn_floating_text(Vector2(600, 320), "⚔ CLASH & DAMAGE EVALUATED ⚔", Color(1.0, 0.75, 0.30))
 
 		_refresh_tabletop()
 
 func _on_hand_card_clicked(h_idx: int, def: Dictionary) -> void:
 	selected_hand_index = h_idx
+	pending_card_def = def
+	SoundManager.play_button_click()
+
 	var iden: Dictionary = def.get("identity", {})
 	inspector_label.text = "[size=15][b]%s[/b] (%s)[/size]\nCost: %d Aether | Type: %s (%s) | Faction: %s\nKeywords: %s\n\n[color=#88ccff]%s[/color]\n\n[b]Origin:[/b] %s\n[b]Lore:[/b] %s" % [
 		def.get("name", ""),
@@ -487,48 +792,69 @@ func _on_hand_card_clicked(h_idx: int, def: Dictionary) -> void:
 		str(iden.get("collection_biography", def.get("lore", "")))
 	]
 
-	if def.get("type") != "creature":
-		var ctype: String = "play_tactic"
-		if def.get("type") == "relic":
-			ctype = "play_relic"
-		elif def.get("type") == "environment":
-			ctype = "play_environment"
-		selected_hand_index = -1
-		_dispatch_command({
-			"player": ConvergenceRules.local_player_slot,
-			"type": ctype,
-			"hand_index": h_idx,
-			"target_lane": 0,
-			"target_position": "front"
-		})
-	else:
+	var ctype: String = str(def.get("type", "creature"))
+	if ctype == "creature":
+		current_mode = InteractionMode.SUMMON_TARGET
+		pending_hand_index = h_idx
 		_refresh_tabletop()
-
-func _on_ally_slot_clicked(lane_idx: int, pos: String) -> void:
-	var my_board_slot: int = ConvergenceRules.local_player_slot % 2
-	var p_board: Dictionary = match_state["players"][my_board_slot]
-	var existing = p_board["lanes"][lane_idx][pos]
-
-	if existing == null and selected_hand_index >= 0:
-		var h_idx := selected_hand_index
-		selected_hand_index = -1
+	elif ctype == "relic":
+		# Relics are untargeted board attachments
+		SoundManager.play_card_play()
+		_cancel_interaction()
 		_dispatch_command({
 			"player": ConvergenceRules.local_player_slot,
-			"type": "summon_creature",
-			"hand_index": h_idx,
-			"lane": lane_idx,
-			"position": pos
+			"type": "play_relic",
+			"hand_index": h_idx
 		})
-	elif existing != null:
-		# Attack opposing lane with this unit
+	elif ctype == "environment":
+		# Environments are untargeted global battlefield shifts
+		SoundManager.play_card_play()
+		_cancel_interaction()
 		_dispatch_command({
 			"player": ConvergenceRules.local_player_slot,
-			"type": "attack_lane",
-			"lane": lane_idx,
-			"position": pos
+			"type": "play_environment",
+			"hand_index": h_idx
 		})
+	elif ctype == "tactic":
+		var t_info := _derive_tactic_targeting(def)
+		if not t_info.needs_target:
+			# Untargeted tactic played immediately with null targets
+			SoundManager.play_card_play()
+			_cancel_interaction()
+			_dispatch_command({
+				"player": ConvergenceRules.local_player_slot,
+				"type": "play_tactic",
+				"hand_index": h_idx,
+				"target_lane": null,
+				"target_position": null
+			})
+		else:
+			current_mode = InteractionMode.TACTIC_TARGET
+			pending_hand_index = h_idx
+			pending_tactic_target_type = t_info.target_type
+			_refresh_tabletop()
+
+func _derive_tactic_targeting(def: Dictionary) -> Dictionary:
+	var abs_list: Array = def.get("abilities", [])
+	for ab in abs_list:
+		var effs: Array = ab.get("effects", [])
+		for ef in effs:
+			var t: String = str(ef.get("target", "")).to_lower()
+			if t == "target_enemy_creature" or t == "enemy_in_lane":
+				return {"needs_target": true, "target_type": "enemy_creature"}
+			elif t == "ally_creature_in_lane_or_any" or t == "target_ally" or t == "strongest_ally_creature":
+				return {"needs_target": true, "target_type": "ally_creature"}
+			elif t == "open_ally_slot":
+				return {"needs_target": true, "target_type": "open_ally_slot"}
+			elif t == "enemy_leader":
+				return {"needs_target": true, "target_type": "enemy_leader"}
+			elif t == "ally_leader":
+				return {"needs_target": true, "target_type": "ally_leader"}
+	return {"needs_target": false, "target_type": "none"}
 
 func _on_mulligan_pressed() -> void:
+	SoundManager.play_button_click()
+	_cancel_interaction()
 	_dispatch_command({
 		"player": ConvergenceRules.local_player_slot,
 		"type": "mulligan",
@@ -536,6 +862,8 @@ func _on_mulligan_pressed() -> void:
 	})
 
 func _on_end_turn_pressed() -> void:
+	SoundManager.play_button_click()
+	_cancel_interaction()
 	_dispatch_command({
 		"player": ConvergenceRules.local_player_slot,
 		"type": "end_turn",
@@ -561,29 +889,54 @@ func _check_game_over() -> void:
 			is_victory = true
 
 	if is_victory:
+		SoundManager.play_victory()
 		end_game_title.text = "🏆 C O N V E R G E N C E   V I C T O R Y ! 🏆"
 		end_game_title.add_theme_color_override("font_color", Color(0.96, 0.85, 0.35))
 		end_game_subtitle.text = "You shattered the opposing lines and claimed victory in the Convergence!"
 
 		# Process Authoritative Rewards via GameState
 		var rewards := GameState.process_match_rewards(match_state, GameState.selected_npc_id)
-		var c_gain: int = int(rewards.get("crowns", 100))
-		var d_gain: int = int(rewards.get("echo_dust", 30))
-		var r_gain: int = int(rewards.get("relationship_gain", 8))
+		if rewards.get("success", false):
+			var c_gain: int = int(rewards.get("crowns", 0))
+			var d_gain: int = int(rewards.get("echo_dust", 0))
+			var r_gain: int = int(rewards.get("relationship_gain", 0))
+			var b_card: String = str(rewards.get("bonus_card_id", ""))
+			var b_text := ("\n• [color=#ffdd44]Bonus Card Rewarded:[/color] %s" % b_card) if b_card != "" else ""
 
-		end_game_details.text = """[b][size=18]AUTHORITATIVE DUEL REWARDS GRANTED[/size][/b]
+			end_game_details.text = """[b][size=18]AUTHORITATIVE DUEL REWARDS GRANTED[/size][/b]
 • [color=#ffd700]Crowns Claimed:[/color] +%d Crowns (New Total: %d)
 • [color=#88ccff]Echo Dust Gained:[/color] +%d Dust (New Total: %d)
-• [color=#ff66aa]NPC Relationship Gain:[/color] +%d Bond Affinity with %s
+• [color=#ff66aa]NPC Relationship Gain:[/color] +%d Bond Affinity with %s%s
 
 [color=#66eebb]Quests Updated:[/color]
 All matching duel objectives have progressed in your persistent profile!
 Return to Lumenport to speak with Envoy Soren or Marshal Corin to turn in completed chapters.""" % [
-			c_gain, GameState.crowns,
-			d_gain, GameState.echo_dust,
-			r_gain, GameState.selected_npc_id.replace("npc_", "").capitalize()
-		]
+				c_gain, GameState.crowns,
+				d_gain, GameState.echo_dust,
+				r_gain, GameState.selected_npc_id.replace("npc_", "").capitalize(),
+				b_text
+			]
+		elif rewards.get("already_claimed", false):
+			end_game_details.text = """[b][size=18]MATCH REWARD ALREADY CLAIMED[/size][/b]
+[color=#ffbb33]Authoritative match rewards for Match ID '%s' have already been processed into your profile.[/color]
+No duplicate Crowns, Dust, or quest progression will be granted for this encounter.
+
+Current Balances: %d Crowns | %d Echo Dust""" % [
+				str(rewards.get("match_id", match_state.get("match_id", ""))),
+				GameState.crowns,
+				GameState.echo_dust
+			]
+		else:
+			end_game_details.text = """[b][size=18]DUEL COMPLETE — NO REWARDS GRANTED[/size][/b]
+[color=#ff8888]%s[/color]
+
+Current Balances: %d Crowns | %d Echo Dust""" % [
+				str(rewards.get("error", "No authoritative reward granted.")),
+				GameState.crowns,
+				GameState.echo_dust
+			]
 	else:
+		SoundManager.play_defeat()
 		end_game_title.text = "⚔ D E F E A T E D   I N   D U E L ⚔"
 		end_game_title.add_theme_color_override("font_color", Color(0.85, 0.35, 0.35))
 		end_game_subtitle.text = "Your leader's vitality reached 0. The Convergence has reset."

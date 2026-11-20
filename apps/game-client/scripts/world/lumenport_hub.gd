@@ -700,10 +700,17 @@ func _build_world_hud() -> void:
 # -----------------------------------------------------------------------------
 func _build_dialogue_modal() -> void:
 	dialogue_modal = PanelContainer.new()
-	dialogue_modal.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dialogue_modal.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	dialogue_modal.offset_top = -350
+	dialogue_modal.offset_bottom = -20
+	dialogue_modal.offset_left = 60
+	dialogue_modal.offset_right = -60
 	var d_style := StyleBoxFlat.new()
-	d_style.bg_color = Color(0.04, 0.07, 0.12, 0.94)
-	d_style.set_content_margin_all(60)
+	d_style.bg_color = Color(0.04, 0.07, 0.12, 0.95)
+	d_style.border_color = Color(0.25, 0.45, 0.70)
+	d_style.set_border_width_all(2)
+	d_style.set_corner_radius_all(10)
+	d_style.set_content_margin_all(20)
 	dialogue_modal.add_theme_stylebox_override("panel", d_style)
 	dialogue_modal.visible = false
 	add_child(dialogue_modal)
@@ -1037,18 +1044,22 @@ You have entered the interior sanctum. Here you can rest, review faction registr
 	vbox.add_child(action_hbox)
 
 	var btn_rest := Button.new()
-	btn_rest.text = "☕ Rest at Counter (+20 Crowns from Patron)"
+	btn_rest.text = "☕ Interact with Interior Counter (+20 Crowns Rest Bonus)"
 	btn_rest.pressed.connect(func():
+		SoundManager.play_button_click()
 		GameState.crowns += 20
 		GameState.save_local_profile()
 		_refresh_hud_text()
-		interior_desc.text = "You rested comfortably, enjoying the warm hearth and soothing ambiance. +20 Crowns gained!"
+		interior_desc.text = "You enjoyed the warm ambiance and gathered local Convergence rumors. +20 Crowns added to your purse!"
 	)
 	action_hbox.add_child(btn_rest)
 
 	var btn_shop := Button.new()
 	btn_shop.text = "🏛 Open Deck Builder & Card Shop"
-	btn_shop.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/deck_builder.tscn"))
+	btn_shop.pressed.connect(func():
+		SoundManager.play_button_click()
+		get_tree().change_scene_to_file("res://scenes/ui/deck_builder.tscn")
+	)
 	action_hbox.add_child(btn_shop)
 
 	var btn_exit := Button.new()
@@ -1061,7 +1072,22 @@ func _enter_interior(interior_id: String, interior_name: String) -> void:
 	is_inside_interior = true
 	current_interior_id = interior_id
 	interior_title.text = "🏛 " + interior_name
-	interior_desc.text = "You step out of the coastal harbor wind into the warm, illuminated halls of %s." % interior_name
+
+	if interior_id == "interior_harbor_cafe":
+		interior_desc.text = "You step into The Salty Seagull Harbor Cafe. Warm amber hearth lights cast a cozy glow over dark timber tables. Sailors, merchants, and off-duty duelists share hot chowder and exchange rumors of the Convergence."
+	elif interior_id == "interior_card_shop":
+		interior_desc.text = "You enter the Resonance Emporium & Card Market. Arcane glass vitrines shimmer with rare foil cards from all eight factions. Master Artificer Vance's apprentices inspect mana crystals behind polished brass counters."
+	elif interior_id == "interior_artificer_forge":
+		interior_desc.text = "You enter the Molten Crucible & Artificer Forge. Heat radiates from roaring blast furnaces where Iron Choir engineers forge runic battle plates and synthesize Echo Dust into pristine card cores."
+	elif interior_id == "interior_training_ring":
+		interior_desc.text = "You step into the Grand Arena Sparring Ring. Heavy crimson banners hang over the packed-sand dueling arena. Veteran fighters test their lane resonance combinations in intense tactical drills."
+	elif interior_id == "interior_player_apartment":
+		interior_desc.text = "You enter your personal Duelist Quarters. Lavender twilight streams through the arched glass window overlooking the harbor. Your card cataloging desk and strategy journal are neatly organized."
+	elif interior_id == "interior_tournament_registration":
+		interior_desc.text = "You enter the Grand Tournament Inscription Rotunda. Soaring marble columns support a dome of celestial glass. The official roster of Convergence champions is inscribed upon towering brass tablets."
+	else:
+		interior_desc.text = "You step out of the coastal harbor wind into the warm, illuminated halls of %s." % interior_name
+
 	interior_panel.visible = true
 
 func _exit_interior() -> void:
