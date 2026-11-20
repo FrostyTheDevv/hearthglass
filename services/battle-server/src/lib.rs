@@ -378,6 +378,8 @@ pub struct PlayerState {
     pub mulligan_done: bool,
     pub resonate_active: bool,
     pub turns_taken: u32,
+    #[serde(default)]
+    pub counters: BTreeMap<String, i32>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -703,6 +705,7 @@ impl MatchState {
                 mulligan_done: false,
                 resonate_active: false,
                 turns_taken: if idx == 0 { 1 } else { 0 },
+                counters: BTreeMap::new(),
             }
         };
 
@@ -788,6 +791,7 @@ impl MatchState {
                 mulligan_done: false,
                 resonate_active: false,
                 turns_taken: if idx == 0 { 1 } else { 0 },
+                counters: BTreeMap::new(),
             });
         }
 
@@ -1614,6 +1618,20 @@ pub fn compute_checksum(&self) -> u64 {
             events,
         );
 
+        // Glassborne Refraction: Defender reflects damage back at attacker in combat
+        if !defender.silenced {
+            let ref_count = *defender.counters.get("refraction").unwrap_or(&0);
+            if ref_count > 0 && att_dmg > 0 {
+                let _ = self.apply_damage_to_creature(
+                    bh,
+                    attacker_lane,
+                    attacker_position,
+                    ref_count,
+                    events,
+                );
+            }
+        }
+
         // Drain on attacker
         if attacker.has_keyword("drain") && att_dmg > 0 {
             self.heal_leader(bh, att_dmg, events);
@@ -2193,6 +2211,20 @@ pub fn compute_checksum(&self) -> u64 {
                             self.apply_damage_to_creature(opponent, l, pos, amount, events);
                         }
                     }
+                    "all_enemy_creatures" => {
+                        let targets = self.resolve_creature_targets(
+                            controller,
+                            "all_enemy_creatures",
+                            source_slot,
+                            event_source,
+                        );
+                        for (p, l, pos) in targets {
+                            if self.consume_ward_if_present(p, l, pos, events) {
+                                continue;
+                            }
+                            self.apply_damage_to_creature(p, l, pos, amount, events);
+                        }
+                    }
                     _ => {}
                 }
             }
@@ -2212,6 +2244,19 @@ pub fn compute_checksum(&self) -> u64 {
                             self.find_ally_target(bh, source_slot.map(|(l, _)| l))
                         {
                             if let Some(u) = self.players[bh].lanes[l].get_mut(pos) {
+                                u.health = (u.health + amount).min(u.max_health);
+                            }
+                        }
+                    }
+                    "strongest_ally_creature" => {
+                        let targets = self.resolve_creature_targets(
+                            controller,
+                            "strongest_ally_creature",
+                            source_slot,
+                            event_source,
+                        );
+                        for (p, l, pos) in targets {
+                            if let Some(u) = self.players[p].lanes[l].get_mut(pos) {
                                 u.health = (u.health + amount).min(u.max_health);
                             }
                         }
@@ -2249,26 +2294,30 @@ pub fn compute_checksum(&self) -> u64 {
             "add_counter" => {
                 let counter_name = effect.counter.clone().unwrap_or_else(|| "growth".into());
                 let amount = effect.amount.unwrap_or(1);
-                let targets = self.resolve_creature_targets(
-                    controller,
-                    &effect.target,
-                    source_slot,
-                    event_source,
-                );
-                for (p, l, pos) in targets {
-                    let p_bh = self.board_holder(p);
-                    if p_bh != bh && self.consume_ward_if_present(p_bh, l, pos, events) {
-                        continue;
-                    }
-                    if let Some(u) = self.players[p_bh].lanes[l].get_mut(pos) {
-                        *u.counters.entry(counter_name.clone()).or_insert(0) += amount;
-                        if counter_name == "growth" {
-                            u.attack += amount;
-                            u.health += amount;
-                            u.max_health += amount;
-                        } else if counter_name == "corrode" {
-                            u.attack = (u.attack - amount).max(0);
-                            u.health -= amount;
+                if effect.target == "ally_leader" {
+                    *self.players[bh].counters.entry(counter_name).or_insert(0) += amount;
+                } else {
+                    let targets = self.resolve_creature_targets(
+                        controller,
+                        &effect.target,
+                        source_slot,
+                        event_source,
+                    );
+                    for (p, l, pos) in targets {
+                        let p_bh = self.board_holder(p);
+                        if p_bh != bh && self.consume_ward_if_present(p_bh, l, pos, events) {
+                            continue;
+                        }
+                        if let Some(u) = self.players[p_bh].lanes[l].get_mut(pos) {
+                            *u.counters.entry(counter_name.clone()).or_insert(0) += amount;
+                            if counter_name == "growth" {
+                                u.attack += amount;
+                                u.health += amount;
+                                u.max_health += amount;
+                            } else if counter_name == "corrode" {
+                                u.attack = (u.attack - amount).max(0);
+                                u.health -= amount;
+                            }
                         }
                     }
                 }
@@ -2457,26 +2506,31 @@ pub fn compute_checksum(&self) -> u64 {
                 }
             }
             "move_lane" => {
-                if let Some((from_l, from_pos)) =
+                let is_enemy = effect.target == "enemy_in_lane";
+                let target_board = if is_enemy { opponent } else { bh };
+                let target_slot = if is_enemy {
+                    self.find_enemy_target(opponent, source_slot.map(|(l, _)| l))
+                } else {
                     self.find_ally_target(bh, source_slot.map(|(l, _)| l))
-                {
+                };
+                if let Some((from_l, from_pos)) = target_slot {
                     for candidate_lane in 0..NUM_LANES {
                         if candidate_lane.abs_diff(from_l) == 1 {
                             for candidate_pos in [SlotPosition::Front, SlotPosition::Rear] {
-                                if self.players[bh].lanes[candidate_lane]
+                                if self.players[target_board].lanes[candidate_lane]
                                     .get(candidate_pos)
                                     .is_none()
                                 {
-                                    if let Some(unit) = self.players[bh].lanes[from_l]
+                                    if let Some(unit) = self.players[target_board].lanes[from_l]
                                         .get(from_pos)
                                         .cloned()
                                     {
                                         if !unit.has_keyword("anchor") {
-                                            self.players[bh].lanes[from_l].set(from_pos, None);
-                                            self.players[bh].lanes[candidate_lane]
+                                            self.players[target_board].lanes[from_l].set(from_pos, None);
+                                            self.players[target_board].lanes[candidate_lane]
                                                 .set(candidate_pos, Some(unit.clone()));
                                             events.push(BattleEvent::CreatureMoved {
-                                                player: controller,
+                                                player: target_board,
                                                 card_id: unit.card_id,
                                                 from_lane: from_l,
                                                 from_position: from_pos,
@@ -2564,6 +2618,17 @@ pub fn compute_checksum(&self) -> u64 {
                 .find_enemy_target(opponent, source_slot.map(|(l, _)| l))
                 .map(|(l, p)| vec![(opponent, l, p)])
                 .unwrap_or_default(),
+            "all_enemy_creatures" => {
+                let mut out = Vec::new();
+                for l in 0..NUM_LANES {
+                    for pos in [SlotPosition::Front, SlotPosition::Rear] {
+                        if self.players[opponent].lanes[l].get(pos).is_some() {
+                            out.push((opponent, l, pos));
+                        }
+                    }
+                }
+                out
+            }
             _ => Vec::new(),
         }
     }
@@ -2940,52 +3005,349 @@ impl NpcAi {
     pub fn choose_command(
         state: &MatchState,
         catalogue: &BTreeMap<String, CardDefinition>,
-        _difficulty: AiDifficulty,
+        difficulty: AiDifficulty,
     ) -> BattleCommand {
         let legal = state.generate_legal_commands(catalogue);
         let p = state.active_player;
         let bh = state.board_holder(p);
+        let opponent = state.opposing_board_holder(p);
+        let opp_vitality = state.players[opponent].vitality;
 
-        // 1. Prioritize summoning creatures into Front slots across empty lanes to establish Resonate (>= 2 lanes)
-        for cmd in &legal {
-            if let BattleCommand::SummonCreature {
-                lane,
-                position: SlotPosition::Front,
-                ..
-            } = cmd
-            {
-                if !state.players[bh].lanes[*lane].has_any() {
-                    return cmd.clone();
+        if legal.is_empty() {
+            return BattleCommand::EndTurn { player: p };
+        }
+
+        match difficulty {
+            AiDifficulty::Beginner => {
+                // Beginner: Naive execution. Plays first legal card in first slot, then attacks first available target.
+                for cmd in &legal {
+                    match cmd {
+                        BattleCommand::SummonCreature { .. }
+                        | BattleCommand::PlayRelic { .. }
+                        | BattleCommand::PlayEnvironment { .. }
+                        | BattleCommand::PlayTactic { .. } => return cmd.clone(),
+                        _ => {}
+                    }
                 }
+                for cmd in &legal {
+                    match cmd {
+                        BattleCommand::AttackCreature { .. }
+                        | BattleCommand::AttackLeader { .. } => return cmd.clone(),
+                        _ => {}
+                    }
+                }
+                BattleCommand::EndTurn { player: p }
+            }
+
+            AiDifficulty::Casual => {
+                // Casual: Simple lane control and face attacks when clear.
+                for cmd in &legal {
+                    if matches!(cmd, BattleCommand::AttackLeader { .. }) {
+                        return cmd.clone();
+                    }
+                }
+                for cmd in &legal {
+                    if let BattleCommand::SummonCreature { lane, .. } = cmd {
+                        if !state.players[bh].lanes[*lane].has_any() {
+                            return cmd.clone();
+                        }
+                    }
+                }
+                for cmd in &legal {
+                    match cmd {
+                        BattleCommand::SummonCreature { .. }
+                        | BattleCommand::PlayRelic { .. }
+                        | BattleCommand::PlayEnvironment { .. }
+                        | BattleCommand::PlayTactic { .. } => return cmd.clone(),
+                        _ => {}
+                    }
+                }
+                for cmd in &legal {
+                    if matches!(cmd, BattleCommand::AttackCreature { .. }) {
+                        return cmd.clone();
+                    }
+                }
+                BattleCommand::EndTurn { player: p }
+            }
+
+            AiDifficulty::Skilled => {
+                // Skilled: Tactical depth.
+                // 1. Lethal calculation on opposing leader:
+                let mut leader_attacks = Vec::new();
+                let mut total_leader_dmg = 0;
+                for cmd in &legal {
+                    if let BattleCommand::AttackLeader {
+                        attacker_lane,
+                        attacker_position,
+                        ..
+                    } = cmd
+                    {
+                        if let Some(att) = state.players[bh].lanes[*attacker_lane]
+                            .get(*attacker_position)
+                        {
+                            total_leader_dmg += att.attack.max(0);
+                            leader_attacks.push(cmd.clone());
+                        }
+                    }
+                }
+                if total_leader_dmg >= opp_vitality && !leader_attacks.is_empty() {
+                    return leader_attacks[0].clone();
+                }
+
+                // 2. Favorable trades: Attack enemy creature if we kill it and survive, or kill high-attack threat
+                let mut best_trade: Option<(BattleCommand, i32)> = None;
+                for cmd in &legal {
+                    if let BattleCommand::AttackCreature {
+                        attacker_lane,
+                        attacker_position,
+                        defender_lane,
+                        defender_position,
+                        ..
+                    } = cmd
+                    {
+                        if let (Some(att), Some(def)) = (
+                            state.players[bh].lanes[*attacker_lane].get(*attacker_position),
+                            state.players[opponent].lanes[*defender_lane].get(*defender_position),
+                        ) {
+                            let att_dmg = att.attack.max(0);
+                            let def_dmg = def.attack.max(0);
+                            let kills_def = att_dmg >= def.health;
+                            let att_survives = def_dmg < att.health;
+                            let mut score = 0;
+                            if kills_def && att_survives {
+                                score += 100 + def.attack * 10;
+                            } else if kills_def && def.attack > att.attack {
+                                score += 50 + (def.attack - att.attack) * 10;
+                            }
+                            if score > 0 {
+                                if best_trade
+                                    .as_ref()
+                                    .map(|(_, s)| score > *s)
+                                    .unwrap_or(true)
+                                {
+                                    best_trade = Some((cmd.clone(), score));
+                                }
+                            }
+                        }
+                    }
+                }
+                if let Some((trade_cmd, _)) = best_trade {
+                    return trade_cmd;
+                }
+
+                // 3. Lane control for Resonate: summon into empty lanes
+                for cmd in &legal {
+                    if let BattleCommand::SummonCreature {
+                        lane,
+                        position: SlotPosition::Front,
+                        ..
+                    } = cmd
+                    {
+                        if !state.players[bh].lanes[*lane].has_any() {
+                            return cmd.clone();
+                        }
+                    }
+                }
+
+                // 4. Play cards from hand (tactics, relics, summons)
+                for cmd in &legal {
+                    match cmd {
+                        BattleCommand::PlayTactic { .. }
+                        | BattleCommand::PlayRelic { .. }
+                        | BattleCommand::PlayEnvironment { .. }
+                        | BattleCommand::SummonCreature { .. } => return cmd.clone(),
+                        _ => {}
+                    }
+                }
+
+                // 5. Attack leader if open
+                if let Some(cmd) = leader_attacks.into_iter().next() {
+                    return cmd;
+                }
+
+                // 6. Remaining creature attacks
+                for cmd in &legal {
+                    if matches!(cmd, BattleCommand::AttackCreature { .. }) {
+                        return cmd.clone();
+                    }
+                }
+
+                BattleCommand::EndTurn { player: p }
+            }
+
+            AiDifficulty::Veteran
+            | AiDifficulty::Elite
+            | AiDifficulty::Champion
+            | AiDifficulty::Boss => {
+                // Expert / Boss: Full tactical threat evaluation, Aether efficiency, and strategic positioning.
+                // 1. Immediate Lethal Check on opposing leader:
+                let mut leader_attacks = Vec::new();
+                let mut total_leader_dmg = 0;
+                for cmd in &legal {
+                    if let BattleCommand::AttackLeader {
+                        attacker_lane,
+                        attacker_position,
+                        ..
+                    } = cmd
+                    {
+                        if let Some(att) = state.players[bh].lanes[*attacker_lane]
+                            .get(*attacker_position)
+                        {
+                            total_leader_dmg += att.attack.max(0);
+                            leader_attacks.push(cmd.clone());
+                        }
+                    }
+                }
+                if total_leader_dmg >= opp_vitality && !leader_attacks.is_empty() {
+                    return leader_attacks[0].clone();
+                }
+
+                // 2. Defensive Priority: If own vitality <= 12, prioritize Guard creatures facing threats
+                let own_vit = state.players[bh].vitality;
+                if own_vit <= 12 {
+                    for cmd in &legal {
+                        if let BattleCommand::SummonCreature {
+                            hand_index,
+                            position: SlotPosition::Front,
+                            lane,
+                            ..
+                        } = cmd
+                        {
+                            if let Some(card_inst) = state.players[p].hand.get(*hand_index) {
+                                if let Some(def) = catalogue.get(&card_inst.card_id) {
+                                    if def.keywords.contains(&"guard".to_string())
+                                        && state.players[opponent].lanes[*lane].has_any()
+                                    {
+                                        return cmd.clone();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // 3. Favorable Trades & Threat Elimination:
+                let mut best_attack: Option<(BattleCommand, i32)> = None;
+                for cmd in &legal {
+                    if let BattleCommand::AttackCreature {
+                        attacker_lane,
+                        attacker_position,
+                        defender_lane,
+                        defender_position,
+                        ..
+                    } = cmd
+                    {
+                        if let (Some(att), Some(def)) = (
+                            state.players[bh].lanes[*attacker_lane].get(*attacker_position),
+                            state.players[opponent].lanes[*defender_lane].get(*defender_position),
+                        ) {
+                            let att_dmg = att.attack.max(0);
+                            let def_dmg = def.attack.max(0);
+                            let kills_def = att_dmg >= def.health;
+                            let att_survives = def_dmg < att.health;
+                            let mut score = 0;
+                            if def.has_keyword("reach") || def.has_keyword("pierce") {
+                                score += 30;
+                            }
+                            if kills_def && att_survives {
+                                score += 150 + def.attack * 15 - att.attack * 2;
+                            } else if kills_def {
+                                score += 60 + (def.attack - att.attack) * 12;
+                            } else if att_survives && att_dmg > 0 {
+                                score += 20 + att_dmg * 5;
+                            }
+                            if score > 0 {
+                                if best_attack
+                                    .as_ref()
+                                    .map(|(_, s)| score > *s)
+                                    .unwrap_or(true)
+                                {
+                                    best_attack = Some((cmd.clone(), score));
+                                }
+                            }
+                        }
+                    }
+                }
+                if let Some((attack_cmd, score)) = best_attack {
+                    if score >= 60 {
+                        return attack_cmd;
+                    }
+                }
+
+                // 4. Strategic Summoning & Positioning:
+                let resonate_active = state.players[bh].resonate_active;
+                for cmd in &legal {
+                    if let BattleCommand::SummonCreature {
+                        hand_index,
+                        lane,
+                        position,
+                        ..
+                    } = cmd
+                    {
+                        if let Some(card_inst) = state.players[p].hand.get(*hand_index) {
+                            if let Some(def) = catalogue.get(&card_inst.card_id) {
+                                let has_guard = def.keywords.contains(&"guard".to_string());
+                                let has_reach = def.keywords.contains(&"reach".to_string());
+                                if has_guard && *position == SlotPosition::Front {
+                                    return cmd.clone();
+                                }
+                                if has_reach && *position == SlotPosition::Rear {
+                                    return cmd.clone();
+                                }
+                                if !resonate_active
+                                    && !state.players[bh].lanes[*lane].has_any()
+                                    && *position == SlotPosition::Front
+                                {
+                                    return cmd.clone();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // 5. Highest-cost card plays from hand
+                let mut best_play: Option<(BattleCommand, u8)> = None;
+                for cmd in &legal {
+                    match cmd {
+                        BattleCommand::PlayTactic { hand_index, .. }
+                        | BattleCommand::PlayRelic { hand_index, .. }
+                        | BattleCommand::PlayEnvironment { hand_index, .. }
+                        | BattleCommand::SummonCreature { hand_index, .. } => {
+                            if let Some(card_inst) = state.players[p].hand.get(*hand_index) {
+                                if let Some(def) = catalogue.get(&card_inst.card_id) {
+                                    let cost = def.cost;
+                                    if best_play
+                                        .as_ref()
+                                        .map(|(_, c)| cost > *c)
+                                        .unwrap_or(true)
+                                    {
+                                        best_play = Some((cmd.clone(), cost));
+                                    }
+                                }
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+                if let Some((play_cmd, _)) = best_play {
+                    return play_cmd;
+                }
+
+                // 6. Attack Leader if open
+                if let Some(cmd) = leader_attacks.into_iter().next() {
+                    return cmd;
+                }
+
+                // 7. Any remaining creature attack
+                for cmd in &legal {
+                    if matches!(cmd, BattleCommand::AttackCreature { .. }) {
+                        return cmd.clone();
+                    }
+                }
+
+                BattleCommand::EndTurn { player: p }
             }
         }
-
-        // 2. Any summon or relic or environment or tactic play
-        for cmd in &legal {
-            match cmd {
-                BattleCommand::SummonCreature { .. }
-                | BattleCommand::PlayRelic { .. }
-                | BattleCommand::PlayEnvironment { .. }
-                | BattleCommand::PlayTactic { .. } => return cmd.clone(),
-                _ => {}
-            }
-        }
-
-        // 3. Prioritize attacking opposing Leader when lane is clear
-        for cmd in &legal {
-            if matches!(cmd, BattleCommand::AttackLeader { .. }) {
-                return cmd.clone();
-            }
-        }
-
-        // 4. Attack enemy creatures
-        for cmd in &legal {
-            if matches!(cmd, BattleCommand::AttackCreature { .. }) {
-                return cmd.clone();
-            }
-        }
-
-        BattleCommand::EndTurn { player: p }
     }
 }
 
