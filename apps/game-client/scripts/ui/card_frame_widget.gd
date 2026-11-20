@@ -3,7 +3,7 @@ class_name CardFrameWidget
 ## Reusable Data-Driven Card Frame Renderer for Godot 4 (Section 8)
 ## Renders Creatures, Tactics, Relics, and Environments directly from canonical card definitions.
 ## Never relies on text or numbers baked into the illustration: loads pure illustration artwork
-## from `res://assets/cards/<id>.svg` (or `.png`) and dynamically renders canonical Name, Aether Cost,
+## from `res://assets/cards/<id>.svg` (or `.png`/`.webp`) and dynamically renders canonical Name, Aether Cost,
 ## Attack, Health, Type, Rarity, Faction border, Keywords, and Ability description.
 
 signal card_clicked(card_data: Dictionary)
@@ -85,7 +85,7 @@ func _rebuild_visuals() -> void:
 	cost_lbl.add_theme_color_override("font_color", Color(0.30, 0.88, 1.0))
 	header_hbox.add_child(cost_lbl)
 
-	# 2. Pure Illustration Art Window (Loads approved SVG/PNG from res://assets/cards/<id>.svg)
+	# 2. Pure Illustration Art Window (Supports PNG, WebP, JPEG, SVG)
 	var art_holder := PanelContainer.new()
 	art_holder.custom_minimum_size = Vector2(168, 92)
 	var art_style := StyleBoxFlat.new()
@@ -97,11 +97,14 @@ func _rebuild_visuals() -> void:
 	root_vbox.add_child(art_holder)
 
 	var cid: String = str(card_data.get("id", ""))
-	var svg_path_upper := "res://assets/cards/%s.svg" % cid
-	var svg_path_lower := "res://assets/cards/%s.svg" % cid.to_lower()
 	var tex_loaded := false
+	var exts: Array[String] = [".png", ".webp", ".jpg", ".jpeg", ".svg"]
+	var search_paths: Array[String] = []
+	for ext in exts:
+		search_paths.append("res://assets/cards/%s%s" % [cid, ext])
+		search_paths.append("res://assets/cards/%s%s" % [cid.to_lower(), ext])
 
-	for candidate_path in [svg_path_upper, svg_path_lower]:
+	for candidate_path in search_paths:
 		var abs_path := ProjectSettings.globalize_path(candidate_path)
 		if FileAccess.file_exists(abs_path):
 			var img := Image.new()

@@ -26,6 +26,68 @@ const questsData = JSON.parse(
 
 const CARD_MAP = new Map(bundleData.cards.map((c) => [c.id, c]));
 
+export const KNOWN_PUBLIC_EVENT_TYPES = new Set([
+  'match_started',
+  'mulligan_completed',
+  'turn_started',
+  'creature_summoned',
+  'tactic_played',
+  'relic_played',
+  'environment_replaced',
+  'creature_moved',
+  'combat_declared',
+  'damage_dealt',
+  'shield_absorbed',
+  'ward_triggered',
+  'leader_healed',
+  'leader_damaged',
+  'creature_destroyed',
+  'resonate_updated',
+  'match_ended'
+]);
+
+export function redactEventsForViewer(events = [], viewerSlot = null) {
+  if (!Array.isArray(events)) return [];
+  const authorizedSeat = typeof viewerSlot === 'number' ? viewerSlot : null;
+
+  return events.map((ev) => {
+    if (!ev || typeof ev !== 'object') return ev;
+    const type = ev.event || ev.type;
+
+    // Explicitly private draw/burn events: only the drawing player sees the card_id
+    if (type === 'card_drawn' || type === 'card_burned_overdraw') {
+      const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
+      return {
+        ...ev,
+        card_id: isOwner ? ev.card_id : 'HIDDEN',
+        instance_id: isOwner ? ev.instance_id : undefined
+      };
+    }
+
+    // Known public battlefield actions: preserve public fields
+    if (KNOWN_PUBLIC_EVENT_TYPES.has(type)) {
+      return { ...ev };
+    }
+
+    // Fail-closed schema for future / unclassified event types:
+    // If the event has a player field and contains secret data, redact for non-owners
+    const copy = { ...ev };
+    const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
+    if (!isOwner) {
+      if (copy.card_id !== undefined && !copy.is_revealed) {
+        copy.card_id = 'HIDDEN';
+      }
+      if (copy.hand_index !== undefined) delete copy.hand_index;
+      if (copy.card_instances !== undefined) delete copy.card_instances;
+      if (copy.unrevealed_choices !== undefined) delete copy.unrevealed_choices;
+      if (copy.deck !== undefined) delete copy.deck;
+    }
+    return copy;
+  });
+}
+
+
+
 /**
  * Converts a Rust `MatchState` into the UI-friendly match envelope used by the Web Studio,
  * Godot client, and REST/WebSocket APIs, while preserving 100% of Rust authoritative state.
@@ -261,7 +323,8 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
     decks = [],
     npcId = 'npc_kaelen_forge',
     seed = Date.now(),
-    aiPlayers = [1]
+    aiPlayers = [1],
+    allowSpectators = undefined
   }) {
     const matchId = crypto.randomUUID();
     const numericSeed = Number(seed) >>> 0 || 20261118;
@@ -328,6 +391,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       turnDeadlineMs: Date.now() + 45000,
       rewardSummary: null,
       completedPersisted: false,
+      allowSpectators: allowSpectators !== undefined ? Boolean(allowSpectators) : (mode === 'pvp_1v1' || mode === 'pvp_tag_2v2' ? true : false),
       subscribers: new Set() // Set of { ws, playerSlot (number or null for spectator), userId }
     };
 
@@ -429,6 +493,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
     };
   }
 
+
   async function getRedactedMatchForViewer(session, viewerSlot = 0) {
     const redacted = await rustBridge.redactState(
       session.state,
@@ -441,6 +506,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
     for (const sub of session.subscribers) {
       if (sub.ws.readyState !== 1) continue;
       const redactedMatch = await getRedactedMatchForViewer(session, sub.playerSlot);
+      const redactedEvents = redactEventsForViewer(events, sub.playerSlot);
       sub.ws.send(
         JSON.stringify({
           type: 'match_state_update',
@@ -448,7 +514,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           viewer_slot: sub.playerSlot,
           seq: session.seq,
           checksum: session.checksum,
-          events,
+          events: redactedEvents,
           match: redactedMatch
         })
       );
@@ -823,35 +889,122 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       if (req.method === 'POST' && pathname === '/v1/world/move') {
         const userId = await getAuthenticatedUserId();
         const body = await readJsonBody();
+        const profile = await db.getFullPlayerProfile(userId);
         const targetLoc = body.district || body.interior || body.location_id;
-        if (targetLoc) {
-          await db.query(
-            `UPDATE player_characters SET current_district = $2 WHERE user_id = $1`,
+
+        if (!targetLoc) {
+          return sendJson(400, { error: 'Destination location (district or interior) is required' });
+        }
+
+        // 1. Validate location existence in authoritative world bible
+        const allDistricts = npcsData.districts || [];
+        const allInteriors = npcsData.interiors || [];
+        const targetDistrictDef = allDistricts.find((d) => d.id === targetLoc);
+        const targetInteriorDef = allInteriors.find((i) => i.id === targetLoc);
+
+        if (!targetDistrictDef && !targetInteriorDef) {
+          return sendJson(400, {
+            error: `Invalid destination: '${targetLoc}' does not exist in the world`
+          });
+        }
+
+        const currentLoc = profile.world.district;
+        const currentDistrictDef = allDistricts.find((d) => d.id === currentLoc);
+        const currentInteriorDef = allInteriors.find((i) => i.id === currentLoc);
+
+        // 2. Separate Fast Travel from On-Foot Movement
+        const isFastTravel = Boolean(body.is_fast_travel);
+        let timeIncrementMinutes = 5;
+
+        if (isFastTravel) {
+          // Fast travel is ONLY allowed if destination is already discovered and fast_travel_unlocked
+          const fastTravelCheck = await db.query(
+            `SELECT 1 FROM discovered_locations WHERE user_id = $1 AND location_id = $2 AND fast_travel_unlocked = TRUE LIMIT 1`,
             [userId, targetLoc]
           );
-          await db.query(
-            `INSERT INTO discovered_locations (user_id, location_id, fast_travel_unlocked)
-             VALUES ($1, $2, TRUE) ON CONFLICT DO NOTHING`,
-            [userId, targetLoc]
-          );
-          await db.advanceQuestObjective(userId, 'visit_location', targetLoc);
+          if (fastTravelCheck.rows.length === 0) {
+            return sendJson(403, {
+              error: `Fast travel locked: You must discover '${targetLoc}' on foot before using fast travel`
+            });
+          }
+          timeIncrementMinutes = 15;
+        } else if (currentLoc !== targetLoc) {
+          // Validate physical adjacency / connectivity
+          let isConnected = false;
+
+          if (currentDistrictDef) {
+            // Player is in a district: can move to connected districts or enter an interior of this district
+            if (currentDistrictDef.connected_districts?.includes(targetLoc)) {
+              isConnected = true;
+            } else if (currentDistrictDef.interiors?.includes(targetLoc)) {
+              isConnected = true;
+            }
+          } else if (currentInteriorDef) {
+            // Player is in an interior: can exit to parent district, or enter a sibling interior in the same district
+            if (currentInteriorDef.district_id === targetLoc) {
+              isConnected = true;
+            } else if (targetInteriorDef && targetInteriorDef.district_id === currentInteriorDef.district_id) {
+              isConnected = true;
+            }
+          }
+
+          if (!isConnected) {
+            return sendJson(400, {
+              error: `Illegal travel path: Destination '${targetLoc}' is not connected to current location '${currentLoc}'`
+            });
+          }
         }
-        if (body.in_game_minutes !== undefined) {
-          await db.query(
-            `UPDATE player_world_progress SET in_game_minutes = $2::int, updated_at = NOW() WHERE user_id = $1`,
-            [userId, Number(body.in_game_minutes) % 1440]
-          );
+
+        // 3. Update character location
+        await db.query(
+          `UPDATE player_characters SET current_district = $2 WHERE user_id = $1`,
+          [userId, targetLoc]
+        );
+
+        // 4. Server-authoritative location discovery
+        const permitsFastTravel = Boolean(targetDistrictDef?.fast_travel_unlocked);
+        await db.query(
+          `INSERT INTO discovered_locations (user_id, location_id, fast_travel_unlocked)
+           VALUES ($1, $2, $3)
+           ON CONFLICT (user_id, location_id) DO UPDATE SET
+             fast_travel_unlocked = discovered_locations.fast_travel_unlocked OR EXCLUDED.fast_travel_unlocked`,
+          [userId, targetLoc, permitsFastTravel]
+        );
+
+        // 5. Server-authoritative time advancement (reject arbitrary client time jumps)
+        const updatedMinutes = (profile.world.in_game_minutes + timeIncrementMinutes) % 1440;
+        await db.query(
+          `UPDATE player_world_progress SET in_game_minutes = $2, updated_at = NOW() WHERE user_id = $1`,
+          [userId, updatedMinutes]
+        );
+
+        // 6. Server-authoritative weather cycle (reject client overrides)
+        let authoritativeWeather = 'clear';
+        if (updatedMinutes >= 300 && updatedMinutes < 420) {
+          authoritativeWeather = 'misty_dawn';
+        } else if (updatedMinutes >= 1140 && updatedMinutes < 1260) {
+          authoritativeWeather = 'twilight';
+        } else if (updatedMinutes >= 1260 || updatedMinutes < 300) {
+          authoritativeWeather = 'starry_night';
         }
-        if (body.weather) {
-          await db.query(
-            `UPDATE player_world_progress SET current_weather = $2, updated_at = NOW() WHERE user_id = $1`,
-            [userId, body.weather]
-          );
-        }
+        await db.query(
+          `UPDATE player_world_progress SET current_weather = $2, updated_at = NOW() WHERE user_id = $1`,
+          [userId, authoritativeWeather]
+        );
+
+        // 7. Advance quest exploration objective
+        await db.advanceQuestObjective(userId, 'visit_location', targetLoc);
+
         const legacy = await syncLegacyAppState(userId);
         return sendJson(200, {
           character: legacy.character,
-          quests: legacy.quests
+          quests: legacy.quests,
+          world: {
+            ...legacy.character.world,
+            in_game_minutes: updatedMinutes,
+            weather: authoritativeWeather,
+            location: targetLoc
+          }
         });
       }
 
@@ -925,24 +1078,19 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         }
         try {
           const action = body.action || 'craft';
-          const profileBefore = await db.getFullPlayerProfile(userId);
-          const card = CARD_MAP.get(body.card_id);
-          const maxCopies = { common: 3, uncommon: 3, rare: 2, legendary: 1 }[card.rarity];
-          if (action === 'craft' && (profileBefore.collection[body.card_id] || 0) >= maxCopies) {
-            await db.query(
-              `UPDATE player_card_ownership SET quantity = GREATEST(0, quantity - 1) WHERE user_id = $1 AND card_id = $2`,
-              [userId, body.card_id]
-            );
-          }
+          const idempotencyKey =
+            req.headers['x-idempotency-key'] || body.idempotency_key || null;
           const result = await db.craftOrDisenchantCard(userId, {
             card_id: body.card_id,
-            action
+            action,
+            idempotency_key: idempotencyKey
           });
           return sendJson(200, {
             card_id: result.card_id,
             new_quantity: result.new_quantity,
             echo_dust: result.wallet.echo_dust,
-            wallet: result.wallet
+            wallet: result.wallet,
+            idempotent_replay: Boolean(result.idempotent_replay)
           });
         } catch (err) {
           return sendJson(400, { error: err.message });
@@ -1010,12 +1158,25 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         const profile = await db.getFullPlayerProfile(userId);
         const body = await readJsonBody();
         try {
+          const isProduction =
+            body.approval_type === 'production' ||
+            Boolean(body.production_approved || body.final_production_approved);
+
+          if (isProduction) {
+            if (body.visual_review_passed !== true || body.visual_quality_confirmed !== true) {
+              return sendJson(400, {
+                error:
+                  'Safeguard Rejection: Production approval requires explicit recorded visual review (visual_review_passed: true and visual_quality_confirmed: true).'
+              });
+            }
+          }
+
           const approved = artPipeline.approveCandidate(body.card_id, body.candidate_id, {
             ...body,
             approved_by: profile.username || userId,
-            approval_type: body.approval_type || (body.production_approved || body.final_production_approved ? 'production' : undefined),
-            visual_review_passed: body.visual_review_passed ?? true,
-            visual_quality_confirmed: body.visual_quality_confirmed ?? true,
+            approval_type: isProduction ? 'production' : (body.approval_type || 'concept'),
+            visual_review_passed: body.visual_review_passed === true,
+            visual_quality_confirmed: body.visual_quality_confirmed === true,
             notes: body.notes || 'Approved via Content Studio API'
           });
           return sendJson(200, approved);
@@ -1063,13 +1224,17 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
 
         const format = body.format || 'standard_1v1';
         const mode =
-          body.mode || (format === 'tag_2v2' ? 'tag_2v2_coop' : 'pve_1v1');
+          body.mode || (format === 'tag_2v2' ? 'tag_2v2_coop' : (body.opponent_user_id ? 'pvp_1v1' : 'pve_1v1'));
 
         let decks = [chosenDeck];
         let playerUserIds = [userId];
         let playerNames = [profile.username];
 
-        if (format === 'tag_2v2') {
+        if (Array.isArray(body.player_user_ids) && body.player_user_ids.length > 1) {
+          playerUserIds = body.player_user_ids;
+          playerNames = body.player_names || [profile.username, 'Challenger'];
+          decks = Array.isArray(body.decks) && body.decks.length > 1 ? body.decks : [chosenDeck, starterDecksData.decks[1]];
+        } else if (format === 'tag_2v2') {
           decks = [
             chosenDeck,
             starterDecksData.decks[1],
@@ -1078,7 +1243,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           ];
           playerUserIds = [userId, 'ai_tag_seat_1', 'ai_tag_seat_2', 'ai_tag_seat_3'];
           playerNames = [profile.username, 'Ally AI', 'Opponent AI 1', 'Opponent AI 2'];
-        } else if (body.opponent_deck_id) {
+        } else if (body.opponent_deck_id || body.opponent_user_id) {
           const oppDeck =
             starterDecksData.decks.find((d) => d.id === body.opponent_deck_id) ||
             starterDecksData.decks[1];
@@ -1095,6 +1260,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           decks,
           npcId: body.npc_id || 'npc_kaelen_forge',
           seed: body.seed || Date.now(),
+          allowSpectators: body.allow_spectators !== undefined ? Boolean(body.allow_spectators) : (mode === 'pvp_1v1' || mode === 'pvp_tag_2v2'),
           aiPlayers:
             body.ai_players !== undefined
               ? body.ai_players
@@ -1108,7 +1274,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         // The match creator is authoritatively seated at Slot 0
         const viewerSlot = 0;
         const match = await getRedactedMatchForViewer(session, viewerSlot);
-        return sendJson(201, { match });
+        return sendJson(201, { match_id: session.id, match });
       }
 
       if (req.method === 'GET' && pathname.startsWith('/v1/matches/')) {
@@ -1161,7 +1327,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         const legacy = await syncLegacyAppState(userId);
         return sendJson(200, {
           accepted: true,
-          events: execResult.events,
+          events: redactEventsForViewer(execResult.events, seat),
           checksum: execResult.checksum,
           match,
           account: legacy.account
@@ -1449,11 +1615,21 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           return;
         }
 
-        // Spectator Join (All 4 player hands redacted)
+        // Spectator Join (All 4 player hands redacted and spectator access policies enforced)
         if (msg.type === 'spectate_match') {
           const session = matchSessions.get(msg.match_id);
           if (!session) {
             ws.send(JSON.stringify({ type: 'error', error: 'Match session not found' }));
+            return;
+          }
+          if (session.allowSpectators === false) {
+            ws.send(
+              JSON.stringify({
+                type: 'error',
+                code: 'SPECTATING_DENIED',
+                error: 'Forbidden: Spectating is disabled for this private match'
+              })
+            );
             return;
           }
           clientCtx.currentMatchId = session.id;
@@ -1466,6 +1642,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           });
 
           const redactedMatch = await getRedactedMatchForViewer(session, null);
+          const redactedEvents = redactEventsForViewer(session.state.event_log || [], null);
           ws.send(
             JSON.stringify({
               type: 'match_spectating',
@@ -1473,6 +1650,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
               viewer_slot: null,
               seq: session.seq,
               checksum: session.checksum,
+              events: redactedEvents,
               match: redactedMatch
             })
           );

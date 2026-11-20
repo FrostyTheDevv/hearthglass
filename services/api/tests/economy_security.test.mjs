@@ -94,11 +94,12 @@ test('SECURITY: Client-supplied local profile cannot forge or alter authoritativ
     assert.match(packErr.error, /insufficient crowns/i);
 
     // 5. Test insufficient funds rejection on card crafting
+    await db.query(`UPDATE player_card_ownership SET quantity = 0 WHERE user_id = $1 AND card_id = 'EMB-E-0008'`, [testUserId]);
     await db.query(`UPDATE wallet_balances SET echo_dust = 10 WHERE user_id = $1`, [testUserId]);
     const craftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...authHeaders },
-      body: JSON.stringify({ card_id: 'EMB-C-0019', action: 'craft' }) // Legendary requires 1600 dust
+      body: JSON.stringify({ card_id: 'EMB-E-0008', action: 'craft' }) // Legendary requires 1600 dust
     });
     assert.equal(craftRes.status, 400, 'Crafting must fail when Echo Dust is insufficient');
     const craftErr = await craftRes.json();

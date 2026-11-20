@@ -1,6 +1,6 @@
 use hearthglass_battle_server::{
     validate_deck, AiDifficulty, BattleCommand, CardBundle, CardDefinition, DeckDefinition,
-    MatchOutcome, MatchState, NpcAi, StarterDecksFile,
+    MatchOutcome, MatchState, NpcAi, StarterDecksFile, redact_events, BattleEvent,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -72,6 +72,11 @@ enum RpcRequest {
     RedactState {
         req_id: Option<String>,
         state: MatchState,
+        viewer: Option<usize>,
+    },
+    RedactEvents {
+        req_id: Option<String>,
+        events: Vec<BattleEvent>,
         viewer: Option<usize>,
     },
     LegalCommands {
@@ -244,6 +249,21 @@ fn process_rpc_line(
                     data: Some(serde_json::json!({
                         "state": redacted,
                         "checksum": state.compute_checksum(),
+                    })),
+                }
+            }
+            RpcRequest::RedactEvents {
+                req_id,
+                events,
+                viewer,
+            } => {
+                let redacted = redact_events(&events, viewer);
+                RpcResponse {
+                    req_id,
+                    ok: true,
+                    error: None,
+                    data: Some(serde_json::json!({
+                        "events": redacted,
                     })),
                 }
             }

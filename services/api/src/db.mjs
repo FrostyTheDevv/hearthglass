@@ -100,6 +100,7 @@ export class HearthglassDatabase {
     );
     await this.exec(migrationSql);
     await this.exec("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(32) NOT NULL DEFAULT 'player';");
+    await this.exec("ALTER TABLE crafting_transactions ADD COLUMN IF NOT EXISTS idempotency_key VARCHAR(96) UNIQUE;");
 
     // 2. Load canonical JSON content and seed reference tables
     const bundle = JSON.parse(
@@ -135,6 +136,29 @@ export class HearthglassDatabase {
       password: 'hearthglass_default_password',
       role: 'administrator'
     });
+  }
+
+  async withTransaction(callback) {
+    if (this.pool) {
+      const client = await this.pool.connect();
+      try {
+        await client.query('BEGIN');
+        const txQuery = (sql, params = []) => client.query(sql, params);
+        const result = await callback(txQuery);
+        await client.query('COMMIT');
+        return result;
+      } catch (err) {
+        await client.query('ROLLBACK');
+        throw err;
+      } finally {
+        client.release();
+      }
+    } else {
+      return this.pglite.transaction(async (tx) => {
+        const txQuery = (sql, params = []) => tx.query(sql, params);
+        return callback(txQuery);
+      });
+    }
   }
 
   async exec(sql) {
@@ -304,30 +328,12 @@ export class HearthglassDatabase {
       ]
     );
 
-    // Seed discovered locations across all 6 districts and 6 interiors
-    const allLocIds = [
-      'lumenport_arrival_square',
-      'lumenport_central_card_market',
-      'lumenport_duelist_plaza',
-      'lumenport_residential_district',
-      'lumenport_tournament_hall',
-      'lumenport_accord_institute',
-      'lumenport_observatory_district',
-      'lumenport_old_harbor',
-      'interior_prism_card_shop',
-      'interior_lantern_drip_cafe',
-      'interior_player_harbor_loft',
-      'interior_tournament_registration',
-      'interior_aether_training_facility',
-      'interior_choir_relic_workshop'
-    ];
-    for (const loc of allLocIds) {
-      await this.query(
-        `INSERT INTO discovered_locations (user_id, location_id, fast_travel_unlocked)
-         VALUES ($1, $2, TRUE) ON CONFLICT DO NOTHING`,
-        [uid, loc]
-      );
-    }
+    // Seed initial starting location as discovered with fast travel unlocked
+    await this.query(
+      `INSERT INTO discovered_locations (user_id, location_id, fast_travel_unlocked)
+       VALUES ($1, 'lumenport_arrival_square', TRUE) ON CONFLICT DO NOTHING`,
+      [uid]
+    );
 
     // Seed starter card ownership (max playable copies of all 320 cards for seamless deckbuilding & testing)
     for (const c of this.cardById.values()) {
@@ -830,67 +836,90 @@ export class HearthglassDatabase {
     };
   }
 
-  async craftOrDisenchantCard(userId, { card_id, action }) {
+  async craftOrDisenchantCard(userId, { card_id, action, idempotency_key = null }) {
     const card = this.cardById.get(card_id);
     if (!card) {
       throw new Error(`Unknown card_id: ${card_id}`);
     }
 
-    const ownRes = await this.query(
-      `SELECT quantity FROM player_card_ownership WHERE user_id = $1 AND card_id = $2`,
-      [userId, card_id]
-    );
-    const owned = Number(ownRes.rows[0]?.quantity || 0);
-    const wRes = await this.query(
-      `SELECT echo_dust FROM wallet_balances WHERE user_id = $1`,
-      [userId]
-    );
-    const echoDust = Number(wRes.rows[0]?.echo_dust || 0);
-    const maxCopies = COPY_LIMITS[card.rarity];
+    const txResult = await this.withTransaction(async (txQuery) => {
+      // 1. Concurrency and Idempotency Protection
+      if (idempotency_key) {
+        const existingTx = await txQuery(
+          `SELECT id, action_type, echo_dust_delta FROM crafting_transactions WHERE idempotency_key = $1 LIMIT 1`,
+          [idempotency_key]
+        );
+        if (existingTx.rows.length > 0) {
+          return { idempotent_replay: true };
+        }
+      }
 
-    if (action === 'disenchant') {
-      if (owned <= 0) {
-        throw new Error('You do not own any copies to disenchant');
-      }
-      const yieldDust = DISENCHANT_YIELDS[card.rarity];
-      await this.query(
-        `UPDATE player_card_ownership SET quantity = quantity - 1, updated_at = NOW() WHERE user_id = $1 AND card_id = $2`,
+      // Lock wallet balance and card ownership rows
+      const wRes = await txQuery(
+        `SELECT echo_dust FROM wallet_balances WHERE user_id = $1 FOR UPDATE`,
+        [userId]
+      );
+      const echoDust = Number(wRes.rows[0]?.echo_dust || 0);
+
+      const ownRes = await txQuery(
+        `SELECT quantity FROM player_card_ownership WHERE user_id = $1 AND card_id = $2 FOR UPDATE`,
         [userId, card_id]
       );
-      await this.query(
-        `UPDATE wallet_balances SET echo_dust = echo_dust + $2, updated_at = NOW() WHERE user_id = $1`,
-        [userId, yieldDust]
-      );
-      await this.query(
-        `INSERT INTO crafting_transactions (id, user_id, action_type, card_id, echo_dust_delta)
-         VALUES ($1, $2, 'disenchant', $3, $4)`,
-        [crypto.randomUUID(), userId, card_id, yieldDust]
-      );
-    } else {
-      const costDust = CRAFT_COSTS[card.rarity];
-      if (owned >= maxCopies) {
-        throw new Error(`Already own maximum playable copies (${maxCopies}) of ${card.name}`);
+      const owned = Number(ownRes.rows[0]?.quantity || 0);
+      const maxCopies = COPY_LIMITS[card.rarity] || 3;
+
+      if (action === 'disenchant') {
+        if (owned <= 0) {
+          throw new Error('You do not own any copies to disenchant');
+        }
+        const yieldDust = DISENCHANT_YIELDS[card.rarity];
+        await txQuery(
+          `UPDATE player_card_ownership SET quantity = quantity - 1, updated_at = NOW() WHERE user_id = $1 AND card_id = $2`,
+          [userId, card_id]
+        );
+        await txQuery(
+          `UPDATE wallet_balances SET echo_dust = echo_dust + $2, updated_at = NOW() WHERE user_id = $1`,
+          [userId, yieldDust]
+        );
+        await txQuery(
+          `INSERT INTO crafting_transactions (id, user_id, action_type, card_id, echo_dust_delta, idempotency_key)
+           VALUES ($1, $2, 'disenchant', $3, $4, $5)`,
+          [crypto.randomUUID(), userId, card_id, yieldDust, idempotency_key]
+        );
+      } else {
+        const costDust = CRAFT_COSTS[card.rarity];
+        // Enforce inventory limit BEFORE modifying anything
+        if (owned >= maxCopies) {
+          throw new Error(`Already own maximum playable copies (${maxCopies}) of ${card.name}`);
+        }
+        // Enforce currency sufficiency BEFORE modifying anything
+        if (echoDust < costDust) {
+          throw new Error(`Insufficient Echo Dust (requires ${costDust})`);
+        }
+        // Atomic deduction and ownership increment
+        await txQuery(
+          `UPDATE wallet_balances SET echo_dust = echo_dust - $2, updated_at = NOW() WHERE user_id = $1`,
+          [userId, costDust]
+        );
+        await txQuery(
+          `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
+           VALUES ($1, $2, 1, NOW())
+           ON CONFLICT (user_id, card_id) DO UPDATE SET
+             quantity = player_card_ownership.quantity + 1,
+             updated_at = NOW()`,
+          [userId, card_id]
+        );
+        await txQuery(
+          `INSERT INTO crafting_transactions (id, user_id, action_type, card_id, echo_dust_delta, idempotency_key)
+           VALUES ($1, $2, 'craft', $3, $4, $5)`,
+          [crypto.randomUUID(), userId, card_id, -costDust, idempotency_key]
+        );
       }
-      if (echoDust < costDust) {
-        throw new Error(`Insufficient Echo Dust (requires ${costDust})`);
-      }
-      await this.query(
-        `UPDATE wallet_balances SET echo_dust = echo_dust - $2, updated_at = NOW() WHERE user_id = $1`,
-        [userId, costDust]
-      );
-      await this.query(
-        `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
-         VALUES ($1, $2, 1, NOW())
-         ON CONFLICT (user_id, card_id) DO UPDATE SET
-           quantity = player_card_ownership.quantity + 1,
-           updated_at = NOW()`,
-        [userId, card_id]
-      );
-      await this.query(
-        `INSERT INTO crafting_transactions (id, user_id, action_type, card_id, echo_dust_delta)
-         VALUES ($1, $2, 'craft', $3, $4)`,
-        [crypto.randomUUID(), userId, card_id, -costDust]
-      );
+
+      return { idempotent_replay: false };
+    });
+
+    if (action === 'craft' && !txResult.idempotent_replay) {
       await this.advanceQuestObjective(userId, 'craft_card', 'any_card');
     }
 
@@ -898,7 +927,8 @@ export class HearthglassDatabase {
     return {
       card_id,
       new_quantity: updated.collection[card_id] || 0,
-      wallet: updated.wallet
+      wallet: updated.wallet,
+      idempotent_replay: Boolean(txResult.idempotent_replay)
     };
   }
 

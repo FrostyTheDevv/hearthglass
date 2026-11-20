@@ -127,6 +127,13 @@ export class RustBattleEngineBridge {
     });
   }
 
+  async redactEvents(events, viewer = null) {
+    return this.call('redact_events', {
+      events,
+      viewer
+    });
+  }
+
   async getLegalCommands(state) {
     return this.call('legal_commands', { state });
   }

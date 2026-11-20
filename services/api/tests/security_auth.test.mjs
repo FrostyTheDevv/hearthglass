@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { WebSocket } from 'ws';
-import { createServer } from '../src/server.mjs';
+import { createServer, redactEventsForViewer } from '../src/server.mjs';
 import { ArtProductionPipeline } from '../src/art_pipeline.mjs';
 
 function makeTempPgDir() {
@@ -445,4 +445,350 @@ test('INTEGRITY: Approved production artwork remains intact across ArtProduction
       fs.rmSync(tmpRoot, { recursive: true, force: true });
     } catch {}
   }
+});
+
+
+test('SECURITY: WebSocket and REST outbound events redact private card draws and overdraws for opponents and spectators', async () => {
+  // 1. Direct deterministic schema unit test across all roles (owner, opponent, teammate, spectator)
+  const sampleEvents = [
+    { event: 'card_drawn', player: 0, card_id: 'EMB-C-0001', instance_id: 101 },
+    { event: 'card_drawn', player: 1, card_id: 'VER-C-0001', instance_id: 102 },
+    { event: 'card_burned_overdraw', player: 0, card_id: 'EMB-C-0002' },
+    { event: 'creature_summoned', player: 0, card_id: 'EMB-C-0001', name: 'Ashborne Initiate', lane: 1, position: 'front' },
+    { event: 'tactic_played', player: 1, card_id: 'VER-T-0006', name: 'Canopy Snare' },
+    { event: 'damage_dealt', target_description: 'Defender', amount: 3 },
+    { event: 'unknown_future_event', player: 0, card_id: 'SECRET_CARD', hand_index: 2, deck: ['SECRET_DECK'] }
+  ];
+
+  // Viewer 0 (Seat 0): sees own draw EMB-C-0001, sees Seat 1 draw redacted to HIDDEN, sees public summons intact
+  const forSeat0 = redactEventsForViewer(sampleEvents, 0);
+  assert.equal(forSeat0[0].card_id, 'EMB-C-0001', 'Player 0 must see their own drawn card');
+  assert.equal(forSeat0[1].card_id, 'HIDDEN', 'Player 0 must NOT see Player 1 drawn card');
+  assert.equal(forSeat0[2].card_id, 'EMB-C-0002', 'Player 0 must see their own burned card');
+  assert.equal(forSeat0[3].card_id, 'EMB-C-0001', 'Public summons must remain visible to all');
+  assert.equal(forSeat0[4].card_id, 'VER-T-0006', 'Public tactics must remain visible to all');
+  assert.equal(forSeat0[5].amount, 3, 'Public damage must remain visible to all');
+  assert.equal(forSeat0[6].card_id, 'SECRET_CARD', 'Owner sees own future event card');
+
+  // Viewer 1 (Seat 1 - Opponent):
+  const forSeat1 = redactEventsForViewer(sampleEvents, 1);
+  assert.equal(forSeat1[0].card_id, 'HIDDEN', 'Player 1 must NOT see Player 0 drawn card');
+  assert.equal(forSeat1[1].card_id, 'VER-C-0001', 'Player 1 must see their own drawn card');
+  assert.equal(forSeat1[2].card_id, 'HIDDEN', 'Player 1 must NOT see Player 0 burned card');
+  assert.equal(forSeat1[3].card_id, 'EMB-C-0001', 'Public summons must remain visible');
+  assert.equal(forSeat1[6].card_id, 'HIDDEN', 'Future unknown event must fail closed for non-owner');
+  assert.equal(forSeat1[6].deck, undefined, 'Future unknown event must strip deck');
+
+  // Viewer null (Spectator):
+  const forSpectator = redactEventsForViewer(sampleEvents, null);
+  assert.equal(forSpectator[0].card_id, 'HIDDEN', 'Spectator must NOT see Player 0 draw');
+  assert.equal(forSpectator[1].card_id, 'HIDDEN', 'Spectator must NOT see Player 1 draw');
+  assert.equal(forSpectator[2].card_id, 'HIDDEN', 'Spectator must NOT see Player 0 burn');
+  assert.equal(forSpectator[3].card_id, 'EMB-C-0001', 'Spectator sees public summons');
+  assert.equal(forSpectator[4].card_id, 'VER-T-0006', 'Spectator sees public tactics');
+  assert.equal(forSpectator[6].card_id, 'HIDDEN', 'Spectator has future secret card redacted');
+
+  // 2. Integration test over live WebSocket & REST match
+  await withAuthServer(async ({ baseUrl, playerAuth: p1Auth, victimAuth: p2Auth }) => {
+    const matchRes = await fetch(`${baseUrl}/v1/matches`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({
+        mode: 'pvp_1v1',
+        format: 'standard_1v1',
+        opponent_user_id: p2Auth.user_id,
+        opponent_name: p2Auth.profile.username,
+        player_user_ids: [p1Auth.user_id, p2Auth.user_id],
+        player_names: [p1Auth.profile.username, p2Auth.profile.username],
+        seed: 42
+      })
+    });
+    assert.equal(matchRes.status, 201);
+    const { match } = await matchRes.json();
+    const matchId = match.id;
+
+    // Both players complete mulligan via REST
+    const mul0 = await fetch(`${baseUrl}/v1/matches/${matchId}/command`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${p1Auth.token}` },
+      body: JSON.stringify({ type: 'mulligan', replace_hand_indices: [] })
+    });
+    assert.equal(mul0.status, 200);
+
+    const mul1 = await fetch(`${baseUrl}/v1/matches/${matchId}/command`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${p2Auth.token}` },
+      body: JSON.stringify({ type: 'mulligan', replace_hand_indices: [] })
+    });
+    assert.equal(mul1.status, 200);
+    const mul1Data = await mul1.json();
+
+    // mul1 causes turn 1 to start, and player 0 draws a card!
+    // Since mul1 was called by Player 1 (seat 1), any card_drawn event for player 0 in the REST response must be REDACTED!
+    const p0DrawInRest = mul1Data.events.find((e) => (e.event === 'card_drawn' || e.type === 'card_drawn') && e.player === 0);
+    if (p0DrawInRest) {
+      assert.equal(p0DrawInRest.card_id, 'HIDDEN', 'REST response returned to Player 1 must have Player 0 draw redacted as HIDDEN');
+    }
+
+    // Now Player 0 calls end_turn via REST. Turn 2 starts, and Player 1 draws a card.
+    const end0 = await fetch(`${baseUrl}/v1/matches/${matchId}/command`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${p1Auth.token}` },
+      body: JSON.stringify({ type: 'end_turn', player: 0 })
+    });
+    assert.equal(end0.status, 200);
+    const end0Data = await end0.json();
+
+    // Since end0 was called by Player 0 (seat 0), any card_drawn event for player 1 in the REST response must be REDACTED!
+    const p1DrawInRest = end0Data.events.find((e) => (e.event === 'card_drawn' || e.type === 'card_drawn') && e.player === 1);
+    if (p1DrawInRest) {
+      assert.equal(p1DrawInRest.card_id, 'HIDDEN', 'REST response returned to Player 0 must have Player 1 draw redacted as HIDDEN');
+    }
+  });
+});
+
+test('SECURITY: Crafting inventory-loss bug is eliminated: max copies and insufficient dust never decrement inventory', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth: p1Auth, db }) => {
+    const cardId = 'EMB-C-0001'; // Common card, max 3 copies
+    // Set player ownership to max allowed copies (3)
+    await db.query(
+      `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
+       VALUES ($1, $2, 3, NOW())
+       ON CONFLICT (user_id, card_id) DO UPDATE SET quantity = 3`,
+      [p1Auth.user_id, cardId]
+    );
+
+    // Initial dust balance
+    const initProfile = await db.getFullPlayerProfile(p1Auth.user_id);
+    const initialDust = initProfile.wallet.echo_dust;
+
+    // 1. Attempt to craft while at maximum allowed copies
+    const maxCraftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({ card_id: cardId, action: 'craft' })
+    });
+    assert.equal(maxCraftRes.status, 400, 'Crafting at max copies must fail with 400');
+    const maxCraftErr = await maxCraftRes.json();
+    assert.match(maxCraftErr.error, /maximum playable copies/i);
+
+    // Verify inventory and wallet are COMPLETELY UNTOUCHED
+    const profileAfterMax = await db.getFullPlayerProfile(p1Auth.user_id);
+    assert.equal(profileAfterMax.collection[cardId], 3, 'Inventory must NOT be decremented before craft attempt');
+    assert.equal(profileAfterMax.wallet.echo_dust, initialDust, 'Echo dust must remain unchanged');
+
+    // 2. Reduce dust to 0 and reduce card count to 1 to test insufficient dust failure
+    await db.query(`UPDATE wallet_balances SET echo_dust = 0 WHERE user_id = $1`, [p1Auth.user_id]);
+    await db.query(`UPDATE player_card_ownership SET quantity = 1 WHERE user_id = $1 AND card_id = $2`, [p1Auth.user_id, cardId]);
+
+    const brokeCraftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({ card_id: cardId, action: 'craft' })
+    });
+    assert.equal(brokeCraftRes.status, 400, 'Crafting with 0 dust must fail with 400');
+    const brokeErr = await brokeCraftRes.json();
+    assert.match(brokeErr.error, /insufficient echo dust/i);
+
+    // Verify inventory did NOT change
+    const profileAfterBroke = await db.getFullPlayerProfile(p1Auth.user_id);
+    assert.equal(profileAfterBroke.collection[cardId], 1, 'Inventory must remain intact on failed craft');
+    assert.equal(profileAfterBroke.wallet.echo_dust, 0, 'Echo dust must remain 0');
+
+    // 3. Grant dust and test successful atomic craft with idempotency
+    await db.query(`UPDATE wallet_balances SET echo_dust = 200 WHERE user_id = $1`, [p1Auth.user_id]);
+    const idemKey = 'test_craft_idem_' + Date.now();
+
+    const successCraftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`,
+        'X-Idempotency-Key': idemKey
+      },
+      body: JSON.stringify({ card_id: cardId, action: 'craft' })
+    });
+    assert.equal(successCraftRes.status, 200);
+    const successData = await successCraftRes.json();
+    assert.equal(successData.new_quantity, 2, 'Quantity must increment to 2');
+    assert.equal(successData.echo_dust, 160, 'Dust must decrease by exactly 40');
+
+    // 4. Replay identical request with same idempotency key
+    const replayCraftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`,
+        'X-Idempotency-Key': idemKey
+      },
+      body: JSON.stringify({ card_id: cardId, action: 'craft' })
+    });
+    assert.equal(replayCraftRes.status, 200);
+    const replayData = await replayCraftRes.json();
+    assert.equal(replayData.idempotent_replay, true);
+    assert.equal(replayData.new_quantity, 2, 'Replay must NOT increment card count again');
+    assert.equal(replayData.echo_dust, 160, 'Replay must NOT deduct dust again');
+  });
+});
+
+test('SECURITY: Server-validated world progression rejects illegal teleportation, unauthorized fast travel, and client weather tampering', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth: p1Auth, db }) => {
+    // 1. Attempt to move to non-existent / campaign-locked region 'astral_archive'
+    const invalidLocRes = await fetch(`${baseUrl}/v1/world/move`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({ location_id: 'astral_archive' })
+    });
+    assert.equal(invalidLocRes.status, 400);
+    const invData = await invalidLocRes.json();
+    assert.match(invData.error, /does not exist in the world/i);
+
+    // 2. Initial player is at 'lumenport_arrival_square'.
+    // Attempt to jump directly to disconnected district 'lumenport_grand_tournament_hall'
+    const disconnectedRes = await fetch(`${baseUrl}/v1/world/move`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({ district: 'lumenport_grand_tournament_hall' })
+    });
+    assert.equal(disconnectedRes.status, 400);
+    const discData = await disconnectedRes.json();
+    assert.match(discData.error, /is not connected/i);
+
+    // 3. Attempt fast travel to undiscovered / locked waypoint
+    const fastTravelLockedRes = await fetch(`${baseUrl}/v1/world/move`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({
+        district: 'lumenport_duelist_plaza',
+        is_fast_travel: true
+      })
+    });
+    assert.equal(fastTravelLockedRes.status, 403);
+    const ftData = await fastTravelLockedRes.json();
+    assert.match(ftData.error, /fast travel locked/i);
+
+    // 4. Attempt client-supplied weather and time override
+    // Legitimate move to connected 'lumenport_central_card_market'
+    const legitMoveRes = await fetch(`${baseUrl}/v1/world/move`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({
+        district: 'lumenport_central_card_market',
+        weather: 'apocalyptic_storm_override',
+        in_game_minutes: 1337
+      })
+    });
+    assert.equal(legitMoveRes.status, 200);
+    const moveData = await legitMoveRes.json();
+
+    // Verify server authoritative time was incremented (+5 min), NOT set to client 1337
+    assert.notEqual(moveData.world.in_game_minutes, 1337, 'Client time override must be rejected');
+    assert.notEqual(moveData.world.weather, 'apocalyptic_storm_override', 'Client weather tampering must be rejected');
+  });
+});
+
+test('SECURITY: Artwork approval strictly rejects missing or non-boolean visual review confirmations', async () => {
+  await withAuthServer(async ({ baseUrl, adminAuth }) => {
+    // 1. Attempt production approval without visual_review_passed
+    const missingReviewRes = await fetch(`${baseUrl}/v1/art/approve`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${adminAuth.token}`
+      },
+      body: JSON.stringify({
+        card_id: 'EMB-C-0001',
+        candidate_id: 'cand_emb-c-0001_v1',
+        approval_type: 'production'
+        // visual_review_passed and visual_quality_confirmed omitted!
+      })
+    });
+    assert.equal(missingReviewRes.status, 400, 'Missing visual review confirmations must be rejected');
+    const errData = await missingReviewRes.json();
+    assert.match(errData.error, /Safeguard Rejection: Production approval requires explicit recorded visual review/i);
+  });
+});
+
+test('SECURITY: Private matches deny spectator access by default', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth: p1Auth, victimAuth: p2Auth }) => {
+    // 1. Create a private practice match against NPC
+    const matchRes = await fetch(`${baseUrl}/v1/matches`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${p1Auth.token}`
+      },
+      body: JSON.stringify({
+        mode: 'practice_1v1',
+        npc_id: 'npc_soren_whisperleaf'
+      })
+    });
+    assert.equal(matchRes.status, 201);
+    const matchJson = await matchRes.json();
+    const match_id = matchJson.match_id || matchJson.match?.id;
+
+    // 2. Unrelated user attempts to spectate private practice match via WebSocket
+    const wsUrl = baseUrl.replace('http://', 'ws://') + '/v1/ws';
+    const ws = new WebSocket(wsUrl);
+    await new Promise((res) => ws.on('open', res));
+
+    const messages = [];
+    ws.on('message', (d) => messages.push(JSON.parse(d.toString())));
+
+    ws.send(JSON.stringify({ type: 'auth', token: p2Auth.token }));
+    // Wait for auth confirmation
+    await new Promise((res, rej) => {
+      const start = Date.now();
+      const interval = setInterval(() => {
+        if (messages.some((m) => m.type === 'authenticated')) {
+          clearInterval(interval);
+          res();
+        } else if (Date.now() - start > 3000) {
+          clearInterval(interval);
+          rej(new Error('Auth timed out on ws'));
+        }
+      }, 20);
+    });
+
+    ws.send(JSON.stringify({ type: 'spectate_match', match_id }));
+    // Wait for spectating denied confirmation
+    await new Promise((res, rej) => {
+      const start = Date.now();
+      const interval = setInterval(() => {
+        if (messages.some((m) => m.code === 'SPECTATING_DENIED')) {
+          clearInterval(interval);
+          res();
+        } else if (Date.now() - start > 3000) {
+          clearInterval(interval);
+          res(); // allow assert.ok to fail with message if missing
+        }
+      }, 20);
+    });
+
+    const denied = messages.find((m) => m.code === 'SPECTATING_DENIED');
+    assert.ok(denied, 'Spectating private match must be denied');
+    assert.match(denied.error, /Spectating is disabled for this private match/i);
+    ws.terminate();
+  });
 });

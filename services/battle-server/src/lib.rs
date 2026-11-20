@@ -613,6 +613,32 @@ pub struct MatchState {
     pub event_log: Vec<BattleEvent>,
 }
 
+/// Redact private event data for a specific viewer (None = spectator).
+/// Guarantees that card_drawn and card_burned_overdraw never leak confidential card identities to opponents or spectators.
+pub fn redact_events(events: &[BattleEvent], viewer: Option<usize>) -> Vec<BattleEvent> {
+    events
+        .iter()
+        .map(|ev| {
+            let mut copy = ev.clone();
+            match &mut copy {
+                BattleEvent::CardDrawn { player, card_id } => {
+                    if viewer != Some(*player) {
+                        *card_id = "HIDDEN".to_string();
+                    }
+                }
+                BattleEvent::CardBurnedOverdraw { player, card_id } => {
+                    if viewer != Some(*player) {
+                        *card_id = "HIDDEN".to_string();
+                    }
+                }
+                _ => {}
+            }
+            copy
+        })
+        .collect()
+}
+
+    
 impl MatchState {
     pub fn new_1v1(
         deck_a: &DeckDefinition,
@@ -950,7 +976,7 @@ impl MatchState {
         copy
     }
 
-    pub fn compute_checksum(&self) -> u64 {
+pub fn compute_checksum(&self) -> u64 {
         let mut hash: u64 = 0xcbf29ce484222325;
         let mut mix = |byte: u8| {
             hash ^= byte as u64;
