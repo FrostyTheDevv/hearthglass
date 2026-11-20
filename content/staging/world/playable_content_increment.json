@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "increment_id": "playable_increment_lum_01",
   "title": "Playable Content Increment: The Glass Cartographer's Survey",
   "status": "integration_ready_fixture",
@@ -7,9 +7,66 @@
   "district_id": "lumenport_arrival_square",
   "compatible_runtimes": {
     "api_server": "services/api/src/server.mjs",
+    "api_interaction_route": "POST /v1/npcs/interact",
     "db_progression": "services/api/src/db.mjs",
     "godot_client": "apps/game-client",
+    "godot_scene": "res://scenes/world/lumenport_hub.tscn",
+    "godot_script": "res://scripts/world/lumenport_hub.gd",
     "rust_engine": "services/battle-server/src/lib.rs"
+  },
+  "godot_compatibility_matrix": {
+    "explorable_world_scene": "res://scenes/world/lumenport_hub.tscn",
+    "arrival_square_building_block": {
+      "transform_position": { "x": -12.0, "y": 2.0, "z": 10.0 },
+      "size": { "x": 7.0, "y": 4.0, "z": 6.0 },
+      "color": "Color(0.24, 0.62, 0.56)",
+      "label": "Arrival Square & Harbor Cafe"
+    },
+    "duelist_plaza_building_block": {
+      "transform_position": { "x": 0.0, "y": 0.7, "z": 0.0 },
+      "size": { "x": 6.0, "y": 1.4, "z": 6.0 },
+      "color": "Color(0.45, 0.36, 0.68)",
+      "label": "Duelist Plaza Convergence Amphitheater"
+    },
+    "npc_runtime_spawn": "GameState.npcs array dynamically instantiated in lumenport_hub.gd _spawn_lumenport_npcs",
+    "tabletop_arena_scene": "res://scenes/battle/tabletop_arena.tscn"
+  },
+  "api_contract_specification": {
+    "endpoint": "POST /v1/npcs/interact",
+    "authentication": "Bearer <session_token> via Authorization header",
+    "request_schema": {
+      "type": "object",
+      "required": ["npc_id"],
+      "properties": {
+        "npc_id": { "type": "string", "enum": ["npc_cassi_mercer"] },
+        "type": { "type": "string", "enum": ["talk", "gift"], "default": "talk" }
+      }
+    },
+    "response_schema": {
+      "type": "object",
+      "required": ["npc_id", "dialogue", "relationship", "quests"],
+      "properties": {
+        "npc_id": { "type": "string" },
+        "dialogue": { "type": "string" },
+        "relationship": {
+          "type": "object",
+          "required": ["score", "tier", "companion_unlocked"],
+          "properties": {
+            "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "tier": { "type": "string", "enum": ["Acquaintance", "Friendly", "Trusted", "Bonded"] },
+            "companion_unlocked": { "type": "boolean" }
+          }
+        },
+        "quests": { "type": "array" }
+      }
+    },
+    "error_codes": {
+      "400": "Bad Request: Missing npc_id or invalid payload format",
+      "401": "Unauthorized: Missing or invalid Bearer authentication token",
+      "403": "Forbidden: Interaction rejected due to schedule or proximity lock",
+      "404": "Not Found: NPC ID unknown in npc_definitions",
+      "409": "Conflict: Replayed reward claim or concurrent interaction race"
+    }
   },
   "npc": {
     "id": "npc_cassi_mercer",
@@ -23,6 +80,13 @@
     "home_location": "lumenport_arrival_square",
     "interior_id": "interior_harbor_cafe",
     "initial_relationship": 15,
+    "world_coordinates_3d": {
+      "scene": "res://scenes/world/lumenport_hub.tscn",
+      "x": -12.0,
+      "y": 2.0,
+      "z": 10.0,
+      "district_block": "Arrival Square & Harbor Cafe"
+    },
     "appearance": "Pragmatic young cartographer clad in leather field coat over iridescent violet linen, carrying a brass surveying theodolite.",
     "background": "Apprenticed to Eluned Prismwright; maps shifting resonance fractures along Lumenport's coastal breakwater.",
     "personality": ["meticulous", "inquisitive", "tactical"],
@@ -56,10 +120,10 @@
     "dialogue_tree_id": "dt_cassi_mercer_survey",
     "security_policy": "SERVER_AUTHORITATIVE_TRANSITIONS_ONLY",
     "anti_tampering_rules": [
-      "Client UI transmits chosen choice_id only to POST /api/world/dialogue/choose",
-      "Server verifies player proximity to NPC home_location before processing dialogue",
-      "Server rejects arbitrary client-supplied reward payloads",
-      "Quest progression is advanced strictly by server-evaluated objective milestones"
+      "Client UI communicates strictly via POST /v1/npcs/interact with Authorization: Bearer <session_token>",
+      "Server verifies player proximity to NPC active schedule district (Arrival Square: Vector3(-12, 2, 10)) before processing interaction",
+      "Server rejects arbitrary client-supplied reward payloads; rewards are strictly server-evaluated",
+      "Quest progression is advanced strictly through server-evaluated objective milestones and match results"
     ],
     "initial_node": "node_intro",
     "nodes": {
@@ -174,6 +238,13 @@
     "opponent_npc_id": "npc_cassi_mercer",
     "opponent_name": "Cassi Mercer",
     "district_id": "lumenport_duelist_plaza",
+    "world_coordinates_3d": {
+      "scene": "res://scenes/world/lumenport_hub.tscn",
+      "x": 0.0,
+      "y": 0.7,
+      "z": 0.0,
+      "district_block": "Duelist Plaza Convergence Amphitheater"
+    },
     "deck_id": "deck_glass_star_prism",
     "deck_card_count": 40,
     "difficulty": "intermediate",

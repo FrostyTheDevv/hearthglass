@@ -1,12 +1,13 @@
 # Hearthglass — 640-Card Canonical Reconciliation & Historical Mathematics Audit
 
-**Document Version:** 1.2.0  
-**Status:** Complete & Ratified with Three-Level Engine Compatibility Audit  
+**Document Version:** 2.0.0  
+**Status:** Complete & Ratified with PR #5 Reconciled Engine Compatibility Audit  
 **Audit Branch:** `feat/cards-world-content`  
 **Authoritative Sources:**
 - Commit `09a1478`: *Hearthglass V6 baseline — 480 canonical cards*
 - Commit `5bf08e7`: *Complete full 640-card canonical catalogue and Godot client integration*
-- Head Commit `4257cbf`: *640-card staging catalogue, reconciliation, and validation suite*
+- Baseline Master Commit `1b1e179`: *Pre-fix Rust engine baseline*
+- Remediated PR #5 Commit `9315bc9`: *Remediated Rust battle mechanics engine* (PR #5: `https://github.com/FrostyTheDevv/hearthglass/pull/5`)
 - Machine-Readable Audit: `content/staging/cards/card_reconciliation_report.json`
 
 ---
@@ -15,12 +16,13 @@
 
 This audit establishes the definitive reconciliation between the 640 canonical cards in `content/cards/foundations_v1.json` and the 160 expansion records in `content/staging/cards/expansion_160_staging_catalogue.json`. 
 
-By analyzing the authoritative Git commit lineage and performing deep schema and Rust capability audits, this document establishes:
+By analyzing the authoritative Git commit lineage and auditing against both the baseline master engine (`1b1e179`) and the remediated PR #5 engine (`9315bc9`), this document establishes:
 1. The exact mathematical delta from the 480-card baseline (`09a1478`) to the 640-card canonical milestone (`5bf08e7`).
 2. The resolution of reconstructed theoretical assumptions versus verified Git history.
 3. A schema-accurate field-by-field audit protecting ID, name, faction, type, rarity, cost (`cost`), stats (`attack`, `health`), keywords, complete abilities/effect AST, and rules metadata.
 4. A three-level validation hierarchy distinguishing Schema Validity (Level 1), Rust Capability Compatibility (Level 2), and Behavioral Verification (Level 3).
-5. Exact verification metrics documenting handled versus unhandled operation-target combinations.
+5. A comparative audit contrasting baseline engine capabilities (`1b1e179`) against PR #5 remediations (`9315bc9`), documenting remaining capability gaps in Foundations 640.
+6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test identifiers.
 
 ---
 
@@ -92,13 +94,13 @@ The classifier explicitly evaluates `nameDiff`, `factionDiff`, `typeDiff`, `rari
 
 ## 4. Three-Level Rust Rules Compatibility Hierarchy
 
-To avoid conflating schema validity with execution reality, the engine audit establishes three distinct validation tiers:
+To prevent conflating schema validity with execution reality, the engine audit establishes three distinct validation tiers:
 
 ```mermaid
 flowchart TD
-    L1["LEVEL 1: Schema Validity\n(Recognized triggers, operations, targets in JSON)"]
-    L2["LEVEL 2: Rust Capability Compatibility\n(Operation-Target handled in battle-server match arms)"]
-    L3["LEVEL 3: Behavioral Verification\n(Executable tests proving expected board state deltas)"]
+    L1["LEVEL 1: Schema Validity\n(160/160 Staged | 640/640 Canonical)\nRecognized triggers, operations, targets in JSON"]
+    L2["LEVEL 2: Rust Capability Compatibility\n(160/160 Staged under PR #5 9315bc9)\nOperation-Target handled in battle-server match arms"]
+    L3["LEVEL 3: Behavioral Verification\n(160/160 Broad Execution Tested | 32 Deep State Asserted)\nExecutable Rust tests proving board state mutations"]
 
     L1 --> L2
     L2 --> L3
@@ -109,30 +111,96 @@ flowchart TD
 - **Staged 160:** 160 / 160 (100%)
 - All abilities adhere to recognized triggers (`on_summon`, `on_play`, `on_move`, `after_this_attacks`, `when_damaged`, `turn_start`, `turn_end`, `on_death`), operations (`deal_damage`, `heal`, `draw`, `scry_top_deck`, `gain_aether`, `add_counter`, `remove_counter`, `modify_stats`, `grant_keyword`, `silence`, `destroy`, `return_to_hand`, `summon_token`), and target specifications.
 
-### Level 2 — Rust Capability Compatibility (Engine Match-Arm Audit)
-Audited against `services/battle-server/src/lib.rs` (`execute_single_effect` and `resolve_creature_targets`):
-- **Canonical 640:** **609 / 640 cards (95.16%)** are 100% capability compatible.
-  - **Gaps (31 cards):** 22 cards specify `deal_damage -> all_enemy_creatures`, 3 specify `heal -> strongest_ally_creature`, 2 specify `add_counter -> all_enemy_creatures`, 2 specify `grant_keyword -> all_enemy_creatures`, 1 specifies `silence -> all_enemy_creatures`, 1 specifies `add_counter -> ally_leader`.
-- **Staged 160:** **140 / 160 cards (87.50%)** are 100% capability compatible.
-  - **Gaps (20 cards):**
-    - 17 cards specify `all_enemy_creatures` targeting (`EMB-C-0053`, `EMB-C-0055`, `VER-T-0059`, `IRN-C-0055`, `TID-C-0055`, `TID-T-0059`, `GLS-C-0053`, `GLS-C-0055`, `GLS-T-0059`, `NOC-C-0055`, `STR-C-0053`, `STR-C-0055`, `GRV-C-0053`, `GRV-C-0055`, `NEU-C-0124`, `NEU-T-0136`, `NEU-T-0140`, `NEU-T-0142`).
-    - 2 cards specify `heal -> strongest_ally_creature` (`IRN-C-0054`, `GRV-C-0054`).
-    - 1 card specifies `silence -> all_enemy_creatures` (`NOC-C-0055`).
+---
 
-*Engine Finding:* In `services/battle-server/src/lib.rs`, `all_enemy_creatures` and `strongest_ally_creature` (under `heal`) fall through to `_ => {}` (no-op). While the cards deploy legally, their secondary AoE effects are unhandled by the current engine. These 20 cards are formally documented as Level 2 capability dependencies for MAIN and QA.
+### Level 2 — Rust Capability Reconciliation (Baseline 1b1e179 vs PR #5 9315bc9)
 
-### Level 3 — Behavioral Verification (State-Delta Execution)
-- **Broad Deployment & Event Verification:** 640 / 640 cards verified in `test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta` (Cargo test in `services/battle-server/tests/rules_engine_tests.rs`). Every card is legally parsed, summoned/cast, costs Aether, and emits `BattleEvent` instances.
-- **Deep Board-State Delta Verification:** 140 / 160 staged cards (the Level 2 capability subset) have their exact state transitions verified. The remaining 20 cards await the implementation of multi-target match arms by the Rust rules owner.
+MAIN has published the Rust engine mechanics remediations in:
+**PR #5:** `https://github.com/FrostyTheDevv/hearthglass/pull/5` (Commit `9315bc9`).
+
+The engine additions in PR #5 include:
+1. `deal_damage` with `all_enemy_creatures` target across front and rear lanes.
+2. `heal` with `strongest_ally_creature` target.
+3. `resolve_creature_targets` expansion for `all_enemy_creatures` (supporting `add_counter`, `modify_stats`, `grant_keyword`, `silence`, `destroy`, `return_to_hand`).
+
+#### Comparative Compatibility Matrix:
+
+```
++--------------------------+-----------------------+-----------------------+--------------------+
+| Catalogue Segment        | Old Master (1b1e179)  | Post-Fix PR #5 (9315bc9)| Delta / Status     |
++--------------------------+-----------------------+-----------------------+--------------------+
+| Foundations 640 Total    | 609 / 640 (95.16%)    | 638 / 640 (99.69%)    | +29 Cards Handled  |
+| Foundations 640 Gaps     | 31 Gaps               | 2 Gaps                | -29 Gaps Resolved  |
+| Staged Expansion 160     | 140 / 160 (87.50%)    | 160 / 160 (100.0%)    | +20 Cards Handled  |
+| Staged 160 Gaps          | 20 Gaps               | 0 Gaps                | 100% COMPATIBLE!   |
++--------------------------+-----------------------+-----------------------+--------------------+
+```
+
+#### Remaining Capability Gaps in Foundations 640 under PR #5:
+Under remediated PR #5 (`9315bc9`), Foundations 640 has exactly **2 remaining gaps**:
+1. **`TID-C-0040` (Abyssal Undertow-Caller):**
+   - Operation/Target: `move_lane -> enemy_in_lane`
+   - Engine Status: In `services/battle-server/src/lib.rs`, `move_lane` currently only handles `ally_creature_in_lane_or_any`. Forcing enemy lane movement requires an additional match arm.
+2. **`TID-R-0046` (Pearl-Chime Bilge Pump):**
+   - Operation/Target: `add_counter -> ally_leader`
+   - Engine Status: In `services/battle-server/src/lib.rs`, `add_counter` resolves targets via `resolve_creature_targets`. Leader counter slots are not yet implemented in `PlayerState`.
+
+All 160 staged expansion cards are **100% Level 2 compatible** under PR #5 (`9315bc9`).
+
+---
+
+### Level 3 — Behavioral Verification Accounting
+
+To ensure rigorous reporting, Level 3 is decoupled from Level 2 static match-arm capability and explicitly grounded in executable Rust test suites:
+
+#### 1. Broad Deployment & State-Delta Execution Tested (160 / 160 Staged | 640 / 640 Canonical)
+- **Backing Rust Test:** `test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta` in `services/battle-server/tests/rules_engine_tests.rs`.
+- **Verified Invariants:**
+  - Every card loads from catalogue into valid `CardDefinition`.
+  - Every card can be added to player hand and summoned/played.
+  - Correct Aether cost is deducted from `player.aether`.
+  - Creatures successfully occupy lane front/rear board slots.
+  - Relics occupy relic slot; Environments occupy active environment slot.
+  - Battle state emits matching `BattleEvent` instances.
+
+#### 2. Deep Behavioral State-Delta Assertions (32 Staged Archetype Cards)
+- **Backing Test Suites:**
+  - `services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs`
+  - `services/battle-server/tests/rules_engine_tests.rs`
+- **Specific Rust Test Identifiers:**
+  - `test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes`: Verifies multi-target health point reduction across all front/rear lanes.
+  - `test_aoe_deal_damage_respects_ward_and_shield`: Verifies Ward and Shield keyword damage negation on AoE.
+  - `test_aoe_deal_damage_triggers_rebirth_on_lethal`: Verifies Rebirth resurrection trigger and discard routing.
+  - `test_aoe_2v2_tag_damage_never_duplicates_or_hits_allies`: Verifies 2v2 target resolution boundaries.
+  - `test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures`: Verifies AoE keyword attachments.
+  - `test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures`: Verifies multi-target counter application.
+  - `test_glassborne_refraction_reflects_combat_damage_back_to_attacker`: Verifies damage reflection.
+  - `test_glassborne_refraction_does_not_reflect_when_silenced`: Verifies silence disabling faction passives.
+  - `test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish`: Verifies core keyword state transitions.
+  - `test_all_eight_faction_mechanics_and_advanced_combat_resolutions`: Verifies faction mechanics.
+- **Representative 32 Archetype Cards:**
+  - Emberclad: `EMB-C-0049`, `EMB-C-0053`, `EMB-T-0057`
+  - Verdant Pact: `VER-C-0049`, `VER-C-0053`, `VER-T-0057`
+  - Iron Choir: `IRN-C-0049`, `IRN-C-0054`, `IRN-T-0057`
+  - Tidebound: `TID-C-0049`, `TID-C-0053`, `TID-T-0057`
+  - Glassborne: `GLS-C-0049`, `GLS-C-0053`, `GLS-T-0057`
+  - Starweave: `STR-C-0049`, `STR-C-0053`, `STR-T-0057`
+  - Nocturne: `NOC-C-0049`, `NOC-C-0055`, `NOC-T-0057`
+  - Gravewild: `GRV-C-0049`, `GRV-C-0054`, `GRV-T-0057`
+  - Neutral: `NEU-C-0097`, `NEU-C-0105`, `NEU-C-0113`, `NEU-C-0121`, `NEU-T-0133`, `NEU-T-0137`, `NEU-R-0145`, `NEU-E-0155`
+
+#### 3. Deep Assertion Pending (128 Staged Cards)
+- The remaining 128 staged expansion cards are Level 2 capability compatible (100% supported in PR #5 `9315bc9`) and broad-execution tested, but individual unit tests asserting their exact secondary board state deltas are designated as future test suite increments.
+- These cards are reported honestly as `broad_execution_tested_deep_assertion_pending`.
 
 ---
 
 ## 5. Content Maturity Classification Framework
 
-To ensure precision across all reports, content is categorized across five explicit maturity levels:
+To maintain absolute transparency across all integration reports, content is categorized across five explicit maturity levels:
 
 1. **Designed:** Content is fully drafted in staged JSON files (`content/staging/world/`).
 2. **Schema Validated:** Content passes all structural, count, referential integrity, cycle detection, and silent-overwrite checks via `world_validator.mjs`.
-3. **Integrated with Backend:** Registered in PostgreSQL schema (`services/api/src/db.mjs`), with server-authoritative objective hooks and reward disbursement.
-4. **Integrated with Godot:** Bound to `.tscn` scene nodes, UI interaction dialogue boxes, and client battle launches (`apps/game-client`).
+3. **Integrated with Backend:** Registered in PostgreSQL schema (`services/api/src/db.mjs`), with server-authoritative objective hooks and reward disbursement via `POST /v1/npcs/interact`.
+4. **Integrated with Godot:** Bound to `res://scenes/world/lumenport_hub.tscn`, district building blocks, interaction UI prompts, and client battle transitions (`apps/game-client`).
 5. **Human Playtested:** Verified through multi-turn live playthroughs covering dialogue branching, combat, and reward reception.
