@@ -1,6 +1,6 @@
 # Project Hearthglass — Independent Technical QA, Regression & Balance Audit Report
 
-**Document Version**: 2.0.0 (Release-Gate & Master Reconciliation Edition)  
+**Document Version**: 2.1.0 (Behavioral Release Gate, Split Diagnostics & Master Reconciliation)  
 **Date**: November 20, 2026  
 **Auditor**: Independent Technical QA & Game Balancing Agent  
 **Branch**: `feat/qa-and-balance`  
@@ -8,7 +8,7 @@
 **Target Repository**: [hearthglass (FrostyTheDevv/hearthglass)](https://github.com/FrostyTheDevv/hearthglass)  
 **Worktree**: `C:\Users\billy\.t3\worktrees\hearthglass\feat-qa-and-balance-e56bde9b3f39af40`  
 **Rebased On**: `origin/master` @ commit `1b1e179` / `4013102`  
-**Release Gate Status**: **BLOCKED** (Pending MAIN's Engine Fix for DEFECT-001)  
+**Release Gate Status**: **BLOCKED** (Enforcing P0 Failure for DEFECT-001 until MAIN merges Rust engine fix)  
 
 ---
 
@@ -23,16 +23,17 @@ All test suites and tooling have been rebased on top of `origin/master` (commits
 
 | Test Suite / Category | File Path | Total Tests | Passed | Failed | Status / Gate Impact |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **QA Canonical Keywords & AoE Gate** | `services/battle-server/tests/qa_keyword_and_mechanics_tests.rs` | 12 | 11 | 1 | **ACTIVE P0 GATE**: `test_canonical_all_enemy_creatures_aoe_resolution_quality_gate` fails as required until MAIN merges engine fix. |
+| **QA Canonical Keywords & Split AoE Gates** | `services/battle-server/tests/qa_keyword_and_mechanics_tests.rs` | 18 | 13 | 5 | **ACTIVE P0 GATES**: 5 split AoE tests fail behaviorally as intended until MAIN merges engine fix. |
 | **QA Match Rules, 2v2 & Replays** | `services/battle-server/tests/qa_match_mechanics_and_replay_tests.rs` | 6 | 6 | 0 | **PASS** (40-turn limits, surrender, 2v2 Tag, determinism, privacy). |
 | **QA Pairwise 16-Deck Balance Sim** | `services/battle-server/tests/qa_simulation_and_balance_tests.rs` | 1 (960 games) | 1 | 0 | **PASS** (120 pairings × 4 seeds × 2 seats = 960 games; 120 games per deck). |
+| **QA Release Gate Test Suite** | `services/api/tests/qa_release_gate.test.mjs` | 10 | 10 | 0 | **PASS** (Proves gate runner CLI modes, exit codes 0/1/2, crash recovery). |
+| **QA Concurrency, Bridge & Reconnect** | `services/api/tests/qa_concurrency_and_replay.test.mjs` | 4 | 4 | 0 | **PASS** (Transactional pack purchases, crafting, RPC stdio, WS reconnect). |
 | **Rust Rules Engine (Baseline)** | `services/battle-server/tests/rules_engine_tests.rs` | 11 | 11 | 0 | **PASS** (Baseline combat rules). |
 | **Rust 1000-Match Sim (Baseline)** | `services/battle-server/tests/simulation_1000_tests.rs` | 1 (2,560 games) | 1 | 0 | **PASS** (16 × 16 × 10 = 2,560 matches). |
 | **Rust Snapshot Privacy (Baseline)** | `services/battle-server/tests/snapshot_privacy_tests.rs` | 4 | 4 | 0 | **PASS** (DTO and viewer redactions). |
 | **Node API & Security (Baseline)** | `services/api/tests/*.test.mjs` | 39 | 39 | 0 | **PASS** (Auth, economy, world progression, art security). |
-| **QA Concurrency, Bridge & Reconnect** | `services/api/tests/qa_concurrency_and_replay.test.mjs` | 4 | 4 | 0 | **PASS** (Transactional pack purchases, crafting, RPC stdio, WS reconnect). |
-| **Automated Defect & Gate Scanner** | `tools/qa/qa_defect_audit.mjs` | 1 | 0 | 1 | **CI BLOCKING**: Exits with code 1 in default/CI mode due to active DEFECT-001 blocker. |
 | **Card Data Validator (640 Cards)** | `tools/card-validator/validate.mjs` | 640 cards / 16 decks | 640 / 16 | 0 | **PASS** (Exact 4-tier rarity, 0 Epic, 640 unique IDs). |
+| **Automated Defect & Gate Scanner** | `tools/qa/qa_defect_audit.mjs` | 1 | 0 | 1 | **CI BLOCKING**: Exits with code 1 in default/CI mode due to active DEFECT-001 blocker. |
 
 ---
 
@@ -46,7 +47,7 @@ All test suites and tooling have been rebased on top of `origin/master` (commits
 | DEFECT-002 | P0       | API PostgreSQL Layer  | Database Pack Purchasing Concurrency  | RESOLVED ON MASTER  |
 | DEFECT-003 | P1       | Rust Battle Server    | Unused NpcAi Difficulty Parameter     | STILL REPRODUCIBLE  |
 | DEFECT-004 | P1       | Game Balance          | Pre-Fix Archetype Win-Rate Spread     | PRE-FIX BASELINE    |
-| DEFECT-005 | P1       | Game Balance          | First-Player Advantage (+7.4% Delta)  | PRE-FIX BASELINE    |
+| DEFECT-005 | P1       | Game Balance          | First-Player Advantage (+7.3% Delta)  | PRE-FIX BASELINE    |
 | GAP-001    | P1       | Rules / Design        | Faction Resource Counter Integration  | AUDITED & TRACKED   |
 +------------+----------+-----------------------+---------------------------------------+---------------------+
 ```
@@ -56,13 +57,18 @@ All test suites and tooling have been rebased on top of `origin/master` (commits
 - **Severity**: P0 (Release Blocker)
 - **Affected Commit**: `09a1478` through current `master` (`4013102`)
 - **Subsystem**: `services/battle-server/src/lib.rs` (Lines 2176–2200 in `deal_damage`, Lines 2520–2540 in `resolve_creature_targets`)
-- **Reproduction**:
-  - Regression Test: `services/battle-server/tests/qa_keyword_and_mechanics_tests.rs::test_canonical_all_enemy_creatures_aoe_resolution_quality_gate`
-  - Command: `cargo test --test qa_keyword_and_mechanics_tests test_canonical_all_enemy_creatures_aoe_resolution_quality_gate`
-  - Play card `EMB-T-0043` (*Cinder-Vent Eruption*, 1 damage to all enemy creatures) or `EMB-C-0055` (*Lord Ignacius*, 3 damage to all enemy creatures).
+- **Behavioral Detection**: Rather than relying on simple source-string matches or card presence, `tools/qa/qa_defect_audit.mjs` executes the actual Rust regression tests.
+- **Split Regression Tests**:
+  1. `test_aoe_enemy_board_coverage`: Fails (Lane 0 enemy 3 HP not reduced to 2 HP).
+  2. `test_aoe_front_rear_positional_resolution`: Fails (Front & Rear enemies take 0 damage).
+  3. `test_aoe_friendly_fire_immunity`: **PASS** (Friendly units take 0 friendly damage).
+  4. `test_aoe_ward_absorption`: **PASS** (Ward absorbs spell damage and is consumed).
+  5. `test_aoe_shield_absorption`: Fails (Shield counter not consumed due to 0 damage dealt).
+  6. `test_aoe_rebirth_death_trigger`: Fails (1-HP creature takes 0 damage and does not die).
+  7. `test_aoe_2v2_shared_board_non_duplication`: Fails (4 HP unit takes 0 damage instead of 1).
 - **Actual Behavior**: The target `"all_enemy_creatures"` hits the wildcard `_ => Vec::new()` in `resolve_creature_targets` and `_ => {}` in `deal_damage`. 0 damage is dealt; enemy creatures remain untouched.
 - **Expected Behavior**:
-  1. Each valid unshielded enemy creature across all lanes takes 1 damage (e.g. 3 HP reduced to 2 HP).
+  1. Each valid unshielded enemy creature across all lanes takes 1 damage (3 HP reduced to 2 HP).
   2. Allied units remain completely undamaged.
   3. Front and Rear positions resolve correctly.
   4. Ward negates hostile spell/tactic damage and is consumed.
@@ -79,7 +85,7 @@ All test suites and tooling have been rebased on top of `origin/master` (commits
   - `STR-T-0043` (Shooting-Star Barrage), `STR-C-0053` (Supernova Evoker), `STR-C-0055` (Archon Orion, Sovereign of the Astral Zenith).
   - `GRV-C-0040` (Ossuary Tomb-Warden), `GRV-C-0041` (Odrin, Arch-Reclaimer), `GRV-C-0053` (Necropolis Lich-Caller), `GRV-C-0055` (Thanatos, Sovereign of the Catacombs).
 - **Remediation Owner**: Rules Engine Lead (MAIN)
-- **Resolution Status**: **AWAITING_MAIN_MERGE**. The regression test is committed to enforce the failure until MAIN merges the fix.
+- **Resolution Status**: **AWAITING_MAIN_MERGE**. When MAIN merges the Rust target mapping, the behavioral test will pass and DEFECT-001 will automatically transition to RESOLVED.
 
 ---
 
@@ -132,8 +138,6 @@ In our automated pairwise simulation test (`services/battle-server/tests/qa_simu
   - Invalid Commands: **0** (100% legal moves chosen by `NpcAi`).
   - Natural Draws: **0** (0 games reached 40-turn tiebreak with equal vitality).
 
-*(Note: Baseline `simulation_1000_tests.rs` separately runs $16 \times 16 \times 10 = \mathbf{2,560}$ exhaustive games. Earlier preliminary estimates that modeled 10 seeds per pair accounted for 2,400 games; the exact sample count for our pairwise test is 960 games).*
-
 ### 3.2 Pre-Fix Win-Rate Baseline Table (960 Matches)
 
 > [!WARNING]
@@ -160,9 +164,9 @@ In our automated pairwise simulation test (`services/battle-server/tests/qa_simu
 
 ### 3.3 First-Player Advantage Audit
 Across all 960 non-mirror matches:
-- **Seat 0 (Player 0 / First Player)**: **515 wins (53.6%)**
-- **Seat 1 (Player 1 / Second Player)**: **445 wins (46.4%)**
-- **Delta**: **+7.2% First-Player Advantage**
+- **Seat 0 (Player 0 / First Player)**: **515 wins (53.6%)** ($515 / 960 = 53.65\%$)
+- **Seat 1 (Player 1 / Second Player)**: **445 wins (46.4%)** ($445 / 960 = 46.35\%$)
+- **Delta**: **+7.3 percentage points** ($53.65\% - 46.35\% = +7.29\% \approx \mathbf{+7.3\%}$)
 - **Root Cause**: Early board initiative in a 3-lane combat system directly controls `Resonate` (awarding bonus Aether and card draws at turn end), giving Seat 0 an advantage that Seat 1's starting +1 card does not fully offset.
 
 ---
@@ -183,33 +187,83 @@ We performed an audit across all 640 cards and the Rust rules engine to clarify 
 +-------------+---------------+-----------------+------------------+------------------------------------+
 ```
 
-### Key Findings & Nuances:
-1. **Resource Counters vs. Stat Buffs**:
-   - `growth` (+1/+1) and `corrode` (-1/-1) directly modify attack and health.
-   - Resource counters (`assembly`, `current`, `refraction`, `veil`, `reclaim`) do **NOT** modify stats by default. In canonical design, they act as resource charges or synergy prerequisites.
-   - Our audit confirmed that the engine correctly stores these counters in `unit.counters` map upon `add_counter`.
-2. **Persistence & Silence Integrity**:
-   - Unit tests verified that all 5 resource counters persist on creatures across turns.
-   - Silence (`NEU-T-0042` Disruptive Counter-Chime) correctly wipes all resource counters from the target creature.
+### Key Behaviors Tested:
+1. **Resource Charges vs. Stat Modifiers**:
+   - `growth` (+1/+1) and `corrode` (-1/-1) alter attack and health.
+   - Resource counters (`assembly`, `current`, `refraction`, `veil`, `reclaim`) do **not** automatically modify attack or health. They act as prerequisite charges or conditional triggers for card abilities.
+2. **Persistence Across Turns**:
+   - Unit tests verified that all 5 resource counters persist in `unit.counters` across multiple turn cycles without decaying unless an ability consumes them.
+3. **Silence Stripping**:
+   - `NEU-T-0042` (*Disruptive Counter-Chime*) verified that `Silence` properly wipes all counter maps (`unit.counters.clear()`).
 
 ---
 
-## 5. Release-Blocking CI Behavior
+## 5. Release-Blocking CI Behavior & CLI Verification
 
-To ensure QA defect discovery enforces release quality, `tools/qa/qa_defect_audit.mjs` operates with strict release-gate semantics:
-- **Default / CI Mode (`node tools/qa/qa_defect_audit.mjs` or `--ci`)**:
-  - Scans cards, database, and Rust engine code.
-  - If any active P0 defect exists (such as DEFECT-001), it outputs `[CI RELEASE GATE BLOCKED]` and exits with code `1`.
-- **Diagnostic Mode (`--diagnostic-only`)**:
-  - Outputs full JSON report and exits with code `0` for reporting purposes.
+### 5.1 CLI Runner (`tools/qa/qa_defect_audit.mjs`)
+The QA gate script supports three modes:
+- **Default Mode (`node tools/qa/qa_defect_audit.mjs` or `npm run qa:gate`)**:
+  - Executes behavioral Rust tests.
+  - Outputs human-readable status.
+  - Exits with code `1` if any active P0 defect or process error exists.
+  - Exits with code `0` when all P0 checks pass.
+- **CI Mode (`--ci` or `npm run qa:gate:ci`)**:
+  - Outputs machine-readable JSON.
+  - Exits with code `1` on active P0 blockers.
+- **Diagnostic Mode (`--diagnostic-only` or `npm run qa:gate:diagnostic`)**:
+  - Outputs complete JSON findings and exits with code `0` for diagnostic reporting.
+- **Unknown Arguments**: Exits with code `2` (usage error).
+
+### 5.2 Automated Gate Verification (`services/api/tests/qa_release_gate.test.mjs`)
+We created a 10-scenario automated test suite to prove the gate runner functions reliably:
+- Scenario 1: Confirmed P0 defect $\rightarrow$ exit code 1.
+- Scenario 2: All P0 tests passing $\rightarrow$ exit code 0.
+- Scenario 3: Rust process crash $\rightarrow$ exit code 1.
+- Scenario 4: Missing Rust executable $\rightarrow$ exit code 1.
+- Scenario 5: Malformed test output $\rightarrow$ exit code 1.
+- Scenario 6: Diagnostic-only with active defects $\rightarrow$ exit code 0.
+- Scenario 7: Invalid CLI flag $\rightarrow$ exit code 2.
+- Scenario 8: P1 warning without P0 $\rightarrow$ exit code 0.
+- Scenario 9: Passing AoE removes DEFECT-001 from active blockers.
+- Scenario 10: Database integrity scanner accurately verifies V10-B transactional `openPack`.
+
+**Status**: 10/10 PASS in `0.76s`.
 
 ---
 
-## 6. Worktree Coordination & Preserved Assets
+## 6. Local Gate Commands & CI Integration Steps
+
+### 6.1 Local Integration Commands
+Developers and integration leads can run:
+```bash
+# 1. Run full release gate (blocks and exits 1 if P0 defects exist):
+npm run qa:gate
+
+# 2. Run release gate in CI machine-readable format:
+npm run qa:gate:ci
+
+# 3. Run release gate in diagnostic reporting mode:
+npm run qa:gate:diagnostic
+
+# 4. Run QA Node tests (concurrency + release gate tests):
+npm run test:qa
+```
+
+### 6.2 GitHub Actions Integration Steps (Conserving Runner Quota)
+In `.github/workflows/ci.yml`, the release gate can be invoked as an authoritative step:
+```yaml
+      - name: Authoritative QA Release Gate
+        run: npm run qa:gate:ci
+```
+Because GitHub Actions are configured with `on: workflow_dispatch` to conserve runner quotas, this step will run during manual release validation and block PR merge if DEFECT-001 is unpatched.
+
+---
+
+## 7. Worktree Coordination & Preserved Assets
 
 In accordance with multi-agent workspace protocols:
-- **Preserved Assets**: The artwork files `apps/content-studio/public/assets/cards/EMB-C-0019.svg`, `apps/game-client/assets/cards/EMB-C-0019.svg`, and `content/art/art_production_manifest.json` (as well as candidate files) were left completely unstaged and unmodified in our worktree. They remain exclusively preserved for the ARTWORK agent.
-- **Isolated Commits**: Only our new isolated QA suites and tooling were committed to `feat/qa-and-balance`.
+- **Preserved Assets**: The artwork files `apps/content-studio/public/assets/cards/EMB-C-0019.svg`, `apps/game-client/assets/cards/EMB-C-0019.svg`, and `content/art/art_production_manifest.json` (as well as candidate files) remain completely unstaged and unmodified in our worktree. They remain exclusively preserved for the ARTWORK agent.
+- **Isolated Commits**: Only our QA test suites, tooling, `package.json` gate scripts, and documentation are committed to `feat/qa-and-balance`.
 
 ---
 *Certified by Independent Technical QA & Game Balancing Agent.*

@@ -547,32 +547,48 @@ fn test_keyword_silence_removes_abilities_keywords_and_counters() {
 }
 
 // =========================================================================
-// 2. CANONICAL QUALITY GATE: ALL_ENEMY_CREATURES AOE RESOLUTION
+// 2. FOCUSED CANONICAL QUALITY GATES: ALL_ENEMY_CREATURES AOE RESOLUTION
 // =========================================================================
 
 #[test]
-fn test_canonical_all_enemy_creatures_aoe_resolution_quality_gate() {
+fn test_aoe_enemy_board_coverage() {
     let (catalogue, decks) = load_catalogue_and_decks();
     let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 201).unwrap();
 
-    // 1. Setup Allied Units for Player 0 (must NOT be damaged by enemy AoE)
-    state.players[0].lanes[0].front = Some(create_custom_unit(10001, "ALLY_0", "A0", 0, 2, 4, vec![]));
-    state.players[0].lanes[1].rear = Some(create_custom_unit(10002, "ALLY_1", "A1", 0, 1, 3, vec![]));
+    // Deploy 3 unshielded enemy creatures across all 3 lanes
+    state.players[1].lanes[0].front = Some(create_custom_unit(20001, "E0", "E0", 1, 2, 3, vec![]));
+    state.players[1].lanes[1].front = Some(create_custom_unit(20002, "E1", "E1", 1, 2, 3, vec![]));
+    state.players[1].lanes[2].front = Some(create_custom_unit(20003, "E2", "E2", 1, 2, 3, vec![]));
 
-    // 2. Setup Enemy Units for Player 1 across all 3 lanes with diverse defensive mechanics:
-    // Lane 0: Front = 3 HP standard, Rear = 3 HP with Ward
-    state.players[1].lanes[0].front = Some(create_custom_unit(20001, "ENEMY_0_F", "E0_F", 1, 2, 3, vec![]));
-    state.players[1].lanes[0].rear = Some(create_custom_unit(20002, "ENEMY_0_R", "E0_R", 1, 1, 3, vec!["ward"]));
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "EMB-T-0043".to_string(); // Cinder-Vent Eruption: 1 dmg to all_enemy_creatures
 
-    // Lane 1: Front = 3 HP with Shield, Rear = 1 HP with Rebirth
-    state.players[1].lanes[1].front = Some(create_custom_unit(20003, "ENEMY_1_F", "E1_F", 1, 2, 3, vec!["shield"]));
-    state.players[1].lanes[1].rear = Some(create_custom_unit(20004, "ENEMY_1_R", "E1_R", 1, 1, 1, vec!["rebirth"]));
+    let res = state.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted, "AoE tactic command must be accepted");
 
-    // Lane 2: Front = 3 HP standard
-    state.players[1].lanes[2].front = Some(create_custom_unit(20005, "ENEMY_2_F", "E2_F", 1, 2, 3, vec![]));
+    // All 3 enemy lanes must take 1 damage (3 HP -> 2 HP)
+    assert_eq!(state.players[1].lanes[0].front.as_ref().unwrap().health, 2, "Lane 0 enemy must take 1 AoE damage");
+    assert_eq!(state.players[1].lanes[1].front.as_ref().unwrap().health, 2, "Lane 1 enemy must take 1 AoE damage");
+    assert_eq!(state.players[1].lanes[2].front.as_ref().unwrap().health, 2, "Lane 2 enemy must take 1 AoE damage");
+}
 
-    // 3. Player 0 plays EMB-T-0043: Cinder-Vent Eruption
-    // Card ability: operation: deal_damage, target: all_enemy_creatures, amount: 1
+#[test]
+fn test_aoe_front_rear_positional_resolution() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 202).unwrap();
+
+    // Deploy enemy creatures in both Front and Rear of Lane 0
+    state.players[1].lanes[0].front = Some(create_custom_unit(20011, "E0_F", "E0_F", 1, 2, 3, vec![]));
+    state.players[1].lanes[0].rear = Some(create_custom_unit(20012, "E0_R", "E0_R", 1, 1, 3, vec![]));
+
     state.players[0].aether = 10;
     state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
 
@@ -585,56 +601,29 @@ fn test_canonical_all_enemy_creatures_aoe_resolution_quality_gate() {
         },
         &catalogue,
     );
-    assert!(res.accepted, "Cinder-Vent Eruption must be accepted by rules engine");
+    assert!(res.accepted);
 
-    // =========================================================================
-    // CANONICAL GAMEPLAY REQUIREMENTS:
-    // =========================================================================
+    // Both Front and Rear must take 1 damage
+    assert_eq!(state.players[1].lanes[0].front.as_ref().unwrap().health, 2, "Front enemy must take 1 AoE damage");
+    assert_eq!(state.players[1].lanes[0].rear.as_ref().unwrap().health, 2, "Rear enemy must take 1 AoE damage");
+}
 
-    // Requirement A: Allied units must remain completely unchanged
-    let ally_0_hp = state.players[0].lanes[0].front.as_ref().unwrap().health;
-    let ally_1_hp = state.players[0].lanes[1].rear.as_ref().unwrap().health;
-    assert_eq!(ally_0_hp, 4, "Allied unit 0 in Lane 0 Front must not take friendly AoE damage");
-    assert_eq!(ally_1_hp, 3, "Allied unit 1 in Lane 1 Rear must not take friendly AoE damage");
+#[test]
+fn test_aoe_friendly_fire_immunity() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 203).unwrap();
 
-    // Requirement B: One AoE damage should reduce each valid unshielded 3-HP enemy to 2 HP
-    let e0_f = state.players[1].lanes[0].front.as_ref().expect("E0 Front must exist");
-    assert_eq!(e0_f.health, 2, "Enemy 0 Front (3 HP) must be reduced to 2 HP by 1 AoE damage");
+    // Player 0 deploys allied units
+    state.players[0].lanes[0].front = Some(create_custom_unit(10001, "ALLY_0", "A0", 0, 2, 4, vec![]));
+    state.players[0].lanes[1].rear = Some(create_custom_unit(10002, "ALLY_1", "A1", 0, 1, 3, vec![]));
 
-    let e2_f = state.players[1].lanes[2].front.as_ref().expect("E2 Front must exist");
-    assert_eq!(e2_f.health, 2, "Enemy 2 Front (3 HP) must be reduced to 2 HP by 1 AoE damage");
+    // Player 1 has an enemy
+    state.players[1].lanes[0].front = Some(create_custom_unit(20001, "E0", "E0", 1, 2, 3, vec![]));
 
-    // Requirement C: Defensive mechanics follow canonical rules
-    // Ward on Lane 0 Rear should absorb hostile tactic damage, consuming Ward, retaining 3 HP
-    let e0_r = state.players[1].lanes[0].rear.as_ref().expect("E0 Rear must exist");
-    assert_eq!(e0_r.health, 3, "Enemy 0 Rear with Ward must retain 3 HP after absorbing AoE spell");
-    assert!(!e0_r.has_keyword("ward"), "Ward must be consumed after absorbing AoE spell");
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
 
-    // Shield on Lane 1 Front should absorb damage, retaining 3 HP, consuming Shield
-    let e1_f = state.players[1].lanes[1].front.as_ref().expect("E1 Front must exist");
-    assert_eq!(e1_f.health, 3, "Enemy 1 Front with Shield must retain 3 HP after absorbing AoE damage");
-    assert_eq!(e1_f.counters.get("shield").copied().unwrap_or(0), 0, "Shield counter must be consumed");
-
-    // Requirement D: Destroyed creatures must trigger applicable death effects
-    // Rebirth on Lane 1 Rear (1 HP) takes 1 damage, dies, and spawns Echo Remnant (0/1 token)
-    let e1_r = state.players[1].lanes[1].rear.as_ref().expect("E1 Rear should have Rebirth remnant");
-    assert!(e1_r.is_token, "Destroyed Rebirth creature must spawn Echo Remnant token");
-    assert_eq!(e1_r.health, 1, "Echo Remnant token has 1 HP");
-
-    // Requirement E: 2v2 Tag must hit the opposing shared board exactly once (not twice)
-    let tag_decks = [
-        &decks.decks[0],
-        &decks.decks[1],
-        &decks.decks[2],
-        &decks.decks[3],
-    ];
-    let mut state_2v2 = MatchState::new_2v2(tag_decks, &catalogue, 203).unwrap();
-    // Team 1 shared board is at players[1].lanes
-    state_2v2.players[1].lanes[0].front = Some(create_custom_unit(50001, "TAG_ENEMY", "TE0", 1, 2, 4, vec![]));
-    state_2v2.players[0].aether = 10;
-    state_2v2.players[0].hand[0].card_id = "EMB-T-0043".to_string();
-
-    let res_2v2 = state_2v2.apply_command(
+    let res = state.apply_command(
         BattleCommand::PlayTactic {
             player: 0,
             hand_index: 0,
@@ -643,11 +632,125 @@ fn test_canonical_all_enemy_creatures_aoe_resolution_quality_gate() {
         },
         &catalogue,
     );
-    assert!(res_2v2.accepted, "2v2 tactic command must be accepted");
+    assert!(res.accepted);
 
-    // In 2v2, 1 damage AoE should reduce 4 HP to 3 HP (exactly 1 damage, not duplicated to 2 damage)
-    let tag_e_hp = state_2v2.players[1].lanes[0].front.as_ref().unwrap().health;
-    assert_eq!(tag_e_hp, 3, "2v2 AoE must not hit the shared board twice (expected 4 - 1 = 3 HP)");
+    // Allies must remain completely undamaged by all_enemy_creatures effect
+    assert_eq!(state.players[0].lanes[0].front.as_ref().unwrap().health, 4, "Allied Front unit must take 0 friendly damage");
+    assert_eq!(state.players[0].lanes[1].rear.as_ref().unwrap().health, 3, "Allied Rear unit must take 0 friendly damage");
+}
+
+#[test]
+fn test_aoe_ward_absorption() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 204).unwrap();
+
+    // Deploy enemy creature with Ward
+    state.players[1].lanes[0].front = Some(create_custom_unit(20021, "E_WARD", "E_WARD", 1, 2, 3, vec!["ward"]));
+
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
+
+    let res = state.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    let unit = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(unit.health, 3, "Ward must completely absorb hostile AoE tactic damage");
+    assert!(!unit.has_keyword("ward"), "Ward must be consumed upon absorbing AoE tactic");
+}
+
+#[test]
+fn test_aoe_shield_absorption() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 205).unwrap();
+
+    // Deploy enemy creature with Shield
+    state.players[1].lanes[0].front = Some(create_custom_unit(20031, "E_SHIELD", "E_SHIELD", 1, 2, 3, vec!["shield"]));
+
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
+
+    let res = state.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    let unit = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(unit.health, 3, "Shield must absorb AoE damage and retain 3 HP");
+    assert_eq!(unit.counters.get("shield").copied().unwrap_or(0), 0, "Shield counter must be consumed");
+}
+
+#[test]
+fn test_aoe_rebirth_death_trigger() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 206).unwrap();
+
+    // Deploy 1-HP enemy creature with Rebirth
+    state.players[1].lanes[0].front = Some(create_custom_unit(20041, "E_REBIRTH", "E_REBIRTH", 1, 1, 1, vec!["rebirth"]));
+
+    state.players[0].aether = 10;
+    state.players[0].hand[0].card_id = "EMB-T-0043".to_string();
+
+    let res = state.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Lethal AoE damage must trigger Rebirth and spawn Echo Remnant token
+    let unit = state.players[1].lanes[0].front.as_ref().expect("Remnant token must occupy slot");
+    assert!(unit.is_token, "Destroyed Rebirth unit must spawn an Echo Remnant token");
+    assert_eq!(unit.health, 1, "Echo Remnant token has 1 HP");
+}
+
+#[test]
+fn test_aoe_2v2_shared_board_non_duplication() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let tag_decks = [
+        &decks.decks[0],
+        &decks.decks[1],
+        &decks.decks[2],
+        &decks.decks[3],
+    ];
+    let mut state_2v2 = MatchState::new_2v2(tag_decks, &catalogue, 207).unwrap();
+
+    // In 2v2 Tag, Team 1 shared board is at players[1].lanes
+    state_2v2.players[1].lanes[0].front = Some(create_custom_unit(50001, "TAG_ENEMY", "TE0", 1, 2, 4, vec![]));
+    state_2v2.players[0].aether = 10;
+    state_2v2.players[0].hand[0].card_id = "EMB-T-0043".to_string();
+
+    let res = state_2v2.apply_command(
+        BattleCommand::PlayTactic {
+            player: 0,
+            hand_index: 0,
+            target_lane: Some(0),
+            target_position: Some(SlotPosition::Front),
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // In 2v2, 1 damage AoE should reduce 4 HP to 3 HP (exactly 1 damage, NOT duplicated across 2 players to 2 HP)
+    let unit = state_2v2.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(unit.health, 3, "2v2 AoE must damage shared team board exactly once (4 - 1 = 3 HP)");
 }
 
 // =========================================================================
