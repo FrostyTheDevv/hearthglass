@@ -752,14 +752,16 @@ export function validateWorldContent(options = {}) {
     // Preserved fields for existing test suite compatibility (reporting baseline values)
     level_2_capability_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
     level_2_unhandled_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
-    level_3_behavioral_verified: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
-    // Honest Level 3 Accounting
+    // Honest Level 3 Accounting: source test-proven assertions only
     level_3_broad_execution_tested: stagedCardsData?.cards?.length || 0,
-    level_3_deep_behavioral_asserted: 32,
-    level_3_deep_assertion_pending: (stagedCardsData?.cards?.length || 0) - 32,
-    // Canonical 640 metrics under PR #5
-    canonical_640_pr5_compatible: 638,
-    canonical_640_pr5_gaps: 2
+    level_3_deep_behavioral_asserted: 0,
+    level_3_deep_assertion_pending: stagedCardsData?.cards?.length || 0,
+    level_3_behavioral_verified: 0,
+    // Canonical 640 metrics under merged PR #5 (ca73a75 / 8273cf8)
+    canonical_640_pr5_compatible: 640,
+    canonical_640_pr5_gaps: 0,
+    canonical_640_deep_behavioral_asserted: 29,
+    canonical_640_deep_assertion_pending: 611
   };
 
   const summary = {

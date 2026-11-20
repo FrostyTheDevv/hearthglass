@@ -207,3 +207,30 @@ WHERE user_id = $1
 2. **Session Restoration:**
    Upon login, `GET /v1/relationships` and `POST /v1/npcs/interact` return the exact server-authoritative state.
    The Godot client automatically renders the active or completed dialogue state based on server-returned quest status.
+
+---
+
+## 6. Runtime Boundaries & Documentation / Staging Fixture Disclosures
+
+To prevent false assumptions regarding runtime deployment, all assets and mechanics are explicitly demarcated:
+
+### 6.1 Documentation & Staging Fixtures (Pending Runtime Import)
+1. **Database Seeding (`npc_definitions` & `quest_definitions`):**
+   - The SQL migrations in Section 3.4 for `npc_cassi_mercer` and `quest_playable_glass_survey` are specification fixtures.
+   - The production PostgreSQL database has not yet executed these migrations; seeding is owned by the MAIN backend agent.
+2. **Client Scene Node Placement:**
+   - The Arrival Square district mesh exists in `res://scenes/world/lumenport_hub.tscn` at `Vector3(-12.0, 2.0, 10.0)`.
+   - The explicit interactable character node for Cassi Mercer is not hard-coded in the `.tscn` file; client dynamic spawning depends on `GameState.npcs` or dedicated scene node binding by the GODOT agent.
+3. **Environmental Combat Rule ("Crystal Refraction"):**
+   - The special rule `"Crystal Refraction: Center Lane +1 Health on summon"` is a narrative specification not yet implemented in `services/battle-server/src/lib.rs`.
+   - Combat encounters with Cassi Mercer safely execute under standard 1v1 Convergence rules without crashing or blocking.
+4. **World Staging Datasets (`content/staging/world/*`):**
+   - Datasets `world_npcs_80_canonical.json`, `world_side_quests_120_canonical.json`, `world_dungeons_16_canonical.json`, `world_tournaments_8_canonical.json`, `world_companion_stories_24_canonical.json`, `world_campaign_12_chapters.json`, and `playable_content_increment.json` are staging fixtures isolated on branch `feat/cards-world-content`.
+   - They are validated against schemas but not yet ingested into production runtime tables.
+
+### 6.2 Active & Verified Runtime Implementations
+1. **API Endpoint:** `POST /v1/npcs/interact` is published and active in `services/api/src/server.mjs`.
+2. **Database Engine:** `db.interactWithNpc` and `db.advanceQuestObjective` hooks are active in `services/api/src/db.mjs`.
+3. **Explorable 3D Hub Scene:** `res://scenes/world/lumenport_hub.tscn` and `res://scripts/world/lumenport_hub.gd` are active in `apps/game-client`.
+4. **Combat Arena:** `res://scenes/battle/tabletop_arena.tscn` is active and functional.
+5. **Encounter Deck:** `deck_glass_star_prism` is a legal 40-card deck in `content/cards/starter_decks.json`.

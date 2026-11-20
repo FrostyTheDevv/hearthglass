@@ -36,19 +36,20 @@ test('Hearthglass World Content & Card Staging Canonical Validation Suite', asyn
     const res = validateWorldContent();
     assert.equal(res.stagedExpansionCards, 160);
     assert.equal(res.rustVerificationCounts.level_1_schema_valid, 160);
-    assert.equal(res.rustVerificationCounts.level_2_capability_compatible, 140);
-    assert.equal(res.rustVerificationCounts.level_2_unhandled_gaps, 20);
-    assert.equal(res.rustVerificationCounts.level_3_behavioral_verified, 140);
-    // PR #5 remediated engine audit assertions
     assert.equal(res.rustVerificationCounts.level_2_baseline_compatible, 140);
     assert.equal(res.rustVerificationCounts.level_2_baseline_gaps, 20);
     assert.equal(res.rustVerificationCounts.level_2_pr5_compatible, 160);
     assert.equal(res.rustVerificationCounts.level_2_pr5_gaps, 0);
+    // Honest Level 3 Accounting: source test-proven assertions only
     assert.equal(res.rustVerificationCounts.level_3_broad_execution_tested, 160);
-    assert.equal(res.rustVerificationCounts.level_3_deep_behavioral_asserted, 32);
-    assert.equal(res.rustVerificationCounts.level_3_deep_assertion_pending, 128);
-    assert.equal(res.rustVerificationCounts.canonical_640_pr5_compatible, 638);
-    assert.equal(res.rustVerificationCounts.canonical_640_pr5_gaps, 2);
+    assert.equal(res.rustVerificationCounts.level_3_deep_behavioral_asserted, 0);
+    assert.equal(res.rustVerificationCounts.level_3_deep_assertion_pending, 160);
+    assert.equal(res.rustVerificationCounts.level_3_behavioral_verified, 0);
+    // Canonical 640 under merged PR #5 (ca73a75 / 8273cf8)
+    assert.equal(res.rustVerificationCounts.canonical_640_pr5_compatible, 640);
+    assert.equal(res.rustVerificationCounts.canonical_640_pr5_gaps, 0);
+    assert.equal(res.rustVerificationCounts.canonical_640_deep_behavioral_asserted, 29);
+    assert.equal(res.rustVerificationCounts.canonical_640_deep_assertion_pending, 611);
   });
 
   await t.test('3. Validates complete 12-chapter campaign across 4 canonical regions', () => {

@@ -6,7 +6,8 @@
  *
  * Enforces schema-accurate field comparisons, name difference conflict detection,
  * three-level Rust capability classification across Old Master Baseline (1b1e179)
- * and Remediated PR #5 (9315bc9), honest Level 3 behavioral accounting, and deterministic reporting.
+ * and Merged PR #5 (ca73a75 / 8273cf8), honest Level 3 behavioral accounting
+ * backed strictly by source test evidence, and deterministic reporting.
  */
 
 import fs from 'fs';
@@ -19,7 +20,8 @@ const ROOT = path.resolve(__dirname, '../..');
 
 /**
  * Baseline Engine Capability Set (Old Master Commit 1b1e179)
- * Gaps: deal_damage with all_enemy_creatures, heal with strongest_ally_creature.
+ * Gaps: deal_damage with all_enemy_creatures, heal with strongest_ally_creature,
+ * move_lane with enemy_in_lane, add_counter with ally_leader.
  */
 export const RUST_CAPABILITY_HANDLED_TARGETS_BASELINE = {
   deal_damage: new Set(['enemy_leader', 'ally_leader', 'event_source', 'enemy_in_lane', 'target_enemy_creature']),
@@ -40,10 +42,12 @@ export const RUST_CAPABILITY_HANDLED_TARGETS_BASELINE = {
 };
 
 /**
- * Post-Fix PR #5 Remediated Engine Capability Set (Commit 9315bc9)
- * Added:
+ * Merged Master Engine Capability Set (PR #5 commit ca73a75 / head 8273cf8)
+ * Fully handles:
  * - deal_damage -> all_enemy_creatures
  * - heal -> strongest_ally_creature
+ * - move_lane -> enemy_in_lane (services/battle-server/src/lib.rs:2514-2550)
+ * - add_counter -> ally_leader (services/battle-server/src/lib.rs:2297-2301, PlayerState.counters)
  * - resolve_creature_targets expanded for all_enemy_creatures
  */
 export const RUST_CAPABILITY_HANDLED_TARGETS_PR5 = {
@@ -54,8 +58,8 @@ export const RUST_CAPABILITY_HANDLED_TARGETS_PR5 = {
   gain_aether: new Set(['ally_leader', 'controller', 'self', undefined]),
   reclaim_from_discard: new Set(['ally_leader', 'controller', 'self', undefined]),
   summon_token: new Set(['open_ally_slot', 'any', undefined]),
-  move_lane: new Set(['ally_creature_in_lane_or_any']),
-  add_counter: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures']),
+  move_lane: new Set(['ally_creature_in_lane_or_any', 'enemy_in_lane']),
+  add_counter: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures', 'ally_leader']),
   remove_counter: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures']),
   modify_stats: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures']),
   grant_keyword: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures']),
@@ -64,7 +68,7 @@ export const RUST_CAPABILITY_HANDLED_TARGETS_PR5 = {
   return_to_hand: new Set(['self', 'event_source', 'ally_creature_in_lane_or_any', 'strongest_ally_creature', 'all_ally_creatures', 'enemy_in_lane', 'target_enemy_creature', 'all_enemy_creatures'])
 };
 
-// Default export uses PR #5 remediated targets
+// Default export uses PR #5 merged targets
 export const RUST_CAPABILITY_HANDLED_TARGETS = RUST_CAPABILITY_HANDLED_TARGETS_PR5;
 
 /**
@@ -156,21 +160,27 @@ export const RUST_TEST_IDENTIFIERS = {
 };
 
 /**
- * Representative archetype cards with explicit deep state-delta assertions in the Rust test suite.
- * (3 per faction across 8 factions + 8 neutral archetype cards = 32 archetype cards)
+ * Canonical baseline cards with explicit, test-proven behavioral assertions in the Rust test files:
+ * - services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs
+ * - services/battle-server/tests/qa_keyword_and_mechanics_tests.rs
+ * - services/battle-server/tests/rules_engine_tests.rs
+ *
+ * Source-verified: Exactly 29 canonical baseline cards appear in card-specific behavioral test assertions.
+ * Exactly 0 staged expansion cards appear in card-specific test assertions (all 160 staged cards are broad-execution tested).
  */
-export const DEEP_BEHAVIORAL_ASSERTED_CARD_IDS = new Set([
-  'EMB-C-0049', 'EMB-C-0053', 'EMB-T-0057',
-  'VER-C-0049', 'VER-C-0053', 'VER-T-0057',
-  'IRN-C-0049', 'IRN-C-0054', 'IRN-T-0057',
-  'TID-C-0049', 'TID-C-0053', 'TID-T-0057',
-  'GLS-C-0049', 'GLS-C-0053', 'GLS-T-0057',
-  'STR-C-0049', 'STR-C-0053', 'STR-T-0057',
-  'NOC-C-0049', 'NOC-C-0055', 'NOC-T-0057',
-  'GRV-C-0049', 'GRV-C-0054', 'GRV-T-0057',
-  'NEU-C-0097', 'NEU-C-0105', 'NEU-C-0113', 'NEU-C-0121',
-  'NEU-T-0133', 'NEU-T-0137', 'NEU-R-0145', 'NEU-E-0155'
+export const CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS = new Set([
+  'EMB-C-0001', 'EMB-C-0002', 'EMB-C-0003', 'EMB-T-0006', 'EMB-E-0008', 'EMB-C-0019', 'EMB-T-0043',
+  'VER-C-0001', 'VER-C-0002', 'VER-C-0019', 'VER-T-0043',
+  'IRN-C-0001', 'IRN-C-0019',
+  'TID-C-0001', 'TID-C-0003',
+  'GLS-C-0001',
+  'STR-T-0027',
+  'GRV-C-0001', 'GRV-C-0019', 'GRV-C-0023', 'GRV-C-0040',
+  'NEU-C-0001', 'NEU-C-0002', 'NEU-C-0003', 'NEU-C-0004', 'NEU-T-0006', 'NEU-R-0007', 'NEU-T-0042', 'NEU-T-0044'
 ]);
+
+// Backwards-compatibility export (empty set since 0 staged cards are in Rust test sources)
+export const DEEP_BEHAVIORAL_ASSERTED_CARD_IDS = new Set();
 
 /**
  * Classifies a staged card relative to its canonical counterpart.
@@ -250,7 +260,7 @@ export function runReconciliation() {
 
   const canonicalMap = new Map(foundations.cards.map(c => [c.id, c]));
 
-  // Audit Foundations 640 against PR #5 and Baseline
+  // Audit Foundations 640 against PR #5 (ca73a75 / 8273cf8) and Baseline (1b1e179)
   let foundationsBaselineCompatible = 0;
   let foundationsPR5Compatible = 0;
   const foundationsBaselineGaps = [];
@@ -291,14 +301,14 @@ export function runReconciliation() {
     // Baseline Engine (1b1e179)
     level_2_baseline_compatible: 0,
     level_2_baseline_gaps: 0,
-    // Post-Fix PR #5 Engine (9315bc9)
+    // Merged Master PR #5 Engine (ca73a75 / 8273cf8)
     level_2_pr5_compatible: 0,
     level_2_pr5_gaps: 0,
     // Backward-compatibility aliases
     level_2_rust_capability_compatible: 0,
     level_2_unhandled_gaps: 0,
+    // Level 3 Honest Accounting: strictly source-proven card-specific behavioral test assertions
     level_3_behavioral_verified: 0,
-    // Honest Level 3 Accounting
     level_3_broad_execution_tested: 0,
     level_3_deep_behavioral_asserted: 0,
     level_3_deep_assertion_pending: 0
@@ -346,7 +356,6 @@ export function runReconciliation() {
     if (isL2Baseline) {
       verificationLevelCounts.level_2_baseline_compatible++;
       verificationLevelCounts.level_2_rust_capability_compatible++;
-      verificationLevelCounts.level_3_behavioral_verified++;
     } else {
       verificationLevelCounts.level_2_baseline_gaps++;
       verificationLevelCounts.level_2_unhandled_gaps++;
@@ -358,13 +367,15 @@ export function runReconciliation() {
       verificationLevelCounts.level_2_pr5_gaps++;
     }
 
-    // Level 3 Honest Separation
-    // All cards pass broad execution testing via test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta
+    // Level 3 Honest Separation:
+    // All 160 staged cards pass broad execution testing via test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta
     verificationLevelCounts.level_3_broad_execution_tested++;
 
-    const isDeepAsserted = DEEP_BEHAVIORAL_ASSERTED_CARD_IDS.has(staged.id);
+    // Only cards with actual card-specific test functions in Rust source are counted as deep asserted
+    const isDeepAsserted = CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.has(staged.id);
     if (isDeepAsserted) {
       verificationLevelCounts.level_3_deep_behavioral_asserted++;
+      verificationLevelCounts.level_3_behavioral_verified++;
     } else {
       verificationLevelCounts.level_3_deep_assertion_pending++;
     }
@@ -401,8 +412,8 @@ export function runReconciliation() {
         level_3_deep_behavioral_asserted: isDeepAsserted,
         level_3_status: isDeepAsserted ? 'deep_behavioral_asserted' : 'broad_execution_tested_deep_assertion_pending',
         level_3_test_backing: isDeepAsserted
-          ? 'Explicit state assertion in services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs'
-          : 'Deployment and event delta verified in test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta; secondary state delta assertion pending',
+          ? 'Explicit state assertion in Rust battle test suites'
+          : 'Deployment, cost deduction, and board-slotting verified in test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta; dedicated secondary-effect state delta assertion pending in Rust test suite',
         baseline_gaps: isL2Baseline ? [] : (staged.abilities || []).flatMap(a => (a.effects || []).filter(e => !isRustCapabilityHandled(e, 'baseline')).map(e => `${e.operation} -> ${e.target}`)),
         pr5_gaps: isL2PR5 ? [] : (staged.abilities || []).flatMap(a => (a.effects || []).filter(e => !isRustCapabilityHandled(e, 'pr5')).map(e => `${e.operation} -> ${e.target}`))
       },
@@ -412,13 +423,14 @@ export function runReconciliation() {
   }
 
   const result = {
-    schema_version: '1.4.0',
+    schema_version: '1.5.0',
     audit_timestamp: new Date().toISOString(),
     canonical_catalogue_file: 'content/cards/foundations_v1.json',
     staged_catalogue_file: 'content/staging/cards/expansion_160_staging_catalogue.json',
     audited_engine_revisions: {
       baseline_commit: '1b1e179',
-      remediated_pr5_commit: '9315bc9',
+      merged_master_commit: 'ca73a75',
+      merged_master_head: '8273cf8',
       pr5_pull_request: 'https://github.com/FrostyTheDevv/hearthglass/pull/5'
     },
     foundations_640_audit: {
@@ -427,22 +439,10 @@ export function runReconciliation() {
       baseline_engine_gaps_count: foundationsBaselineGaps.length,
       pr5_engine_compatible: foundationsPR5Compatible,
       pr5_engine_gaps_count: foundationsPR5Gaps.length,
-      pr5_remaining_gaps: [
-        {
-          card_id: 'TID-C-0040',
-          name: 'Abyssal Undertow-Caller',
-          operation: 'move_lane',
-          target: 'enemy_in_lane',
-          reason: 'move_lane in Rust engine currently only matches ally_creature_in_lane_or_any'
-        },
-        {
-          card_id: 'TID-R-0046',
-          name: 'Pearl-Chime Bilge Pump',
-          operation: 'add_counter',
-          target: 'ally_leader',
-          reason: 'add_counter in Rust engine resolves creature targets; leader counter slots pending'
-        }
-      ]
+      pr5_remaining_gaps: foundationsPR5Gaps,
+      canonical_deep_behavioral_asserted_count: CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
+      canonical_deep_assertion_pending_count: foundations.cards.length - CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
+      canonical_test_proven_cards: Array.from(CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS).sort()
     },
     total_staged_cards_audited: reconciliationReport.length,
     classification_counts: classificationCounts,
@@ -463,7 +463,7 @@ export function runReconciliation() {
   console.log(`Saved reconciliation report to ${outputPath}`);
   console.log('Classification summary:', classificationCounts);
   console.log('Verification levels summary:', verificationLevelCounts);
-  console.log('Foundations 640 under PR #5:', {
+  console.log('Foundations 640 under merged PR #5 (ca73a75 / 8273cf8):', {
     compatible: foundationsPR5Compatible,
     gaps: foundationsPR5Gaps.length,
     remaining: result.foundations_640_audit.pr5_remaining_gaps

@@ -1,13 +1,14 @@
 # Hearthglass — 640-Card Canonical Reconciliation & Historical Mathematics Audit
 
-**Document Version:** 2.0.0  
-**Status:** Complete & Ratified with PR #5 Reconciled Engine Compatibility Audit  
+**Document Version:** 2.1.0  
+**Status:** Complete & Ratified with Merged PR #5 Engine Compatibility Audit  
 **Audit Branch:** `feat/cards-world-content`  
 **Authoritative Sources:**
 - Commit `09a1478`: *Hearthglass V6 baseline — 480 canonical cards*
 - Commit `5bf08e7`: *Complete full 640-card canonical catalogue and Godot client integration*
 - Baseline Master Commit `1b1e179`: *Pre-fix Rust engine baseline*
-- Remediated PR #5 Commit `9315bc9`: *Remediated Rust battle mechanics engine* (PR #5: `https://github.com/FrostyTheDevv/hearthglass/pull/5`)
+- Intermediate PR #5 Commit `9315bc9`: *Intermediate remediated Rust battle mechanics engine*
+- Merged Master Commit `ca73a75` (Head `8273cf8`): *Merged PR #5 release gate with complete capability coverage* (PR #5: `https://github.com/FrostyTheDevv/hearthglass/pull/5`)
 - Machine-Readable Audit: `content/staging/cards/card_reconciliation_report.json`
 
 ---
@@ -16,13 +17,13 @@
 
 This audit establishes the definitive reconciliation between the 640 canonical cards in `content/cards/foundations_v1.json` and the 160 expansion records in `content/staging/cards/expansion_160_staging_catalogue.json`. 
 
-By analyzing the authoritative Git commit lineage and auditing against both the baseline master engine (`1b1e179`) and the remediated PR #5 engine (`9315bc9`), this document establishes:
+By analyzing the authoritative Git commit lineage and auditing against the baseline master engine (`1b1e179`), the intermediate PR #5 snapshot (`9315bc9`), and the merged master engine at `ca73a75` (head `8273cf8`), this document establishes:
 1. The exact mathematical delta from the 480-card baseline (`09a1478`) to the 640-card canonical milestone (`5bf08e7`).
 2. The resolution of reconstructed theoretical assumptions versus verified Git history.
 3. A schema-accurate field-by-field audit protecting ID, name, faction, type, rarity, cost (`cost`), stats (`attack`, `health`), keywords, complete abilities/effect AST, and rules metadata.
 4. A three-level validation hierarchy distinguishing Schema Validity (Level 1), Rust Capability Compatibility (Level 2), and Behavioral Verification (Level 3).
-5. A comparative audit contrasting baseline engine capabilities (`1b1e179`) against PR #5 remediations (`9315bc9`), documenting remaining capability gaps in Foundations 640.
-6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test identifiers.
+5. A comparative audit contrasting baseline engine capabilities (`1b1e179`), intermediate remediations (`9315bc9`), and merged master capabilities (`ca73a75` / `8273cf8`), verifying 100% capability coverage across both Foundations 640 (0 gaps) and Staged 160 (0 gaps).
+6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test source evidence (29 canonical baseline cards tested, 0 staged expansion cards tested in dedicated unit tests, 160 staged cards pending deep secondary-effect assertions).
 
 ---
 
@@ -99,8 +100,8 @@ To prevent conflating schema validity with execution reality, the engine audit e
 ```mermaid
 flowchart TD
     L1["LEVEL 1: Schema Validity\n(160/160 Staged | 640/640 Canonical)\nRecognized triggers, operations, targets in JSON"]
-    L2["LEVEL 2: Rust Capability Compatibility\n(160/160 Staged under PR #5 9315bc9)\nOperation-Target handled in battle-server match arms"]
-    L3["LEVEL 3: Behavioral Verification\n(160/160 Broad Execution Tested | 32 Deep State Asserted)\nExecutable Rust tests proving board state mutations"]
+    L2["LEVEL 2: Rust Capability Compatibility\n(160/160 Staged | 640/640 Canonical under Merged Master ca73a75 / 8273cf8)\nOperation-Target handled in battle-server match arms"]
+    L3["LEVEL 3: Behavioral Verification\n(640/640 Broad Execution Tested | 29 Canonical Deep Asserted | 0 Staged Deep Asserted / 160 Pending)\nExecutable Rust tests proving board state mutations"]
 
     L1 --> L2
     L2 --> L3
@@ -113,45 +114,44 @@ flowchart TD
 
 ---
 
-### Level 2 — Rust Capability Reconciliation (Baseline 1b1e179 vs PR #5 9315bc9)
+### Level 2 — Rust Capability Reconciliation (Baseline 1b1e179 vs Snapshot 9315bc9 vs Merged Master ca73a75 / 8273cf8)
 
-MAIN has published the Rust engine mechanics remediations in:
-**PR #5:** `https://github.com/FrostyTheDevv/hearthglass/pull/5` (Commit `9315bc9`).
-
-The engine additions in PR #5 include:
-1. `deal_damage` with `all_enemy_creatures` target across front and rear lanes.
-2. `heal` with `strongest_ally_creature` target.
-3. `resolve_creature_targets` expansion for `all_enemy_creatures` (supporting `add_counter`, `modify_stats`, `grant_keyword`, `silence`, `destroy`, `return_to_hand`).
+The evolution of engine capabilities across master revisions is:
+1. **Pre-Fix Master Baseline (`1b1e179`):** Lacked handling for `deal_damage -> all_enemy_creatures`, `heal -> strongest_ally_creature`, `move_lane -> enemy_in_lane`, and `add_counter -> ally_leader`.
+2. **Intermediate PR #5 Snapshot (`9315bc9`):** Added `all_enemy_creatures` handling for damage/creature effects and `strongest_ally_creature` healing. Left 2 remaining Foundations gaps (`TID-C-0040` and `TID-R-0046`).
+3. **Merged Master PR #5 (`ca73a75` / head `8273cf8`):** Fully merged to master (`https://github.com/FrostyTheDevv/hearthglass/pull/5`). Added:
+   - `move_lane -> enemy_in_lane`: In `services/battle-server/src/lib.rs:2514-2550`, checks `let is_enemy = effect.target == "enemy_in_lane";` and moves the target creature to front/rear lane accordingly. Classified as `"status": "supported"` in `content/engine/effect_capabilities.json`.
+   - `add_counter -> ally_leader`: In `services/battle-server/src/lib.rs:2297-2301`, checks `if effect.target == "ally_leader" { *self.players[bh].counters.entry(counter_name).or_insert(0) += amount; }`, backed by `PlayerState.counters: BTreeMap<String, i32>`. Classified as `"status": "context_dependent"` in `content/engine/effect_capabilities.json`.
 
 #### Comparative Compatibility Matrix:
 
 ```
-+--------------------------+-----------------------+-----------------------+--------------------+
-| Catalogue Segment        | Old Master (1b1e179)  | Post-Fix PR #5 (9315bc9)| Delta / Status     |
-+--------------------------+-----------------------+-----------------------+--------------------+
-| Foundations 640 Total    | 609 / 640 (95.16%)    | 638 / 640 (99.69%)    | +29 Cards Handled  |
-| Foundations 640 Gaps     | 31 Gaps               | 2 Gaps                | -29 Gaps Resolved  |
-| Staged Expansion 160     | 140 / 160 (87.50%)    | 160 / 160 (100.0%)    | +20 Cards Handled  |
-| Staged 160 Gaps          | 20 Gaps               | 0 Gaps                | 100% COMPATIBLE!   |
-+--------------------------+-----------------------+-----------------------+--------------------+
++--------------------------+-----------------------+-------------------------+---------------------------------+
+| Catalogue Segment        | Old Master (1b1e179)  | PR #5 Snapshot (9315bc9)| Merged Master (ca73a75/8273cf8) |
++--------------------------+-----------------------+-------------------------+---------------------------------+
+| Foundations 640 Total    | 609 / 640 (95.16%)    | 638 / 640 (99.69%)      | 640 / 640 (100.0%)              |
+| Foundations 640 Gaps     | 31 Gaps               | 2 Gaps                  | 0 Gaps (100% COMPATIBLE)        |
+| Staged Expansion 160     | 140 / 160 (87.50%)    | 160 / 160 (100.0%)      | 160 / 160 (100.0%)              |
+| Staged 160 Gaps          | 20 Gaps               | 0 Gaps                  | 0 Gaps (100% COMPATIBLE)        |
++--------------------------+-----------------------+-------------------------+---------------------------------+
 ```
 
-#### Remaining Capability Gaps in Foundations 640 under PR #5:
-Under remediated PR #5 (`9315bc9`), Foundations 640 has exactly **2 remaining gaps**:
+#### Verification of Prior Foundations 640 Gaps:
+Under merged commit `ca73a75` (`8273cf8`), both previous gaps are fully resolved:
 1. **`TID-C-0040` (Abyssal Undertow-Caller):**
    - Operation/Target: `move_lane -> enemy_in_lane`
-   - Engine Status: In `services/battle-server/src/lib.rs`, `move_lane` currently only handles `ally_creature_in_lane_or_any`. Forcing enemy lane movement requires an additional match arm.
+   - Engine Status: **SUPPORTED** in `services/battle-server/src/lib.rs:2514-2550`.
 2. **`TID-R-0046` (Pearl-Chime Bilge Pump):**
    - Operation/Target: `add_counter -> ally_leader`
-   - Engine Status: In `services/battle-server/src/lib.rs`, `add_counter` resolves targets via `resolve_creature_targets`. Leader counter slots are not yet implemented in `PlayerState`.
+   - Engine Status: **SUPPORTED** in `services/battle-server/src/lib.rs:2297-2301`.
 
-All 160 staged expansion cards are **100% Level 2 compatible** under PR #5 (`9315bc9`).
+Both Foundations 640 and Staged 160 are **100.0% Level 2 compatible** with **0 remaining gaps**.
 
 ---
 
 ### Level 3 — Behavioral Verification Accounting
 
-To ensure rigorous reporting, Level 3 is decoupled from Level 2 static match-arm capability and explicitly grounded in executable Rust test suites:
+To maintain strict truth-in-advertising and prevent associating generic tests with specific card definitions, Level 3 reporting is decoupled from Level 2 capability matching and grounded exclusively in verified test source code:
 
 #### 1. Broad Deployment & State-Delta Execution Tested (160 / 160 Staged | 640 / 640 Canonical)
 - **Backing Rust Test:** `test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta` in `services/battle-server/tests/rules_engine_tests.rs`.
@@ -163,35 +163,37 @@ To ensure rigorous reporting, Level 3 is decoupled from Level 2 static match-arm
   - Relics occupy relic slot; Environments occupy active environment slot.
   - Battle state emits matching `BattleEvent` instances.
 
-#### 2. Deep Behavioral State-Delta Assertions (32 Staged Archetype Cards)
+#### 2. Deep Behavioral State-Delta Assertions (29 Canonical Baseline Cards Only)
 - **Backing Test Suites:**
   - `services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs`
+  - `services/battle-server/tests/qa_keyword_and_mechanics_tests.rs`
   - `services/battle-server/tests/rules_engine_tests.rs`
 - **Specific Rust Test Identifiers:**
-  - `test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes`: Verifies multi-target health point reduction across all front/rear lanes.
-  - `test_aoe_deal_damage_respects_ward_and_shield`: Verifies Ward and Shield keyword damage negation on AoE.
-  - `test_aoe_deal_damage_triggers_rebirth_on_lethal`: Verifies Rebirth resurrection trigger and discard routing.
-  - `test_aoe_2v2_tag_damage_never_duplicates_or_hits_allies`: Verifies 2v2 target resolution boundaries.
-  - `test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures`: Verifies AoE keyword attachments.
-  - `test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures`: Verifies multi-target counter application.
-  - `test_glassborne_refraction_reflects_combat_damage_back_to_attacker`: Verifies damage reflection.
-  - `test_glassborne_refraction_does_not_reflect_when_silenced`: Verifies silence disabling faction passives.
-  - `test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish`: Verifies core keyword state transitions.
-  - `test_all_eight_faction_mechanics_and_advanced_combat_resolutions`: Verifies faction mechanics.
-- **Representative 32 Archetype Cards:**
-  - Emberclad: `EMB-C-0049`, `EMB-C-0053`, `EMB-T-0057`
-  - Verdant Pact: `VER-C-0049`, `VER-C-0053`, `VER-T-0057`
-  - Iron Choir: `IRN-C-0049`, `IRN-C-0054`, `IRN-T-0057`
-  - Tidebound: `TID-C-0049`, `TID-C-0053`, `TID-T-0057`
-  - Glassborne: `GLS-C-0049`, `GLS-C-0053`, `GLS-T-0057`
-  - Starweave: `STR-C-0049`, `STR-C-0053`, `STR-T-0057`
-  - Nocturne: `NOC-C-0049`, `NOC-C-0055`, `NOC-T-0057`
-  - Gravewild: `GRV-C-0049`, `GRV-C-0054`, `GRV-T-0057`
-  - Neutral: `NEU-C-0097`, `NEU-C-0105`, `NEU-C-0113`, `NEU-C-0121`, `NEU-T-0133`, `NEU-T-0137`, `NEU-R-0145`, `NEU-E-0155`
+  - `test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes`: Multi-target health deduction across all front/rear lanes.
+  - `test_aoe_deal_damage_respects_ward_and_shield`: Ward and Shield damage negation on AoE.
+  - `test_aoe_deal_damage_triggers_rebirth_on_lethal`: Rebirth resurrection trigger and graveyard dispatch.
+  - `test_aoe_2v2_tag_damage_never_duplicates_or_hits_allies`: 2v2 target boundary enforcement.
+  - `test_aoe_grant_keyword_exhaust_hits_all_enemy_creatures`: Multi-target keyword attachment.
+  - `test_aoe_add_counter_corrode_reduces_stats_of_all_enemy_creatures`: Multi-target counter application.
+  - `test_glassborne_refraction_reflects_combat_damage_back_to_attacker`: Combat damage reflection.
+  - `test_glassborne_refraction_does_not_reflect_when_silenced`: Silence disabling faction passives.
+  - `test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish`: Core keyword state transitions.
+  - `test_all_eight_faction_mechanics_and_advanced_combat_resolutions`: Faction combat resolutions.
+- **Test-Proven Card Identifiers (29 Canonical Cards):**
+  - Emberclad (7): `EMB-C-0001`, `EMB-C-0002`, `EMB-C-0003`, `EMB-T-0006`, `EMB-E-0008`, `EMB-C-0019`, `EMB-T-0043`
+  - Verdant Pact (4): `VER-C-0001`, `VER-C-0002`, `VER-C-0019`, `VER-T-0043`
+  - Iron Choir (2): `IRN-C-0001`, `IRN-C-0019`
+  - Tidebound (2): `TID-C-0001`, `TID-C-0003`
+  - Glassborne (1): `GLS-C-0001`
+  - Starweave (1): `STR-T-0027`
+  - Gravewild (4): `GRV-C-0001`, `GRV-C-0019`, `GRV-C-0023`, `GRV-C-0040`
+  - Neutral Accord (8): `NEU-C-0001`, `NEU-C-0002`, `NEU-C-0003`, `NEU-C-0004`, `NEU-T-0006`, `NEU-R-0007`, `NEU-T-0042`, `NEU-T-0044`
 
-#### 3. Deep Assertion Pending (128 Staged Cards)
-- The remaining 128 staged expansion cards are Level 2 capability compatible (100% supported in PR #5 `9315bc9`) and broad-execution tested, but individual unit tests asserting their exact secondary board state deltas are designated as future test suite increments.
-- These cards are reported honestly as `broad_execution_tested_deep_assertion_pending`.
+#### 3. Staged 160 Level 3 Status: 0 Deep Assertions / 160 Pending
+- **Staged Deep Asserted Count:** Exactly **0** staged expansion cards appear in dedicated unit tests in Rust source files.
+- **Staged Broad Tested Count:** All **160** staged expansion cards pass broad execution testing (deployment, cost deduction, board placement).
+- **Staged Deep Assertion Pending:** All **160** staged expansion cards remain pending dedicated secondary-effect unit tests in the Rust test suite.
+- **Reporting Invariant:** Broad execution testing is not conflated with deep secondary-effect assertions. Staged cards are reported honestly as `broad_execution_tested_deep_assertion_pending`.
 
 ---
 
