@@ -202,7 +202,10 @@ To maintain strict truth-in-advertising and prevent associating generic tests wi
 To maintain absolute transparency across all integration reports, content is categorized across five explicit maturity levels:
 
 1. **Designed:** Content is fully drafted in staged JSON files (`content/staging/world/`).
-2. **Schema Validated:** Content passes all structural, count, referential integrity, cycle detection, and silent-overwrite checks via `world_validator.mjs`.
-3. **Integrated with Backend:** Registered in PostgreSQL schema (`services/api/src/db.mjs`), with server-authoritative objective hooks and reward disbursement via `POST /v1/npcs/interact`.
-4. **Integrated with Godot:** Bound to `res://scenes/world/lumenport_hub.tscn`, district building blocks, interaction UI prompts, and client battle transitions (`apps/game-client`).
-5. **Human Playtested:** Verified through multi-turn live playthroughs covering dialogue branching, combat, and reward reception.
+2. **Schema Validated & Staged (Current PR #3 Level):** Content passes all structural, count, referential integrity, cycle detection, and silent-overwrite checks via `world_validator.mjs`. All 160 staged cards and world datasets currently reside at this level.
+3. **Integrated with Backend (Pending MAIN Migration):** Registered in PostgreSQL schema (`services/api/src/db.mjs`), with server-authoritative objective hooks and reward disbursement via `POST /v1/npcs/interact`.
+4. **Integrated with Godot (Pending GODOT Scene Binding):** Bound to `res://scenes/world/lumenport_hub.tscn`, district building blocks, interaction UI prompts, and client battle transitions (`apps/game-client`).
+5. **Human Playtested:** Verified through live playthroughs covering dialogue, combat, and reward reception.
+
+> [!NOTE]
+> All staged expansion cards and world datasets (including Cassi Mercer and Act 1 side content) are currently at **Level 2 (Schema Validated & Staged)**. None are yet integrated into canonical runtime datasets (`content/npcs/lumenport_npcs.json`, `content/quests/act1_quests.json`) or active database tables.

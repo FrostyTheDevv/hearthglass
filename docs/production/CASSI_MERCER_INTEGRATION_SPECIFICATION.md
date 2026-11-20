@@ -1,87 +1,101 @@
-# Hearthglass — Cassi Mercer Integration Specification & Contracts
+# Hearthglass — Cassi Mercer Target Integration Specification & Architecture
 
-**Document Version:** 2.0.0  
-**Status:** Integration-Ready Specification & Runtime Contract  
+**Document Version:** 2.1.0  
+**Status:** Target Design Specification & Integration Contract (Proposed / Not Implemented in Runtime)  
 **Branch:** `feat/cards-world-content`  
 **Governing Subsystems:** Godot Client (`apps/game-client`), API Backend (`services/api`), Battle Server (`services/battle-server`)
 
 ---
 
-## 1. Overview & Objective
+## 1. Overview & Architectural Boundaries
 
-This specification provides the exact, schema-accurate integration contract for the **Cassi Mercer Playable Content Increment** (`content/staging/world/playable_content_increment.json`).
+This specification defines the proposed handoff contract for the **Cassi Mercer Playable Content Increment** (`content/staging/world/playable_content_increment.json`).
 
-It serves as the formal handoff contract between:
-1. **The GODOT Agent:** Client-side 3D world loading (`res://scenes/world/lumenport_hub.tscn`), spatial positioning, dialogue interaction via `POST /v1/npcs/interact`, and battle transitions to `tabletop_arena.tscn`.
-2. **The MAIN Agent:** Server-side database seeding (`npc_definitions`, `quest_definitions`), server-authoritative objective progression (`services/api/src/db.mjs`), duel outcome verification, and atomic one-time reward issuance.
-3. **The QA Agent & Coordinator:** End-to-end multi-agent integration verification, anti-exploit enforcement, and save/reload continuity validation.
-
----
-
-## 2. GODOT Client Integration Contract (`apps/game-client`)
-
-### 2.1 Explorable 3D World Scene & World Transform
-- **Authoritative Scene:** `res://scenes/world/lumenport_hub.tscn` (script: `res://scripts/world/lumenport_hub.gd`).
-- **Scene Note:** There is no separate `arrival_square.tscn`. Arrival Square is an architectural district building block within `lumenport_hub.tscn`.
-- **World Transform & Coordinate Placement:**
-  - **Arrival Square & Harbor Cafe Quay:** `Vector3(-12.0, 2.0, 10.0)` (District Mesh size: `Vector3(7, 4, 6)`, Color: `Color(0.24, 0.62, 0.56)`).
-  - **Duelist Plaza Amphitheater:** `Vector3(0.0, 0.7, 0.0)` (District Mesh size: `Vector3(6, 1.4, 6)`, Color: `Color(0.45, 0.36, 0.68)`).
-- **NPC Dynamic Spawning:**
-  - Handled in `lumenport_hub.gd` via `_spawn_lumenport_npcs()`, which iterates over `GameState.npcs`.
-  - When `npc_cassi_mercer` is present in `GameState.npcs`, she spawns with an interaction prompt triggered when the player's `CharacterBody3D` is within 3.0 units.
-
-### 2.2 Authoritative Godot Compatibility Matrix
-
-```
-+------------------------------------+---------------------------------------+-------------------------------------------------------------+
-| Component / Resource               | Subsystem / Path                      | Integration Status & Contract Role                          |
-+------------------------------------+---------------------------------------+-------------------------------------------------------------+
-| Explorable 3D City Scene           | res://scenes/world/lumenport_hub.tscn | Existing runtime resource (isometric camera, WASD, lighting)|
-| Hub Controller Script              | res://scripts/world/lumenport_hub.gd  | Existing runtime resource (spawns GameState.npcs, HUD, duel)|
-| Global State Autoload              | res://scripts/autoload/game_state.gd  | Existing runtime resource (holds profile, quests, npcs)     |
-| 3D Duel Tabletop Arena             | res://scenes/battle/tabletop_arena.tscn| Existing runtime resource (standard 1v1 battle viewport)    |
-| Content Fixture Increment          | content/staging/world/playable_...    | New content fixture introduced on this branch               |
-| World NPCs Dataset (80)            | content/staging/world/world_npcs_80...| New content fixture introduced on this branch               |
-| World Quests Dataset (120)         | content/staging/world/world_side_...  | New content fixture introduced on this branch               |
-| Scene Addition: Cassi Spatial Node | res://scenes/world/lumenport_hub.tscn | Required scene addition: bind to Vector3(-12, 2.0, 10)      |
-| Backend Route: NPC Interaction     | POST /v1/npcs/interact                | Existing published route in services/api/src/server.mjs     |
-| Backend Progression Hooks          | services/api/src/db.mjs               | Existing database engine (advanceQuestObjective)            |
-| Environmental Rule: Center Lane +1 | services/battle-server/src/lib.rs     | PENDING Rust engine; fallback to standard 1v1 Convergence   |
-+------------------------------------+---------------------------------------+-------------------------------------------------------------+
-```
-
-### 2.3 Battle Encounter Launch & Environmental Fallback
-- **Encounter Mode:** Standard 1v1 Convergence Duel against NPC Cassi Mercer.
-- **Deck Profile:** `deck_glass_star_prism` (Legal 40-card starter deck from `content/cards/starter_decks.json`).
-- **Environmental Rule Status:**
-  - Special rule: `"Crystal Refraction: Center Lane +1 Health on summon"`.
-  - Implementation status: `pending_rust_engine_implementation` (requires ambient lane modifier hook in `services/battle-server/src/lib.rs`).
-  - **Graceful Fallback:** Godot battle client initiates the duel using standard 1v1 Convergence rules without crashing or blocking.
+> [!IMPORTANT]
+> **Implementation Status Disclosure:**
+> Neither NPC Cassi Mercer (`npc_cassi_mercer`) nor the quest "The Glass Cartographer's Survey" (`quest_playable_glass_survey`) are implemented or active in runtime.
+> - The API server currently loads NPCs exclusively from `content/npcs/lumenport_npcs.json` and quests exclusively from `content/quests/act1_quests.json`.
+> - Staging content in `content/staging/` is not imported, seeded, or loaded by the active backend.
+> - This document explicitly distinguishes **Current Backend Facts** from **Proposed Architecture & Backend Dependencies**.
 
 ---
 
-## 3. MAIN Backend Integration Contract (`services/api`)
+## 2. Subsystem Facts vs. Requirements Matrix
 
-### 3.1 Published Route & Payload Schemas
-The backend exposes the standard NPC interaction endpoint in `services/api/src/server.mjs`:
-
-```http
-POST /v1/npcs/interact
-Content-Type: application/json
-Authorization: Bearer <session_token>
+```
++------------------------------------+---------------------------------------+-------------------+-------------------------------------------------------------+
+| Component / Mechanism              | Subsystem / Path                      | Classification    | Architectural Status & Behavior                             |
++------------------------------------+---------------------------------------+-------------------+-------------------------------------------------------------+
+| Explorable 3D City Scene           | res://scenes/world/lumenport_hub.tscn | Current Fact      | Active runtime resource (isometric camera, WASD movement)   |
+| Hub Controller Script              | res://scripts/world/lumenport_hub.gd  | Current Fact      | Active runtime resource (spawns GameState.npcs, HUD, duels) |
+| Arrival Square District            | res://scenes/world/lumenport_hub.tscn | Current Fact      | Architectural district mesh at Vector3(-12, 2.0, 10); no    |
+|                                    |                                       |                   | separate arrival_square.tscn file exists                    |
+| Published NPC Endpoint             | POST /v1/npcs/interact                | Current Fact      | Active route; accepts ONLY npc_id and type (talk/gift)      |
+| Dialogue Choice API                | POST /v1/npcs/interact                | Absent (Dependency)| No dialogue-choice API exists; choice_id is NOT supported   |
+| Schedule / Proximity Checks        | services/api/src/server.mjs           | Absent (Dependency)| Completely absent; server does not check player position    |
+| World Movement Endpoint            | POST /v1/world/move                   | Current Fact      | Validates connected locations; completely separate endpoint |
+| Visit Objective Verification       | services/api/src/db.mjs               | Current Fact      | Unconditionally advances npc.home_location naively on talk; |
+|                                    |                                       |                   | does NOT verify player location via /v1/world/move          |
+| Canonical Server Datasets          | content/npcs/lumenport_npcs.json      | Current Fact      | Active backend data source; Cassi Mercer is NOT present     |
+|                                    | content/quests/act1_quests.json       | Current Fact      | Active backend data source; Cassi quest is NOT present      |
+| Staged World Content               | content/staging/world/*               | Proposed Fixture  | Staged datasets on PR #3 branch; not seeded into runtime    |
+| Scene Node: Cassi Mercer           | res://scenes/world/lumenport_hub.tscn | Proposed Addition | Spatial node binding required from GODOT agent              |
+| Secure Objective / Reward Flow     | services/api/src/db.mjs               | Backend Dependency| Atomic single-claim ledger transaction required from MAIN   |
+| Environmental Rule: Center Lane +1 | services/battle-server/src/lib.rs     | Proposed Mechanic | Pending Rust engine; fallback to standard 1v1 Convergence   |
++------------------------------------+---------------------------------------+-------------------+-------------------------------------------------------------+
 ```
 
-#### Request Payload Schema
+---
+
+## 3. Backend Integration Reality vs. Proposed Contracts (`services/api`)
+
+### 3.1 Current Backend Reality (Verified Facts)
+
+1. **Active Endpoint Contract:**
+   - Endpoint: `POST /v1/npcs/interact` in `services/api/src/server.mjs:1108-1113`.
+   - Accepted Payload:
+     ```json
+     {
+       "npc_id": "string (required)",
+       "type": "talk | gift (optional, defaults to talk)"
+     }
+     ```
+2. **Absence of Dialogue Choice API:**
+   - **Fact:** No dialogue-choice API exists. The endpoint does not accept `choice_id` or evaluate dialogue tree branches.
+   - Passing `choice_id` to `POST /v1/npcs/interact` is ignored by the backend.
+3. **Absence of Schedule and Proximity Enforcement:**
+   - **Fact:** The server performs no position, distance, district, or time-of-day checks during `POST /v1/npcs/interact`.
+   - Any client can call `/v1/npcs/interact` regardless of player coordinates.
+4. **Separation of Movement and Visit Objectives:**
+   - **Fact:** `POST /v1/world/move` in `services/api/src/server.mjs:975-996` validates connected districts and interiors, but operates completely independently of NPC interactions.
+   - When `interactWithNpc` runs in `services/api/src/db.mjs:1192`, it naively executes:
+     ```javascript
+     await this.advanceQuestObjective(userId, 'visit_location', npc.home_location);
+     ```
+     This advancement is triggered solely by the talk interaction, **not** by a server-verified location visit.
+5. **Runtime Data Sources:**
+   - In `services/api/src/db.mjs:124-128`, the backend reads:
+     - `content/npcs/lumenport_npcs.json`
+     - `content/quests/act1_quests.json`
+   - Neither file contains Cassi Mercer (`npc_cassi_mercer`) or the quest `quest_playable_glass_survey`. Calling `/v1/npcs/interact` with `npc_cassi_mercer` on the current merged backend fails with `Unknown NPC: npc_cassi_mercer`.
+
+---
+
+### 3.2 Proposed Dialogue & Interaction Specifications (Backend Dependencies)
+
+The following schemas represent the **proposed design specifications** submitted for future MAIN agent implementation:
+
+#### Proposed Request Payload (Target Requirement)
 ```json
 {
   "npc_id": "npc_cassi_mercer",
-  "type": "talk"
+  "type": "talk",
+  "choice_id": "choice_survey_accept"
 }
 ```
-- `npc_id` *(string, required)*: Permanent identifier of the NPC (`"npc_cassi_mercer"`).
-- `type` *(string, optional)*: Interaction type: `"talk"` (default) or `"gift"`.
+*(Note: `choice_id` is a proposed requirement; it is not supported in the active backend.)*
 
-#### Response Payload Schema (HTTP 200 OK)
+#### Proposed Response Payload (Target Requirement Example)
 ```json
 {
   "npc_id": "npc_cassi_mercer",
@@ -97,7 +111,7 @@ Authorization: Bearer <session_token>
       "status": "active",
       "progress": {
         "obj_speak_cassi": 1,
-        "obj_survey_arrival": 1,
+        "obj_survey_arrival": 0,
         "obj_duel_cassi": 0
       }
     }
@@ -105,34 +119,14 @@ Authorization: Bearer <session_token>
 }
 ```
 
-### 3.2 Server-Side Schedule & Proximity Validation
-- **NPC Schedule:**
-  - `08:00–12:00`: `lumenport_arrival_square` (`Vector3(-12, 2.0, 10)`) — Calibrating theodolite.
-  - `12:00–16:00`: `interior_harbor_cafe` — Chart cross-referencing.
-  - `16:00–21:00`: `lumenport_duelist_plaza` (`Vector3(0, 0.7, 0)`) — Tactical sparring.
-- **Server Proximity Check:**
-  - Server confirms player coordinates match the NPC's active scheduled district. Interactions attempted outside schedule radius return `403 Forbidden`.
+---
 
-### 3.3 Server-Owned Relationship & Progression Engine
-In `services/api/src/db.mjs` (`interactWithNpc`):
-1. **Relationship Delta:**
-   - `"talk"`: `+3` score.
-   - `"gift"` / Duel Victory: `+8` score.
-   - Score is capped at 100. When `score >= 40`, `companion_unlocked` is set to `true`.
-   - Relationship Tiers: `Acquaintance` (<25), `Friendly` (25–49), `Trusted` (50–74), `Bonded` (75–100).
-2. **Authoritative Objective Advancement:**
-   Calling `interactWithNpc` triggers server-side progression hooks:
-   - `await this.advanceQuestObjective(userId, 'talk_to_npc', 'npc_cassi_mercer');` -> Satisfies `obj_speak_cassi`.
-   - `await this.advanceQuestObjective(userId, 'visit_location', 'lumenport_arrival_square');` -> Satisfies `obj_survey_arrival`.
-3. **Duel Verification Hook:**
-   When the player wins the duel against Cassi Mercer, the battle server records match completion in `db.recordMatchEnd` (line 1328):
-   - `await this.interactWithNpc(uid, 'npc_cassi_mercer', 'gift');`
-   - `await this.advanceQuestObjective(uid, 'win_duel', 'npc_cassi_mercer');` -> Satisfies `obj_duel_cassi`.
+### 3.3 Proposed Database Seeding Migration (Specification Fixture)
 
-### 3.4 Database Seeding Specification
-MAIN executes the following idempotent PostgreSQL migration:
+The following PostgreSQL migration represents a **proposed specification fixture** awaiting execution by the MAIN backend agent:
 
 ```sql
+-- PROPOSED FIXTURE: Pending execution by MAIN agent
 -- 1. Register Cassi Mercer NPC Definition
 INSERT INTO npc_definitions (id, region_id, name, title, home_location, deck_id, definition_json)
 VALUES (
@@ -167,70 +161,69 @@ VALUES (
 
 ---
 
-## 4. Anti-Exploit, Rewards & Idempotency Guarantees
+## 4. GODOT Client Integration Contract (`apps/game-client`)
 
-### 4.1 Strict Ledger Separation
-To prevent double-claiming or conflating repeatable sparring rewards with one-time story milestone rewards:
-1. **Transaction A: Duel Payout Ledger (`tx_duel_npc_cassi_mercer`):**
-   - Rewards: 100 Crowns, 30 Echo Dust, +10 Relationship.
+### 4.1 3D World Scene & District Placement (Verified Facts)
+- **Authoritative Scene:** `res://scenes/world/lumenport_hub.tscn` (script: `res://scripts/world/lumenport_hub.gd`).
+- **Scene Note:** There is no separate `arrival_square.tscn`. Arrival Square is an architectural district building block within `lumenport_hub.tscn`.
+- **District Transform Coordinates:**
+  - **Arrival Square & Harbor Cafe Quay:** `Vector3(-12.0, 2.0, 10.0)` (District Mesh size: `Vector3(7, 4, 6)`).
+  - **Duelist Plaza Amphitheater:** `Vector3(0.0, 0.7, 0.0)` (District Mesh size: `Vector3(6, 1.4, 6)`).
+
+### 4.2 Spawning & Client Requirements
+- Dynamic NPC spawning in `lumenport_hub.gd` iterates over `GameState.npcs`.
+- **Client Fact:** Cassi Mercer does not appear in the client unless present in `GameState.npcs` or instantiated directly by the GODOT agent.
+- **Client Dependency:** A dialogue choice selection UI is not implemented in the client; interaction currently displays single greeting/tier strings returned from `/v1/npcs/interact`.
+
+### 4.3 Combat Encounter & Environmental Fallback
+- **Encounter Mode:** Standard 1v1 Convergence Duel against NPC Cassi Mercer.
+- **Encounter Deck:** `deck_glass_star_prism` (Legal 40-card starter deck from `content/cards/starter_decks.json`).
+- **Environmental Rule Status:**
+  - Proposed rule: `"Crystal Refraction: Center Lane +1 Health on summon"`.
+  - Implementation status: Pending Rust battle engine ambient lane modifier hook in `services/battle-server/src/lib.rs`.
+  - **Graceful Fallback:** The duel initiates using standard 1v1 Convergence rules without crashing or blocking.
+
+---
+
+## 5. Anti-Exploit, Rewards & Idempotency Guarantees (Proposed Requirements)
+
+The following ledger models and idempotency guarantees represent **proposed architectural requirements** for MAIN backend integration, not active runtime behavior:
+
+### 5.1 Proposed Ledger Separation
+1. **Transaction A: Proposed Duel Payout Ledger (`tx_duel_npc_cassi_mercer`):**
+   - Proposed Rewards: 100 Crowns, 30 Echo Dust, +10 Relationship.
    - Frequency: Repeatable sparring duel (governed by daily match limits).
-2. **Transaction B: Quest Completion Ledger (`tx_quest_glass_survey_completion`):**
-   - Rewards: 250 Crowns, 75 Echo Dust, 300 XP, Card `GLS-C-0004`, +30 Glassborne Reputation.
+2. **Transaction B: Proposed Quest Completion Ledger (`tx_quest_glass_survey_completion`):**
+   - Proposed Rewards: 250 Crowns, 75 Echo Dust, 300 XP, Card `GLS-C-0004`, +30 Glassborne Reputation.
    - Frequency: **Strictly One-Time Only**.
    - Issued in an atomic database transaction only when all 3 objectives are verified.
 
-### 4.2 Idempotency & Duplicate Claim Rejection
+### 5.2 Proposed Atomic Single-Claim Query Example
 ```sql
--- Atomic transition enforcing single-claim guarantee:
+-- PROPOSED REQUIREMENT: Enforces single-claim guarantee upon completion
 UPDATE player_quests
 SET status = 'completed', claimed_at = NOW()
 WHERE user_id = $1
   AND quest_id = 'quest_playable_glass_survey'
   AND status = 'active';
 
--- If 0 rows are updated, claim attempt was duplicate; returns HTTP 409 Conflict.
+-- If 0 rows updated, returns HTTP 409 Conflict.
 ```
 
-### 4.3 Standard HTTP Error Codes
-- **`400 Bad Request`**: Missing required `npc_id`, unsupported `type` parameter, or malformed JSON.
-- **`401 Unauthorized`**: Missing or invalid Bearer authentication token.
-- **`403 Forbidden`**: Player does not meet prerequisites (Level 1, `quest_ch1_first_echo`), or attempted interaction outside scheduled location.
-- **`404 Not Found`**: NPC ID not present in registered definitions (`Unknown NPC: ${npcId}`).
-- **`409 Conflict`**: Duplicate quest reward claim attempt or concurrent modification collision.
-
 ---
 
-## 5. Save/Reload Continuity
+## 6. Comprehensive Implementation Boundaries & Disclosure Summary
 
-1. **State Persistence:**
-   Player quest progress is stored in `player_quests.progress_json` (`{"obj_speak_cassi": 1, "obj_survey_arrival": 1, "obj_duel_cassi": 0}`).
-2. **Session Restoration:**
-   Upon login, `GET /v1/relationships` and `POST /v1/npcs/interact` return the exact server-authoritative state.
-   The Godot client automatically renders the active or completed dialogue state based on server-returned quest status.
-
----
-
-## 6. Runtime Boundaries & Documentation / Staging Fixture Disclosures
-
-To prevent false assumptions regarding runtime deployment, all assets and mechanics are explicitly demarcated:
-
-### 6.1 Documentation & Staging Fixtures (Pending Runtime Import)
-1. **Database Seeding (`npc_definitions` & `quest_definitions`):**
-   - The SQL migrations in Section 3.4 for `npc_cassi_mercer` and `quest_playable_glass_survey` are specification fixtures.
-   - The production PostgreSQL database has not yet executed these migrations; seeding is owned by the MAIN backend agent.
-2. **Client Scene Node Placement:**
-   - The Arrival Square district mesh exists in `res://scenes/world/lumenport_hub.tscn` at `Vector3(-12.0, 2.0, 10.0)`.
-   - The explicit interactable character node for Cassi Mercer is not hard-coded in the `.tscn` file; client dynamic spawning depends on `GameState.npcs` or dedicated scene node binding by the GODOT agent.
-3. **Environmental Combat Rule ("Crystal Refraction"):**
-   - The special rule `"Crystal Refraction: Center Lane +1 Health on summon"` is a narrative specification not yet implemented in `services/battle-server/src/lib.rs`.
-   - Combat encounters with Cassi Mercer safely execute under standard 1v1 Convergence rules without crashing or blocking.
-4. **World Staging Datasets (`content/staging/world/*`):**
-   - Datasets `world_npcs_80_canonical.json`, `world_side_quests_120_canonical.json`, `world_dungeons_16_canonical.json`, `world_tournaments_8_canonical.json`, `world_companion_stories_24_canonical.json`, `world_campaign_12_chapters.json`, and `playable_content_increment.json` are staging fixtures isolated on branch `feat/cards-world-content`.
-   - They are validated against schemas but not yet ingested into production runtime tables.
-
-### 6.2 Active & Verified Runtime Implementations
-1. **API Endpoint:** `POST /v1/npcs/interact` is published and active in `services/api/src/server.mjs`.
-2. **Database Engine:** `db.interactWithNpc` and `db.advanceQuestObjective` hooks are active in `services/api/src/db.mjs`.
-3. **Explorable 3D Hub Scene:** `res://scenes/world/lumenport_hub.tscn` and `res://scripts/world/lumenport_hub.gd` are active in `apps/game-client`.
-4. **Combat Arena:** `res://scenes/battle/tabletop_arena.tscn` is active and functional.
-5. **Encounter Deck:** `deck_glass_star_prism` is a legal 40-card deck in `content/cards/starter_decks.json`.
+| Feature / Artifact | Current Runtime Status | Governing Agent | Description / Caveat |
+| :--- | :--- | :--- | :--- |
+| **`POST /v1/npcs/interact`** | **Active Runtime** | MAIN | Accepts `npc_id` and `type` (`talk`/`gift`). Does not accept `choice_id`. |
+| **Dialogue Choice API** | **Absent / Proposed** | MAIN | No endpoint exists for dialogue choice branching. |
+| **Schedule / Proximity Checking** | **Absent / Proposed** | MAIN | Backend does not check player coordinates or schedules during NPC interaction. |
+| **`POST /v1/world/move`** | **Active Runtime** | MAIN | Validates connected location movement; separate from NPC interaction. |
+| **Visit Objective Verification** | **Naive Runtime** | MAIN | `interactWithNpc` naively advances `npc.home_location`; does not verify real visits. |
+| **Cassi Mercer NPC Data** | **Staging Only** | CARDS / MAIN | Exists in `content/staging/`; not in canonical `lumenport_npcs.json` or database. |
+| **Cassi Mercer Quest Data** | **Staging Only** | CARDS / MAIN | Exists in `content/staging/`; not in canonical `act1_quests.json` or database. |
+| **Lumenport 3D Hub Scene** | **Active Runtime** | GODOT | `lumenport_hub.tscn` contains Arrival Square district at `Vector3(-12, 2.0, 10)`. |
+| **Cassi Mercer 3D Spatial Node** | **Proposed Addition**| GODOT | Not committed in `lumenport_hub.tscn`; dynamic spawn requires `GameState.npcs`. |
+| **Crystal Refraction Env Rule** | **Proposed Mechanic**| RUST / MAIN | Not implemented in battle engine; falls back safely to standard 1v1 Convergence. |
+| **Staged World Datasets (80/120/16/8)** | **Staging Only** | CARDS / MAIN | Staged fixtures on PR #3 branch; awaiting runtime table migration by MAIN. |
