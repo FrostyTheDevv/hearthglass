@@ -1,9 +1,31 @@
 # Project Hearthglass — Verified Implementation Status Ledger
 
-**Last Updated**: Development Increment V10-A Remediation (November 19, 2026: Admin Provisioning Hardening, Multiplayer Privacy Redaction, Deck Ownership Authorization, Starter Progression Isolation, 640 Canonical Cards in Rust & Godot, 39/39 API/Security Tests Passing) (Rarity Restoration to 4 Tiers [0 Epic], 480 Canonical Cards Verified in Rust and Godot, 16 Legal 40-Card Archetype Decks, Godot 4.3 Headless Smoke Test Suite [6/6 Passing], Deep Strategic Simulation Audit, Batch Prompts Export, and Verdant Expanse RPG Region Data)
+**Last Updated**: Development Increment V10-A.1 & V10-B Execution (November 20, 2026: First-Administrator Provisioning CLI, Disabled Default HTTP Provisioning, Row-Locked Atomic Decks with Optimistic Concurrency Revisions, Strict Allowlist Event Serialization Schemas across 19 Engine Events, Transactional Economy with Row Locks, Duplicate Auto-Conversion to Echo Dust, Crafting Limits, Idempotent Match Completions, 48/48 API/Security/Economy Tests Passing, 16/16 Rust Cargo Tests Passing, 15/15 Godot Headless Tests Passing, 640 Canonical Cards in Rust and Godot)
 
 ---
 
+## Milestone V10-B & V10-A.1 Execution Summary (Completed & Verified)
+Following independent source reviews of the repository, Milestones V10-A.1 and V10-B were executed and verified:
+1. **Operator-Only Administrator Provisioning CLI (`services/api/src/cli.mjs`)**:
+   - Eliminated all fallback bootstrap secrets (`INITIAL_ADMIN_PROVISIONING_SECRET`) in non-production. System fails closed when missing.
+   - Disabled HTTP administrator provisioning endpoint (`POST /v1/auth/provision-admin`) by default; requires explicit `ENABLE_HTTP_ADMIN_PROVISIONING === 'true'`.
+   - Built standalone CLI operator tool requiring explicit execution, zero-admin prerequisite enforcement, credential complexity rules, and immutable audit logging in `role_change_audit`.
+2. **Atomic Deck Concurrency & Row Locks (`services/api/src/db.mjs`)**:
+   - Enforced deck and card ownership inside atomic transactions (`withTransaction`) using `FOR UPDATE` row-level locks.
+   - Added optimistic concurrency locking using `expected_revision` to prevent concurrent write collisions (returns HTTP 409 Conflict on revision mismatch).
+   - Tracked all deck revisions authoritatively in `deck_revisions` table.
+3. **Strict Allowlist Event Serialization Schemas (`services/api/src/server.mjs`)**:
+   - Replaced shallow object copying (`{ ...ev }`) with strict, explicit allowlist projection schemas for all 19 Rust engine battle events.
+   - Stripped all unallowlisted internal properties (`secret_rng_seed`, `deck_order_remaining`, etc.).
+   - Fails closed on unknown or unclassified battle event types (`{ event: "UNKNOWN", public: false }`).
+4. **Milestone V10-B Transactional Economy (`services/api/src/db.mjs`)**:
+   - **Atomic Pack Purchases (`openPack`)**: Wraps currency debit, pack generation, card grants, and duplicate auto-conversion inside a single `withTransaction` block with row-level locks on player wallets. Cards exceeding playable maximums (3 Common, 3 Uncommon, 2 Rare, 1 Legendary) automatically convert to Echo Dust.
+   - **Atomic Crafting & Disenchanting (`craftOrDisenchantCard`)**: Row-locked wallet debit/credit with strict playable copy limits and balance checks.
+   - **Database Constraints & Non-Null Idempotency Keys**: Generates unique non-null `idempotency_key` values for all ledger transactions, honoring `currency_transactions` schema constraints.
+   - **Idempotent Match Completions (`recordMatchCompletion`)**: Transaction-safe match rewards with validation ensuring human player seats only receive currency grants.
+   - **Forced Rollback Fault Tolerance**: Verified with tests ensuring complete database rollbacks on transient errors with zero balance or card leaks.
+
+---
 
 ## Milestone V10-A Remediation Summary (Completed & Verified)
 Following an independent audit of the repository, Milestone V10-A was executed and verified:
@@ -102,3 +124,22 @@ Following an independent audit of the repository, Milestone V10-A was executed a
 | **Connected Godot 4.3 Vertical Slice** | `apps/game-client/scenes/tests/vertical_slice_test.tscn` | **9 / 9 Steps Passing in Godot 4.3**. Character init -> 3D Lumenport Hub -> Vance NPC -> Deck Builder (480 cards) -> Tabletop Arena -> Authoritative Rust Combat -> Rewards -> Hub Return -> Persistence. | **VERIFIED & PASSING** |
 | **Godot 4.3 Smoke Test Suite** | `apps/game-client/scenes/tests/smoke_test_runner.tscn` | **6 / 6 Test Suites Passing**. GameState (480 cards, 4-tier rarity, 0 Epic), Lumenport 3D Hub, Tabletop Arena (30 1v1 / 45 2v2), Deck Builder, CardFrameWidget SVG art, Persistence. | **VERIFIED & PASSING** |
 | **640-Card Final Allocation Model** | `docs/production/CARD_INTEGRITY_AUDIT.md` | **Exact Remaining Cards: +160** (+94 Creatures, +42 Tactics, +18 Relics, +6 Environments). Exactly 8 Factions x 60 + 160 Neutral. Rarity: 320 Common, 192 Uncommon, 96 Rare, 32 Legendary, 0 Epic. | **APPROVED & PREPARED** |
+
+---
+
+## 6. Increment V10-A.1 & V10-B Verification Ledger: Security Hardening & Transactional Economy
+
+| Verification Dimension | Tested Asset / Harness | Result / Metric | Production Status |
+| :--- | :--- | :--- | :--- |
+| **First-Administrator Provisioning CLI** | `services/api/src/cli.mjs` | **Verified Zero-Admin Prerequisite & Complexity**. Standalone operator CLI creates first admin; rejects when admins already exist; logs immutable entry into `role_change_audit`. | **VERIFIED & PASSING** |
+| **Disabled Default HTTP Admin Endpoint** | `services/api/src/server.mjs` (`POST /v1/auth/provision-admin`) | **HTTP 403 Forbidden by Default**. Endpoint disabled unless `ENABLE_HTTP_ADMIN_PROVISIONING === 'true'`. Missing secret fails closed (401). | **VERIFIED & PASSING** |
+| **Atomic Deck Ownership & Concurrency** | `services/api/src/db.mjs` & `services/api/src/server.mjs` | **Row-Locked & Revision-Tracked**. Deck and card ownership verified inside transaction; concurrent writes with stale `expected_revision` return HTTP 409 Conflict. | **VERIFIED & PASSING** |
+| **Strict Event Serialization Schemas** | `services/api/src/server.mjs` (`redactEventsForViewer`) | **Allowlisted Across 19 Engine Events**. All internal metadata stripped; unallowlisted fields rejected; unknown events fail closed. | **VERIFIED & PASSING** |
+| **Transactional Pack Purchases** | `services/api/src/db.mjs` (`openPack`) | **Atomic Row-Locked Execution**. Debits currency, creates pack, grants cards, auto-converts duplicates exceeding play limits into Echo Dust in a single transaction. | **VERIFIED & PASSING** |
+| **Transactional Crafting & Disenchanting** | `services/api/src/db.mjs` (`craftOrDisenchantCard`) | **Row-Locked Copy Limits**. Rejects crafting exceeding 3 Common/Uncommon, 2 Rare, 1 Legendary. Prevents negative wallet balances. | **VERIFIED & PASSING** |
+| **Transaction Rollback & Fault Tolerance** | `services/api/tests/economy_security.test.mjs` | **Zero-Leak Forced Rollback**. Complete state restoration on database errors during atomic transactions. | **VERIFIED & PASSING** |
+| **Authoritative Node.js Test Suite** | `services/api/tests/*.test.mjs` | **48 / 48 Tests Passing (100%)**: 23 security/auth, 5 economy, 8 integration, 12 art pipeline. | **VERIFIED & PASSING** |
+| **Authoritative Rust Engine & Simulation** | `services/battle-server/` | **16 / 16 Cargo Tests Passing**: All card rules, 2,560 simulation matches across 16 decks with round-robin pairing. | **VERIFIED & PASSING** |
+| **Godot 4.3 Headless Suites** | `apps/game-client/scenes/tests/` | **15 / 15 Steps Passing**: 6/6 smoke tests, 9/9 vertical slice steps. | **VERIFIED & PASSING** |
+| **Canonical 640 Card Validation** | `tools/card-validator/validate.mjs` | **640 / 640 Canonical Cards Passing**: 0 errors, 0 warnings. Strict 4-tier rarity (0 Epic). | **VERIFIED & PASSING** |
+

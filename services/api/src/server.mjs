@@ -51,47 +51,170 @@ export function redactEventsForViewer(events = [], viewerSlot = null) {
   const authorizedSeat = typeof viewerSlot === 'number' ? viewerSlot : null;
 
   return events.map((ev) => {
-    if (!ev || typeof ev !== 'object') return ev;
+    if (!ev || typeof ev !== 'object') return null;
     const type = ev.event || ev.type;
 
-    // Explicitly private draw/burn events: only the drawing player sees the card_id
-    if (type === 'card_drawn' || type === 'card_burned_overdraw') {
-      const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
-      return {
-        ...ev,
-        card_id: isOwner ? ev.card_id : 'HIDDEN',
-        instance_id: isOwner ? ev.instance_id : undefined
-      };
-    }
-
-    // Known public battlefield actions: preserve public fields
-    if (KNOWN_PUBLIC_EVENT_TYPES.has(type)) {
-      return { ...ev };
-    }
-
-    // Fail-closed schema for future / unclassified event types:
-    // If the event has a player field and contains secret data, redact for non-owners
-    const copy = { ...ev };
-    const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
-    if (!isOwner) {
-      if (copy.card_id !== undefined && !copy.is_revealed) {
-        copy.card_id = 'HIDDEN';
+    switch (type) {
+      case 'match_started':
+        return {
+          event: 'match_started',
+          format: ev.format,
+          active_player: ev.active_player
+        };
+      case 'mulligan_completed':
+        return {
+          event: 'mulligan_completed',
+          player: ev.player,
+          replaced_count: ev.replaced_count
+        };
+      case 'turn_started':
+        return {
+          event: 'turn_started',
+          player: ev.player,
+          turn_number: ev.turn_number,
+          aether: ev.aether
+        };
+      case 'card_drawn': {
+        const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
+        return {
+          event: 'card_drawn',
+          player: ev.player,
+          card_id: isOwner ? ev.card_id : 'HIDDEN',
+          ...(isOwner && ev.instance_id !== undefined ? { instance_id: ev.instance_id } : {})
+        };
       }
-      if (copy.hand_index !== undefined) delete copy.hand_index;
-      if (copy.card_instances !== undefined) delete copy.card_instances;
-      if (copy.unrevealed_choices !== undefined) delete copy.unrevealed_choices;
-      if (copy.deck !== undefined) delete copy.deck;
+      case 'card_burned_overdraw': {
+        const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
+        return {
+          event: 'card_burned_overdraw',
+          player: ev.player,
+          card_id: isOwner ? ev.card_id : 'HIDDEN'
+        };
+      }
+      case 'creature_summoned':
+        return {
+          event: 'creature_summoned',
+          player: ev.player,
+          card_id: ev.card_id,
+          name: ev.name,
+          lane: ev.lane,
+          position: ev.position,
+          is_token: Boolean(ev.is_token)
+        };
+      case 'tactic_played':
+        return {
+          event: 'tactic_played',
+          player: ev.player,
+          card_id: ev.card_id,
+          name: ev.name
+        };
+      case 'relic_played':
+        return {
+          event: 'relic_played',
+          player: ev.player,
+          card_id: ev.card_id,
+          name: ev.name
+        };
+      case 'environment_replaced':
+        return {
+          event: 'environment_replaced',
+          previous_card_id: ev.previous_card_id ?? null,
+          new_card_id: ev.new_card_id,
+          controller: ev.controller
+        };
+      case 'creature_moved':
+        return {
+          event: 'creature_moved',
+          player: ev.player,
+          card_id: ev.card_id,
+          from_lane: ev.from_lane,
+          from_position: ev.from_position,
+          to_lane: ev.to_lane,
+          to_position: ev.to_position
+        };
+      case 'combat_declared':
+        return {
+          event: 'combat_declared',
+          attacker_player: ev.attacker_player,
+          attacker_card_id: ev.attacker_card_id,
+          lane: ev.lane,
+          target_description: ev.target_description
+        };
+      case 'damage_dealt':
+        return {
+          event: 'damage_dealt',
+          target_description: ev.target_description,
+          amount: ev.amount
+        };
+      case 'shield_absorbed':
+        return {
+          event: 'shield_absorbed',
+          card_id: ev.card_id,
+          lane: ev.lane
+        };
+      case 'ward_triggered':
+        return {
+          event: 'ward_triggered',
+          card_id: ev.card_id,
+          lane: ev.lane
+        };
+      case 'leader_healed':
+        return {
+          event: 'leader_healed',
+          player: ev.player,
+          amount: ev.amount,
+          new_vitality: ev.new_vitality
+        };
+      case 'leader_damaged':
+        return {
+          event: 'leader_damaged',
+          player: ev.player,
+          amount: ev.amount,
+          new_vitality: ev.new_vitality
+        };
+      case 'creature_destroyed':
+        return {
+          event: 'creature_destroyed',
+          owner: ev.owner,
+          card_id: ev.card_id,
+          name: ev.name,
+          lane: ev.lane,
+          position: ev.position
+        };
+      case 'resonate_updated':
+        return {
+          event: 'resonate_updated',
+          player: ev.player,
+          controlled_lanes: ev.controlled_lanes,
+          active: Boolean(ev.active)
+        };
+      case 'match_ended':
+        return {
+          event: 'match_ended',
+          outcome: ev.outcome,
+          reason: ev.reason
+        };
+      default: {
+        // Fail-closed schema for future / unclassified event types:
+        // NEVER expose arbitrary unallowlisted fields, secret RNG states, decks, or internal decisions!
+        const base = {
+          event: typeof ev.event === 'string' ? ev.event : 'unknown'
+        };
+        if (ev.player !== undefined) {
+          base.player = ev.player;
+          const isOwner = authorizedSeat !== null && ev.player === authorizedSeat;
+          if (ev.card_id !== undefined) {
+            base.card_id = isOwner ? ev.card_id : 'HIDDEN';
+          }
+        } else {
+          base.public = false;
+        }
+        return base;
+      }
     }
-    return copy;
-  });
+  }).filter(Boolean);
 }
 
-
-
-/**
- * Converts a Rust `MatchState` into the UI-friendly match envelope used by the Web Studio,
- * Godot client, and REST/WebSocket APIs, while preserving 100% of Rust authoritative state.
- */
 function formatMatchEnvelope(session, redactedRustState, checksum = null, viewerSlot = null) {
   const outcomeRaw = redactedRustState.outcome;
   let outcomeStr = 'in_progress';
@@ -643,7 +766,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       const { required = true, requireAdmin = false } = options;
       const authHeader = req.headers.authorization;
       let uid = await db.resolveUserIdFromToken(authHeader);
-      if (!uid && process.env.NODE_ENV !== 'production' && process.env.ALLOW_DEV_AUTH_BYPASS === 'true') {
+      if (!uid && process.env.NODE_ENV !== 'production' && (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') && process.env.ALLOW_DEV_AUTH_BYPASS === 'true') {
         uid = '00000000-0000-4000-8000-000000000001';
       }
       if (!uid) {
@@ -761,6 +884,11 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/auth/provision-admin') {
+        if (process.env.ENABLE_HTTP_ADMIN_PROVISIONING !== 'true') {
+          return sendJson(403, {
+            error: 'HTTP administrator provisioning endpoint is disabled. Use the operator CLI (services/api/src/cli.mjs) or configure ENABLE_HTTP_ADMIN_PROVISIONING=true in a secure configuration.'
+          });
+        }
         const body = await readJsonBody();
         const authUid = await getAuthenticatedUserId({ required: false });
         const { profile, session } = await db.provisionAdministrator({
@@ -950,6 +1078,9 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         if (!saved.valid) {
           if (saved.forbidden) {
             return sendJson(403, { error: 'Forbidden: Cannot modify a deck belonging to another user', details: saved.errors });
+          }
+          if (saved.conflict || saved.stale_write) {
+            return sendJson(409, { error: 'Conflict: Stale write detected. Deck has been modified elsewhere.', details: saved.errors });
           }
           return sendJson(400, { error: 'Invalid 40-card deck', details: saved.errors });
         }
