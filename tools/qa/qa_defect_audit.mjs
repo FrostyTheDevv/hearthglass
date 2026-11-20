@@ -32,14 +32,25 @@ export function auditCatalogueTargets(cardsFile) {
   return aoeCards;
 }
 
+export const REQUIRED_AOE_TESTS = [
+  'test_aoe_enemy_board_coverage',
+  'test_aoe_front_rear_positional_resolution',
+  'test_aoe_friendly_fire_immunity',
+  'test_aoe_ward_absorption',
+  'test_aoe_shield_absorption',
+  'test_aoe_rebirth_death_trigger',
+  'test_aoe_2v2_shared_board_non_duplication'
+];
+
 /**
  * 2. Behavioral Rust Test Runner:
- * Executes the actual Rust AoE regression tests rather than relying on brittle string matching.
+ * Executes the 7 focused Rust AoE regression tests rather than relying on brittle string matching.
+ * Guarantees that any single failure (e.g. Shield, Rebirth, 2v2) blocks release even if basic coverage passes.
  * Supports injected runner options for automated testability.
  */
 export function verifyAoeBehavior(options = {}) {
   if (options.testRunner) {
-    return options.testRunner('test_aoe_enemy_board_coverage');
+    return options.testRunner(REQUIRED_AOE_TESTS);
   }
 
   const battleServerDir = path.join(ROOT, 'services/battle-server');
@@ -48,11 +59,11 @@ export function verifyAoeBehavior(options = {}) {
   try {
     const result = spawnSync(
       cargoCmd,
-      ['test', '--test', 'qa_keyword_and_mechanics_tests', 'test_aoe_enemy_board_coverage'],
+      ['test', '--test', 'qa_keyword_and_mechanics_tests', 'test_aoe_'],
       {
         cwd: battleServerDir,
         encoding: 'utf8',
-        timeout: 30000,
+        timeout: 45000,
         shell: true
       }
     );
@@ -76,25 +87,6 @@ export function verifyAoeBehavior(options = {}) {
     const stderr = result.stderr || '';
     const output = `${stdout}\n${stderr}`;
 
-    if (result.status === 0 && output.includes('test test_aoe_enemy_board_coverage ... ok')) {
-      return {
-        status: 'PASSED',
-        verified: true,
-        exitCode: 0,
-        output
-      };
-    }
-
-    if (output.includes('assertion `left == right` failed') || output.includes('assertion failed')) {
-      return {
-        status: 'ASSERTION_FAILURE',
-        verified: false,
-        exitCode: result.status ?? 1,
-        failure_reason: 'Engine failed to deal AoE damage to enemy board (assertion left != right)',
-        output
-      };
-    }
-
     if (output.includes('error: could not compile') || output.includes('error[E')) {
       return {
         status: 'COMPILATION_ERROR',
@@ -105,11 +97,55 @@ export function verifyAoeBehavior(options = {}) {
       };
     }
 
+    const passedTests = [];
+    const failedTests = [];
+
+    for (const testName of REQUIRED_AOE_TESTS) {
+      if (output.includes(`test ${testName} ... ok`)) {
+        passedTests.push(testName);
+      } else if (output.includes(`test ${testName} ... FAILED`)) {
+        failedTests.push(testName);
+      }
+    }
+
+    if (passedTests.length === 0 && failedTests.length === 0) {
+      return {
+        status: 'MALFORMED_OUTPUT',
+        verified: false,
+        exitCode: result.status ?? 1,
+        error: 'None of the required AoE tests were executed in cargo test output',
+        output
+      };
+    }
+
+    if (failedTests.length > 0) {
+      return {
+        status: 'ASSERTION_FAILURE',
+        verified: false,
+        exitCode: result.status ?? 1,
+        passed_tests: passedTests,
+        failed_tests: failedTests,
+        failure_reason: `Failed ${failedTests.length} of ${REQUIRED_AOE_TESTS.length} focused AoE tests: ${failedTests.join(', ')}`,
+        output
+      };
+    }
+
+    if (passedTests.length === REQUIRED_AOE_TESTS.length) {
+      return {
+        status: 'PASSED',
+        verified: true,
+        exitCode: 0,
+        passed_tests: passedTests,
+        output
+      };
+    }
+
     return {
-      status: 'MALFORMED_OUTPUT',
+      status: 'INCOMPLETE_RUN',
       verified: false,
-      exitCode: result.status ?? 1,
-      error: 'Unrecognized test runner output format',
+      exitCode: 1,
+      passed_tests: passedTests,
+      missing_tests: REQUIRED_AOE_TESTS.filter(t => !passedTests.includes(t)),
       output
     };
   } catch (err) {

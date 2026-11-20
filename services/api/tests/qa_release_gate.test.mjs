@@ -24,12 +24,20 @@ describe('QA Release Gate Runner & CLI Verification Suite', () => {
     assert.equal(exitCode, 1, 'Confirmed P0 must produce exit code 1');
   });
 
-  test('Scenario 2: All P0 tests passing results in PASSED status and exit code 0', () => {
+  test('Scenario 2: All 7 focused AoE P0 tests passing results in PASSED status and exit code 0', () => {
     const mockRunner = () => ({
       status: 'PASSED',
       verified: true,
       exitCode: 0,
-      output: 'test test_aoe_enemy_board_coverage ... ok'
+      passed_tests: [
+        'test_aoe_enemy_board_coverage',
+        'test_aoe_front_rear_positional_resolution',
+        'test_aoe_friendly_fire_immunity',
+        'test_aoe_ward_absorption',
+        'test_aoe_shield_absorption',
+        'test_aoe_rebirth_death_trigger',
+        'test_aoe_2v2_shared_board_non_duplication'
+      ]
     });
 
     const audit = runFullQaAudit({ testRunner: mockRunner });
@@ -39,7 +47,58 @@ describe('QA Release Gate Runner & CLI Verification Suite', () => {
 
     const hasBlockers = audit.active_release_blockers.length > 0 || audit.process_errors.length > 0;
     const exitCode = hasBlockers ? 1 : 0;
-    assert.equal(exitCode, 0, 'Passing P0 tests must produce exit code 0');
+    assert.equal(exitCode, 0, 'Passing all 7 focused P0 tests must produce exit code 0');
+  });
+
+  test('Scenario 2b: Broken Shield test blocks release even when basic enemy-board coverage passes', () => {
+    const mockRunner = () => ({
+      status: 'ASSERTION_FAILURE',
+      verified: false,
+      exitCode: 1,
+      passed_tests: ['test_aoe_enemy_board_coverage', 'test_aoe_friendly_fire_immunity'],
+      failed_tests: ['test_aoe_shield_absorption'],
+      failure_reason: 'Failed 1 of 7 focused AoE tests: test_aoe_shield_absorption'
+    });
+
+    const audit = runFullQaAudit({ testRunner: mockRunner });
+    assert.equal(audit.release_gate_status, 'BLOCKED');
+    assert.equal(audit.active_release_blockers.length, 1);
+    assert.equal(audit.active_release_blockers[0].id, 'DEFECT-001');
+
+    const hasBlockers = audit.active_release_blockers.length > 0 || audit.process_errors.length > 0;
+    assert.equal(hasBlockers ? 1 : 0, 1, 'Shield failure must block release with exit code 1');
+  });
+
+  test('Scenario 2c: Broken Rebirth death trigger blocks release even when basic coverage passes', () => {
+    const mockRunner = () => ({
+      status: 'ASSERTION_FAILURE',
+      verified: false,
+      exitCode: 1,
+      passed_tests: ['test_aoe_enemy_board_coverage', 'test_aoe_shield_absorption'],
+      failed_tests: ['test_aoe_rebirth_death_trigger'],
+      failure_reason: 'Failed 1 of 7 focused AoE tests: test_aoe_rebirth_death_trigger'
+    });
+
+    const audit = runFullQaAudit({ testRunner: mockRunner });
+    assert.equal(audit.release_gate_status, 'BLOCKED');
+    assert.equal(audit.active_release_blockers.length, 1);
+    assert.equal(audit.active_release_blockers[0].id, 'DEFECT-001');
+  });
+
+  test('Scenario 2d: Broken 2v2 shared-board test blocks release even when 1v1 coverage passes', () => {
+    const mockRunner = () => ({
+      status: 'ASSERTION_FAILURE',
+      verified: false,
+      exitCode: 1,
+      passed_tests: ['test_aoe_enemy_board_coverage', 'test_aoe_front_rear_positional_resolution'],
+      failed_tests: ['test_aoe_2v2_shared_board_non_duplication'],
+      failure_reason: 'Failed 1 of 7 focused AoE tests: test_aoe_2v2_shared_board_non_duplication'
+    });
+
+    const audit = runFullQaAudit({ testRunner: mockRunner });
+    assert.equal(audit.release_gate_status, 'BLOCKED');
+    assert.equal(audit.active_release_blockers.length, 1);
+    assert.equal(audit.active_release_blockers[0].id, 'DEFECT-001');
   });
 
   test('Scenario 3: Rust test process crash results in nonzero exit code and process error', () => {
