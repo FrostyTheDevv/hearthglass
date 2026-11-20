@@ -99,6 +99,7 @@ export class HearthglassDatabase {
       'utf8'
     );
     await this.exec(migrationSql);
+    await this.exec("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(32) NOT NULL DEFAULT 'player';");
 
     // 2. Load canonical JSON content and seed reference tables
     const bundle = JSON.parse(
@@ -131,7 +132,8 @@ export class HearthglassDatabase {
       userId: DEFAULT_USER_ID,
       email: 'pioneer@hearthglass.local',
       username: 'Aerin_Vanguard',
-      password: 'hearthglass_default_password'
+      password: 'hearthglass_default_password',
+      role: 'administrator'
     });
   }
 
@@ -209,13 +211,16 @@ export class HearthglassDatabase {
     }
   }
 
-  async ensureUserAccount({ userId = null, email, username, password, characterName = null, appearance = null }) {
+  async ensureUserAccount({ userId = null, email, username, password, role = 'player', characterName = null, appearance = null }) {
     const existing = await this.query(
       `SELECT id, email, username FROM users WHERE email = $1 OR username = $2 OR ($3::uuid IS NOT NULL AND id = $3::uuid) LIMIT 1`,
       [email, username, userId]
     );
     if (existing.rows.length > 0) {
       const uid = existing.rows[0].id;
+      if (role) {
+        await this.query("UPDATE users SET role = $1 WHERE id = $2", [role, uid]);
+      }
       // Ensure any newly added cards, NPCs, or quests from V3 expansion are also seeded for existing accounts
       for (const c of this.cardById.values()) {
         const qty = COPY_LIMITS[c.rarity] || 3;
@@ -251,8 +256,8 @@ export class HearthglassDatabase {
     const pwdHash = hashPassword(password || 'default_pass');
 
     await this.query(
-      `INSERT INTO users (id, email, username, status) VALUES ($1, $2, $3, 'active')`,
-      [uid, email, username]
+      `INSERT INTO users (id, email, username, status, role) VALUES ($1, $2, $3, 'active', $4)`,
+      [uid, email, username, role || 'player']
     );
     await this.query(
       `INSERT INTO authentication_identities (id, user_id, provider, password_hash, last_login_at)
@@ -440,10 +445,17 @@ export class HearthglassDatabase {
     return { session_id: sessionId, token, user_id: userId };
   }
 
+  async getUserRole(userId) {
+    if (!userId) return null;
+    const res = await this.query("SELECT role FROM users WHERE id = $1 LIMIT 1", [userId]);
+    if (res.rows.length === 0) return null;
+    return res.rows[0].role || 'player';
+  }
+
   async resolveUserIdFromToken(token) {
-    if (!token) return DEFAULT_USER_ID;
+    if (!token) return null;
     const clean = token.replace(/^Bearer\s+/i, '').trim();
-    if (!clean) return DEFAULT_USER_ID;
+    if (!clean) return null;
     const tokenHash = crypto.createHash('sha256').update(clean).digest('hex');
     const res = await this.query(
       `SELECT user_id FROM sessions WHERE refresh_token_hash = $1 AND revoked_at IS NULL AND expires_at > NOW() LIMIT 1`,
@@ -457,7 +469,7 @@ export class HearthglassDatabase {
 
   async getFullPlayerProfile(userId = DEFAULT_USER_ID) {
     const uRes = await this.query(
-      `SELECT u.id, u.email, u.username,
+      `SELECT u.id, u.email, u.username, u.role,
               p.account_level, p.account_xp, p.active_title,
               c.character_name, c.appearance_json, c.current_region, c.current_district,
               w.crowns, w.echo_dust, w.sigils,
@@ -554,6 +566,7 @@ export class HearthglassDatabase {
       user_id: row.id,
       email: row.email,
       username: row.username,
+      role: row.role || 'player',
       character_name: row.character_name || row.username,
       appearance: row.appearance_json || {},
       title: row.active_title || 'Lumenport Newcomer',

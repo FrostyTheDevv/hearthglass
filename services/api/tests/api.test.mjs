@@ -114,7 +114,19 @@ test('GET /v1/cards returns all 320 canonical Foundations & Expansion cards acro
 
 test('POST /v1/decks/validate delegates to authoritative Rust battle-server engine across all 12 starter & archetype decks', async () => {
   await withServer(async ({ baseUrl }) => {
-    const decksRes = await fetch(`${baseUrl}/v1/decks`);
+    const regRes = await fetch(`${baseUrl}/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'DeckValidatorPlayer',
+        email: 'validator@hearthglass.local',
+        password: 'secure_password_123'
+      })
+    });
+    const { token } = await regRes.json();
+    const decksRes = await fetch(`${baseUrl}/v1/decks`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
     const { decks, starter_decks } = await decksRes.json();
     assert.ok(decks.length >= 4);
     assert.equal(starter_decks.length, 16);
@@ -256,7 +268,19 @@ test('PostgreSQL persistence: accounts, custom 40-card decks, themed pack openin
 
 test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 scheduled NPCs with relationship tiers, and 8 quests', async () => {
   await withServer(async ({ baseUrl }) => {
-    const worldRes = await fetch(`${baseUrl}/v1/world/progress`);
+    const regRes = await fetch(`${baseUrl}/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'LumenportTraveler',
+        email: 'traveler@hearthglass.local',
+        password: 'secure_password_123'
+      })
+    });
+    const { token } = await regRes.json();
+    const authHeaders = { Authorization: `Bearer ${token}` };
+
+    const worldRes = await fetch(`${baseUrl}/v1/world/progress`, { headers: authHeaders });
     assert.equal(worldRes.status, 200);
     const worldBody = await worldRes.json();
 
@@ -268,7 +292,7 @@ test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 schedul
     // Move into an interior (Prism & Parchment Card Emporium) and advance in-game time
     const moveRes = await fetch(`${baseUrl}/v1/world/move`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({
         interior: 'interior_prism_card_shop',
         in_game_minutes: 840,
@@ -280,10 +304,10 @@ test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 schedul
     assert.equal(moveBody.character.district, 'interior_prism_card_shop');
     assert.equal(moveBody.character.in_game_minutes, 840);
 
-    // Interact with a newly added V3 NPC (Bramwell Coin-Counter) to increase relationship score
+    // Interact with a newly added V3 NPC (Captain Nerissa) to increase relationship score
     const interactRes = await fetch(`${baseUrl}/v1/npcs/interact`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({
         npc_id: 'npc_captain_nerissa',
         type: 'gift'
@@ -298,6 +322,18 @@ test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 schedul
 
 test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported to Godot & Web, candidate generation, approval, and batch JSONL export', async () => {
   await withServer(async ({ baseUrl }) => {
+    // Authenticate as administrator for art mutations
+    const adminLogin = await fetch(`${baseUrl}/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'Aerin_Vanguard',
+        password: 'hearthglass_default_password'
+      })
+    });
+    const { token: adminToken } = await adminLogin.json();
+    const adminHeaders = { Authorization: `Bearer ${adminToken}` };
+
     // 1. Check initial artwork status report
     const statusRes = await fetch(`${baseUrl}/v1/art/status`);
     assert.equal(statusRes.status, 200);
@@ -317,7 +353,7 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
     // 3. Generate a new candidate illustration for a new V3 expansion card (EMB-C-0019)
     const genRes = await fetch(`${baseUrl}/v1/art/generate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders },
       body: JSON.stringify({
         card_id: 'EMB-C-0019',
         provider_id: 'studio_stylized_svg',
@@ -327,17 +363,18 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
     assert.equal(genRes.status, 200);
     const genBody = await genRes.json();
     assert.equal(genBody.job.status, 'completed');
-    const detailAfterGen = await (await fetch(`${baseUrl}/v1/art/cards/EMB-C-0019`)).json();
+    const detailAfterGen = await (await fetch(`${baseUrl}/v1/art/cards/EMB-C-0019`, { headers: adminHeaders })).json();
     assert.ok(detailAfterGen.art_record.candidates.length >= 1);
-    const candidateId = detailAfterGen.art_record.candidates[0].id;
+    const candidateId = detailAfterGen.art_record.candidates[detailAfterGen.art_record.candidates.length - 1].id;
 
     // 4. Approve candidate and verify export to Godot res://assets/cards/EMB-C-0019.svg
     const appRes = await fetch(`${baseUrl}/v1/art/approve`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders },
       body: JSON.stringify({
         card_id: 'EMB-C-0019',
-        candidate_id: candidateId
+        candidate_id: candidateId,
+        approval_type: 'concept'
       })
     });
     assert.equal(appRes.status, 200);
@@ -348,7 +385,7 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
     // 5. Verify paid provider budget protection blocks unauthorized paid generation
     const blockedRes = await fetch(`${baseUrl}/v1/art/generate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders },
       body: JSON.stringify({
         card_id: 'EMB-C-0020',
         provider_id: 'flux_2_klein',
@@ -360,7 +397,7 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
     // 6. Export batch JSONL prompts for remote workers
     const batchRes = await fetch(`${baseUrl}/v1/art/export-batch`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders },
       body: JSON.stringify({ faction: 'emberclad', missing_only: true })
     });
     assert.equal(batchRes.status, 200);
@@ -372,9 +409,22 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
 
 test('POST /v1/matches runs authoritative Rust Convergence Duels (1v1 & 2v2 Tag) and redacts hidden state', async () => {
   await withServer(async ({ baseUrl }) => {
-    const startRes = await fetch(`${baseUrl}/v1/matches`, {
+    // Authenticate player for match creation and commands
+    const regRes = await fetch(`${baseUrl}/v1/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'MatchDuelist',
+        email: 'match@hearthglass.local',
+        password: 'secure_password_123'
+      })
+    });
+    const { token } = await regRes.json();
+    const authHeaders = { Authorization: `Bearer ${token}` };
+
+    const startRes = await fetch(`${baseUrl}/v1/matches`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ npc_id: 'npc_kaelen_forge', seed: 12345 })
     });
     assert.equal(startRes.status, 201);
@@ -390,7 +440,7 @@ test('POST /v1/matches runs authoritative Rust Convergence Duels (1v1 & 2v2 Tag)
     // 1. Mulligan 2 cards
     const mulRes = await fetch(`${baseUrl}/v1/matches/${match.id}/command`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ type: 'mulligan', replace_hand_indices: [0, 1] })
     });
     assert.equal(mulRes.status, 200);
@@ -398,7 +448,7 @@ test('POST /v1/matches runs authoritative Rust Convergence Duels (1v1 & 2v2 Tag)
     // 2. End turn 1 -> triggers Rust NPC AI turn 2 and advances back to Player 0 on Turn 3 with 2 Aether
     const endRes = await fetch(`${baseUrl}/v1/matches/${match.id}/command`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ type: 'end_turn' })
     });
     assert.equal(endRes.status, 200);

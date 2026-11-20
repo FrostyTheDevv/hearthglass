@@ -27,8 +27,26 @@ async function withTestServer(fn) {
 
 test('SECURITY: Client-supplied local profile cannot forge or alter authoritative PostgreSQL economy', async () => {
   await withTestServer(async ({ baseUrl, db }) => {
-    // 1. Inspect initial server wallet
-    const bootRes = await fetch(`${baseUrl}/v1/bootstrap`);
+    // 0. Verify unauthenticated bootstrap fails with 401
+    const unauthBoot = await fetch(`${baseUrl}/v1/bootstrap`);
+    assert.equal(unauthBoot.status, 401, 'Unauthenticated bootstrap must return 401');
+
+    // Register a valid user session
+    const regRes = await fetch(`${baseUrl}/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'EconomyAuditor',
+        email: 'auditor@hearthglass.local',
+        password: 'secure_auditor_password'
+      })
+    });
+    assert.equal(regRes.status, 201);
+    const { token, user_id: testUserId, profile } = await regRes.json();
+    const authHeaders = { Authorization: `Bearer ${token}` };
+
+    // 1. Inspect initial server wallet via authenticated bootstrap
+    const bootRes = await fetch(`${baseUrl}/v1/bootstrap`, { headers: authHeaders });
     assert.equal(bootRes.status, 200);
     const bootData = await bootRes.json();
     const serverCrowns = bootData.account.crowns;
@@ -38,7 +56,7 @@ test('SECURITY: Client-supplied local profile cannot forge or alter authoritativ
     // Attempt A: Direct POST to arbitrary sync endpoint with forged wallet
     const forgeRes = await fetch(`${baseUrl}/v1/sync`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({
         crowns: 9999999,
         echo_dust: 8888888,
@@ -51,25 +69,24 @@ test('SECURITY: Client-supplied local profile cannot forge or alter authoritativ
     // Attempt B: Client attempts to forge currency via PUT /v1/wallet
     const walletRes = await fetch(`${baseUrl}/v1/wallet`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ crowns: 9999999, echo_dust: 8888888 })
     });
     assert.ok(walletRes.status === 404 || walletRes.status === 405);
 
     // 3. Verify server wallet remains completely unchanged in PostgreSQL
-    const profileRes = await fetch(`${baseUrl}/v1/bootstrap`);
+    const profileRes = await fetch(`${baseUrl}/v1/bootstrap`, { headers: authHeaders });
     const verifiedProfile = await profileRes.json();
     assert.equal(verifiedProfile.account.crowns, serverCrowns, 'Crowns must match authoritative DB');
     assert.equal(verifiedProfile.account.echo_dust, serverDust, 'Dust must match authoritative DB');
 
     // 4. Test insufficient funds rejection on shop pack opening
-    const testUserId = verifiedProfile.account.id;
     // Set balance in DB to 50 crowns (less than 100 required for pack)
     await db.query(`UPDATE wallet_balances SET crowns = 50 WHERE user_id = $1`, [testUserId]);
 
     const packPurchaseRes = await fetch(`${baseUrl}/v1/shop/purchase`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ pack_id: 'pack_foundations' })
     });
     assert.equal(packPurchaseRes.status, 400, 'Pack purchase must fail when Crowns are insufficient');
@@ -80,7 +97,7 @@ test('SECURITY: Client-supplied local profile cannot forge or alter authoritativ
     await db.query(`UPDATE wallet_balances SET echo_dust = 10 WHERE user_id = $1`, [testUserId]);
     const craftRes = await fetch(`${baseUrl}/v1/crafting/create`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({ card_id: 'EMB-C-0019', action: 'craft' }) // Legendary requires 1600 dust
     });
     assert.equal(craftRes.status, 400, 'Crafting must fail when Echo Dust is insufficient');

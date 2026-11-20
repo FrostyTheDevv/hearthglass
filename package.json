@@ -10,7 +10,9 @@
     "start:api": "node services/api/src/server.mjs",
     "test:api": "node --test services/api/tests/api.test.mjs",
     "test:cards": "node tools/card-validator/validate.mjs",
-    "test": "node tools/card-validator/validate.mjs && node --test services/api/tests/api.test.mjs"
+    "test:security": "node --test services/api/tests/security_auth.test.mjs services/api/tests/economy_security.test.mjs",
+    "test:art": "node --test services/api/tests/art_pipeline_raster.test.mjs",
+    "test": "node tools/card-validator/validate.mjs && node --test services/api/tests/art_pipeline_raster.test.mjs services/api/tests/security_auth.test.mjs services/api/tests/economy_security.test.mjs services/api/tests/api.test.mjs"
   },
   "engines": {
     "node": ">=20.0.0"

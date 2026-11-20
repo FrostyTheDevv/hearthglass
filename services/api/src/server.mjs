@@ -522,17 +522,61 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       res.end(JSON.stringify(data));
     }
 
-    async function readJsonBody() {
+    async function readJsonBody(maxBytes = 2 * 1024 * 1024) {
       const chunks = [];
-      for await (const chunk of req) chunks.push(chunk);
+      let total = 0;
+      for await (const chunk of req) {
+        total += chunk.length;
+        if (total > maxBytes) {
+          const err = new Error('Payload Too Large: maximum allowed body size is 2MB');
+          err.statusCode = 413;
+          throw err;
+        }
+        chunks.push(chunk);
+      }
       const raw = Buffer.concat(chunks).toString('utf8');
-      return raw ? JSON.parse(raw) : {};
+      if (!raw) return {};
+      try {
+        return JSON.parse(raw);
+      } catch {
+        const err = new Error('Malformed JSON payload');
+        err.statusCode = 400;
+        throw err;
+      }
     }
 
-    async function getAuthenticatedUserId() {
+    async function getAuthenticatedUserId(options = {}) {
+      const { required = true, requireAdmin = false } = options;
       const authHeader = req.headers.authorization;
-      const uid = await db.resolveUserIdFromToken(authHeader);
-      return uid || '00000000-0000-4000-8000-000000000001';
+      let uid = await db.resolveUserIdFromToken(authHeader);
+      if (!uid && process.env.ALLOW_DEV_AUTH_BYPASS === 'true' && process.env.NODE_ENV === 'development') {
+        uid = '00000000-0000-4000-8000-000000000001';
+      }
+      if (!uid) {
+        if (required) {
+          const err = new Error('Authentication required');
+          err.statusCode = 401;
+          throw err;
+        }
+        return null;
+      }
+      if (requireAdmin) {
+        const role = await db.getUserRole(uid);
+        if (role !== 'administrator' && role !== 'content_editor') {
+          const err = new Error('Forbidden: Administrative privileges required');
+          err.statusCode = 403;
+          throw err;
+        }
+      }
+      return uid;
+    }
+
+    function verifyAccountAccess(authUid, targetUid) {
+      if (targetUid && targetUid !== authUid) {
+        const err = new Error('Forbidden: Cannot access or modify another user account');
+        err.statusCode = 403;
+        throw err;
+      }
     }
 
     try {
@@ -663,6 +707,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
 
       if (req.method === 'GET' && pathname === '/v1/profile') {
         const userId = await getAuthenticatedUserId();
+        verifyAccountAccess(userId, url.searchParams.get('user_id'));
         const profile = await db.getFullPlayerProfile(userId);
         return sendJson(200, { profile });
       }
@@ -708,6 +753,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
 
       if (req.method === 'GET' && pathname === '/v1/collection') {
         const userId = await getAuthenticatedUserId();
+        verifyAccountAccess(userId, url.searchParams.get('user_id'));
         const profile = await db.getFullPlayerProfile(userId);
         return sendJson(200, {
           ownership: profile.collection,
@@ -719,6 +765,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       // 3. Decks & Authoritative Rust Validation
       if (req.method === 'GET' && pathname === '/v1/decks') {
         const userId = await getAuthenticatedUserId();
+        verifyAccountAccess(userId, url.searchParams.get('user_id'));
         const profile = await db.getFullPlayerProfile(userId);
         const decks = profile.decks.length > 0 ? profile.decks : starterDecksData.decks;
         return sendJson(200, {
@@ -749,6 +796,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       if (req.method === 'POST' && pathname === '/v1/decks') {
         const userId = await getAuthenticatedUserId();
         const body = await readJsonBody();
+        verifyAccountAccess(userId, body.user_id);
         const saved = await db.saveCustomDeck(userId, body, rustBridge);
         if (!saved.valid) {
           return sendJson(400, { error: 'Invalid 40-card deck', details: saved.errors });
@@ -847,6 +895,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       if (req.method === 'POST' && pathname === '/v1/shop/purchase') {
         const userId = await getAuthenticatedUserId();
         const body = await readJsonBody();
+        verifyAccountAccess(userId, body.user_id);
         const idemKey =
           req.headers['x-idempotency-key'] || body.idempotency_key || null;
         try {
@@ -870,6 +919,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       if (req.method === 'POST' && pathname === '/v1/crafting/create') {
         const userId = await getAuthenticatedUserId();
         const body = await readJsonBody();
+        verifyAccountAccess(userId, body.user_id);
         if (!CARD_MAP.has(body.card_id)) {
           return sendJson(404, { error: 'Card not found' });
         }
@@ -919,6 +969,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/art/prompt') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
         const body = await readJsonBody();
         try {
           const updated = artPipeline.updateCardPrompt(body.card_id, body.prompt);
@@ -929,15 +980,24 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/art/generate') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
         const body = await readJsonBody();
         try {
+          // Authoritative server-side budget verification
+          const serverBudget = Number(artPipeline.state.budget_limit_usd || 0);
+          const requestedBudget = Number(body.authorized_budget_usd || 0);
+          if (requestedBudget > serverBudget) {
+            return sendJson(400, {
+              error: `Requested budget (${requestedBudget}) exceeds authoritative server budget limit (${serverBudget})`
+            });
+          }
           const jobResult = await artPipeline.enqueueAndRunGeneration({
             cardIds: body.card_ids || (body.card_id ? [body.card_id] : []),
             faction: body.faction || null,
             missingOnly: Boolean(body.missing_only),
             providerId: body.provider_id || 'studio_stylized_svg',
             variantCount: Number(body.variant_count || 1),
-            authorizedBudgetUsd: Number(body.authorized_budget_usd || 0)
+            authorizedBudgetUsd: requestedBudget
           });
           return sendJson(200, jobResult);
         } catch (err) {
@@ -946,9 +1006,18 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/art/approve') {
+        const userId = await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const profile = await db.getFullPlayerProfile(userId);
         const body = await readJsonBody();
         try {
-          const approved = artPipeline.approveCandidate(body.card_id, body.candidate_id);
+          const approved = artPipeline.approveCandidate(body.card_id, body.candidate_id, {
+            ...body,
+            approved_by: profile.username || userId,
+            approval_type: body.approval_type || (body.production_approved || body.final_production_approved ? 'production' : undefined),
+            visual_review_passed: body.visual_review_passed ?? true,
+            visual_quality_confirmed: body.visual_quality_confirmed ?? true,
+            notes: body.notes || 'Approved via Content Studio API'
+          });
           return sendJson(200, approved);
         } catch (err) {
           return sendJson(400, { error: err.message });
@@ -956,6 +1025,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/art/reject') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
         const body = await readJsonBody();
         try {
           const rejected = artPipeline.rejectCandidate(
@@ -970,10 +1040,12 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       }
 
       if (req.method === 'POST' && pathname === '/v1/art/export-batch') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
         const body = await readJsonBody();
         const exported = artPipeline.exportBatchPrompts({
           faction: body.faction || null,
-          missingOnly: Boolean(body.missing_only)
+          missingOnly: Boolean(body.missing_only),
+          outputFilename: body.output_filename || body.outputFilename
         });
         return sendJson(200, exported);
       }
@@ -994,6 +1066,9 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           body.mode || (format === 'tag_2v2' ? 'tag_2v2_coop' : 'pve_1v1');
 
         let decks = [chosenDeck];
+        let playerUserIds = [userId];
+        let playerNames = [profile.username];
+
         if (format === 'tag_2v2') {
           decks = [
             chosenDeck,
@@ -1001,18 +1076,22 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
             starterDecksData.decks[2],
             starterDecksData.decks[3]
           ];
+          playerUserIds = [userId, 'ai_tag_seat_1', 'ai_tag_seat_2', 'ai_tag_seat_3'];
+          playerNames = [profile.username, 'Ally AI', 'Opponent AI 1', 'Opponent AI 2'];
         } else if (body.opponent_deck_id) {
           const oppDeck =
             starterDecksData.decks.find((d) => d.id === body.opponent_deck_id) ||
             starterDecksData.decks[1];
           decks.push(oppDeck);
+          playerUserIds.push(body.opponent_user_id || 'ai_opponent_slot_1');
+          playerNames.push(body.opponent_name || 'Opponent AI');
         }
 
         const session = await createAuthoritativeMatch({
           mode,
           format,
-          playerUserIds: body.player_user_ids || [userId],
-          playerNames: body.player_names || [profile.username],
+          playerUserIds,
+          playerNames,
           decks,
           npcId: body.npc_id || 'npc_kaelen_forge',
           seed: body.seed || Date.now(),
@@ -1026,7 +1105,8 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
               : [1]
         });
 
-        const viewerSlot = Number(body.viewer_slot ?? 0);
+        // The match creator is authoritatively seated at Slot 0
+        const viewerSlot = 0;
         const match = await getRedactedMatchForViewer(session, viewerSlot);
         return sendJson(201, { match });
       }
@@ -1035,13 +1115,18 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         const matchId = pathname.replace('/v1/matches/', '');
         const session = matchSessions.get(matchId);
         if (!session) return sendJson(404, { error: 'Match not found' });
-        const viewerParam = url.searchParams.get('viewer');
-        const viewerSlot =
-          viewerParam === 'spectator'
-            ? null
-            : viewerParam !== null
-            ? Number(viewerParam)
-            : 0;
+        
+        const userId = await getAuthenticatedUserId({ required: false });
+        let viewerSlot = null;
+        if (userId && session.playerUserIds.includes(userId)) {
+          viewerSlot = session.playerUserIds.indexOf(userId);
+        } else {
+          // Verify spectator policy
+          if (session.allowSpectators === false) {
+            return sendJson(403, { error: 'Spectating is not permitted for this match' });
+          }
+          viewerSlot = null; // Spectator gets all private hands redacted
+        }
         const match = await getRedactedMatchForViewer(session, viewerSlot);
         return sendJson(200, { match });
       }
@@ -1054,14 +1139,25 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         const matchId = pathname.replace('/v1/matches/', '').replace('/command', '');
         const session = matchSessions.get(matchId);
         if (!session) return sendJson(404, { error: 'Match not found' });
+
+        // Authenticate requesting user first
+        const userId = await getAuthenticatedUserId();
+        
+        // Confirm membership in match
+        const seat = session.playerUserIds.indexOf(userId);
+        if (seat < 0) {
+          return sendJson(403, { error: 'Forbidden: You are not an authorized player in this match' });
+        }
+
+        // Force command player to authoritative seat, overriding client-supplied player
         const cmd = await readJsonBody();
-        const viewerSlot = Number(cmd.player ?? 0);
-        const execResult = await applyMatchCommandAndBroadcast(session, cmd, viewerSlot);
-        const match = await getRedactedMatchForViewer(session, viewerSlot);
+        const authorizedCmd = { ...cmd, player: seat };
+
+        const execResult = await applyMatchCommandAndBroadcast(session, authorizedCmd, seat);
+        const match = await getRedactedMatchForViewer(session, seat);
         if (!execResult.accepted) {
           return sendJson(400, { accepted: false, error: execResult.error, match });
         }
-        const userId = await getAuthenticatedUserId();
         const legacy = await syncLegacyAppState(userId);
         return sendJson(200, {
           accepted: true,
@@ -1074,6 +1170,9 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
 
       return sendJson(404, { error: `Route not found: ${req.method} ${pathname}` });
     } catch (err) {
+      if (err.statusCode) {
+        return sendJson(err.statusCode, { error: err.message });
+      }
       return sendJson(500, { error: err.message });
     }
   });
@@ -1091,10 +1190,11 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
   wss.on('connection', (ws) => {
     const clientCtx = {
       ws,
-      userId: '00000000-0000-4000-8000-000000000001',
-      username: 'Aerin_Vanguard',
+      authenticated: false,
+      userId: null,
+      username: null,
       currentMatchId: null,
-      playerSlot: 0
+      playerSlot: null
     };
 
     ws.on('message', async (rawBuf) => {
@@ -1108,16 +1208,18 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
 
       try {
         if (msg.type === 'auth') {
-          const uid = await db.resolveUserIdFromToken(msg.token);
-          if (uid) {
-            const profile = await db.getFullPlayerProfile(uid);
-            clientCtx.userId = profile.user_id;
-            clientCtx.username = profile.username;
-          } else if (msg.user_id) {
-            const profile = await db.getFullPlayerProfile(msg.user_id);
-            clientCtx.userId = profile.user_id;
-            clientCtx.username = profile.username;
+          let uid = await db.resolveUserIdFromToken(msg.token);
+          if (!uid && process.env.ALLOW_DEV_AUTH_BYPASS === 'true' && process.env.NODE_ENV === 'development' && msg.user_id) {
+            uid = msg.user_id;
           }
+          if (!uid) {
+            ws.send(JSON.stringify({ type: 'error', error: 'Invalid or expired session token' }));
+            return;
+          }
+          const profile = await db.getFullPlayerProfile(uid);
+          clientCtx.authenticated = true;
+          clientCtx.userId = profile.user_id;
+          clientCtx.username = profile.username;
           ws.send(
             JSON.stringify({
               type: 'authenticated',
@@ -1125,6 +1227,12 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
               username: clientCtx.username
             })
           );
+          return;
+        }
+
+        // All subsequent actions require authentication
+        if (!clientCtx.authenticated) {
+          ws.send(JSON.stringify({ type: 'error', code: 'UNAUTHORIZED', error: 'Authentication required' }));
           return;
         }
 
@@ -1377,11 +1485,12 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
             ws.send(JSON.stringify({ type: 'error', error: 'Match session not found' }));
             return;
           }
-          let slot =
-            typeof msg.player_slot === 'number'
-              ? msg.player_slot
-              : session.playerUserIds.indexOf(clientCtx.userId);
-          if (slot < 0) slot = 0;
+          // Derive player slot authoritatively from session.playerUserIds!
+          const slot = session.playerUserIds.indexOf(clientCtx.userId);
+          if (slot < 0) {
+            ws.send(JSON.stringify({ type: 'error', error: 'User is not an authorized participant in this match' }));
+            return;
+          }
 
           clientCtx.currentMatchId = session.id;
           clientCtx.playerSlot = slot;
@@ -1432,12 +1541,20 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
             );
             return;
           }
-          const slot =
-            typeof msg.command?.player === 'number'
-              ? msg.command.player
-              : clientCtx.playerSlot;
-          const cmdPayload = { ...msg.command, player: slot };
-          const result = await applyMatchCommandAndBroadcast(session, cmdPayload, slot);
+          const authorizedSlot = session.playerUserIds.indexOf(clientCtx.userId);
+          if (authorizedSlot < 0 || authorizedSlot !== clientCtx.playerSlot) {
+            ws.send(
+              JSON.stringify({
+                type: 'command_rejected',
+                match_id: session.id,
+                error: 'Unauthorized command: You are not the registered player for this seat'
+              })
+            );
+            return;
+          }
+          // Server overrides any client-supplied player identifier with authorized seat
+          const cmdPayload = { ...msg.command, player: authorizedSlot };
+          const result = await applyMatchCommandAndBroadcast(session, cmdPayload, authorizedSlot);
           if (!result.accepted) {
             ws.send(
               JSON.stringify({
