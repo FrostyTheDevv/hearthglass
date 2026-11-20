@@ -1,23 +1,26 @@
 # Hearthglass — 640-Card Canonical Reconciliation & Historical Mathematics Audit
 
-**Document Version:** 1.0.0  
-**Status:** Complete & Ratified  
+**Document Version:** 1.2.0  
+**Status:** Complete & Ratified with Three-Level Engine Compatibility Audit  
 **Audit Branch:** `feat/cards-world-content`  
 **Authoritative Sources:**
 - Commit `09a1478`: *Hearthglass V6 baseline — 480 canonical cards*
 - Commit `5bf08e7`: *Complete full 640-card canonical catalogue and Godot client integration*
-- Head Commit `6597f4d`: *640-card staging catalogue and world expansion*
+- Head Commit `4257cbf`: *640-card staging catalogue, reconciliation, and validation suite*
 - Machine-Readable Audit: `content/staging/cards/card_reconciliation_report.json`
 
 ---
 
 ## 1. Executive Summary
 
-This audit resolves the catalogue reconciliation question regarding the 640 canonical cards and the 160 staged expansion records. By tracing the authoritative Git commit history from the 480-card baseline (`09a1478`) to the 640-card canonical milestone (`5bf08e7`), this document establishes:
-1. The exact mathematical delta between the 480-card baseline and the 640-card release.
+This audit establishes the definitive reconciliation between the 640 canonical cards in `content/cards/foundations_v1.json` and the 160 expansion records in `content/staging/cards/expansion_160_staging_catalogue.json`. 
+
+By analyzing the authoritative Git commit lineage and performing deep schema and Rust capability audits, this document establishes:
+1. The exact mathematical delta from the 480-card baseline (`09a1478`) to the 640-card canonical milestone (`5bf08e7`).
 2. The resolution of reconstructed theoretical assumptions versus verified Git history.
-3. A field-by-field audit of all 160 staged records against canonical `foundations_v1.json`.
-4. Verification that **zero canonical combat fields are overwritten**, and all staged enhancements consist of verified `mechanic_test_specification` metadata.
+3. A schema-accurate field-by-field audit protecting ID, name, faction, type, rarity, cost (`cost`), stats (`attack`, `health`), keywords, complete abilities/effect AST, and rules metadata.
+4. A three-level validation hierarchy distinguishing Schema Validity (Level 1), Rust Capability Compatibility (Level 2), and Behavioral Verification (Level 3).
+5. Exact verification metrics documenting handled versus unhandled operation-target combinations.
 
 ---
 
@@ -53,13 +56,18 @@ This audit resolves the catalogue reconciliation question regarding the 640 cano
 ### Resolution of Reconstructed Assumptions
 Earlier intermediate notes posited a theoretical uniform delta of `104 Creatures, 32 Tactics, 16 Relics, 8 Environments` and `80 Common, 48 Uncommon, 24 Rare, 8 Legendary`. 
 
-**Audit Finding:** The uniform 104/32/16/8 figure was a pre-implementation model. The **actual, verified Git history** in `5bf08e7` achieved the canonical 368/136/88/48 distribution through the +94/+42/+18/+6 delta combined with targeted baseline rarity curation. Both models arrive at the identical canonical endpoint (640 total cards: 368/136/88/48, 320/192/96/32/0), and the Git history is the single source of truth.
+**Audit Finding:** The uniform 104/32/16/8 figure was a preliminary design modeling assumption. The **actual, verified Git history** in `5bf08e7` achieved the canonical 368/136/88/48 distribution through the +94/+42/+18/+6 delta combined with targeted baseline rarity curation. Both models arrive at the identical canonical endpoint (640 total cards: 368/136/88/48, 320/192/96/32/0), and the Git history is the single source of truth.
 
 ---
 
-## 3. Field-by-Field Reconciliation of the 160 Staged Records
+## 3. Schema-Accurate Field-by-Field Reconciliation
 
 All 160 records in `content/staging/cards/expansion_160_staging_catalogue.json` were audited against their canonical counterpart in `content/cards/foundations_v1.json` via `tools/card-validator/reconcile_cards.mjs`.
+
+### Protected Fields:
+- **Card Identity:** `id`, `name`, `faction`, `type`, `rarity`.
+- **Combat Stats:** `cost` (canonical property name; not `aether_cost`), `attack`, `health`.
+- **Rules & Abilities:** `keywords` (sorted array equality), complete `abilities` AST (`trigger`, `conditions`, `effects`: `operation`, `target`, `amount`, `counter`, `keyword`, `attack_delta`, `health_delta`), and `gameplay_metadata`.
 
 ### Classification Results
 ```
@@ -77,49 +85,54 @@ All 160 records in `content/staging/cards/expansion_160_staging_catalogue.json` 
 +-----------------------------------+-------+-------------+
 ```
 
-### Key Audit Confirmations:
-1. **Zero Mechanical Drift:**
-   - 0 card name mismatches.
-   - 0 faction mismatches.
-   - 0 card type mismatches.
-   - 0 rarity mismatches.
-   - 0 cost mismatches.
-   - 0 attack/health stat mismatches.
-   - 0 keyword mismatches.
-   - 0 ability AST (trigger, conditions, effect operation, target) mismatches.
-2. **Safe Staging Isolation:**
-   - The 160 staged cards do **not** duplicate or overwrite canonical card IDs.
-   - Staging enriches each record with a non-destructive `mechanic_test_specification` block designed for behavioral rules verification.
-   - Recommended Disposition for all 160 records: `MERGE_METADATA_ENHANCEMENT`.
+### Classification Invariant:
+The classifier explicitly evaluates `nameDiff`, `factionDiff`, `typeDiff`, `rarityDiff`, `costDiff`, `statsDiff`, `keywordsDiff`, and `effectASTDiff`. Any modification to identity (`name`, `faction`, `type`, `rarity`) is strictly flagged as `canonical_conflict`. Any modification to combat rules (`cost`, `attack`, `health`, `keywords`, `abilities`) is strictly flagged as `proposed_mechanical_change`. All 160 staged records match canonical definitions 100%, safely classifying as `metadata_enhancement_only`.
 
 ---
 
-## 4. Mechanical Rules Audit against Rust Engine
+## 4. Three-Level Rust Rules Compatibility Hierarchy
 
-The ability AST for all 160 cards was audited against `services/battle-server/src/lib.rs`.
+To avoid conflating schema validity with execution reality, the engine audit establishes three distinct validation tiers:
 
-### Supported Triggers in Rust:
-- `on_summon`: Verified in `execute_abilities_for_trigger(..., "on_summon", ...)`
-- `on_play`: Verified for Tactics, Relics, and Environments
-- `on_move`: Verified in lane movement handlers
-- `after_this_attacks`: Verified in combat resolution
-- `when_damaged`: Verified in combat retaliation
-- `turn_start`: Verified in upkeep phase
-- `turn_end`: Verified in cleanup phase
-- `on_death`: Verified in creature death & cleanup handlers
+```mermaid
+flowchart TD
+    L1["LEVEL 1: Schema Validity\n(Recognized triggers, operations, targets in JSON)"]
+    L2["LEVEL 2: Rust Capability Compatibility\n(Operation-Target handled in battle-server match arms)"]
+    L3["LEVEL 3: Behavioral Verification\n(Executable tests proving expected board state deltas)"]
 
-### Supported Operations & Target Parsing:
-- `deal_damage`: Supported targets (`enemy_leader`, `ally_leader`, `event_source`, `enemy_in_lane`, `target_enemy_creature`, `all_enemy_creatures`, `all_ally_creatures`)
-- `heal`: Supported targets (`ally_leader`, `self`, `ally_creature_in_lane_or_any`, `all_ally_creatures`)
-- `draw`: Verified card draw with hand size bounds (max 10)
-- `scry_top_deck`: Deterministic deck inspection/reordering
-- `gain_aether`: Capped at max 10 capacity
-- `add_counter` / `remove_counter`: Validated for `growth`, `heat`, `corrode`, `alignment`, `ward`
-- `modify_stats`: Attack and Health delta modification with ward absorption
-- `grant_keyword`: Validated for `guard`, `swift`, `stealth`, `ward`, `anchor`, `skirmish`, `range`
-- `silence`: Strips non-guard keywords and clears counters
-- `destroy`: Direct creature destruction with ward interaction
-- `return_to_hand`: Bounces non-anchor creatures to hand
-- `summon_token`: Verified token instantiation
+    L1 --> L2
+    L2 --> L3
+```
 
-**Conclusion:** 100% of the 160 expansion card mechanics are fully supported by the existing Rust `BattleEngine` without requiring unapproved modifications to the core rules engine.
+### Level 1 — Schema Validity (100% Verified)
+- **Canonical 640:** 640 / 640 (100%)
+- **Staged 160:** 160 / 160 (100%)
+- All abilities adhere to recognized triggers (`on_summon`, `on_play`, `on_move`, `after_this_attacks`, `when_damaged`, `turn_start`, `turn_end`, `on_death`), operations (`deal_damage`, `heal`, `draw`, `scry_top_deck`, `gain_aether`, `add_counter`, `remove_counter`, `modify_stats`, `grant_keyword`, `silence`, `destroy`, `return_to_hand`, `summon_token`), and target specifications.
+
+### Level 2 — Rust Capability Compatibility (Engine Match-Arm Audit)
+Audited against `services/battle-server/src/lib.rs` (`execute_single_effect` and `resolve_creature_targets`):
+- **Canonical 640:** **609 / 640 cards (95.16%)** are 100% capability compatible.
+  - **Gaps (31 cards):** 22 cards specify `deal_damage -> all_enemy_creatures`, 3 specify `heal -> strongest_ally_creature`, 2 specify `add_counter -> all_enemy_creatures`, 2 specify `grant_keyword -> all_enemy_creatures`, 1 specifies `silence -> all_enemy_creatures`, 1 specifies `add_counter -> ally_leader`.
+- **Staged 160:** **140 / 160 cards (87.50%)** are 100% capability compatible.
+  - **Gaps (20 cards):**
+    - 17 cards specify `all_enemy_creatures` targeting (`EMB-C-0053`, `EMB-C-0055`, `VER-T-0059`, `IRN-C-0055`, `TID-C-0055`, `TID-T-0059`, `GLS-C-0053`, `GLS-C-0055`, `GLS-T-0059`, `NOC-C-0055`, `STR-C-0053`, `STR-C-0055`, `GRV-C-0053`, `GRV-C-0055`, `NEU-C-0124`, `NEU-T-0136`, `NEU-T-0140`, `NEU-T-0142`).
+    - 2 cards specify `heal -> strongest_ally_creature` (`IRN-C-0054`, `GRV-C-0054`).
+    - 1 card specifies `silence -> all_enemy_creatures` (`NOC-C-0055`).
+
+*Engine Finding:* In `services/battle-server/src/lib.rs`, `all_enemy_creatures` and `strongest_ally_creature` (under `heal`) fall through to `_ => {}` (no-op). While the cards deploy legally, their secondary AoE effects are unhandled by the current engine. These 20 cards are formally documented as Level 2 capability dependencies for MAIN and QA.
+
+### Level 3 — Behavioral Verification (State-Delta Execution)
+- **Broad Deployment & Event Verification:** 640 / 640 cards verified in `test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta` (Cargo test in `services/battle-server/tests/rules_engine_tests.rs`). Every card is legally parsed, summoned/cast, costs Aether, and emits `BattleEvent` instances.
+- **Deep Board-State Delta Verification:** 140 / 160 staged cards (the Level 2 capability subset) have their exact state transitions verified. The remaining 20 cards await the implementation of multi-target match arms by the Rust rules owner.
+
+---
+
+## 5. Content Maturity Classification Framework
+
+To ensure precision across all reports, content is categorized across five explicit maturity levels:
+
+1. **Designed:** Content is fully drafted in staged JSON files (`content/staging/world/`).
+2. **Schema Validated:** Content passes all structural, count, referential integrity, cycle detection, and silent-overwrite checks via `world_validator.mjs`.
+3. **Integrated with Backend:** Registered in PostgreSQL schema (`services/api/src/db.mjs`), with server-authoritative objective hooks and reward disbursement.
+4. **Integrated with Godot:** Bound to `.tscn` scene nodes, UI interaction dialogue boxes, and client battle launches (`apps/game-client`).
+5. **Human Playtested:** Verified through multi-turn live playthroughs covering dialogue branching, combat, and reward reception.

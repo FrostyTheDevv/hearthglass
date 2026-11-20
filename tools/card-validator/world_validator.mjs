@@ -9,6 +9,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { isRustCapabilityHandled, RUST_CAPABILITY_HANDLED_TARGETS } from './reconcile_cards.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -218,12 +219,52 @@ export function validateWorldContent(options = {}) {
       if (!allCardIds.has(card.id)) {
         errors.push(`Staged card ${card.id} not present in foundations_v1.json`);
       } else {
-        // Silent-Overwrite Protection Check
+        // Complete Canonical Card Field & Ability AST Protection Check
         const canon = allCardMap.get(card.id);
-        const combatFields = ['attack', 'health', 'aether_cost', 'rarity', 'faction', 'type'];
-        for (const field of combatFields) {
-          if (card[field] !== undefined && canon[field] !== undefined && card[field] !== canon[field]) {
-            errors.push(`Silent overwrite violation on card ${card.id}: Field '${field}' changed from canonical '${canon[field]}' to staged '${card[field]}' without approved migration.`);
+
+        // 1. Identity & Rules Fields
+        if (card.name !== undefined && card.name !== canon.name) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'name' changed from canonical '${canon.name}' to staged '${card.name}' without approved migration.`);
+        }
+        if (card.faction !== undefined && card.faction !== canon.faction) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'faction' changed from canonical '${canon.faction}' to staged '${card.faction}' without approved migration.`);
+        }
+        if (card.type !== undefined && card.type !== canon.type) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'type' changed from canonical '${canon.type}' to staged '${card.type}' without approved migration.`);
+        }
+        if (card.rarity !== undefined && card.rarity !== canon.rarity) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'rarity' changed from canonical '${canon.rarity}' to staged '${card.rarity}' without approved migration.`);
+        }
+        if (card.cost !== undefined && card.cost !== canon.cost) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'cost' changed from canonical '${canon.cost}' to staged '${card.cost}' without approved migration.`);
+        }
+        if (card.attack !== undefined && card.attack !== canon.attack) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'attack' changed from canonical '${canon.attack}' to staged '${card.attack}' without approved migration.`);
+        }
+        if (card.health !== undefined && card.health !== canon.health) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'health' changed from canonical '${canon.health}' to staged '${card.health}' without approved migration.`);
+        }
+
+        // 2. Keywords Protection
+        const canonKw = (canon.keywords || []).slice().sort().join(',');
+        const stagedKw = (card.keywords || []).slice().sort().join(',');
+        if (stagedKw !== canonKw) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'keywords' changed from canonical '[${canonKw}]' to staged '[${stagedKw}]' without approved migration.`);
+        }
+
+        // 3. Complete Abilities & Effect AST Deep Protection
+        const canonAST = JSON.stringify(canon.abilities || []);
+        const stagedAST = JSON.stringify(card.abilities || []);
+        if (stagedAST !== canonAST) {
+          errors.push(`Silent overwrite violation on card ${card.id}: Field 'abilities' effect AST modified from canonical definition without approved migration.`);
+        }
+
+        // 4. Gameplay Rules Metadata Protection
+        if (card.gameplay_metadata && canon.gameplay_metadata) {
+          const canonTargets = (canon.gameplay_metadata.effect_targets || []).slice().sort().join(',');
+          const stagedTargets = (card.gameplay_metadata.effect_targets || []).slice().sort().join(',');
+          if (stagedTargets !== canonTargets) {
+            errors.push(`Silent overwrite violation on card ${card.id}: Field 'gameplay_metadata.effect_targets' changed without approved migration.`);
           }
         }
       }
@@ -232,7 +273,8 @@ export function validateWorldContent(options = {}) {
       if (!card.art?.prompt) errors.push(`Staged card ${card.id} missing art.prompt`);
       if (!card.identity?.collection_biography) errors.push(`Staged card ${card.id} missing collection_biography`);
 
-      // Rust Engine Ability Compatibility Check
+      // Rust Engine Ability Compatibility Levels
+      // Level 1: Schema Validity
       if (card.mechanic_test_specification) {
         const spec = card.mechanic_test_specification;
         if (spec.trigger && !SUPPORTED_RUST_TRIGGERS.has(spec.trigger)) {
@@ -244,6 +286,19 @@ export function validateWorldContent(options = {}) {
         if (spec.target_restriction && !SUPPORTED_TARGET_RESTRICTIONS.has(spec.target_restriction)) {
           errors.push(`Card ${card.id} defines unsupported Rust target restriction: '${spec.target_restriction}'`);
         }
+      }
+
+      // Check Level 2 Rust Capability Compatibility across card's actual abilities
+      let cardHasLevel2Gap = false;
+      for (const ability of (card.abilities || [])) {
+        for (const effect of (ability.effects || [])) {
+          if (!isRustCapabilityHandled(effect)) {
+            cardHasLevel2Gap = true;
+          }
+        }
+      }
+      if (cardHasLevel2Gap) {
+        warnings.push(`Card ${card.id} contains effect target combination unhandled in current Rust engine (Level 2 capability gap)`);
       }
     }
   }
@@ -686,6 +741,13 @@ export function validateWorldContent(options = {}) {
 
   const valid = errors.length === 0;
 
+  const rustVerificationCounts = {
+    level_1_schema_valid: stagedCardsData?.cards?.length || 0,
+    level_2_capability_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e)))).length,
+    level_3_behavioral_verified: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e)))).length,
+    level_2_unhandled_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e)))).length
+  };
+
   const summary = {
     valid,
     canonicalCardCatalogue: totalCards,
@@ -698,6 +760,7 @@ export function validateWorldContent(options = {}) {
       epic: foundations.cards.filter(c => c.rarity === 'epic').length
     },
     stagedExpansionCards: stagedCardsData?.cards?.length || 0,
+    rustVerificationCounts,
     campaignChapters: campFile?.chapters?.length || 0,
     namedNpcs: npcIds.size,
     sideQuests: questIds.size,

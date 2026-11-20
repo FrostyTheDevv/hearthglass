@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.2.0",
-  "audit_timestamp": "2026-11-20T06:11:07.720Z",
+  "schema_version": "1.3.0",
+  "audit_timestamp": "2026-11-20T06:33:21.301Z",
   "canonical_catalogue_file": "content/cards/foundations_v1.json",
   "staged_catalogue_file": "content/staging/cards/expansion_160_staging_catalogue.json",
   "total_cards_audited": 160,
@@ -11,6 +11,77 @@
     "proposed_mechanical_change": 0,
     "canonical_conflict": 0,
     "missing_or_invalid_record": 0
+  },
+  "verification_level_counts": {
+    "level_1_schema_valid": 160,
+    "level_2_rust_capability_compatible": 140,
+    "level_3_behavioral_verified": 140,
+    "level_2_unhandled_gaps": 20
+  },
+  "unhandled_effects_summary": {
+    "total_unhandled_cards": 20,
+    "sample_gaps": [
+      {
+        "card_id": "EMB-C-0053",
+        "card_name": "Caldera Lava-Shaper",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "EMB-C-0055",
+        "card_name": "Lord Ignacius, Avatar of the Caldera",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "VER-T-0059",
+        "card_name": "Canopy Entanglement",
+        "operation": "grant_keyword",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "IRN-C-0054",
+        "card_name": "Guild Machinist Overseer",
+        "operation": "heal",
+        "target": "strongest_ally_creature"
+      },
+      {
+        "card_id": "IRN-C-0055",
+        "card_name": "The Dreadnought of High Mechanism",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "TID-C-0055",
+        "card_name": "Leviathan of the Abyssal Trench",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "TID-T-0059",
+        "card_name": "Tidal Wave Cataclysm",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "GLS-C-0053",
+        "card_name": "Prism Weaver-Chanter",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "GLS-C-0055",
+        "card_name": "Luminor, Apex of the Seven Facets",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      },
+      {
+        "card_id": "GLS-T-0059",
+        "card_name": "Shatter-Glass Cataclysm",
+        "operation": "deal_damage",
+        "target": "all_enemy_creatures"
+      }
+    ]
   },
   "records": [
     {
@@ -90,6 +161,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -167,6 +244,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -248,6 +331,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -328,6 +417,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -401,6 +496,14 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -481,6 +584,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -574,6 +683,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -654,6 +771,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -727,6 +850,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -814,6 +943,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -885,6 +1020,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -961,6 +1102,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1042,6 +1189,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1121,6 +1274,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1202,6 +1361,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1280,6 +1445,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1353,6 +1524,12 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1433,6 +1610,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1516,6 +1699,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1594,6 +1783,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1667,6 +1862,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1752,6 +1953,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -1825,6 +2032,14 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "grant_keyword -> all_enemy_creatures"
+        ]
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1901,6 +2116,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -1980,6 +2201,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2057,6 +2284,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -2136,6 +2369,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2214,6 +2453,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2287,6 +2532,12 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -2365,6 +2616,14 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "heal -> strongest_ally_creature"
+        ]
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -2456,6 +2715,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2534,6 +2801,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2609,6 +2882,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -2694,6 +2973,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2768,6 +3053,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2841,6 +3132,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -2920,6 +3217,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -2997,6 +3300,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3076,6 +3385,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3154,6 +3469,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3225,6 +3546,12 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3303,6 +3630,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3394,6 +3727,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3472,6 +3813,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3545,6 +3892,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3630,6 +3983,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3714,6 +4073,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -3787,6 +4154,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3865,6 +4238,12 @@
           "counterplay_assertion": "Vulnerable to High-health Bulwark guards, Quick removal tactics.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -3946,6 +4325,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4024,6 +4409,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4101,6 +4492,12 @@
           "counterplay_assertion": "Vulnerable to Dive assassins with Reach or Skirmish, Direct damage tactics.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -4186,6 +4583,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4263,6 +4668,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -4354,6 +4765,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4432,6 +4851,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4503,6 +4928,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -4578,6 +5009,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4652,6 +5089,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4725,6 +5170,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -4806,6 +5257,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4884,6 +5341,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -4959,6 +5422,12 @@
           "counterplay_assertion": "Vulnerable to Guard units in the Front slot, Area-of-effect tactics, Shield counters.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5038,6 +5507,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5111,6 +5586,12 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5189,6 +5670,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5278,6 +5765,15 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures",
+          "silence -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5356,6 +5852,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5429,6 +5931,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5504,6 +6012,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5575,6 +6089,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5649,6 +6169,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5728,6 +6254,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5805,6 +6337,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -5884,6 +6422,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -5961,6 +6505,12 @@
           "counterplay_assertion": "Vulnerable to Dive assassins with Reach or Skirmish, Direct damage tactics.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -6046,6 +6596,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6123,6 +6681,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -6214,6 +6778,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6292,6 +6864,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6365,6 +6943,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -6450,6 +7034,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6534,6 +7124,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6607,6 +7203,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -6688,6 +7290,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6765,6 +7373,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -6844,6 +7458,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -6921,6 +7541,12 @@
           "counterplay_assertion": "Vulnerable to Dive assassins with Reach or Skirmish, Direct damage tactics.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7006,6 +7632,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7083,6 +7717,14 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "heal -> strongest_ally_creature"
+        ]
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7174,6 +7816,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7252,6 +7902,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7327,6 +7983,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7412,6 +8074,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7483,6 +8151,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7557,6 +8231,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7636,6 +8316,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7713,6 +8399,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -7792,6 +8484,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7870,6 +8568,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -7944,6 +8648,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8017,6 +8727,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -8096,6 +8812,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8173,6 +8895,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -8254,6 +8982,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8332,6 +9066,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8407,6 +9147,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -8486,6 +9232,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8564,6 +9316,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8637,6 +9395,12 @@
           "counterplay_assertion": "Vulnerable to Silence disruption, High-tempo aggressive vanguards.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -8718,6 +9482,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8793,6 +9563,12 @@
           "counterplay_assertion": "Vulnerable to Raw high-stat creatures that do not rely on triggered abilities.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -8874,6 +9650,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -8953,6 +9735,12 @@
           "counterplay_assertion": "Vulnerable to High-health Bulwark guards, Quick removal tactics.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9034,6 +9822,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9107,6 +9901,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9186,6 +9986,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9264,6 +10070,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9341,6 +10153,12 @@
           "counterplay_assertion": "Vulnerable to Raw high-stat creatures that do not rely on triggered abilities.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9424,6 +10242,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9503,6 +10327,12 @@
           "counterplay_assertion": "Vulnerable to Pierce damage, Corrode stat reduction, Silence effects.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9584,6 +10414,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9661,6 +10497,12 @@
           "counterplay_assertion": "Vulnerable to Anchor units immune to movement, Predictable lane locking.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9742,6 +10584,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9819,6 +10669,12 @@
           "counterplay_assertion": "Vulnerable to Eliminating the Support unit before its engine snowballs.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -9902,6 +10758,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -9975,6 +10837,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -10050,6 +10918,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10124,6 +10998,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10197,6 +11077,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -10282,6 +11168,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10356,6 +11248,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10429,6 +11327,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -10506,6 +11410,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10577,6 +11487,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -10652,6 +11568,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10725,6 +11649,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -10810,6 +11740,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10886,6 +11822,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -10960,6 +11902,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11031,6 +11981,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11116,6 +12072,14 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": false,
+        "level_3_behavioral_verified": false,
+        "unhandled_target_gaps": [
+          "deal_damage -> all_enemy_creatures"
+        ]
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11200,6 +12164,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11273,6 +12243,12 @@
           "counterplay_assertion": "Vulnerable to Ward spell protection, Counter-tactics and Shield buffers.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11348,6 +12324,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11421,6 +12403,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11496,6 +12484,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11569,6 +12563,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11646,6 +12646,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11719,6 +12725,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11794,6 +12806,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -11867,6 +12885,12 @@
           "counterplay_assertion": "Vulnerable to High-tempo lane pressure to punish Relic setup turn.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -11944,6 +12968,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -12018,6 +13048,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -12091,6 +13127,12 @@
           "counterplay_assertion": "Vulnerable to Replacing the active Environment with your own Environment card.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -12188,6 +13230,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -12262,6 +13310,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -12335,6 +13389,12 @@
           "counterplay_assertion": "Vulnerable to Replacing the active Environment with your own Environment card.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
@@ -12412,6 +13472,12 @@
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
       },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
+      },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
     },
@@ -12485,6 +13551,12 @@
           "counterplay_assertion": "Vulnerable to Replacing the active Environment with your own Environment card.",
           "lane_geometry_validation": "Complies with 3-lane front/back row positioning and legal target constraints."
         }
+      },
+      "rust_verification": {
+        "level_1_schema_valid": true,
+        "level_2_capability_compatible": true,
+        "level_3_behavioral_verified": true,
+        "unhandled_target_gaps": []
       },
       "classification": "metadata_enhancement_only",
       "final_recommended_disposition": "MERGE_METADATA_ENHANCEMENT: Integrate mechanic_test_specification non-destructively."
