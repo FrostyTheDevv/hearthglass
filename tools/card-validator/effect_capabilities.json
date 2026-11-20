@@ -1,0 +1,1365 @@
+{
+  "manifest_version": "1.0.0",
+  "updated_at": "2026-11-20T06:47:00.765Z",
+  "engine": "Rust hearthglass-battle-server v0.1.0",
+  "description": "Authoritative battle-engine ability execution and capability manifest for Foundations v1.",
+  "valid_operations": [
+    "deal_damage",
+    "heal",
+    "draw",
+    "discard",
+    "summon_token",
+    "destroy",
+    "return_to_hand",
+    "move_lane",
+    "add_counter",
+    "remove_counter",
+    "modify_stats",
+    "grant_keyword",
+    "silence",
+    "gain_aether",
+    "reclaim_from_discard",
+    "scry_top_deck"
+  ],
+  "valid_targets": [
+    "self",
+    "ally_leader",
+    "enemy_leader",
+    "enemy_in_lane",
+    "target_enemy_creature",
+    "all_enemy_creatures",
+    "all_ally_creatures",
+    "ally_creature_in_lane_or_any",
+    "strongest_ally_creature",
+    "open_ally_slot",
+    "event_source"
+  ],
+  "summary": {
+    "total_combinations": 176,
+    "canonical_combinations_in_use": 47,
+    "supported": 44,
+    "context_dependent": 3,
+    "unsupported": 49,
+    "invalid": 80
+  },
+  "matrix": {
+    "deal_damage": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Damage to target 'self' is semantically plausible but has 0 canonical cards in Foundations v1."
+      },
+      "ally_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Damage to target 'ally_leader' is semantically plausible but has 0 canonical cards in Foundations v1."
+      },
+      "enemy_leader": {
+        "status": "supported",
+        "canonical_card_count": 33,
+        "sample_cards": [
+          "EMB-C-0005",
+          "EMB-E-0008",
+          "GLS-C-0003",
+          "GLS-E-0008",
+          "NOC-C-0003"
+        ],
+        "description": "Fully supported by Rust battle server with 33 canonical card references."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 42,
+        "sample_cards": [
+          "EMB-C-0004",
+          "GLS-C-0004",
+          "STR-C-0003",
+          "EMB-C-0011",
+          "VER-C-0012"
+        ],
+        "description": "Fully supported by Rust battle server with 42 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 34,
+        "sample_cards": [
+          "EMB-T-0006",
+          "GLS-T-0006",
+          "NEU-T-0006",
+          "EMB-C-0012",
+          "EMB-T-0016"
+        ],
+        "description": "Fully supported by Rust battle server with 34 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "supported",
+        "canonical_card_count": 22,
+        "sample_cards": [
+          "EMB-C-0037",
+          "EMB-C-0041",
+          "EMB-T-0043",
+          "TID-T-0044",
+          "GLS-C-0041"
+        ],
+        "description": "Fully supported by Rust battle server with 22 canonical card references."
+      },
+      "all_ally_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Damage to target 'all_ally_creatures' is semantically plausible but has 0 canonical cards in Foundations v1."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Damage to target 'ally_creature_in_lane_or_any' is semantically plausible but has 0 canonical cards in Foundations v1."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Damage to target 'strongest_ally_creature' is semantically plausible but has 0 canonical cards in Foundations v1."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Cannot deal damage to an empty board slot 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "context_dependent",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "GLS-C-0002"
+        ],
+        "description": "Deals damage to triggering creature (requires reactive combat trigger such as when_damaged)."
+      }
+    },
+    "heal": {
+      "self": {
+        "status": "supported",
+        "canonical_card_count": 6,
+        "sample_cards": [
+          "IRN-C-0002",
+          "VER-C-0020",
+          "VER-C-0034",
+          "TID-C-0034",
+          "NEU-C-0078"
+        ],
+        "description": "Fully supported by Rust battle server with 6 canonical card references."
+      },
+      "ally_leader": {
+        "status": "supported",
+        "canonical_card_count": 94,
+        "sample_cards": [
+          "VER-C-0001",
+          "VER-R-0007",
+          "TID-C-0004",
+          "TID-E-0008",
+          "GRV-R-0007"
+        ],
+        "description": "Fully supported by Rust battle server with 94 canonical card references."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'enemy_leader' is not supported by standard rules."
+      },
+      "enemy_in_lane": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'enemy_in_lane' has 0 canonical card definitions in Foundations v1."
+      },
+      "target_enemy_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'target_enemy_creature' has 0 canonical card definitions in Foundations v1."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'all_enemy_creatures' has 0 canonical card definitions in Foundations v1."
+      },
+      "all_ally_creatures": {
+        "status": "supported",
+        "canonical_card_count": 14,
+        "sample_cards": [
+          "VER-T-0006",
+          "VER-E-0008",
+          "IRN-R-0017",
+          "IRN-R-0017",
+          "TID-C-0012"
+        ],
+        "description": "Fully supported by Rust battle server with 14 canonical card references."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 13,
+        "sample_cards": [
+          "IRN-T-0006",
+          "TID-T-0006",
+          "IRN-C-0010",
+          "TID-C-0010",
+          "VER-R-0030"
+        ],
+        "description": "Fully supported by Rust battle server with 13 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "supported",
+        "canonical_card_count": 3,
+        "sample_cards": [
+          "EMB-R-0046",
+          "IRN-C-0054",
+          "GRV-C-0054"
+        ],
+        "description": "Fully supported by Rust battle server with 3 canonical card references."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'open_ally_slot' is not supported by standard rules."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Healing target 'event_source' has 0 canonical card definitions in Foundations v1."
+      }
+    },
+    "draw": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'self'."
+      },
+      "ally_leader": {
+        "status": "supported",
+        "canonical_card_count": 77,
+        "sample_cards": [
+          "IRN-T-0006",
+          "TID-C-0004",
+          "TID-T-0006",
+          "NOC-C-0004",
+          "NOC-T-0006"
+        ],
+        "description": "Fully supported by Rust battle server with 77 canonical card references."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Semantically valid player operation reserved for future expansions but not used in Foundations v1."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'draw' requires a player leader target, but received creature/slot target 'event_source'."
+      }
+    },
+    "discard": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'self'."
+      },
+      "ally_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Hand discard operation reserved for future disruption archetypes."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Hand discard operation reserved for future disruption archetypes."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'discard' operates on player hands, not creature target 'event_source'."
+      }
+    },
+    "summon_token": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'self'."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "supported",
+        "canonical_card_count": 33,
+        "sample_cards": [
+          "VER-C-0004",
+          "IRN-C-0003",
+          "STR-C-0004",
+          "GRV-C-0001",
+          "GRV-C-0005"
+        ],
+        "description": "Fully supported by Rust battle server with 33 canonical card references."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'summon_token' requires 'open_ally_slot' destination; cannot target 'event_source'."
+      }
+    },
+    "destroy": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'self' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'destroy' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'destroy' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'enemy_in_lane' is valid in rules but has 0 canonical card definitions."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 4,
+        "sample_cards": [
+          "EMB-T-0059",
+          "NOC-T-0059",
+          "GRV-T-0059",
+          "NEU-T-0141"
+        ],
+        "description": "Fully supported by Rust battle server with 4 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'all_enemy_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_ally_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'all_ally_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'ally_creature_in_lane_or_any' is valid in rules but has 0 canonical card definitions."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'strongest_ally_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'destroy' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'destroy' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "return_to_hand": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'return_to_hand' with target 'self' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'return_to_hand' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'return_to_hand' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "TID-C-0053"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "TID-T-0043"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'return_to_hand' with target 'all_enemy_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_ally_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'return_to_hand' with target 'all_ally_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "NEU-T-0046"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'return_to_hand' with target 'strongest_ally_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'return_to_hand' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'return_to_hand' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "move_lane": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'self' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'move_lane' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'move_lane' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "TID-C-0040"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'target_enemy_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'all_enemy_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_ally_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'all_ally_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 8,
+        "sample_cards": [
+          "TID-C-0003",
+          "TID-T-0015",
+          "NEU-T-0014",
+          "TID-C-0022",
+          "TID-T-0027"
+        ],
+        "description": "Fully supported by Rust battle server with 8 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'strongest_ally_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'move_lane' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'move_lane' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "add_counter": {
+      "self": {
+        "status": "supported",
+        "canonical_card_count": 66,
+        "sample_cards": [
+          "EMB-C-0001",
+          "EMB-C-0002",
+          "EMB-C-0005",
+          "VER-C-0002",
+          "VER-C-0003"
+        ],
+        "description": "Fully supported by Rust battle server with 66 canonical card references."
+      },
+      "ally_leader": {
+        "status": "context_dependent",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "TID-R-0046"
+        ],
+        "description": "Adds resource counter to ally leader state (requires leader counter tracking)."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Counter addition to target 'enemy_leader' has 0 canonical card definitions."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 22,
+        "sample_cards": [
+          "EMB-C-0004",
+          "GRV-C-0002",
+          "GRV-C-0003",
+          "EMB-C-0011",
+          "GRV-C-0009"
+        ],
+        "description": "Fully supported by Rust battle server with 22 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 7,
+        "sample_cards": [
+          "EMB-T-0006",
+          "GRV-T-0015",
+          "GRV-E-0018",
+          "EMB-T-0027",
+          "GRV-T-0028"
+        ],
+        "description": "Fully supported by Rust battle server with 7 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "supported",
+        "canonical_card_count": 2,
+        "sample_cards": [
+          "GRV-C-0040",
+          "GRV-C-0041"
+        ],
+        "description": "Fully supported by Rust battle server with 2 canonical card references."
+      },
+      "all_ally_creatures": {
+        "status": "supported",
+        "canonical_card_count": 35,
+        "sample_cards": [
+          "VER-T-0006",
+          "IRN-C-0003",
+          "EMB-E-0018",
+          "VER-T-0016",
+          "IRN-E-0018"
+        ],
+        "description": "Fully supported by Rust battle server with 35 canonical card references."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 37,
+        "sample_cards": [
+          "EMB-C-0003",
+          "VER-C-0001",
+          "TID-T-0006",
+          "STR-T-0006",
+          "EMB-T-0015"
+        ],
+        "description": "Fully supported by Rust battle server with 37 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "supported",
+        "canonical_card_count": 22,
+        "sample_cards": [
+          "EMB-R-0007",
+          "VER-R-0007",
+          "IRN-R-0007",
+          "STR-R-0007",
+          "STR-R-0007"
+        ],
+        "description": "Fully supported by Rust battle server with 22 canonical card references."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Cannot place counters on an unoccupied board slot 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "context_dependent",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "EMB-C-0002"
+        ],
+        "description": "Adds counter to triggering creature (requires reactive event trigger)."
+      }
+    },
+    "remove_counter": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'self' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'remove_counter' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'remove_counter' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'enemy_in_lane' is valid in rules but has 0 canonical card definitions."
+      },
+      "target_enemy_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'target_enemy_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'all_enemy_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_ally_creatures": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "EMB-R-0031"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 2,
+        "sample_cards": [
+          "EMB-C-0012",
+          "EMB-C-0038"
+        ],
+        "description": "Fully supported by Rust battle server with 2 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'strongest_ally_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'remove_counter' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'remove_counter' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "modify_stats": {
+      "self": {
+        "status": "supported",
+        "canonical_card_count": 20,
+        "sample_cards": [
+          "EMB-C-0001",
+          "IRN-C-0001",
+          "IRN-C-0005",
+          "TID-C-0001",
+          "TID-C-0005"
+        ],
+        "description": "Fully supported by Rust battle server with 20 canonical card references."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'modify_stats' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'modify_stats' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "GRV-C-0003"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'modify_stats' with target 'target_enemy_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_enemy_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'modify_stats' with target 'all_enemy_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "all_ally_creatures": {
+        "status": "supported",
+        "canonical_card_count": 25,
+        "sample_cards": [
+          "EMB-E-0008",
+          "VER-E-0008",
+          "TID-R-0007",
+          "STR-C-0005",
+          "STR-E-0008"
+        ],
+        "description": "Fully supported by Rust battle server with 25 canonical card references."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 25,
+        "sample_cards": [
+          "EMB-C-0003",
+          "TID-C-0003",
+          "NOC-T-0006",
+          "STR-T-0006",
+          "EMB-T-0015"
+        ],
+        "description": "Fully supported by Rust battle server with 25 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "supported",
+        "canonical_card_count": 16,
+        "sample_cards": [
+          "EMB-R-0007",
+          "EMB-R-0007",
+          "IRN-R-0007",
+          "NOC-R-0007",
+          "EMB-R-0017"
+        ],
+        "description": "Fully supported by Rust battle server with 16 canonical card references."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'modify_stats' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'modify_stats' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "grant_keyword": {
+      "self": {
+        "status": "supported",
+        "canonical_card_count": 19,
+        "sample_cards": [
+          "VER-C-0005",
+          "EMB-C-0010",
+          "GLS-C-0012",
+          "NEU-C-0026",
+          "GLS-C-0035"
+        ],
+        "description": "Fully supported by Rust battle server with 19 canonical card references."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'grant_keyword' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'grant_keyword' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 13,
+        "sample_cards": [
+          "IRN-C-0004",
+          "VER-C-0013",
+          "IRN-C-0013",
+          "IRN-C-0013",
+          "STR-C-0012"
+        ],
+        "description": "Fully supported by Rust battle server with 13 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 5,
+        "sample_cards": [
+          "NOC-T-0015",
+          "VER-T-0027",
+          "IRN-T-0029",
+          "TID-T-0028",
+          "NEU-T-0087"
+        ],
+        "description": "Fully supported by Rust battle server with 5 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "supported",
+        "canonical_card_count": 2,
+        "sample_cards": [
+          "VER-T-0043",
+          "VER-T-0059"
+        ],
+        "description": "Fully supported by Rust battle server with 2 canonical card references."
+      },
+      "all_ally_creatures": {
+        "status": "supported",
+        "canonical_card_count": 19,
+        "sample_cards": [
+          "IRN-E-0008",
+          "TID-R-0007",
+          "GLS-C-0005",
+          "GLS-E-0008",
+          "NOC-E-0008"
+        ],
+        "description": "Fully supported by Rust battle server with 19 canonical card references."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "supported",
+        "canonical_card_count": 37,
+        "sample_cards": [
+          "IRN-T-0006",
+          "GLS-C-0004",
+          "GLS-T-0006",
+          "GLS-T-0006",
+          "NOC-T-0006"
+        ],
+        "description": "Fully supported by Rust battle server with 37 canonical card references."
+      },
+      "strongest_ally_creature": {
+        "status": "supported",
+        "canonical_card_count": 17,
+        "sample_cards": [
+          "IRN-E-0008",
+          "GLS-R-0007",
+          "GLS-R-0007",
+          "NOC-R-0007",
+          "GLS-R-0017"
+        ],
+        "description": "Fully supported by Rust battle server with 17 canonical card references."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'grant_keyword' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'grant_keyword' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "silence": {
+      "self": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'silence' with target 'self' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'silence' can only target creatures, not 'ally_leader'."
+      },
+      "enemy_leader": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'silence' can only target creatures, not 'enemy_leader'."
+      },
+      "enemy_in_lane": {
+        "status": "supported",
+        "canonical_card_count": 14,
+        "sample_cards": [
+          "NOC-C-0002",
+          "GLS-C-0012",
+          "NOC-C-0014",
+          "NEU-C-0012",
+          "NOC-C-0026"
+        ],
+        "description": "Fully supported by Rust battle server with 14 canonical card references."
+      },
+      "target_enemy_creature": {
+        "status": "supported",
+        "canonical_card_count": 10,
+        "sample_cards": [
+          "IRN-T-0016",
+          "NOC-T-0015",
+          "IRN-T-0029",
+          "GLS-T-0029",
+          "NOC-T-0028"
+        ],
+        "description": "Fully supported by Rust battle server with 10 canonical card references."
+      },
+      "all_enemy_creatures": {
+        "status": "supported",
+        "canonical_card_count": 1,
+        "sample_cards": [
+          "NOC-C-0055"
+        ],
+        "description": "Fully supported by Rust battle server with 1 canonical card references."
+      },
+      "all_ally_creatures": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'silence' with target 'all_ally_creatures' is valid in rules but has 0 canonical card definitions."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'silence' with target 'ally_creature_in_lane_or_any' is valid in rules but has 0 canonical card definitions."
+      },
+      "strongest_ally_creature": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'silence' with target 'strongest_ally_creature' is valid in rules but has 0 canonical card definitions."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'silence' can only target creatures, not 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Creature-targeting operation 'silence' with target 'event_source' is valid in rules but has 0 canonical card definitions."
+      }
+    },
+    "gain_aether": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'self'."
+      },
+      "ally_leader": {
+        "status": "supported",
+        "canonical_card_count": 14,
+        "sample_cards": [
+          "IRN-R-0007",
+          "STR-R-0017",
+          "VER-T-0029",
+          "NOC-C-0019",
+          "STR-T-0029"
+        ],
+        "description": "Fully supported by Rust battle server with 14 canonical card references."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Semantically valid player operation reserved for future expansions but not used in Foundations v1."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'gain_aether' requires a player leader target, but received creature/slot target 'event_source'."
+      }
+    },
+    "reclaim_from_discard": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'self'."
+      },
+      "ally_leader": {
+        "status": "supported",
+        "canonical_card_count": 12,
+        "sample_cards": [
+          "GRV-C-0004",
+          "GRV-T-0006",
+          "GRV-T-0016",
+          "GRV-C-0023",
+          "GRV-C-0026"
+        ],
+        "description": "Fully supported by Rust battle server with 12 canonical card references."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Semantically valid player operation reserved for future expansions but not used in Foundations v1."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'reclaim_from_discard' requires a player leader target, but received creature/slot target 'event_source'."
+      }
+    },
+    "scry_top_deck": {
+      "self": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'self'."
+      },
+      "ally_leader": {
+        "status": "supported",
+        "canonical_card_count": 33,
+        "sample_cards": [
+          "IRN-C-0009",
+          "GLS-R-0030",
+          "STR-C-0020",
+          "STR-C-0023",
+          "STR-T-0027"
+        ],
+        "description": "Fully supported by Rust battle server with 33 canonical card references."
+      },
+      "enemy_leader": {
+        "status": "unsupported",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Semantically valid player operation reserved for future expansions but not used in Foundations v1."
+      },
+      "enemy_in_lane": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'enemy_in_lane'."
+      },
+      "target_enemy_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'target_enemy_creature'."
+      },
+      "all_enemy_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'all_enemy_creatures'."
+      },
+      "all_ally_creatures": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'all_ally_creatures'."
+      },
+      "ally_creature_in_lane_or_any": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'ally_creature_in_lane_or_any'."
+      },
+      "strongest_ally_creature": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'strongest_ally_creature'."
+      },
+      "open_ally_slot": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'open_ally_slot'."
+      },
+      "event_source": {
+        "status": "invalid",
+        "canonical_card_count": 0,
+        "sample_cards": [],
+        "description": "Operation 'scry_top_deck' requires a player leader target, but received creature/slot target 'event_source'."
+      }
+    }
+  }
+}

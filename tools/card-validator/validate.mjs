@@ -124,8 +124,12 @@ const RELEASE_640_RARITY_CAPS = {
 export function validateCardCatalogue() {
   const bundlePath = path.join(ROOT, 'content', 'cards', 'foundations_v1.json');
   const decksPath = path.join(ROOT, 'content', 'cards', 'starter_decks.json');
+  const capabilitiesPath = path.join(ROOT, 'content', 'engine', 'effect_capabilities.json');
   const bundle = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
   const decksFile = JSON.parse(fs.readFileSync(decksPath, 'utf8'));
+  const capabilitiesManifest = fs.existsSync(capabilitiesPath)
+    ? JSON.parse(fs.readFileSync(capabilitiesPath, 'utf8'))
+    : { matrix: {} };
 
   const errors = [];
   const qualityWarnings = [];
@@ -227,6 +231,14 @@ export function validateCardCatalogue() {
         }
         if (eff.target && !VALID_TARGETS.has(eff.target)) {
           errors.push(`Card ${card.id} has invalid effect target: ${eff.target}`);
+        }
+        if (eff.operation && eff.target && capabilitiesManifest.matrix) {
+          const cap = capabilitiesManifest.matrix[eff.operation]?.[eff.target];
+          if (!cap) {
+            errors.push(`Card ${card.id} has unmapped capability: ${eff.operation} -> ${eff.target}`);
+          } else if (cap.status === 'unsupported' || cap.status === 'invalid') {
+            errors.push(`Card ${card.id} uses ${cap.status} effect: ${eff.operation} -> ${eff.target} (${cap.description})`);
+          }
         }
       }
     }

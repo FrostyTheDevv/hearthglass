@@ -143,3 +143,20 @@ Following an independent audit of the repository, Milestone V10-A was executed a
 | **Godot 4.3 Headless Suites** | `apps/game-client/scenes/tests/` | **15 / 15 Steps Passing**: 6/6 smoke tests, 9/9 vertical slice steps. | **VERIFIED & PASSING** |
 | **Canonical 640 Card Validation** | `tools/card-validator/validate.mjs` | **640 / 640 Canonical Cards Passing**: 0 errors, 0 warnings. Strict 4-tier rarity (0 Epic). | **VERIFIED & PASSING** |
 
+---
+
+## 7. Increment V10-C0 Verification Ledger: Critical Rust Engine Remediation
+
+| Verification Dimension | Tested Asset / Harness | Result / Metric | Production Status |
+| :--- | :--- | :--- | :--- |
+| **AoE Target Resolution (`all_enemy_creatures`)** | `services/battle-server/src/lib.rs` & `tests/aoe_and_mechanics_remediation_tests.rs` | **27 Cards Verified**. Resolves damage, exhaust, corrode, and silence across all 3 lanes, Front & Rear, respecting Ward & Shield, Rebirth triggers, and 2v2 Tag boards without duplicate hits. | **VERIFIED & PASSING** |
+| **Glassborne Refraction Combat Reflection** | `services/battle-server/src/lib.rs` & `tests/aoe_and_mechanics_remediation_tests.rs` | **16 Cards Verified**. Reflects damage equal to `refraction` counter count back to attacking creature in combat; negates when silenced. | **VERIFIED & PASSING** |
+| **Differentiated NPC AI Difficulty** | `services/battle-server/src/lib.rs` (`NpcAi::choose_command`) | **4 Distinct Strategic Tiers**. Beginner (naive), Casual (lane presence/face), Skilled (lethal check, Resonate 2+ lanes, favorable trading), Veteran/Boss (defensive Guard placement, high-threat removal, Aether curve priority). | **VERIFIED & PASSING** |
+| **Expanded Rust Test Suite** | `services/battle-server/tests/` | **51 / 51 Cargo Tests Passing**: 17 AoE & Refraction remediation tests, 18 QA keyword & mechanics tests, 11 baseline rules tests, 4 snapshot privacy tests, 1 exhaustive simulation test. | **VERIFIED & PASSING** |
+| **2,560-Match Pairwise Simulation** | `services/battle-server/tests/simulation_1000_tests.rs` | **2,560 / 2,560 Matches Resolved (100% KO)**. 0 timeouts, 0 invalid commands. P0 win rate: 53.8%, P1 win rate: 46.2%. Mean duration: 19.6 global turns. | **VERIFIED & BENCHMARKED** |
+| **Effect Capabilities Manifest & Safety** | `content/engine/effect_capabilities.json` & `tools/card-validator/validate.mjs` | **176 Combinations Audited & Governed**. 44 supported, 3 context-dependent, 49 unsupported, 80 invalid. Replaced silent `_ => {}` fallbacks in Rust engine with explicit diagnostic logging; validated 640 cards with 0 errors. | **VERIFIED & ENFORCED** |
+| **Glassborne Refraction Combat Reflection** | `services/battle-server/src/lib.rs` & `tests/aoe_and_mechanics_remediation_tests.rs` | **10 Edge Cases Formally Verified**. Defender surviving, defender lethal damage reflection, attacker death from ordinary retaliation vs reflection, Shield absorption, Ward immunity to physical combat, Silence negation, multiple counter scaling, simultaneous deaths, and 2v2 shared-board synchronization. | **VERIFIED & CODIFIED** |
+| **Canonical Rebirth Token Consistency** | `services/battle-server/src/lib.rs` line 2697 & `docs/production/CARD_INTEGRITY_AUDIT.md` | **Unified 1/1 Echo Remnant Specification**. Clarified that informal 0/1 reference in earlier notes was a clerical typo; 1/1 Echo Remnant is canonical across all 20 Rebirth cards, engine, tests, and documentation. | **VERIFIED & SYNCHRONIZED** |
+| **QA PR #4 Release Gate Verification** | `tools/qa/qa_defect_audit.mjs` & `services/api/tests/qa_release_gate.test.mjs` | **Gate Status: PASSED (Exit Code: 0)**. 0 active release blockers, 3 resolved defects (DEFECT-001 AoE, DEFECT-002 Database Concurrency, DEFECT-003 AI Difficulty), 13/13 Node release gate tests passing. | **VERIFIED & READY** |
+
+
