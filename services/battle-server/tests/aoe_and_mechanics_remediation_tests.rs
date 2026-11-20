@@ -359,6 +359,333 @@ fn test_glassborne_refraction_does_not_reflect_when_silenced() {
     assert_eq!(att_now.health, 5, "Silenced unit must not reflect damage");
 }
 
+#[test]
+fn test_glassborne_refraction_defender_lethal_damage_still_reflects() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 510).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // P0 defender has 2 HP, 0 ATK, and 2 Refraction counters
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 2, vec![]);
+    defender.counters.insert("refraction".to_string(), 2);
+    state.players[0].lanes[0].front = Some(defender);
+
+    // P1 attacker has 5 ATK, 6 HP (lethal damage to defender)
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 5, 6, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Defender took lethal damage (2 - 5 = -3) and died (cleaned up by state-based actions)
+    assert!(state.players[0].lanes[0].front.is_none(), "Defender must die from lethal damage");
+
+    // Attacker received 2 reflected damage from Refraction before defender was cleaned up: 6 - 2 = 4
+    let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(att_now.health, 4, "Attacker must take 2 reflected damage even when defender takes lethal damage");
+}
+
+#[test]
+fn test_glassborne_refraction_attacker_dies_from_ordinary_retaliation() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 511).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // P0 defender has 4 ATK, 5 HP, and 1 Refraction counter
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 4, 5, vec![]);
+    defender.counters.insert("refraction".to_string(), 1);
+    state.players[0].lanes[0].front = Some(defender);
+
+    // P1 attacker has 2 ATK, 3 HP (ordinary retaliation of 4 ATK is lethal alone)
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 2, 3, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Defender survived with 5 - 2 = 3 HP
+    let def_now = state.players[0].lanes[0].front.as_ref().unwrap();
+    assert_eq!(def_now.health, 3);
+
+    // Attacker died (3 - 4 retaliation - 1 refraction = -2 HP)
+    assert!(state.players[1].lanes[0].front.is_none(), "Attacker must die from retaliation + refraction");
+}
+
+#[test]
+fn test_glassborne_refraction_attacker_dies_from_reflected_damage() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 512).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // P0 defender has 0 ATK (0 retaliation damage), 6 HP, and 3 Refraction counters
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 6, vec![]);
+    defender.counters.insert("refraction".to_string(), 3);
+    state.players[0].lanes[0].front = Some(defender);
+
+    // P1 attacker has 2 ATK, 3 HP (survives 0 retaliation, but dies to 3 Reflected damage!)
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 2, 3, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Defender survived: 6 - 2 = 4 HP
+    let def_now = state.players[0].lanes[0].front.as_ref().unwrap();
+    assert_eq!(def_now.health, 4);
+
+    // Attacker took 0 retaliation + 3 reflected damage = 3 total -> dies (health = 0)
+    assert!(state.players[1].lanes[0].front.is_none(), "Attacker must die specifically from reflected damage");
+}
+
+#[test]
+fn test_glassborne_refraction_shield_absorption_scenarios() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+
+    // Scenario A: Defender has Shield. Shield absorbs incoming attack, and defender still reflects.
+    {
+        let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 513).unwrap();
+        assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+        let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 5, vec!["shield"]);
+        defender.counters.insert("refraction".to_string(), 2);
+        state.players[0].lanes[0].front = Some(defender);
+
+        let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 3, 5, vec![]);
+        state.players[1].lanes[0].front = Some(attacker);
+
+        let res = state.apply_command(
+            BattleCommand::AttackCreature {
+                player: 1,
+                attacker_lane: 0,
+                attacker_position: SlotPosition::Front,
+                defender_lane: 0,
+                defender_position: SlotPosition::Front,
+            },
+            &catalogue,
+        );
+        assert!(res.accepted);
+
+        // Defender Shield absorbed attack: health remains 5, Shield consumed
+        let def_now = state.players[0].lanes[0].front.as_ref().unwrap();
+        assert_eq!(def_now.health, 5, "Defender Shield must absorb all combat damage");
+        assert!(!def_now.has_keyword("shield"), "Defender Shield must be popped");
+
+        // Attacker struck mirror: takes 2 reflected damage (5 - 2 = 3)
+        let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+        assert_eq!(att_now.health, 3, "Attacker takes reflected damage from striking Shielded mirror");
+    }
+
+    // Scenario B: Attacker has Shield. Attacker's Shield absorbs Refraction reflection.
+    {
+        let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 514).unwrap();
+        assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+        let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 5, vec![]);
+        defender.counters.insert("refraction".to_string(), 2);
+        state.players[0].lanes[0].front = Some(defender);
+
+        let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 2, 4, vec!["shield"]);
+        state.players[1].lanes[0].front = Some(attacker);
+
+        let res = state.apply_command(
+            BattleCommand::AttackCreature {
+                player: 1,
+                attacker_lane: 0,
+                attacker_position: SlotPosition::Front,
+                defender_lane: 0,
+                defender_position: SlotPosition::Front,
+            },
+            &catalogue,
+        );
+        assert!(res.accepted);
+
+        // Attacker Shield absorbed reflected damage (defender has 0 ATK)
+        let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+        assert_eq!(att_now.health, 4, "Attacker Shield absorbs Refraction damage");
+        assert!(!att_now.has_keyword("shield"), "Attacker Shield is popped by reflection");
+    }
+}
+
+#[test]
+fn test_glassborne_refraction_ward_in_combat_does_not_block_physical_attacks() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 515).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // Defender has Ward and Refraction
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 5, vec!["ward"]);
+    defender.counters.insert("refraction".to_string(), 2);
+    state.players[0].lanes[0].front = Some(defender);
+
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 3, 5, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Physical combat damage bypasses Ward (Ward only blocks spells/abilities)
+    let def_now = state.players[0].lanes[0].front.as_ref().unwrap();
+    assert_eq!(def_now.health, 2, "Physical attack deals normal damage through Ward");
+    assert!(def_now.has_keyword("ward"), "Ward remains intact after physical combat");
+
+    // Attacker takes 2 reflected damage
+    let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(att_now.health, 3, "Attacker takes 2 reflected damage");
+}
+
+#[test]
+fn test_glassborne_refraction_scales_with_multiple_counters() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 516).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // Defender has 5 Refraction counters
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 10, vec![]);
+    defender.counters.insert("refraction".to_string(), 5);
+    state.players[0].lanes[0].front = Some(defender);
+
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 2, 10, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Attacker takes exactly 5 reflected damage: 10 - 5 = 5
+    let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(att_now.health, 5, "Attacker must take exactly 5 reflected damage for 5 counters");
+}
+
+#[test]
+fn test_glassborne_refraction_simultaneous_deaths_in_combat() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 517).unwrap();
+
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+
+    // P0 defender: 2 HP, 0 ATK, 2 Refraction counters
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 2, vec![]);
+    defender.counters.insert("refraction".to_string(), 2);
+    state.players[0].lanes[0].front = Some(defender);
+
+    // P1 attacker: 2 HP, 4 ATK (kills defender with 4 dmg, dies from 2 reflected dmg)
+    let attacker = create_custom_unit(2001, "P1_ATT", "P1 Attacker", 1, 4, 2, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Both units die simultaneously and their slots are cleared
+    assert!(state.players[0].lanes[0].front.is_none(), "Defender must be destroyed");
+    assert!(state.players[1].lanes[0].front.is_none(), "Attacker must be destroyed simultaneously");
+}
+
+#[test]
+fn test_glassborne_refraction_2v2_shared_board_combat() {
+    let (catalogue, decks) = load_catalogue_and_decks();
+    let mut state = MatchState::new_2v2(
+        [
+            &decks.decks[0],
+            &decks.decks[1],
+            &decks.decks[2],
+            &decks.decks[3],
+        ],
+        &catalogue,
+        518,
+    )
+    .unwrap();
+
+    // Advance to Turn 2 (active player Seat 1 on Team 1)
+    assert!(state.apply_command(BattleCommand::EndTurn { player: 0 }, &catalogue).accepted);
+    assert_eq!(state.active_player, 1);
+
+    // Team 0 has Glassborne defender on shared board holder 0
+    let mut defender = create_custom_unit(1001, "GLS_DEF", "Glass Defender", 0, 0, 5, vec![]);
+    defender.counters.insert("refraction".to_string(), 2);
+    state.players[0].lanes[0].front = Some(defender);
+
+    // Team 1 has attacking unit owned by Seat 1 on shared board holder 1
+    let attacker = create_custom_unit(2001, "T1_ATT", "Team 1 Attacker", 1, 3, 5, vec![]);
+    state.players[1].lanes[0].front = Some(attacker);
+
+    let res = state.apply_command(
+        BattleCommand::AttackCreature {
+            player: 1,
+            attacker_lane: 0,
+            attacker_position: SlotPosition::Front,
+            defender_lane: 0,
+            defender_position: SlotPosition::Front,
+        },
+        &catalogue,
+    );
+    assert!(res.accepted);
+
+    // Team 1 attacker takes 2 reflected damage: 5 - 2 = 3
+    let att_now = state.players[1].lanes[0].front.as_ref().unwrap();
+    assert_eq!(att_now.health, 3, "2v2 attacker receives reflected damage on shared board");
+
+    // Verify Seat 3 (partner on Team 1) has synchronized shared board with exact damage
+    assert_eq!(state.players[3].lanes[0].front.as_ref().unwrap().health, 3);
+}
+
 // =========================================================================
 // 3. AI DIFFICULTY EVALUATION DIFFERENTIATION (TASK 4)
 // =========================================================================

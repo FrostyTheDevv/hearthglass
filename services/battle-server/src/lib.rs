@@ -2225,7 +2225,12 @@ pub fn compute_checksum(&self) -> u64 {
                             self.apply_damage_to_creature(p, l, pos, amount, events);
                         }
                     }
-                    _ => {}
+                    _ => {
+                        eprintln!(
+                            "[BATTLE ENGINE WARN] Unsupported target '{}' for operation 'deal_damage' in controller {}",
+                            effect.target, controller
+                        );
+                    }
                 }
             }
             "heal" => {
@@ -2270,7 +2275,12 @@ pub fn compute_checksum(&self) -> u64 {
                             }
                         }
                     }
-                    _ => {}
+                    _ => {
+                        eprintln!(
+                            "[BATTLE ENGINE WARN] Unsupported target '{}' for operation 'heal' in controller {}",
+                            effect.target, controller
+                        );
+                    }
                 }
             }
             "draw" => {
@@ -2430,6 +2440,9 @@ pub fn compute_checksum(&self) -> u64 {
                 );
                 for (p, l, pos) in targets {
                     let p_bh = self.board_holder(p);
+                    if p_bh != bh && self.consume_ward_if_present(p_bh, l, pos, events) {
+                        continue;
+                    }
                     if let Some(u) = self.players[p_bh].lanes[l].get(pos).cloned() {
                         if u.has_keyword("anchor") {
                             continue;
@@ -2514,6 +2527,9 @@ pub fn compute_checksum(&self) -> u64 {
                     self.find_ally_target(bh, source_slot.map(|(l, _)| l))
                 };
                 if let Some((from_l, from_pos)) = target_slot {
+                    if is_enemy && self.consume_ward_if_present(opponent, from_l, from_pos, events) {
+                        return;
+                    }
                     for candidate_lane in 0..NUM_LANES {
                         if candidate_lane.abs_diff(from_l) == 1 {
                             for candidate_pos in [SlotPosition::Front, SlotPosition::Rear] {
@@ -2546,7 +2562,12 @@ pub fn compute_checksum(&self) -> u64 {
                     }
                 }
             }
-            _ => {}
+            other => {
+                eprintln!(
+                    "[BATTLE ENGINE WARN] Unsupported effect operation '{}' (target: '{}') in controller {}",
+                    other, effect.target, controller
+                );
+            }
         }
     }
 
@@ -2629,7 +2650,13 @@ pub fn compute_checksum(&self) -> u64 {
                 }
                 out
             }
-            _ => Vec::new(),
+            _ => {
+                eprintln!(
+                    "[BATTLE ENGINE WARN] Unsupported creature target selector '{}' in controller {}",
+                    target_spec, controller
+                );
+                Vec::new()
+            }
         }
     }
 
