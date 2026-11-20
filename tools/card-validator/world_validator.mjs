@@ -746,12 +746,12 @@ export function validateWorldContent(options = {}) {
     // Baseline Engine (1b1e179)
     level_2_baseline_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
     level_2_baseline_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
-    // Post-Fix PR #5 Remediated Engine (9315bc9)
+    // Post-Fix PR #5 Remediated Engine (Merged Master ca73a75 / 8273cf8)
     level_2_pr5_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'pr5')))).length,
     level_2_pr5_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'pr5')))).length,
-    // Preserved fields for existing test suite compatibility (reporting baseline values)
-    level_2_capability_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
-    level_2_unhandled_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'baseline')))).length,
+    // Current-engine capability aliases (pointing to merged master ca73a75 / 8273cf8: 160/0)
+    level_2_capability_compatible: (stagedCardsData?.cards || []).filter(c => !(c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'pr5')))).length,
+    level_2_unhandled_gaps: (stagedCardsData?.cards || []).filter(c => (c.abilities || []).some(a => (a.effects || []).some(e => !isRustCapabilityHandled(e, 'pr5')))).length,
     // Honest Level 3 Accounting: source test-proven assertions only
     level_3_broad_execution_tested: stagedCardsData?.cards?.length || 0,
     level_3_deep_behavioral_asserted: 0,
@@ -760,8 +760,9 @@ export function validateWorldContent(options = {}) {
     // Canonical 640 metrics under merged PR #5 (ca73a75 / 8273cf8)
     canonical_640_pr5_compatible: 640,
     canonical_640_pr5_gaps: 0,
-    canonical_640_deep_behavioral_asserted: 14,
-    canonical_640_deep_assertion_pending: 626,
+    canonical_640_deep_behavioral_asserted: 8,
+    canonical_640_deep_assertion_pending: 632,
+    canonical_partial_effect_asserted: 6,
     canonical_excluded_deck_and_generic_tested: 15
   };
 

@@ -23,7 +23,7 @@ By analyzing the authoritative Git commit lineage and auditing against the basel
 3. A schema-accurate field-by-field audit protecting ID, name, faction, type, rarity, cost (`cost`), stats (`attack`, `health`), keywords, complete abilities/effect AST, and rules metadata.
 4. A three-level validation hierarchy distinguishing Schema Validity (Level 1), Rust Capability Compatibility (Level 2), and Behavioral Verification (Level 3).
 5. A comparative audit contrasting baseline engine capabilities (`1b1e179`), intermediate remediations (`9315bc9`), and merged master capabilities (`ca73a75` / `8273cf8`), verifying 100% capability coverage across both Foundations 640 (0 gaps) and Staged 160 (0 gaps).
-6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test source evidence (14 canonical baseline cards with verified effect assertions, 15 cards excluded due to deck-building/generic scope, 0 staged expansion cards tested in dedicated unit tests, 160 staged cards pending deep secondary-effect assertions).
+6. Honest accounting of Level 3 behavioral verification, separating broad execution testing from deep state-delta assertion testing backed by explicit Rust test source evidence and enforcing the multi-effect coverage rule (8 canonical baseline cards with 100% complete effect assertions, 6 cards with partial effect assertions, 15 cards excluded due to deck-building/generic scope or dummy/mock placement, 632 canonical cards pending deep secondary-effect assertions, 0 staged expansion cards tested in dedicated unit tests, 160 staged cards pending deep secondary-effect assertions).
 
 ---
 
@@ -101,7 +101,7 @@ To prevent conflating schema validity with execution reality, the engine audit e
 flowchart TD
     L1["LEVEL 1: Schema Validity\n(160/160 Staged | 640/640 Canonical)\nRecognized triggers, operations, targets in JSON"]
     L2["LEVEL 2: Rust Capability Compatibility\n(160/160 Staged | 640/640 Canonical under Merged Master ca73a75 / 8273cf8)\nOperation-Target handled in battle-server match arms"]
-    L3["LEVEL 3: Behavioral Verification\n(640/640 Broad Execution Tested | 14 Canonical Effect Asserted | 0 Staged Deep Asserted / 160 Pending)\nExecutable Rust tests proving board state mutations"]
+    L3["LEVEL 3: Behavioral Verification\n(640/640 Broad Execution Tested | 8 Canonical Full Effect Asserted | 6 Partial | 632 Pending Canonical | 0 Staged Deep Asserted / 160 Pending)\nExecutable Rust tests proving board state mutations"]
 
     L1 --> L2
     L2 --> L3
@@ -136,6 +136,9 @@ The evolution of engine capabilities across master revisions is:
 +--------------------------+-----------------------+-------------------------+---------------------------------+
 ```
 
+#### Validator & API Output Alignment:
+In validator reports and automated tests, current-engine capability aliases (`level_2_capability_compatible` and `level_2_unhandled_gaps`) are aligned to the merged master PR #5 engine (`ca73a75` / `8273cf8`), returning **160 compatible** and **0 gaps**. Baseline figures are explicitly retained under distinct baseline fields (`level_2_baseline_compatible: 140` and `level_2_baseline_gaps: 20`) to document historical engine evolution without implying active gaps in the current runtime.
+
 #### Verification of Prior Foundations 640 Gaps:
 Under merged commit `ca73a75` (`8273cf8`), both previous gaps are fully resolved:
 1. **`TID-C-0040` (Abyssal Undertow-Caller):**
@@ -153,6 +156,9 @@ Both Foundations 640 and Staged 160 are **100.0% Level 2 compatible** with **0 r
 
 To maintain strict truth-in-advertising and prevent associating generic tests with specific card definitions, Level 3 reporting is decoupled from Level 2 capability matching and grounded exclusively in verified test source code:
 
+#### Multi-Effect Card Coverage Rule
+Cards defining multiple effects in their ability AST (or composite combat triggers) are **only** counted as Level 3 deep behavioral verified when *each relevant effect* is explicitly exercised and asserted in test code. If a test exercises only one effect of a multi-effect card (e.g., asserts damage but leaves secondary counter application unasserted), or exercises the card only as a passive combatant without triggering its active ability, the card is classified as **Partially Asserted** and excluded from the deep behavioral verified total.
+
 #### 1. Broad Deployment & State-Delta Execution Tested (160 / 160 Staged | 640 / 640 Canonical)
 - **Backing Rust Test:** `test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta` in `services/battle-server/tests/rules_engine_tests.rs`.
 - **Verified Invariants:**
@@ -163,23 +169,17 @@ To maintain strict truth-in-advertising and prevent associating generic tests wi
   - Relics occupy relic slot; Environments occupy active environment slot.
   - Battle state emits matching `BattleEvent` instances.
 
-#### 2. Deep Behavioral State-Delta Assertions (14 Retained Canonical Cards)
-To ensure absolute fidelity, only cards whose specific effects/abilities are directly exercised and asserted in dedicated Rust test functions are credited as Level 3 verified. All occurrences are verified via automated source validation (`validateTestProvenCardSources()`):
+#### 2. Deep Behavioral State-Delta Assertions (8 Retained Canonical Cards with Full Effect Coverage)
+To ensure absolute fidelity, only cards where *all defined ability effects* are directly exercised and asserted in dedicated Rust test functions are credited as Level 3 deep verified. All occurrences are verified via automated source validation (`validateTestProvenCardSources()`):
 
 ```
 +------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
 | Card ID    | Card Name                 | Backing Test Function             | Relevant Assertion Scope                                    |
 +------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
-| EMB-T-0006 | Molten Reckoning          | test_keywords_ward_shield_...     | Plays 4-damage tactic; asserts command accepted & Ward event|
 | EMB-C-0019 | Cinderpike Halberdier     | test_all_eight_faction_mechanics..| Attacks leader; asserts heat counter incremented to 1       |
-| EMB-T-0043 | Cinder-Vent Eruption      | test_aoe_deal_damage_hits_all_... | Plays AoE tactic; asserts 1 damage across front & rear enemy|
 | VER-C-0019 | Briarhorn Stag            | test_all_eight_faction_mechanics..| Attacks leader; asserts growth counter & +1/+1 buff (3/4)   |
 | VER-T-0043 | Entangling Root-Surge     | test_aoe_grant_keyword_exhaust_...| Plays AoE tactic; asserts exhaust keyword granted across enemy|
 | IRN-C-0019 | Piston-Pike Automaton     | test_all_eight_faction_mechanics..| Summons; asserts assembly counter increment & shield keyword|
-| TID-C-0001 | Reefstep Scout            | test_keywords_ward_shield_...     | Moves lane via skirmish; asserts current counter & +1/+1    |
-| GLS-C-0001 | Prismblade Apprentice     | test_keywords_ward_shield_...     | Summons with Ward; asserts hostile tactic negated & consumed|
-| STR-T-0027 | Chart the Meridian        | test_all_eight_faction_mechanics..| Plays tactic; asserts scry/draw hand count preservation     |
-| GRV-C-0019 | Barrow-Hound Stalker      | test_all_eight_faction_mechanics..| Destroyed; asserts Rebirth token & Reclaim hand receipt     |
 | GRV-C-0023 | Wicker-Lantern Guide      | test_all_eight_faction_mechanics..| Summons; asserts on_summon reclaim retrieves card to hand   |
 | GRV-C-0040 | Ossuary Tomb-Warden       | test_aoe_add_counter_corrode_...  | Summons; asserts on_summon corrode counter debuff across lane|
 | NEU-T-0042 | Disruptive Counter-Chime  | test_keyword_silence_removes_...  | Plays silence tactic; asserts counters cleared & debuffed   |
@@ -187,7 +187,23 @@ To ensure absolute fidelity, only cards whose specific effects/abilities are dir
 +------------+---------------------------+-----------------------------------+-------------------------------------------------------------+
 ```
 
-#### 3. Excluded Test Occurrences (15 Excluded Cards)
+#### 3. Partially Asserted Canonical Cards (6 Cards with Unasserted Secondary Effects)
+The following 6 cards appear in Rust test assertions but are excluded from the deep behavioral verified count because one or more defined effects are unasserted:
+
+```
++------------+---------------------------+---------------------------------------------------------------------------------------------+
+| Card ID    | Card Name                 | Partial Assertion Audit Details                                                             |
++------------+---------------------------+---------------------------------------------------------------------------------------------+
+| EMB-T-0006 | Molten Reckoning          | deal_damage 4 asserted via Ward absorption; secondary effect (add_counter burn 1) unasserted|
+| EMB-T-0043 | Cinder-Vent Eruption      | AoE 1 damage asserted across enemy board; secondary effect (add_counter burn 2) unasserted  |
+| STR-T-0027 | Chart the Meridian        | draw 1 asserted via hand preservation; secondary effect (scry_top_deck 2) unasserted        |
+| TID-C-0001 | Reefstep Scout            | modify_stats attack buff to 3 asserted; add_counter current 1 & health delta unasserted    |
+| GLS-C-0001 | Prismblade Apprentice     | Acts only as passive defender to test Ward keyword; after_this_attacks refraction not tested|
+| GRV-C-0019 | Barrow-Hound Stalker      | Rebirth token & Reclaim hand receipt verified; on_death reclaim counter unasserted          |
++------------+---------------------------+---------------------------------------------------------------------------------------------+
+```
+
+#### 4. Excluded Test Occurrences (15 Excluded Cards)
 The following 15 card IDs appear in test source code but are strictly excluded from Level 3 deep behavioral counts because they do not exercise that card's specific effect AST:
 
 ```
@@ -212,7 +228,7 @@ The following 15 card IDs appear in test source code but are strictly excluded f
 +------------+---------------------------+---------------------------------------------------------------------------------+
 ```
 
-#### 4. Staged 160 Level 3 Status: 0 Deep Assertions / 160 Pending
+#### 5. Staged 160 Level 3 Status: 0 Deep Assertions / 160 Pending
 - **Staged Deep Asserted Count:** Exactly **0** staged expansion cards appear in dedicated unit tests in Rust source files.
 - **Staged Broad Tested Count:** All **160** staged expansion cards pass broad execution testing (deployment, cost deduction, board placement).
 - **Staged Deep Assertion Pending:** All **160** staged expansion cards remain pending dedicated secondary-effect unit tests in the Rust test suite.

@@ -161,34 +161,22 @@ export const RUST_TEST_IDENTIFIERS = {
 };
 
 /**
- * Canonical cards with explicit, effect-specific behavioral test assertions in Rust test sources:
+ * Canonical cards with 100% complete, effect-specific behavioral test assertions in Rust test sources,
+ * where each relevant effect defined in the card's ability AST is explicitly exercised and asserted:
  * - services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs
  * - services/battle-server/tests/qa_keyword_and_mechanics_tests.rs
  * - services/battle-server/tests/rules_engine_tests.rs
  *
- * Each card is tied to its exact test file, test function ID, and verified assertion scope.
+ * Multi-effect coverage rule: Cards with multiple effects are only counted deep when each relevant
+ * effect is covered and asserted in test code.
  */
-export const CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING = [
-  {
-    card_id: 'EMB-T-0006',
-    card_name: 'Molten Reckoning',
-    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
-    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
-    assertion_scope: 'Plays tactic dealing 4 damage; asserts command acceptance, damage resolution, and Ward trigger event emission'
-  },
+export const CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING = [
   {
     card_id: 'EMB-C-0019',
     card_name: 'Cinderpike Halberdier',
     test_file: 'services/battle-server/tests/rules_engine_tests.rs',
     test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
     assertion_scope: 'Attacks enemy leader; asserts heat counter increment on card (counters.get("heat") == 1)'
-  },
-  {
-    card_id: 'EMB-T-0043',
-    card_name: 'Cinder-Vent Eruption',
-    test_file: 'services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs',
-    test_function: 'test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes',
-    assertion_scope: 'Plays AoE tactic; asserts 1 damage across all front and rear enemy lanes without hitting friendly units'
   },
   {
     card_id: 'VER-C-0019',
@@ -210,34 +198,6 @@ export const CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING = [
     test_file: 'services/battle-server/tests/rules_engine_tests.rs',
     test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
     assertion_scope: 'Summons unit; asserts on_summon assembly counter attachment (counters.get("assembly") == 1) and shield keyword'
-  },
-  {
-    card_id: 'TID-C-0001',
-    card_name: 'Reefstep Scout',
-    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
-    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
-    assertion_scope: 'Moves lane via skirmish; asserts on_move current counter attachment and +1/+1 stat modification (3 attack)'
-  },
-  {
-    card_id: 'GLS-C-0001',
-    card_name: 'Prismblade Apprentice',
-    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
-    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
-    assertion_scope: 'Summons unit with Ward; targeted by hostile tactic; asserts Ward negates all damage (health remains 2) and is consumed'
-  },
-  {
-    card_id: 'STR-T-0027',
-    card_name: 'Chart the Meridian',
-    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
-    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
-    assertion_scope: 'Plays tactic; asserts scry/draw hand count preservation (hand.len() == hand_before)'
-  },
-  {
-    card_id: 'GRV-C-0019',
-    card_name: 'Barrow-Hound Stalker',
-    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
-    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
-    assertion_scope: 'Summons and destroys unit; asserts Rebirth token replacement on board, card in discard, and Reclaim return to hand with reclaimed=true'
   },
   {
     card_id: 'GRV-C-0023',
@@ -269,6 +229,58 @@ export const CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING = [
   }
 ];
 
+// Backwards-compatibility alias
+export const CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING = CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING;
+
+/**
+ * Cards with partial effect assertions (tested in Rust, but secondary effect AST not fully asserted,
+ * or ability not triggered in test execution).
+ */
+export const CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING = [
+  {
+    card_id: 'EMB-T-0006',
+    card_name: 'Molten Reckoning',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    partial_scope: 'Plays 4-damage tactic against Ward defender; damage absorption asserted, but secondary effect (add_counter burn 1) is not asserted'
+  },
+  {
+    card_id: 'EMB-T-0043',
+    card_name: 'Cinder-Vent Eruption',
+    test_file: 'services/battle-server/tests/aoe_and_mechanics_remediation_tests.rs',
+    test_function: 'test_aoe_deal_damage_hits_all_enemy_creatures_across_all_lanes',
+    partial_scope: 'Plays AoE tactic; 1 AoE damage asserted across enemy board, but secondary effect (add_counter burn 2) is not asserted'
+  },
+  {
+    card_id: 'STR-T-0027',
+    card_name: 'Chart the Meridian',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    partial_scope: 'Plays tactic; draw 1 asserted via hand count preservation, but secondary effect (scry_top_deck 2) is not asserted'
+  },
+  {
+    card_id: 'TID-C-0001',
+    card_name: 'Reefstep Scout',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    partial_scope: 'Moves lane via skirmish; attack buff to 3 asserted, but current counter attachment and health delta are not asserted'
+  },
+  {
+    card_id: 'GLS-C-0001',
+    card_name: 'Prismblade Apprentice',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_keywords_ward_shield_pierce_drain_rebirth_reclaim_skirmish',
+    partial_scope: 'Summons with Ward and acts as passive defender absorbing damage; after_this_attacks refraction ability is never triggered'
+  },
+  {
+    card_id: 'GRV-C-0019',
+    card_name: 'Barrow-Hound Stalker',
+    test_file: 'services/battle-server/tests/rules_engine_tests.rs',
+    test_function: 'test_all_eight_faction_mechanics_and_advanced_combat_resolutions',
+    partial_scope: 'Destroyed; Rebirth token replacement and Reclaim hand receipt verified, but on_death reclaim counter is not asserted'
+  }
+];
+
 /**
  * Detailed audit of cards present in test files but excluded from deep behavioral effect counts
  * due to only testing deck building, generic 640 execution, comment references, or dummy positioning.
@@ -292,7 +304,7 @@ export const EXCLUDED_TEST_CARDS_AUDIT = [
 ];
 
 export const CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS = new Set(
-  CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING.map(m => m.card_id)
+  CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.map(m => m.card_id)
 );
 
 // Backwards-compatibility export (empty set since 0 staged cards are in Rust test sources)
@@ -322,7 +334,7 @@ export function validateTestProvenCardSources() {
   }
 
   const results = [];
-  for (const entry of CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING) {
+  for (const entry of CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING) {
     const content = getFileContent(entry.test_file);
     if (!content) {
       results.push({ card_id: entry.card_id, verified: false, error: `File not found: ${entry.test_file}` });
@@ -354,8 +366,9 @@ export function validateTestProvenCardSources() {
 
   return {
     verified_count: results.filter(r => r.verified).length,
-    total_mapped: CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+    total_mapped: CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING.length,
     all_verified: results.every(r => r.verified),
+    partial_count: CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING.length,
     excluded_count: EXCLUDED_TEST_CARDS_AUDIT.length,
     details: results
   };
@@ -483,9 +496,10 @@ export function runReconciliation() {
     // Merged Master PR #5 Engine (ca73a75 / 8273cf8)
     level_2_pr5_compatible: 0,
     level_2_pr5_gaps: 0,
-    // Backward-compatibility aliases
-    level_2_rust_capability_compatible: 0,
+    // Current-engine aliases (pointing to merged master ca73a75 / 8273cf8 coverage: 160/0)
+    level_2_capability_compatible: 0,
     level_2_unhandled_gaps: 0,
+    level_2_rust_capability_compatible: 0,
     // Level 3 Honest Accounting: strictly source-proven card-specific behavioral test assertions
     level_3_behavioral_verified: 0,
     level_3_broad_execution_tested: 0,
@@ -534,16 +548,17 @@ export function runReconciliation() {
 
     if (isL2Baseline) {
       verificationLevelCounts.level_2_baseline_compatible++;
-      verificationLevelCounts.level_2_rust_capability_compatible++;
     } else {
       verificationLevelCounts.level_2_baseline_gaps++;
-      verificationLevelCounts.level_2_unhandled_gaps++;
     }
 
     if (isL2PR5) {
       verificationLevelCounts.level_2_pr5_compatible++;
+      verificationLevelCounts.level_2_capability_compatible++;
+      verificationLevelCounts.level_2_rust_capability_compatible++;
     } else {
       verificationLevelCounts.level_2_pr5_gaps++;
+      verificationLevelCounts.level_2_unhandled_gaps++;
     }
 
     // Level 3 Honest Separation:
@@ -621,8 +636,12 @@ export function runReconciliation() {
       pr5_remaining_gaps: foundationsPR5Gaps,
       canonical_deep_behavioral_asserted_count: CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
       canonical_deep_assertion_pending_count: foundations.cards.length - CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS.size,
+      canonical_partial_effect_asserted_count: CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING.length,
+      canonical_excluded_deck_and_generic_count: EXCLUDED_TEST_CARDS_AUDIT.length,
       canonical_test_proven_cards: Array.from(CANONICAL_TEST_PROVEN_BEHAVIORAL_CARD_IDS).sort(),
-      canonical_test_proven_cards_mapping: CANONICAL_EFFECT_ASSERTED_CARDS_MAPPING,
+      canonical_full_effect_cards_mapping: CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING,
+      canonical_partial_effect_cards_mapping: CANONICAL_PARTIAL_EFFECT_ASSERTED_CARDS_MAPPING,
+      canonical_test_proven_cards_mapping: CANONICAL_FULL_EFFECT_ASSERTED_CARDS_MAPPING,
       canonical_excluded_cards_audit: EXCLUDED_TEST_CARDS_AUDIT,
       source_validation: validateTestProvenCardSources()
     },
