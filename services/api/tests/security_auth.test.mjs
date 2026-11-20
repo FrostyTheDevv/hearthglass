@@ -7,6 +7,10 @@ import crypto from 'node:crypto';
 import { WebSocket } from 'ws';
 import { createServer, redactEventsForViewer } from '../src/server.mjs';
 import { ArtProductionPipeline } from '../src/art_pipeline.mjs';
+import { provisionFirstAdministratorCli } from '../src/cli.mjs';
+
+process.env.INITIAL_ADMIN_PROVISIONING_SECRET = 'test_provisioning_secret_2026';
+process.env.ENABLE_HTTP_ADMIN_PROVISIONING = 'true';
 
 function makeTempPgDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'hearthglass-secauth-test-'));
@@ -1083,5 +1087,239 @@ test('SECURITY (V10-A): Ordinary player accounts receive starter collection, NOT
     // Starter collection has ~60-240 cards (from the starter decks + common neutrals), NOT 640 cards!
     assert.ok(ownedCardIds.length > 30, 'Player should have starter cards');
     assert.ok(ownedCardIds.length < 300, `Player should NOT own all 640 cards upon registration (owned: ${ownedCardIds.length})`);
+  });
+});
+
+test('SECURITY (V10-A.1): HTTP admin provisioning endpoint is disabled by default; returns 403 Forbidden', async () => {
+  const origToggle = process.env.ENABLE_HTTP_ADMIN_PROVISIONING;
+  try {
+    delete process.env.ENABLE_HTTP_ADMIN_PROVISIONING;
+    const dataDir = makeTempPgDir();
+    const ctx = await createServer({ dataDir });
+    await new Promise((resolve) => ctx.server.listen(0, '127.0.0.1', resolve));
+    const baseUrl = `http://127.0.0.1:${ctx.server.address().port}`;
+    try {
+      const res = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: 'DisabledAdmin',
+          email: 'disabled@admin.local',
+          password: 'Complex#AdminPass987!',
+          provisioning_secret: 'test_provisioning_secret_2026'
+        })
+      });
+      assert.equal(res.status, 403, 'Disabled HTTP provisioning endpoint must return HTTP 403');
+      const json = await res.json();
+      assert.match(json.error, /disabled/i);
+    } finally {
+      await ctx.closeServer();
+    }
+  } finally {
+    process.env.ENABLE_HTTP_ADMIN_PROVISIONING = origToggle;
+  }
+});
+
+test('SECURITY (V10-A.1): Missing INITIAL_ADMIN_PROVISIONING_SECRET fails closed', async () => {
+  const origSecret = process.env.INITIAL_ADMIN_PROVISIONING_SECRET;
+  try {
+    delete process.env.INITIAL_ADMIN_PROVISIONING_SECRET;
+    const dataDir = makeTempPgDir();
+    const ctx = await createServer({ dataDir });
+    try {
+      await assert.rejects(
+        async () => {
+          await ctx.db.provisionAdministrator({
+            username: 'SecretlessAdmin',
+            email: 'secretless@admin.local',
+            password: 'Complex#AdminPass987!',
+            provisioningSecret: 'some_attempted_secret'
+          });
+        },
+        /secret is not configured/i
+      );
+    } finally {
+      await ctx.closeServer();
+    }
+  } finally {
+    process.env.INITIAL_ADMIN_PROVISIONING_SECRET = origSecret;
+  }
+});
+
+test('SECURITY (V10-A.1): Dedicated operator CLI provisions first administrator, validates complexity, enforces zero-admin prerequisite, and audits change', async () => {
+  const dataDir = makeTempPgDir();
+  // 1. Weak password rejected by CLI
+  await assert.rejects(
+    async () => {
+      await provisionFirstAdministratorCli({
+        email: 'cli.admin@hearthglass.local',
+        username: 'CliAdmin_V10',
+        password: 'weakpassword',
+        dataDir
+      });
+    },
+    /Administrator password must/i
+  );
+
+  // 2. Legitimate initial provisioning succeeds
+  const cliRes = await provisionFirstAdministratorCli({
+    email: 'cli.admin@hearthglass.local',
+    username: 'CliAdmin_V10',
+    password: 'Complex#AdminPass987!',
+    reason: 'CLI test provisioning',
+    dataDir
+  });
+  assert.equal(cliRes.role, 'administrator');
+  assert.ok(cliRes.user_id);
+  assert.ok(cliRes.audit_id);
+
+  // 3. Second execution fails zero-administrator prerequisite
+  await assert.rejects(
+    async () => {
+      await provisionFirstAdministratorCli({
+        email: 'cli.second@hearthglass.local',
+        username: 'CliAdmin_Second',
+        password: 'Complex#AdminPass987!',
+        dataDir
+      });
+    },
+    /zero-administrator prerequisite/i
+  );
+});
+
+test('SECURITY (V10-A.1): Atomic deck ownership with optimistic concurrency (expected_revision) protects against stale writes and returns HTTP 409 Conflict', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth }) => {
+    // 1. Get starter cards to construct a valid 40-card deck
+    const decksRes = await fetch(`${baseUrl}/v1/decks`, {
+      headers: { Authorization: `Bearer ${playerAuth.token}` }
+    });
+    const { starter_decks } = await decksRes.json();
+    const validCards = starter_decks[0].cards;
+
+    // 2. Save new custom deck (revision 1)
+    const saveRes1 = await fetch(`${baseUrl}/v1/decks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${playerAuth.token}`
+      },
+      body: JSON.stringify({
+        name: 'Concurrent Test Deck',
+        cards: validCards
+      })
+    });
+    assert.equal(saveRes1.status, 201);
+    const { deck: deckRev1 } = await saveRes1.json();
+    assert.equal(deckRev1.revision, 1);
+
+    // 3. Update deck supplying correct expected_revision: 1 -> succeeds with revision 2
+    const saveRes2 = await fetch(`${baseUrl}/v1/decks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${playerAuth.token}`
+      },
+      body: JSON.stringify({
+        id: deckRev1.id,
+        name: 'Concurrent Test Deck Rev 2',
+        cards: validCards,
+        expected_revision: 1
+      })
+    });
+    assert.equal(saveRes2.status, 201);
+    const { deck: deckRev2 } = await saveRes2.json();
+    assert.equal(deckRev2.revision, 2);
+
+    // 4. Stale write attempt: client sends outdated expected_revision: 1 -> fails with HTTP 409 Conflict
+    const staleRes = await fetch(`${baseUrl}/v1/decks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${playerAuth.token}`
+      },
+      body: JSON.stringify({
+        id: deckRev1.id,
+        name: 'Stale Overwrite Attempt',
+        cards: validCards,
+        expected_revision: 1
+      })
+    });
+    assert.equal(staleRes.status, 409, 'Stale write must return HTTP 409 Conflict');
+    const staleJson = await staleRes.json();
+    assert.match(staleJson.error, /stale write/i);
+  });
+});
+
+test('SECURITY (V10-A.1): Strict event allowlist schema redacts private draw/burn cards and prevents arbitrary property leakage on unknown events', () => {
+  const events = [
+    {
+      event: 'card_drawn',
+      player: 0,
+      card_id: 'EMB-C-0001',
+      instance_id: 101,
+      secret_rng_seed: 999999,
+      deck_order_remaining: ['CARD-A', 'CARD-B']
+    },
+    {
+      event: 'creature_summoned',
+      player: 0,
+      card_id: 'EMB-C-0001',
+      name: 'Ashborne Initiate',
+      lane: 1,
+      position: 0,
+      is_token: false,
+      internal_ai_decision_tree: { score: 98 }
+    },
+    {
+      event: 'custom_unclassified_server_hook',
+      secret_data: 'leak_me',
+      attacker_choices: [1, 2, 3]
+    },
+    {
+      event: 'future_player_action',
+      player: 0,
+      card_id: 'SECRET_CARD',
+      secret_choices: [1, 2, 3]
+    }
+  ];
+
+  // Viewer 0 (drawing player): sees own card_id, but extra unallowlisted fields are stripped
+  const viewer0Events = redactEventsForViewer(events, 0);
+  assert.equal(viewer0Events[0].card_id, 'EMB-C-0001');
+  assert.equal(viewer0Events[0].secret_rng_seed, undefined);
+  assert.equal(viewer0Events[0].deck_order_remaining, undefined);
+  assert.equal(viewer0Events[1].name, 'Ashborne Initiate');
+  assert.equal(viewer0Events[1].internal_ai_decision_tree, undefined);
+  // Unknown unclassified server hook: fails closed
+  assert.deepEqual(viewer0Events[2], {
+    event: 'custom_unclassified_server_hook',
+    public: false
+  });
+  // Future player action: owner sees own card_id, but secret_choices stripped
+  assert.deepEqual(viewer0Events[3], {
+    event: 'future_player_action',
+    player: 0,
+    card_id: 'SECRET_CARD'
+  });
+
+  // Viewer 1 (opponent) or Spectator (null): card_id is redacted to 'HIDDEN', instance_id hidden
+  const viewer1Events = redactEventsForViewer(events, 1);
+  assert.equal(viewer1Events[0].card_id, 'HIDDEN');
+  assert.equal(viewer1Events[0].instance_id, undefined);
+  assert.equal(viewer1Events[0].secret_rng_seed, undefined);
+  // Opponent sees HIDDEN for future player action
+  assert.deepEqual(viewer1Events[3], {
+    event: 'future_player_action',
+    player: 0,
+    card_id: 'HIDDEN'
+  });
+
+  const spectatorEvents = redactEventsForViewer(events, null);
+  assert.equal(spectatorEvents[0].card_id, 'HIDDEN');
+  assert.equal(spectatorEvents[0].instance_id, undefined);
+  assert.deepEqual(spectatorEvents[3], {
+    event: 'future_player_action',
+    player: 0,
+    card_id: 'HIDDEN'
   });
 });

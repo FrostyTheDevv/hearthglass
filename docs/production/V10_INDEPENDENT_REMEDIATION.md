@@ -2,38 +2,46 @@
 **Document Reference**: `docs/production/V10_INDEPENDENT_REMEDIATION.md`  
 **Repository**: [FrostyTheDevv/hearthglass](https://github.com/FrostyTheDevv/hearthglass)  
 **Audit Baseline**: Master Branch Audit (November 19, 2026)  
-**Remediation Milestone**: Milestone V10-A (Critical Authentication Security, Multiplayer Privacy Redaction, Deck Ownership Authorization, and Dynamic Export)  
+**Remediation Milestones**: 
+- **Milestone V10-A**: Critical Authentication Security, Multiplayer Privacy Redaction, Deck Ownership Authorization, and Dynamic Export
+- **Milestone V10-A.1**: Predictable Bootstrap Secret Removal, Dedicated Operator CLI Provisioning, Atomic Deck Ownership with Optimistic Concurrency (HTTP 409), and Strict Event Serialization Schemas
+- **Milestone V10-B**: Transaction-Safe Economy, Concurrency Row-Locks, Duplicate Echo Dust Conversion, Forced Rollback Verification, and Idempotent Match Payouts
 **Authoritative Engine**: Rust Convergence Duels Core (`services/battle-server`)  
 **Backend & Persistence**: Node.js v22 REST/WebSocket Bridge + PostgreSQL 16 / PGlite  
 **Client Interface**: Godot 4.3 Tabletop RPG Client (`apps/game-client`)  
-**Status**: Milestone V10-A Verified & Passing 100% of Automated Test Suites
+**Status**: Milestones V10-A, V10-A.1, and V10-B Verified & Passing 100% of Automated Test Suites (48/48 Node.js API/Security Tests, 16/16 Rust Tests, 6/6 Godot Smoke Tests, 9/9 Godot Vertical Slice Tests)
 
 ---
 
 ## 1. EXECUTIVE SUMMARY & AUDIT DISCLOSURE MATRIX
 
-Following an independent source-grounded technical audit of the public repository, multiple critical defects in security, data integrity, economy design, and pipeline reporting were identified. 
+Following an independent source-grounded technical audit of the public repository, multiple critical defects in security, data integrity, economy design, and pipeline reporting were identified and systematically resolved.
 
 To maintain strict reporting integrity, this report explicitly separates:
 1. **Source-Level Remediation**: Exact code changes committed to the codebase to remediate confirmed defects.
 2. **Automated Verification**: Concrete test executions with measurable outputs from the Rust compiler, Node.js test runner, and Godot 4.3 engine headless runner.
 3. **Manual Graphical QA Status**: Distinguishing automated headless verifications from interactive human playtesting on Windows desktop hardware.
-4. **Unfinished Production Content**: Transparently reporting remaining milestones (V10-B through V10-H) without premature completion claims.
+4. **Unfinished Production Content**: Transparently reporting remaining milestones (V10-C through V10-H) without premature completion claims.
 
-### Audit Findings & Milestone V10-A Remediation Status
+### Audit Findings & Milestones V10-A, V10-A.1 & V10-B Remediation Status
 
-| Severity | Audit Finding | Location | Status | Milestone V10-A Remediation Resolution |
+| Severity | Audit Finding | Location | Status | Remediation Resolution |
 | :--- | :--- | :--- | :--- | :--- |
-| **P0** | **Predictable administrator account seeded on startup** | `services/api/src/db.mjs` | **RESOLVED** | Removed unconditional auto-creation of `Aerin_Vanguard` / `hearthglass_default_password`. Disabled dev admin bypass in production. Implemented explicit `provisionAdministrator()` with provisioning secret and password entropy enforcement. |
-| **P0** | **Unredacted battle events broadcast to opponents/spectators** | `services/api/src/server.mjs` | **RESOLVED** | Enforced `redactEventsForViewer()` across WebSockets, REST, reconnects, and replays. Redacted `CardDrawn` and `CardBurnedOverdraw` cards to `card_id: "HIDDEN"` in both raw events and human-readable logs. |
-| **P0** | **Deck UUID updates without account ownership check** | `services/api/src/db.mjs`, `server.mjs` | **RESOLVED** | `saveCustomDeck()` now checks existing deck ownership (`WHERE id = $1`); cross-account updates return HTTP 403 Forbidden. Deck updates are wrapped in atomic database transactions (`withTransaction`). |
-| **P0** | **New accounts automatically seeded with all 640 cards** | `services/api/src/db.mjs` | **RESOLVED** | Ordinary player accounts now receive an intentional starter collection (237 cards from starter decks + common neutrals). Full 640-card collections are strictly restricted to isolated test fixtures (`isTestFixture: true`). |
-| **P0** | **Existing accounts granted newly added cards on startup** | `services/api/src/db.mjs` | **RESOLVED** | Removed silent collection update loop for existing accounts during `init()` and login. Existing accounts are grandfathered; new cards must be earned or crafted. |
-| **P0** | **Startup silently elevated existing user roles** | `services/api/src/db.mjs` | **RESOLVED** | Removed automatic role elevation from `ensureUserAccount`. Roles are strictly immutable during logins and restarts; role changes require authenticated admin actions recorded in `role_change_audit`. |
-| **P1** | **Hardcoded batch prompt export filename (`batch_prompts_320.jsonl`)** | `services/api/src/art_pipeline.mjs` | **RESOLVED** | Export filename is now dynamic based on the actual exported card count: `batch_prompts_${items.length}.jsonl`. |
-| **P1** | **Artwork approval defaulted missing reviews to true** | `services/api/src/server.mjs` | **RESOLVED** | Production artwork approval strictly requires explicit boolean `visual_review_passed: true` and `visual_quality_confirmed: true` from an authenticated administrator. |
-| **P0** | **Crafting decremented cards before failing operation** | `services/api/src/server.mjs` | **RESOLVED** | Crafting checks maximum copy caps before modifying inventory; wrapped in atomic database transaction with idempotency keys. |
-| **P0** | **World travel endpoint trusted client coordinates and weather** | `services/api/src/server.mjs` | **RESOLVED** | Validated server-authoritative region graph, fast-travel discovery checks, and server-controlled time/weather clock. |
+| **P0** | **Predictable administrator account seeded on startup** | `services/api/src/db.mjs` | **RESOLVED (V10-A)** | Removed unconditional auto-creation of `Aerin_Vanguard` / `hearthglass_default_password`. Disabled dev admin bypass in production. Implemented explicit `provisionAdministrator()` with provisioning secret and password entropy enforcement. |
+| **P0** | **Predictable administrator bootstrap secret fallback** | `services/api/src/db.mjs`, `server.mjs`, `cli.mjs` | **RESOLVED (V10-A.1)** | Removed all built-in fallbacks (`test_provisioning_secret_2026`) outside production. Missing secret fails closed. Disabled HTTP provisioning endpoint by default (`ENABLE_HTTP_ADMIN_PROVISIONING === 'true'`). Built dedicated operator CLI (`services/api/src/cli.mjs`) requiring zero-administrator prerequisite, credential complexity, and audit trail. |
+| **P0** | **Unredacted battle events broadcast to opponents/spectators** | `services/api/src/server.mjs` | **RESOLVED (V10-A)** | Enforced `redactEventsForViewer()` across WebSockets, REST, reconnects, and replays. Redacted `CardDrawn` and `CardBurnedOverdraw` cards to `card_id: "HIDDEN"` in both raw events and human-readable logs. |
+| **P0** | **Broad object copying in event redaction** | `services/api/src/server.mjs` | **RESOLVED (V10-A.1)** | Replaced broad `{ ...ev }` copying with strict viewer-specific schemas across all 19 Rust engine event types. Unallowlisted fields (`secret_rng_seed`, `deck_order_remaining`, etc.) are stripped; unclassified events fail closed as `{ event: '...', public: false }`. |
+| **P0** | **Deck UUID updates without account ownership check** | `services/api/src/db.mjs`, `server.mjs` | **RESOLVED (V10-A)** | `saveCustomDeck()` checks existing deck ownership (`WHERE id = $1`); cross-account updates return HTTP 403 Forbidden. Deck updates wrapped in atomic transactions (`withTransaction`). |
+| **P0** | **Deck concurrency race & stale revision overwrites** | `services/api/src/db.mjs`, `server.mjs` | **RESOLVED (V10-A.1)** | Moved ownership checks inside transaction with row locks (`FOR UPDATE`). Added optimistic concurrency locking via `expected_revision`, returning HTTP 409 Conflict on stale concurrent writes. Persisted accurate incremented revisions in `deck_revisions` and constrained updates with `WHERE id = $1 AND user_id = $2`. |
+| **P0** | **New accounts automatically seeded with all 640 cards** | `services/api/src/db.mjs` | **RESOLVED (V10-A)** | Ordinary player accounts now receive an intentional starter collection (237 cards from starter decks + common neutrals). Full 640-card collections are strictly restricted to isolated test fixtures (`isTestFixture: true`). |
+| **P0** | **Existing accounts granted newly added cards on startup** | `services/api/src/db.mjs` | **RESOLVED (V10-A)** | Removed silent collection update loop for existing accounts during `init()` and login. Existing accounts are grandfathered; new cards must be earned or crafted. |
+| **P0** | **Startup silently elevated existing user roles** | `services/api/src/db.mjs` | **RESOLVED (V10-A)** | Removed automatic role elevation from `ensureUserAccount`. Roles are strictly immutable during logins and restarts; role changes require authenticated admin actions recorded in `role_change_audit`. |
+| **P1** | **Hardcoded batch prompt export filename (`batch_prompts_320.jsonl`)** | `services/api/src/art_pipeline.mjs` | **RESOLVED (V10-A)** | Export filename is now dynamic based on the actual exported card count: `batch_prompts_${items.length}.jsonl`. |
+| **P1** | **Artwork approval defaulted missing reviews to true** | `services/api/src/server.mjs` | **RESOLVED (V10-A)** | Production artwork approval strictly requires explicit boolean `visual_review_passed: true` and `visual_quality_confirmed: true` from an authenticated administrator. |
+| **P0** | **Crafting decremented cards before failing operation** | `services/api/src/db.mjs`, `server.mjs` | **RESOLVED (V10-B)** | Fully transactional crafting/disenchanting with row locks (`FOR UPDATE`), strict copy limits enforcement, balance constraints (`echo_dust >= cost`), and comprehensive currency transaction audit logs. |
+| **P0** | **Pack purchases vulnerable to race conditions & duplicate card waste** | `services/api/src/db.mjs`, `server.mjs` | **RESOLVED (V10-B)** | Fully transactional pack opening with wallet row locks, currency constraints (`crowns >= 100`), automatic conversion of excess duplicate cards to Echo Dust, and pack opening audit records. |
+| **P0** | **Match rewards vulnerable to replay attacks & AI seat mutation** | `services/api/src/db.mjs` | **RESOLVED (V10-B)** | Idempotent match completion prevents double reward payouts. Authoritative verification of human player seats (requiring valid UUIDs) prevents AI seats from altering player ratings or wallets. |
+| **P0** | **World travel endpoint trusted client coordinates and weather** | `services/api/src/server.mjs` | **RESOLVED (V10-A)** | Validated server-authoritative region graph, fast-travel discovery checks, and server-controlled time/weather clock. |
 
 ---
 
@@ -95,17 +103,59 @@ To maintain strict reporting integrity, this report explicitly separates:
 - Codified the 14 intentional rarity adjustments required for the canonical 50/30/15/5% rarity distribution in `content/cards/card_migrations.json`.
 - `verify_card_integrity.mjs` verifies all 320 historical baseline cards with 100% pass and zero unauthorized drift.
 
+### 2.6 Milestone V10-A.1 Corrections
+1. **Elimination of Predictable Bootstrap Secrets**:
+   - In `services/api/src/db.mjs`, the fallback `'test_provisioning_secret_2026'` outside production was completely removed. If `INITIAL_ADMIN_PROVISIONING_SECRET` is not explicitly configured in the environment, initial administrator provisioning fails closed immediately with an explicit error.
+2. **HTTP Administrator Provisioning Toggle**:
+   - In `services/api/src/server.mjs`, `/v1/auth/provision-admin` is disabled by default and rejected with HTTP 403 Forbidden unless `ENABLE_HTTP_ADMIN_PROVISIONING === 'true'` is explicitly configured.
+3. **Dedicated Operator Provisioning CLI (`services/api/src/cli.mjs`)**:
+   - Built a standalone operator CLI tool that executes with direct administrative authority:
+     ```powershell
+     node services/api/src/cli.mjs provision-admin --email admin@hearthglass.local --username SysAdmin --password "Complex#Password123!"
+     ```
+   - Enforces a zero-administrator prerequisite: fails closed if any administrator already exists.
+   - Enforces strict password complexity (minimum 12 chars, uppercase, lowercase, number, special character, bans common words).
+   - Atomically records an audit log entry in `role_change_audit`.
+4. **Atomic Deck Ownership & Concurrency (HTTP 409 Conflict)**:
+   - In `saveCustomDeck()` (`services/api/src/db.mjs`), ownership validation is moved entirely inside `withTransaction()` with row-level locks (`SELECT id, user_id, revision FROM decks WHERE id = $1 FOR UPDATE`).
+   - Supports optimistic concurrency control via `deckDef.expected_revision`: if a client submits an outdated revision, the update is rejected with `{ conflict: true, stale_write: true }` and returns HTTP 409 Conflict.
+   - Atomic update explicitly conditions on `WHERE id = $1 AND user_id = $2`.
+   - Revisions are incremented (`existing.revision + 1`) and the exact revision number is recorded into `deck_revisions`.
+5. **Strict Allowlisted Event Schemas**:
+   - In `redactEventsForViewer()` (`services/api/src/server.mjs`), broad `{ ...ev }` copying was replaced with dedicated allowlist projections for all 19 Rust engine event types.
+   - Any unknown/unclassified future event types fail closed: only allowlisted identity fields are passed, private card IDs are redacted to `'HIDDEN'` for non-owners/spectators, and arbitrary engine state (`secret_rng_seed`, `deck_order_remaining`, `internal_ai_decision_tree`) is completely stripped.
+
+### 2.7 Milestone V10-B Transactional Economy & Concurrency Execution
+1. **Atomic Pack Opening & Duplicate Echo Dust Conversion**:
+   - `openPack()` (`services/api/src/db.mjs`) operates inside `withTransaction()` with wallet row-level locks (`FOR UPDATE`).
+   - Currency deduction is constrained with `WHERE user_id = $1 AND crowns >= $2` to prevent negative balances.
+   - Cards exceeding the canonical playability copy cap (3 Common, 3 Uncommon, 2 Rare, 1 Legendary) automatically convert to Echo Dust (10 Common, 25 Uncommon, 100 Rare, 400 Legendary).
+   - Records audit logs in `currency_transactions` and `pack_openings`.
+2. **Transactional Crafting & Disenchanting**:
+   - `craftOrDisenchantCard()` locks wallet balances and card ownership rows.
+   - Enforces inventory copy limits prior to currency deduction (crafting fails if player already owns max copies).
+   - Disenchanting fails closed if player owns 0 copies.
+   - Currency and crafting transactions are recorded atomically with unique idempotency keys.
+3. **Forced Rollback & Fault Tolerance**:
+   - Tests prove that unexpected errors or constraint violations during any multi-step transaction trigger a complete database rollback, leaving zero partial state mutations across wallet balances and card inventory.
+4. **Idempotent Match Rewards & Human Seat Verification**:
+   - `recordMatchCompletion()` enforces match idempotency: duplicate completion calls return `{ already_completed: true }` without doubling reward payouts.
+   - Strictly verifies that participant seat IDs are valid account UUIDs; AI seats (e.g. `ai_easy`) are ignored, preventing unauthorized rating or currency inflation.
+
 ---
 
 ## 3. AUTOMATED VERIFICATION RESULTS
 
-### 3.1 Node.js API & Security Test Suite
+### 3.1 Node.js API, Security & Economy Test Suites
 - **Command**: `npm test` (executed in `services/api`)
-- **Total Tests Executed**: **39 tests** (8 platform API tests, 11 art pipeline tests, 20 security & auth tests)
-- **Result**: **39 PASSED, 0 FAILED, 0 CANCELLED**
-- **Duration**: 119.9 seconds
+- **Total Tests Executed**: **48 tests across 4 test suites**:
+  - `tests/api.test.mjs`: 8 integration tests (Card catalog, Deck validation, Persistence, World, Art pipeline, Matches, 1v1 PvP, 2v2 Tag Battle)
+  - `tests/art_pipeline_raster.test.mjs`: 12 unit & integration tests (10-point art pipeline verification suite)
+  - `tests/economy_security.test.mjs`: 5 economy security tests (Anti-tamper, Pack concurrency race, Crafting limits, Forced rollback, Match idempotency)
+  - `tests/security_auth.test.mjs`: 23 security & auth tests (Token validation, Seat binding, Admin CLI, Event redaction, Deck 409 conflict)
+- **Result**: **48 PASSED, 0 FAILED, 0 CANCELLED (100% PASS)**
 
-#### Key Verified Security Test Cases:
+#### Key Verified Security & Economy Test Cases:
 - `SECURITY: Missing, invalid, and forged authentication tokens fail closed with HTTP 401` — **PASS**
 - `SECURITY: Cross-account tampering and user_id impersonation fail closed with HTTP 403` — **PASS**
 - `SECURITY: Match authorization rejects seat impersonation and unauthorized commands` — **PASS**
@@ -123,12 +173,22 @@ To maintain strict reporting integrity, this report explicitly separates:
 - `SECURITY (V10-A): Session revocation and logout fail closed; expired sessions return 401` — **PASS**
 - `SECURITY (V10-A): Cross-account deck update attempt returns 403 Forbidden without modifying victim deck` — **PASS**
 - `SECURITY (V10-A): Ordinary player accounts receive starter collection, NOT all 640 cards` — **PASS**
+- `SECURITY (V10-A.1): HTTP admin provisioning endpoint is disabled by default; returns 403 Forbidden` — **PASS**
+- `SECURITY (V10-A.1): Missing INITIAL_ADMIN_PROVISIONING_SECRET fails closed` — **PASS**
+- `SECURITY (V10-A.1): Dedicated operator CLI provisions first administrator, validates complexity, enforces zero-admin prerequisite, and audits change` — **PASS**
+- `SECURITY (V10-A.1): Atomic deck ownership with optimistic concurrency (expected_revision) protects against stale writes and returns HTTP 409 Conflict` — **PASS**
+- `SECURITY (V10-A.1): Strict event allowlist schema redacts private draw/burn cards and prevents arbitrary property leakage on unknown events` — **PASS**
+- `SECURITY: Client-supplied local profile cannot forge or alter authoritative PostgreSQL economy` — **PASS**
+- `V10-B: Transactional pack purchase, duplicate conversion, and concurrent race protection` — **PASS**
+- `V10-B: Transactional crafting and disenchanting atomicity and copy limits` — **PASS**
+- `V10-B: Forced transaction rollback leaves zero partial mutations across wallet and cards` — **PASS**
+- `V10-B: Idempotent match completion prevents double reward payout` — **PASS**
 
 ### 3.2 Rust Convergence Duels Engine Test Suite
 - **Command**: `cargo test` (executed in `services/battle-server`)
 - **Total Tests Executed**: **16 tests** (11 rules engine integration tests, 1 1000-match simulation with 2,560 matches, 4 snapshot privacy tests across 1v1 and 2v2 seats)
 - **Result**: **16 PASSED, 0 FAILED, 0 IGNORED**
-- **Duration**: 3.31 seconds
+- **Duration**: 2.50 seconds
 
 ### 3.3 Godot 4.3 Engine Headless Test Suites
 - **Executable**: `tools/godot/Godot_v4.3-stable_win64_console.exe --headless`
@@ -147,13 +207,13 @@ To maintain strict reporting integrity, this report explicitly separates:
 
 ## 4. AUDITOR REPRODUCTION STEPS
 
-To independently verify the Milestone V10-A remediation from any clean checkout:
+To independently verify the Milestone V10-A, V10-A.1, and V10-B remediation from any clean checkout:
 
 ```powershell
 # 1. Verify Rust Authoritative Battle Engine & Privacy Tests
 & "$env:USERPROFILE\.cargo\bin\cargo.exe" test --manifest-path services/battle-server/Cargo.toml
 
-# 2. Verify Node.js Security, Auth & Platform Tests
+# 2. Verify Node.js Security, Auth, Economy & Platform Tests
 cd services/api
 npm test
 
@@ -169,21 +229,19 @@ node tools/card-validator/verify_card_integrity.mjs
 
 ---
 
-## 5. REMAINING LIMITATIONS & DEVELOPMENT ROADMAP (V10-B THROUGH V10-H)
+## 5. REMAINING LIMITATIONS & DEVELOPMENT ROADMAP (V10-C THROUGH V10-H)
 
-While Milestone V10-A fully closes the critical authentication vulnerability, outbound event disclosures, and cross-account deck tampering, the following production items remain on the development board:
+With Milestones V10-A, V10-A.1, and V10-B completed and verified across all test runners, the roadmap focuses on the remaining production milestones:
 
-1. **Milestone V10-B (Economy & Pack Concurrency)**:
-   - Ensure pack purchase idempotency and inventory increments under multi-worker concurrency.
-2. **Milestone V10-C (Match State Durability & Timers)**:
+1. **Milestone V10-C (Match State Durability & Timers)**:
    - Persist active match state across server restart and implement reserve time-bank deductions in the turn timer path.
-3. **Milestone V10-D (AI Art Pipeline Live Inference)**:
-   - Currently, stylized vector concept illustrations (SVG) are generated deterministically. Implement genuine remote worker/HTTP inference for hosted models, budget enforcement, and asset hashing.
-4. **Milestone V10-E (Packaged Windows Build)**:
-   - Package the standalone Windows client with bundled rules engine (eliminating any requirement for a local Rust development toolchain).
-5. **Milestone V10-F (Card Content & Lore Depth)**:
-   - Expand approved production raster illustrations toward the full 640 target (currently 8 approved showcase concepts, 0 final raster production illustrations).
-6. **Milestone V10-G (World Content Expansion)**:
+2. **Milestone V10-D (AI Art Pipeline Live Inference)**:
+   - Implement remote worker/HTTP inference for hosted models, budget enforcement, and asset hashing (currently 8 stylized vector concepts integrated, 0 final raster production illustrations approved).
+3. **Milestone V10-E (Packaged Windows Build)**:
+   - Package the standalone Windows client with bundled rules engine (eliminating local Rust toolchain requirements for end players).
+4. **Milestone V10-F (Card Content & Lore Depth)**:
+   - Commission and ingest approved production raster illustrations toward the full 640 target.
+5. **Milestone V10-G (World Content Expansion)**:
    - Replace procedural greybox meshes in Lumenport with final 3D environment assets; build out Verdant Expanse, Ironreach, and Astral Archive playable 3D scenes.
-7. **Milestone V10-H (Production Release Hardening)**:
+6. **Milestone V10-H (Production Release Hardening)**:
    - Live penetration testing, public match permissions, and end-to-end live multiplayer deployment certification.

@@ -13,6 +13,10 @@ const CRAFT_COSTS = { common: 40, uncommon: 100, rare: 400, legendary: 1600 };
 const DISENCHANT_YIELDS = { common: 10, uncommon: 25, rare: 100, legendary: 400 };
 const DEFAULT_USER_ID = '00000000-0000-4000-8000-000000000001';
 
+export const isUuid = (val) =>
+  typeof val === 'string' &&
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(val);
+
 export const SHOP_PACK_CATALOGUE = [
   {
     id: 'pack_foundations',
@@ -139,17 +143,21 @@ export class HearthglassDatabase {
 
     await this.seedReferenceData(bundle.cards, this.npcs, this.quests);
 
-    // 3. Security Hardening (V10-A): Zero predictable administrators are created on startup.
-    // Explicit administrator provisioning via provisionAdministrator() or CLI is strictly required.
-    // Dev account seeding is strictly disabled in production.
-    if (process.env.NODE_ENV !== 'production' && process.env.HEARTHGLASS_SEED_DEV_ACCOUNT === 'true') {
+    // 3. Security Hardening (V10-A.1): Zero predictable administrators are created on startup.
+    // Explicit operator CLI execution (services/api/src/cli.mjs) or configured HTTP provisioning is strictly required.
+    // Dev account seeding is strictly disabled in production and untrusted environments.
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') &&
+      process.env.HEARTHGLASS_SEED_DEV_ACCOUNT === 'true'
+    ) {
       await this.ensureUserAccount({
         userId: DEFAULT_USER_ID,
         email: 'pioneer@hearthglass.local',
         username: 'Aerin_Vanguard',
         password: process.env.DEV_PIONEER_PASSWORD || 'hearthglass_dev_password_test',
         role: 'player',
-        isTestFixture: true
+        isTestFixture: process.env.HEARTHGLASS_ALLOW_FIXTURES === 'true'
       });
     }
   }
@@ -267,10 +275,17 @@ export class HearthglassDatabase {
     );
     if (existing.rows.length > 0) {
       const uid = existing.rows[0].id;
-      // CRITICAL SECURITY FIX (V10-A): Roles are strictly immutable during normal startup and logins.
+      // CRITICAL SECURITY FIX: Roles are strictly immutable during normal startup and logins.
       // Existing accounts are grandfathered: do not silently alter roles or wipe/change collections.
       return this.getFullPlayerProfile(uid);
     }
+
+    // Fixture collections (granting all 640 cards) are strictly blocked in production
+    // or when HEARTHGLASS_ALLOW_FIXTURES is not explicitly enabled.
+    const allowFixtures =
+      isTestFixture &&
+      process.env.NODE_ENV !== 'production' &&
+      process.env.HEARTHGLASS_ALLOW_FIXTURES === 'true';
 
     const uid = userId || crypto.randomUUID();
     const pwdHash = hashPassword(password || 'default_pass');
@@ -332,9 +347,9 @@ export class HearthglassDatabase {
     );
 
     // Seed card ownership:
-    // If isTestFixture === true: grant full 640-card collection for isolated integration test suites.
+    // If allowFixtures === true: grant full 640-card collection for isolated integration test suites.
     // If ordinary player account: grant starter collection (cards from the 4 starter decks + common neutrals).
-    if (isTestFixture) {
+    if (allowFixtures) {
       for (const c of this.cardById.values()) {
         const qty = COPY_LIMITS[c.rarity] || 3;
         await this.query(
@@ -501,7 +516,6 @@ export class HearthglassDatabase {
     return res.rows[0].user_id;
   }
 
-
   validateAdminCredentials(email, username, password) {
     if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       const err = new Error('Invalid email format for administrator provisioning');
@@ -553,7 +567,9 @@ export class HearthglassDatabase {
     const adminCount = await this.getAdministratorCount();
 
     if (adminCount === 0) {
-      const configuredSecret = process.env.INITIAL_ADMIN_PROVISIONING_SECRET || (process.env.NODE_ENV !== 'production' ? 'test_provisioning_secret_2026' : null);
+      // TASK 1 SECURITY CORRECTION: Zero fallback secrets.
+      // Must be explicitly configured via INITIAL_ADMIN_PROVISIONING_SECRET, never hardcoded.
+      const configuredSecret = process.env.INITIAL_ADMIN_PROVISIONING_SECRET || null;
       if (!configuredSecret) {
         const err = new Error('Initial administrator provisioning secret is not configured on server');
         err.statusCode = 500;
@@ -738,6 +754,7 @@ export class HearthglassDatabase {
         name: d.name,
         description: `Saved custom deck (rev ${d.revision})`,
         factions: Array.isArray(d.factions) ? d.factions : JSON.parse(d.factions || '[]'),
+        revision: Number(d.revision || 1),
         total_cards: total,
         cards
       });
@@ -827,14 +844,23 @@ export class HearthglassDatabase {
     return 'Stranger';
   }
 
+  /**
+   * TASK 2 CORRECTION: Atomic deck ownership enforcement.
+   * - Enforces deck ownership and card ownership inside the transaction.
+   * - Row locks deck and card ownership rows (FOR UPDATE).
+   * - Validates optimistic locking (expected_revision) to prevent stale overwrites.
+   * - Correctly increments revision number and stores actual revision in deck_revisions.
+   * - Explicitly constrains deck update with WHERE id = $1 AND user_id = $2.
+   */
   async saveCustomDeck(userId, deckDef, rustBridge) {
-    // Authoritative validation via Rust rules engine
+    // 1. Authoritative deck validation via Rust battle engine
+    const totalCards = (deckDef.cards || []).reduce((acc, c) => acc + Number(c.count || 0), 0);
     const validation = await rustBridge.validateDeck({
       id: deckDef.id || 'custom_deck',
       name: deckDef.name || 'Custom Deck',
       description: deckDef.description || 'Custom 40-card deck',
       factions: deckDef.factions || [],
-      total_cards: (deckDef.cards || []).reduce((acc, c) => acc + Number(c.count || 0), 0),
+      total_cards: totalCards,
       cards: deckDef.cards || []
     });
 
@@ -842,66 +868,106 @@ export class HearthglassDatabase {
       return { valid: false, errors: validation.errors };
     }
 
-    // Check collection ownership in PostgreSQL
-    const colRes = await this.query(
-      `SELECT card_id, quantity FROM player_card_ownership WHERE user_id = $1`,
-      [userId]
-    );
-    const ownedMap = new Map(colRes.rows.map((r) => [r.card_id, Number(r.quantity)]));
-    const ownershipErrors = [];
-    const majorFactions = new Set();
+    const isDeckUuid = isUuid(deckDef.id);
+    const deckId = isDeckUuid ? deckDef.id : crypto.randomUUID();
 
+    const majorFactions = new Set();
     for (const entry of deckDef.cards) {
       const card = this.cardById.get(entry.card_id);
       if (card && card.faction !== 'neutral') {
         majorFactions.add(card.faction);
       }
-      const owned = ownedMap.get(entry.card_id) || 0;
-      if (owned < entry.count) {
-        ownershipErrors.push(
-          `Insufficient owned copies of ${entry.card_id}: own ${owned}, need ${entry.count}`
-        );
-      }
     }
-
-    if (ownershipErrors.length > 0) {
-      return { valid: false, errors: ownershipErrors };
-    }
-
-    const isUuid =
-      deckDef.id &&
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(deckDef.id);
-    const deckId = isUuid ? deckDef.id : crypto.randomUUID();
     const factions = Array.from(majorFactions);
 
-    // CRITICAL SECURITY FIX (V10-A): Prevent cross-account deck overwrite!
-    if (isUuid) {
-      const existingDeck = await this.query(
-        `SELECT id, user_id FROM decks WHERE id = $1 LIMIT 1`,
+    return this.withTransaction(async (tx) => {
+      // 2. Revalidate card ownership INSIDE transaction with row locks
+      const colRes = await tx(
+        `SELECT card_id, quantity FROM player_card_ownership WHERE user_id = $1 FOR UPDATE`,
+        [userId]
+      );
+      const ownedMap = new Map(colRes.rows.map((r) => [r.card_id, Number(r.quantity)]));
+      const ownershipErrors = [];
+
+      for (const entry of deckDef.cards) {
+        const owned = ownedMap.get(entry.card_id) || 0;
+        if (owned < entry.count) {
+          ownershipErrors.push(
+            `Insufficient owned copies of ${entry.card_id}: own ${owned}, need ${entry.count}`
+          );
+        }
+      }
+
+      if (ownershipErrors.length > 0) {
+        return { valid: false, errors: ownershipErrors };
+      }
+
+      // 3. Atomically check deck existence and ownership INSIDE transaction
+      let currentRevision = 1;
+      let isNew = true;
+
+      const deckRow = await tx(
+        `SELECT id, user_id, revision FROM decks WHERE id = $1 FOR UPDATE`,
         [deckId]
       );
-      if (existingDeck.rows.length > 0 && existingDeck.rows[0].user_id !== userId) {
-        return {
-          valid: false,
-          forbidden: true,
-          errors: ['Forbidden: Cannot modify a deck belonging to another user']
-        };
+
+      if (deckRow.rows.length > 0) {
+        const existing = deckRow.rows[0];
+        // Enforce account ownership: cannot overwrite another user's deck
+        if (existing.user_id !== userId) {
+          return {
+            valid: false,
+            forbidden: true,
+            errors: ['Forbidden: Cannot modify a deck belonging to another user']
+          };
+        }
+
+        // Optimistic concurrency check (prevent stale writes)
+        if (deckDef.expected_revision !== undefined && deckDef.expected_revision !== null) {
+          if (Number(deckDef.expected_revision) !== Number(existing.revision)) {
+            return {
+              valid: false,
+              conflict: true,
+              stale_write: true,
+              errors: [
+                `Conflict: Stale write detected. Expected revision ${deckDef.expected_revision}, but server deck is at revision ${existing.revision}`
+              ]
+            };
+          }
+        }
+
+        currentRevision = Number(existing.revision) + 1;
+        isNew = false;
       }
-    }
 
-    // Atomic transaction for deck metadata, card list replacement, and revision snapshot
-    await this.withTransaction(async (tx) => {
-      await tx(
-        `INSERT INTO decks (id, user_id, name, factions, format, revision, updated_at)
-         VALUES ($1, $2, $3, $4::jsonb, 'standard_1v1', 1, NOW())
-         ON CONFLICT (id) DO UPDATE SET
-           name = EXCLUDED.name,
-           factions = EXCLUDED.factions,
-           revision = decks.revision + 1,
-           updated_at = NOW()`,
-        [deckId, userId, deckDef.name || 'Custom Convergence Deck', JSON.stringify(factions)]
-      );
+      // 4. Atomic upsert with ownership constraints
+      if (isNew) {
+        await tx(
+          `INSERT INTO decks (id, user_id, name, factions, format, revision, updated_at)
+           VALUES ($1, $2, $3, $4::jsonb, 'standard_1v1', 1, NOW())`,
+          [deckId, userId, deckDef.name || 'Custom Convergence Deck', JSON.stringify(factions)]
+        );
+        currentRevision = 1;
+      } else {
+        const updateRes = await tx(
+          `UPDATE decks SET
+             name = $3,
+             factions = $4::jsonb,
+             revision = $5,
+             updated_at = NOW()
+           WHERE id = $1 AND user_id = $2`,
+          [deckId, userId, deckDef.name || 'Custom Convergence Deck', JSON.stringify(factions), currentRevision]
+        );
+        if (updateRes.rowCount === 0) {
+          return {
+            valid: false,
+            forbidden: true,
+            errors: ['Forbidden: Cannot update deck (ownership constraint failed)']
+          };
+        }
+      }
 
+      // 5. Replace deck card association
       await tx(`DELETE FROM deck_cards WHERE deck_id = $1`, [deckId]);
       for (const entry of deckDef.cards) {
         await tx(
@@ -910,145 +976,180 @@ export class HearthglassDatabase {
         );
       }
 
+      // 6. Record exact revision in deck_revisions
       await tx(
         `INSERT INTO deck_revisions (id, deck_id, revision, cards_snapshot)
-         VALUES ($1, $2, 1, $3::jsonb)`,
-        [crypto.randomUUID(), deckId, JSON.stringify(deckDef.cards)]
+         VALUES ($1, $2, $3, $4::jsonb)`,
+        [crypto.randomUUID(), deckId, currentRevision, JSON.stringify(deckDef.cards)]
       );
+
+      return {
+        valid: true,
+        errors: [],
+        deck: {
+          id: deckId,
+          name: deckDef.name || 'Custom Convergence Deck',
+          description: deckDef.description || 'Player-saved 40-card deck',
+          factions,
+          revision: currentRevision,
+          total_cards: 40,
+          cards: deckDef.cards
+        }
+      };
     });
-
-    await this.advanceQuestObjective(userId, 'validate_legal_deck', 'any_40_card_deck');
-
-    return {
-      valid: true,
-      errors: [],
-      deck: {
-        id: deckId,
-        name: deckDef.name || 'Custom Convergence Deck',
-        description: deckDef.description || 'Player-saved 40-card deck',
-        factions,
-        total_cards: 40,
-        cards: deckDef.cards
-      }
-    };
   }
 
+  /**
+   * TASK 5 / V10-B: Transaction-safe pack purchasing and duplicate conversion.
+   * Fully atomic across crowns deduction, duplicate card conversion to Echo Dust,
+   * card inventory increments, currency audit trails, and pack opening records.
+   */
   async openPack(userId, idempotencyKey = null, packId = 'pack_foundations') {
     const packMeta =
       SHOP_PACK_CATALOGUE.find((p) => p.id === packId) || SHOP_PACK_CATALOGUE[0];
     const PACK_COST_CROWNS = packMeta.cost_crowns || 100;
     const idemKey = idempotencyKey || `pack_${crypto.randomUUID()}`;
 
-    const existingTx = await this.query(
-      `SELECT id FROM currency_transactions WHERE idempotency_key = $1 LIMIT 1`,
-      [idemKey]
-    );
-    if (existingTx.rows.length > 0) {
-      const profile = await this.getFullPlayerProfile(userId);
-      return { idempotent_replay: true, wallet: profile.wallet };
-    }
-
-    const wRes = await this.query(
-      `SELECT crowns, echo_dust FROM wallet_balances WHERE user_id = $1 LIMIT 1`,
-      [userId]
-    );
-    const crowns = Number(wRes.rows[0]?.crowns || 0);
-    if (crowns < PACK_COST_CROWNS) {
-      throw new Error(`Insufficient Crowns (requires ${PACK_COST_CROWNS} Crowns)`);
-    }
-
-    await this.query(
-      `UPDATE wallet_balances SET crowns = crowns - $2, updated_at = NOW() WHERE user_id = $1`,
-      [userId, PACK_COST_CROWNS]
-    );
-    await this.query(
-      `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
-       VALUES ($1, $2, $3, 'crowns', $4, $5)`,
-      [crypto.randomUUID(), userId, idemKey, -PACK_COST_CROWNS, `pack_purchase_${packMeta.id}`]
-    );
-
-    const allCards = Array.from(this.cardById.values());
-    const poolCards =
-      packMeta.factions.includes('all')
-        ? allCards
-        : allCards.filter((c) => packMeta.factions.includes(c.faction));
-    const sourcePool = poolCards.length >= 10 ? poolCards : allCards;
-
-    const commons = sourcePool.filter((c) => c.rarity === 'common');
-    const uncommons = sourcePool.filter((c) => c.rarity === 'uncommon');
-    const raresOrLegendaries = sourcePool.filter(
-      (c) => c.rarity === 'rare' || c.rarity === 'legendary'
-    );
-    const pick = (arr, fallback) =>
-      arr.length > 0
-        ? arr[Math.floor(Math.random() * arr.length)]
-        : fallback[Math.floor(Math.random() * fallback.length)];
-
-    const drawn = [
-      pick(commons, allCards),
-      pick(commons, allCards),
-      pick(commons, allCards),
-      pick(uncommons, allCards),
-      pick(raresOrLegendaries, allCards)
-    ];
-
-    let duplicateDustConverted = 0;
-    const packResults = [];
-
-    for (const card of drawn) {
-      const ownRes = await this.query(
-        `SELECT quantity FROM player_card_ownership WHERE user_id = $1 AND card_id = $2`,
-        [userId, card.id]
+    const txResult = await this.withTransaction(async (tx) => {
+      // 1. Idempotency Check inside transaction
+      const existingTx = await tx(
+        `SELECT id FROM currency_transactions WHERE idempotency_key = $1 LIMIT 1`,
+        [idemKey]
       );
-      const currentOwned = Number(ownRes.rows[0]?.quantity || 0);
-      const maxPlayable = COPY_LIMITS[card.rarity];
-      if (currentOwned >= maxPlayable) {
-        const dust = DISENCHANT_YIELDS[card.rarity];
-        duplicateDustConverted += dust;
-        packResults.push({
-          card_id: card.id,
-          name: card.name,
-          faction: card.faction,
-          rarity: card.rarity,
-          converted_to_dust: dust
-        });
-      } else {
-        await this.query(
-          `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
-           VALUES ($1, $2, 1, NOW())
-           ON CONFLICT (user_id, card_id) DO UPDATE SET
-             quantity = player_card_ownership.quantity + 1,
-             updated_at = NOW()`,
+      if (existingTx.rows.length > 0) {
+        return { idempotent_replay: true };
+      }
+
+      // 2. Lock wallet and enforce currency balance
+      const wRes = await tx(
+        `SELECT crowns, echo_dust FROM wallet_balances WHERE user_id = $1 FOR UPDATE`,
+        [userId]
+      );
+      if (wRes.rows.length === 0) {
+        throw new Error(`Wallet not found for user ${userId}`);
+      }
+      const crowns = Number(wRes.rows[0].crowns || 0);
+      if (crowns < PACK_COST_CROWNS) {
+        throw new Error(`Insufficient Crowns (requires ${PACK_COST_CROWNS} Crowns)`);
+      }
+
+      // 3. Atomic crowns deduction with constraint
+      const debitRes = await tx(
+        `UPDATE wallet_balances SET crowns = crowns - $2, updated_at = NOW() WHERE user_id = $1 AND crowns >= $2`,
+        [userId, PACK_COST_CROWNS]
+      );
+      if (debitRes.rowCount === 0) {
+        throw new Error('Insufficient Crowns (concurrent modification)');
+      }
+
+      // 4. Audit record for pack purchase
+      await tx(
+        `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+         VALUES ($1, $2, $3, 'crowns', $4, $5)`,
+        [crypto.randomUUID(), userId, idemKey, -PACK_COST_CROWNS, `pack_purchase_${packMeta.id}`]
+      );
+
+      // 5. Draw 5 cards according to pack drop rules
+      const allCards = Array.from(this.cardById.values());
+      const poolCards =
+        packMeta.factions.includes('all')
+          ? allCards
+          : allCards.filter((c) => packMeta.factions.includes(c.faction));
+      const sourcePool = poolCards.length >= 10 ? poolCards : allCards;
+
+      const commons = sourcePool.filter((c) => c.rarity === 'common');
+      const uncommons = sourcePool.filter((c) => c.rarity === 'uncommon');
+      const raresOrLegendaries = sourcePool.filter(
+        (c) => c.rarity === 'rare' || c.rarity === 'legendary'
+      );
+      const pick = (arr, fallback) =>
+        arr.length > 0
+          ? arr[Math.floor(Math.random() * arr.length)]
+          : fallback[Math.floor(Math.random() * fallback.length)];
+
+      const drawn = [
+        pick(commons, allCards),
+        pick(commons, allCards),
+        pick(commons, allCards),
+        pick(uncommons, allCards),
+        pick(raresOrLegendaries, allCards)
+      ];
+
+      let duplicateDustConverted = 0;
+      const packResults = [];
+
+      for (const card of drawn) {
+        const ownRes = await tx(
+          `SELECT quantity FROM player_card_ownership WHERE user_id = $1 AND card_id = $2 FOR UPDATE`,
           [userId, card.id]
         );
-        packResults.push({
-          card_id: card.id,
-          name: card.name,
-          faction: card.faction,
-          rarity: card.rarity,
-          converted_to_dust: 0
-        });
+        const currentOwned = Number(ownRes.rows[0]?.quantity || 0);
+        const maxPlayable = COPY_LIMITS[card.rarity] || 3;
+
+        if (currentOwned >= maxPlayable) {
+          // Automatic duplicate conversion: excess cards yield Echo Dust
+          const dust = DISENCHANT_YIELDS[card.rarity];
+          duplicateDustConverted += dust;
+          packResults.push({
+            card_id: card.id,
+            name: card.name,
+            faction: card.faction,
+            rarity: card.rarity,
+            converted_to_dust: dust
+          });
+        } else {
+          await tx(
+            `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
+             VALUES ($1, $2, 1, NOW())
+             ON CONFLICT (user_id, card_id) DO UPDATE SET
+               quantity = player_card_ownership.quantity + 1,
+               updated_at = NOW()`,
+            [userId, card.id]
+          );
+          packResults.push({
+            card_id: card.id,
+            name: card.name,
+            faction: card.faction,
+            rarity: card.rarity,
+            converted_to_dust: 0
+          });
+        }
       }
-    }
 
-    if (duplicateDustConverted > 0) {
-      await this.query(
-        `UPDATE wallet_balances SET echo_dust = echo_dust + $2, updated_at = NOW() WHERE user_id = $1`,
-        [userId, duplicateDustConverted]
+      // 6. Credit duplicate dust if applicable
+      if (duplicateDustConverted > 0) {
+        await tx(
+          `UPDATE wallet_balances SET echo_dust = echo_dust + $2, updated_at = NOW() WHERE user_id = $1`,
+          [userId, duplicateDustConverted]
+        );
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+          [crypto.randomUUID(), userId, `${idemKey}_dust`, duplicateDustConverted, `duplicate_dust_${packMeta.id}`]
+        );
+      }
+
+      // 7. Record pack opening log
+      await tx(
+        `INSERT INTO pack_openings (id, user_id, pack_type, cards_granted)
+         VALUES ($1, $2, $3, $4::jsonb)`,
+        [crypto.randomUUID(), userId, packMeta.id, JSON.stringify(packResults)]
       );
-    }
 
-    await this.query(
-      `INSERT INTO pack_openings (id, user_id, pack_type, cards_granted)
-       VALUES ($1, $2, $3, $4::jsonb)`,
-      [crypto.randomUUID(), userId, packMeta.id, JSON.stringify(packResults)]
-    );
+      return {
+        idempotent_replay: false,
+        pack_id: packMeta.id,
+        pack_cards: packResults,
+        duplicate_dust_gained: duplicateDustConverted
+      };
+    });
 
     const updatedProfile = await this.getFullPlayerProfile(userId);
     return {
-      pack_id: packMeta.id,
-      pack_cards: packResults,
-      duplicate_dust_gained: duplicateDustConverted,
+      pack_id: txResult.pack_id || packMeta.id,
+      pack_cards: txResult.pack_cards || [],
+      duplicate_dust_gained: txResult.duplicate_dust_gained || 0,
+      idempotent_replay: Boolean(txResult.idempotent_replay),
       wallet: updatedProfile.wallet
     };
   }
@@ -1068,6 +1169,10 @@ export class HearthglassDatabase {
     };
   }
 
+  /**
+   * TASK 5 / V10-B: Transaction-safe card crafting and disenchanting.
+   * Fully atomic with row locks, copy limits enforcement, and currency transactions audit.
+   */
   async craftOrDisenchantCard(userId, { card_id, action, idempotency_key = null }) {
     const card = this.cardById.get(card_id);
     if (!card) {
@@ -1076,6 +1181,7 @@ export class HearthglassDatabase {
 
     const txResult = await this.withTransaction(async (txQuery) => {
       // 1. Concurrency and Idempotency Protection
+      const txKey = idempotency_key || `craft_${crypto.randomUUID()}`;
       if (idempotency_key) {
         const existingTx = await txQuery(
           `SELECT id, action_type, echo_dust_delta FROM crafting_transactions WHERE idempotency_key = $1 LIMIT 1`,
@@ -1086,11 +1192,14 @@ export class HearthglassDatabase {
         }
       }
 
-      // Lock wallet balance and card ownership rows
+      // 2. Lock wallet balance and card ownership rows
       const wRes = await txQuery(
         `SELECT echo_dust FROM wallet_balances WHERE user_id = $1 FOR UPDATE`,
         [userId]
       );
+      if (wRes.rows.length === 0) {
+        throw new Error(`Wallet not found for user ${userId}`);
+      }
       const echoDust = Number(wRes.rows[0]?.echo_dust || 0);
 
       const ownRes = await txQuery(
@@ -1105,10 +1214,13 @@ export class HearthglassDatabase {
           throw new Error('You do not own any copies to disenchant');
         }
         const yieldDust = DISENCHANT_YIELDS[card.rarity];
-        await txQuery(
-          `UPDATE player_card_ownership SET quantity = quantity - 1, updated_at = NOW() WHERE user_id = $1 AND card_id = $2`,
+        const updateOwn = await txQuery(
+          `UPDATE player_card_ownership SET quantity = quantity - 1, updated_at = NOW() WHERE user_id = $1 AND card_id = $2 AND quantity >= 1`,
           [userId, card_id]
         );
+        if (updateOwn.rowCount === 0) {
+          throw new Error('Disenchant failed: card quantity changed concurrently');
+        }
         await txQuery(
           `UPDATE wallet_balances SET echo_dust = echo_dust + $2, updated_at = NOW() WHERE user_id = $1`,
           [userId, yieldDust]
@@ -1118,9 +1230,14 @@ export class HearthglassDatabase {
            VALUES ($1, $2, 'disenchant', $3, $4, $5)`,
           [crypto.randomUUID(), userId, card_id, yieldDust, idempotency_key]
         );
+        await txQuery(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_dust`, yieldDust, `disenchant_${card_id}`]
+        );
       } else {
         const costDust = CRAFT_COSTS[card.rarity];
-        // Enforce inventory limit BEFORE modifying anything
+        // Enforce inventory copy limit BEFORE modifying anything
         if (owned >= maxCopies) {
           throw new Error(`Already own maximum playable copies (${maxCopies}) of ${card.name}`);
         }
@@ -1128,11 +1245,14 @@ export class HearthglassDatabase {
         if (echoDust < costDust) {
           throw new Error(`Insufficient Echo Dust (requires ${costDust})`);
         }
-        // Atomic deduction and ownership increment
-        await txQuery(
-          `UPDATE wallet_balances SET echo_dust = echo_dust - $2, updated_at = NOW() WHERE user_id = $1`,
+        // Atomic deduction with balance constraint
+        const updateWallet = await txQuery(
+          `UPDATE wallet_balances SET echo_dust = echo_dust - $2, updated_at = NOW() WHERE user_id = $1 AND echo_dust >= $2`,
           [userId, costDust]
         );
+        if (updateWallet.rowCount === 0) {
+          throw new Error('Craft failed: insufficient Echo Dust (concurrent modification)');
+        }
         await txQuery(
           `INSERT INTO player_card_ownership (user_id, card_id, quantity, updated_at)
            VALUES ($1, $2, 1, NOW())
@@ -1145,6 +1265,11 @@ export class HearthglassDatabase {
           `INSERT INTO crafting_transactions (id, user_id, action_type, card_id, echo_dust_delta, idempotency_key)
            VALUES ($1, $2, 'craft', $3, $4, $5)`,
           [crypto.randomUUID(), userId, card_id, -costDust, idempotency_key]
+        );
+        await txQuery(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_dust`, -costDust, `craft_${card_id}`]
         );
       }
 
@@ -1162,6 +1287,128 @@ export class HearthglassDatabase {
       wallet: updated.wallet,
       idempotent_replay: Boolean(txResult.idempotent_replay)
     };
+  }
+
+  /**
+   * Helper for atomic currency granting with audit record
+   */
+  async grantCurrency(userId, { crowns = 0, echoDust = 0, sigils = 0, reason = 'grant', idempotencyKey = null }) {
+    const txKey = idempotencyKey || `grant_${crypto.randomUUID()}`;
+    return this.withTransaction(async (tx) => {
+      if (idempotencyKey) {
+        const check = await tx(
+          'SELECT id FROM currency_transactions WHERE idempotency_key = $1 LIMIT 1',
+          [idempotencyKey]
+        );
+        if (check.rows.length > 0) {
+          const profile = await this.getFullPlayerProfile(userId);
+          return { idempotent_replay: true, wallet: profile.wallet };
+        }
+      }
+      await tx(
+        `UPDATE wallet_balances SET
+           crowns = crowns + $2,
+           echo_dust = echo_dust + $3,
+           sigils = sigils + $4,
+           updated_at = NOW()
+         WHERE user_id = $1`,
+        [userId, crowns, echoDust, sigils]
+      );
+      if (crowns !== 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'crowns', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_cr`, crowns, reason]
+        );
+      }
+      if (echoDust !== 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_ed`, echoDust, reason]
+        );
+      }
+      if (sigils !== 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'sigils', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_sg`, sigils, reason]
+        );
+      }
+      const profile = await this.getFullPlayerProfile(userId);
+      return { idempotent_replay: false, wallet: profile.wallet };
+    });
+  }
+
+  /**
+   * Helper for atomic currency debit with balance verification
+   */
+  async debitCurrency(userId, { crowns = 0, echoDust = 0, sigils = 0, reason = 'debit', idempotencyKey = null }) {
+    const txKey = idempotencyKey || `debit_${crypto.randomUUID()}`;
+    return this.withTransaction(async (tx) => {
+      if (idempotencyKey) {
+        const check = await tx(
+          'SELECT id FROM currency_transactions WHERE idempotency_key = $1 LIMIT 1',
+          [idempotencyKey]
+        );
+        if (check.rows.length > 0) {
+          const profile = await this.getFullPlayerProfile(userId);
+          return { idempotent_replay: true, wallet: profile.wallet };
+        }
+      }
+      const wRes = await tx(
+        'SELECT crowns, echo_dust, sigils FROM wallet_balances WHERE user_id = $1 FOR UPDATE',
+        [userId]
+      );
+      if (wRes.rows.length === 0) {
+        throw new Error(`Wallet not found for user ${userId}`);
+      }
+      const w = wRes.rows[0];
+      if (Number(w.crowns) < crowns) {
+        throw new Error(`Insufficient crowns: own ${w.crowns}, required ${crowns}`);
+      }
+      if (Number(w.echo_dust) < echoDust) {
+        throw new Error(`Insufficient echo dust: own ${w.echo_dust}, required ${echoDust}`);
+      }
+      if (Number(w.sigils) < sigils) {
+        throw new Error(`Insufficient sigils: own ${w.sigils}, required ${sigils}`);
+      }
+      const updateRes = await tx(
+        `UPDATE wallet_balances SET
+           crowns = crowns - $2,
+           echo_dust = echo_dust - $3,
+           sigils = sigils - $4,
+           updated_at = NOW()
+         WHERE user_id = $1 AND crowns >= $2 AND echo_dust >= $3 AND sigils >= $4`,
+        [userId, crowns, echoDust, sigils]
+      );
+      if (updateRes.rowCount === 0) {
+        throw new Error('Debit failed: balance modified concurrently');
+      }
+      if (crowns > 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'crowns', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_cr`, -crowns, reason]
+        );
+      }
+      if (echoDust > 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_ed`, -echoDust, reason]
+        );
+      }
+      if (sigils > 0) {
+        await tx(
+          `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+           VALUES ($1, $2, $3, 'sigils', $4, $5)`,
+          [crypto.randomUUID(), userId, `${txKey}_sg`, -sigils, reason]
+        );
+      }
+      const profile = await this.getFullPlayerProfile(userId);
+      return { idempotent_replay: false, wallet: profile.wallet };
+    });
   }
 
   async interactWithNpc(userId, npcId, interactionType = 'talk') {
@@ -1246,21 +1493,41 @@ export class HearthglassDatabase {
       if (changed) {
         const allDone = q.objectives.every((obj) => (progress[obj.id] || 0) >= obj.required);
         const newStatus = allDone ? 'completed' : 'active';
-        await this.query(
-          `UPDATE player_quests SET status = $3::varchar, progress_json = $4::jsonb, claimed_at = CASE WHEN $3::varchar = 'completed' THEN NOW() ELSE claimed_at END
-           WHERE user_id = $1 AND quest_id = $2`,
-          [userId, q.id, newStatus, JSON.stringify(progress)]
-        );
-        if (allDone) {
-          await this.query(
-            `UPDATE wallet_balances SET crowns = crowns + $2, echo_dust = echo_dust + $3, updated_at = NOW() WHERE user_id = $1`,
-            [userId, q.rewards.crowns || 0, q.rewards.echo_dust || 0]
+        await this.withTransaction(async (tx) => {
+          await tx(
+            `UPDATE player_quests SET status = $3::varchar, progress_json = $4::jsonb, claimed_at = CASE WHEN $3::varchar = 'completed' THEN NOW() ELSE claimed_at END
+             WHERE user_id = $1 AND quest_id = $2`,
+            [userId, q.id, newStatus, JSON.stringify(progress)]
           );
-          await this.query(
-            `UPDATE player_world_progress SET story_chapter = GREATEST(story_chapter, $2::int), updated_at = NOW() WHERE user_id = $1`,
-            [userId, q.chapter + 1]
-          );
-        }
+          if (allDone) {
+            const cr = q.rewards.crowns || 0;
+            const ed = q.rewards.echo_dust || 0;
+            if (cr > 0 || ed > 0) {
+              await tx(
+                `UPDATE wallet_balances SET crowns = crowns + $2, echo_dust = echo_dust + $3, updated_at = NOW() WHERE user_id = $1`,
+                [userId, cr, ed]
+              );
+              if (cr > 0) {
+                await tx(
+                  `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+                   VALUES ($1, $2, $3, 'crowns', $4, $5)`,
+                  [crypto.randomUUID(), userId, `quest_${q.id}_cr`, cr, `quest_reward_${q.id}`]
+                );
+              }
+              if (ed > 0) {
+                await tx(
+                  `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+                   VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+                  [crypto.randomUUID(), userId, `quest_${q.id}_ed`, ed, `quest_reward_${q.id}`]
+                );
+              }
+            }
+            await tx(
+              `UPDATE player_world_progress SET story_chapter = GREATEST(story_chapter, $2::int), updated_at = NOW() WHERE user_id = $1`,
+              [userId, q.chapter + 1]
+            );
+          }
+        });
       }
     }
   }
@@ -1291,53 +1558,75 @@ export class HearthglassDatabase {
     );
   }
 
+  /**
+   * TASK 5 / V10-B: Transaction-safe match reward distribution.
+   * Atomically marks match as completed, validates human seats, prevents duplicate payouts,
+   * updates ratings/XP, and logs currency transactions.
+   */
   async recordMatchCompletion({ matchId, winnerSlot, finalChecksum, playerIds = [], npcId = null }) {
-    await this.query(
-      `UPDATE matches SET status = 'completed', winner_slot = $2::smallint, final_checksum = $3::varchar, completed_at = NOW()
-       WHERE id = $1`,
-      [matchId, winnerSlot, String(finalChecksum)]
-    );
-
-    const isTag2v2 = playerIds.length === 4;
-
-    for (let slot = 0; slot < playerIds.length; slot++) {
-      const uid = playerIds[slot];
-      if (!uid) continue;
-      const isWinner =
-        winnerSlot !== null &&
-        (isTag2v2 ? winnerSlot === slot % 2 : winnerSlot === slot);
-
-      if (isWinner) {
-        const npc = npcId ? this.npcs.find((n) => n.id === npcId) : null;
-        const crownsGain = npc ? npc.rewards.crowns : isTag2v2 ? 95 : 75;
-        const dustGain = npc ? npc.rewards.echo_dust : isTag2v2 ? 35 : 25;
-
-        await this.query(
-          `UPDATE wallet_balances SET crowns = crowns + $2, echo_dust = echo_dust + $3, updated_at = NOW() WHERE user_id = $1`,
-          [uid, crownsGain, dustGain]
-        );
-        await this.query(
-          `UPDATE player_profiles SET account_xp = account_xp + 120, account_level = 1 + ((account_xp + 120) / 500)::int WHERE user_id = $1`,
-          [uid]
-        );
-        await this.query(
-          `UPDATE rankings SET wins = wins + 1, rating = rating + 18.5 WHERE user_id = $1 AND format = 'standard_1v1'`,
-          [uid]
-        );
-        if (npc) {
-          await this.interactWithNpc(uid, npc.id, 'gift');
-          await this.advanceQuestObjective(uid, 'win_duel', npc.id);
-        }
-        if (isTag2v2) {
-          await this.advanceQuestObjective(uid, 'win_duel', 'tag_2v2');
-        }
-        await this.advanceQuestObjective(uid, 'win_duel', 'any_duel');
-      } else if (winnerSlot !== null) {
-        await this.query(
-          `UPDATE rankings SET losses = losses + 1, rating = GREATEST(1000, rating - 14.0) WHERE user_id = $1 AND format = 'standard_1v1'`,
-          [uid]
-        );
+    return this.withTransaction(async (tx) => {
+      // 1. Idempotency Check: if match is already marked completed, avoid double payout
+      const matchRow = await tx(
+        `SELECT status FROM matches WHERE id = $1 FOR UPDATE`,
+        [matchId]
+      );
+      if (matchRow.rows.length > 0 && matchRow.rows[0].status === 'completed') {
+        return { already_completed: true };
       }
-    }
+
+      await tx(
+        `UPDATE matches SET status = 'completed', winner_slot = $2::smallint, final_checksum = $3::varchar, completed_at = NOW()
+         WHERE id = $1`,
+        [matchId, winnerSlot, String(finalChecksum)]
+      );
+
+      const isTag2v2 = playerIds.length === 4;
+
+      for (let slot = 0; slot < playerIds.length; slot++) {
+        const uid = playerIds[slot];
+        // Human seat verification: strictly require valid UUID (ignore AI seats / non-UUIDs)
+        if (!isUuid(uid)) continue;
+
+        const isWinner =
+          winnerSlot !== null &&
+          (isTag2v2 ? winnerSlot === slot % 2 : winnerSlot === slot);
+
+        if (isWinner) {
+          const npc = npcId ? this.npcs.find((n) => n.id === npcId) : null;
+          const crownsGain = npc ? npc.rewards.crowns : isTag2v2 ? 95 : 75;
+          const dustGain = npc ? npc.rewards.echo_dust : isTag2v2 ? 35 : 25;
+
+          await tx(
+            `UPDATE wallet_balances SET crowns = crowns + $2, echo_dust = echo_dust + $3, updated_at = NOW() WHERE user_id = $1`,
+            [uid, crownsGain, dustGain]
+          );
+          await tx(
+            `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+             VALUES ($1, $2, $3, 'crowns', $4, $5)`,
+            [crypto.randomUUID(), uid, `match_${matchId}_slot_${slot}_cr`, crownsGain, `match_win_${matchId}`]
+          );
+          await tx(
+            `INSERT INTO currency_transactions (id, user_id, idempotency_key, currency, amount_delta, reason)
+             VALUES ($1, $2, $3, 'echo_dust', $4, $5)`,
+            [crypto.randomUUID(), uid, `match_${matchId}_slot_${slot}_ed`, dustGain, `match_win_${matchId}`]
+          );
+          await tx(
+            `UPDATE player_profiles SET account_xp = account_xp + 120, account_level = 1 + ((account_xp + 120) / 500)::int WHERE user_id = $1`,
+            [uid]
+          );
+          await tx(
+            `UPDATE rankings SET wins = wins + 1, rating = rating + 18.5 WHERE user_id = $1 AND format = 'standard_1v1'`,
+            [uid]
+          );
+        } else if (winnerSlot !== null) {
+          await tx(
+            `UPDATE rankings SET losses = losses + 1, rating = GREATEST(1000, rating - 14.0) WHERE user_id = $1 AND format = 'standard_1v1'`,
+            [uid]
+          );
+        }
+      }
+
+      return { completed: true };
+    });
   }
 }

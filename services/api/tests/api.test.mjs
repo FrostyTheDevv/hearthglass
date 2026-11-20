@@ -6,6 +6,9 @@ import path from 'node:path';
 import { WebSocket } from 'ws';
 import { createServer } from '../src/server.mjs';
 
+process.env.INITIAL_ADMIN_PROVISIONING_SECRET = 'test_provisioning_secret_2026';
+process.env.ENABLE_HTTP_ADMIN_PROVISIONING = 'true';
+
 function makeTempPgDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'hearthglass-pg-test-'));
 }
@@ -219,7 +222,8 @@ test('PostgreSQL persistence: accounts, custom 40-card decks, themed pack openin
     assert.equal(histRes.status, 200);
     const histBody = await histRes.json();
     assert.equal(histBody.pack_openings.length, 1);
-    assert.equal(histBody.transactions.length, 1);
+    assert.ok(histBody.transactions.length >= 1, 'At least one transaction recorded');
+    assert.ok(histBody.transactions.some((t) => t.currency === 'crowns' && Number(t.amount_delta) === -100));
 
     // Save a custom 40-card deck using one of the new expansion archetype decks
     const decksRes = await fetch(`${baseUrl}/v1/decks`, {
