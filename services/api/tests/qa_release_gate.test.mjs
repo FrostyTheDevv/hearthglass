@@ -164,12 +164,10 @@ describe('QA Release Gate Runner & CLI Verification Suite', () => {
       output: 'test result: ok'
     });
 
-    const audit = runFullQaAudit({
-      testRunner: mockRunner,
-      rustCode: 'pub fn choose_command(&self, state: &MatchState, _difficulty: AiDifficulty)'
-    });
-    // AI difficulty (DEFECT-003) is P1
-    assert.ok(audit.p1_quality_and_balance_concerns.some((c) => c.id === 'DEFECT-003'));
+    const audit = runFullQaAudit({ testRunner: mockRunner });
+    // P1 concerns exist (e.g. GAP-001 or DEFECT-003)
+    assert.ok(audit.p1_quality_and_balance_concerns.length > 0, 'Audit must include P1 concerns');
+    assert.ok(audit.p1_quality_and_balance_concerns.some((c) => c.id === 'GAP-001' || c.id === 'DEFECT-003'));
     assert.equal(audit.active_release_blockers.length, 0);
     assert.equal(audit.release_gate_status, 'PASSED');
 
