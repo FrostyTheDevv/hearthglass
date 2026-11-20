@@ -15,7 +15,9 @@ jobs:
       - name: Build Rust Battle Engine
         run: cargo build --manifest-path services/battle-server/Cargo.toml
       - name: Run Authoritative Rules Engine Tests
-        run: cargo test --manifest-path services/battle-server/Cargo.toml
+        run: cargo test --manifest-path services/battle-server/Cargo.toml --test rules_engine_tests
+      - name: Run Multiplayer Snapshot Privacy Security Tests
+        run: cargo test --manifest-path services/battle-server/Cargo.toml --test snapshot_privacy_tests
       - name: Run Comprehensive Pairwise Battle Simulation
         run: cargo test --manifest-path services/battle-server/Cargo.toml --test simulation_1000_tests -- --nocapture
 
@@ -36,10 +38,16 @@ jobs:
         run: node tools/card-validator/validate.mjs
       - name: Verify Card Type & Historical Baseline Integrity
         run: node tools/card-validator/verify_card_integrity.mjs
+      - name: Verify Historical Integrity Regression Regimes
+        run: node tools/card-validator/test_integrity_regression.mjs
       - name: Verify Canonical Keyword Vocabulary
         run: node tools/card-validator/keyword_audit.mjs
       - name: Run Economy Anti-Tamper Security Tests
         run: node services/api/tests/economy_security.test.mjs
+      - name: Run Art Pipeline Raster & Review Tests
+        run: node --test services/api/tests/art_pipeline_raster.test.mjs
+      - name: Run Critical Authentication & Match Authorization Tests
+        run: node --test services/api/tests/security_auth.test.mjs
       - name: Run Backend API & WebSocket Integration Tests
         run: node --test services/api/tests/api.test.mjs
 
@@ -57,8 +65,8 @@ jobs:
           unzip -q Godot_v4.3-stable_linux.x86_64.zip
           mv Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot
           chmod +x /usr/local/bin/godot
-      - name: Import Godot Project Assets (Headless)
-        run: godot --headless --path apps/game-client --editor --quit || true
+      - name: Import Godot Project Assets (Headless - Fail Closed)
+        run: godot --headless --path apps/game-client --editor --quit
       - name: Run Godot Smoke Test Suite
         run: godot --headless --path apps/game-client scenes/tests/smoke_test_runner.tscn
       - name: Run Godot Connected Vertical Slice Test

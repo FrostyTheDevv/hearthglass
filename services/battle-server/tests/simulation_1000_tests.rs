@@ -28,12 +28,23 @@ fn load_catalogue_and_decks() -> (BTreeMap<String, CardDefinition>, StarterDecks
     (catalogue, decks)
 }
 
+#[derive(Debug, PartialEq, Eq, Clone)]
+enum TerminationClassification {
+    VitalityKO(usize),
+    NaturalDraw,
+    TurnLimitTimeout,
+    InvalidCommand(String),
+    CommandLimitExhausted,
+}
+
 #[derive(Debug, Default, Clone)]
 struct MatchupRecord {
     deck_a_wins: u32,
     deck_b_wins: u32,
-    draws: u32,
-    timeouts: u32,
+    natural_draws: u32,
+    rule_timeouts: u32,
+    invalid_actions: u32,
+    exhausted_commands: u32,
     total_turns: u64,
 }
 
@@ -52,11 +63,13 @@ fn test_exhaustive_pairwise_matchup_simulation() {
 
     let mut p0_wins_non_mirror = 0;
     let mut p1_wins_non_mirror = 0;
-    let mut draws_non_mirror = 0;
+    let mut natural_draws_non_mirror = 0;
     let mut total_actions_non_mirror: u64 = 0;
     let mut turn_distribution_non_mirror: Vec<u32> = Vec::new();
     let mut total_timeouts_non_mirror = 0;
     let mut total_vitality_kos_non_mirror = 0;
+    let mut total_invalid_actions_non_mirror = 0;
+    let mut total_exhausted_commands_non_mirror = 0;
 
     println!("\n=== STARTING EXHAUSTIVE PAIRWISE BATTLE SIMULATION (120 PAIRS x 20 GAMES = 2,400 MATCHES) ===");
 
@@ -82,35 +95,63 @@ fn test_exhaustive_pairwise_matchup_simulation() {
 
                 let mut state_a = MatchState::new_1v1(deck_i, deck_j, &catalogue, seed).expect("init match a");
                 let mut actions_a = 0;
+                let mut rejection_a = None;
                 while state_a.outcome == MatchOutcome::InProgress && actions_a < 1000 {
                     let cmd = NpcAi::choose_command(&state_a, &catalogue, AiDifficulty::Skilled);
                     let res = state_a.apply_command(cmd, &catalogue);
-                    if !res.accepted { break; }
+                    if !res.accepted {
+                        rejection_a = Some(res.error.unwrap_or_else(|| "Unknown rejection".to_string()));
+                        break;
+                    }
                     actions_a += 1;
                 }
                 total_actions_non_mirror += actions_a as u64;
                 turn_distribution_non_mirror.push(state_a.global_turn);
                 record.total_turns += state_a.global_turn as u64;
 
-                match state_a.outcome {
-                    MatchOutcome::PlayerVictory(0) => {
+                let term_a = if let Some(err) = rejection_a {
+                    TerminationClassification::InvalidCommand(err)
+                } else if actions_a >= 1000 && state_a.outcome == MatchOutcome::InProgress {
+                    TerminationClassification::CommandLimitExhausted
+                } else {
+                    match state_a.outcome {
+                        MatchOutcome::PlayerVictory(w) => TerminationClassification::VitalityKO(w),
+                        MatchOutcome::Draw => TerminationClassification::NaturalDraw,
+                        MatchOutcome::InProgress => TerminationClassification::TurnLimitTimeout,
+                        _ => TerminationClassification::TurnLimitTimeout,
+                    }
+                };
+
+                match term_a {
+                    TerminationClassification::VitalityKO(0) => {
                         record.deck_a_wins += 1;
                         deck_non_mirror_wins[i] += 1;
                         p0_wins_non_mirror += 1;
                         total_vitality_kos_non_mirror += 1;
                     }
-                    MatchOutcome::PlayerVictory(1) => {
+                    TerminationClassification::VitalityKO(1) => {
                         record.deck_b_wins += 1;
                         deck_non_mirror_wins[j] += 1;
                         p1_wins_non_mirror += 1;
                         total_vitality_kos_non_mirror += 1;
                     }
-                    _ => {
-                        record.draws += 1;
-                        draws_non_mirror += 1;
-                        record.timeouts += 1;
+                    TerminationClassification::NaturalDraw => {
+                        record.natural_draws += 1;
+                        natural_draws_non_mirror += 1;
+                    }
+                    TerminationClassification::TurnLimitTimeout => {
+                        record.rule_timeouts += 1;
                         total_timeouts_non_mirror += 1;
                     }
+                    TerminationClassification::InvalidCommand(_) => {
+                        record.invalid_actions += 1;
+                        total_invalid_actions_non_mirror += 1;
+                    }
+                    TerminationClassification::CommandLimitExhausted => {
+                        record.exhausted_commands += 1;
+                        total_exhausted_commands_non_mirror += 1;
+                    }
+                    TerminationClassification::VitalityKO(_) => {}
                 }
 
                 // --- MATCH B: Swapped Seats with IDENTICAL seed: Deck j as Seat 0 (P0), Deck i as Seat 1 (P1) ---
@@ -119,37 +160,63 @@ fn test_exhaustive_pairwise_matchup_simulation() {
 
                 let mut state_b = MatchState::new_1v1(deck_j, deck_i, &catalogue, seed).expect("init match b");
                 let mut actions_b = 0;
+                let mut rejection_b = None;
                 while state_b.outcome == MatchOutcome::InProgress && actions_b < 1000 {
                     let cmd = NpcAi::choose_command(&state_b, &catalogue, AiDifficulty::Skilled);
                     let res = state_b.apply_command(cmd, &catalogue);
-                    if !res.accepted { break; }
+                    if !res.accepted {
+                        rejection_b = Some(res.error.unwrap_or_else(|| "Unknown rejection".to_string()));
+                        break;
+                    }
                     actions_b += 1;
                 }
                 total_actions_non_mirror += actions_b as u64;
                 turn_distribution_non_mirror.push(state_b.global_turn);
                 record.total_turns += state_b.global_turn as u64;
 
-                match state_b.outcome {
-                    MatchOutcome::PlayerVictory(0) => {
-                        // Seat 0 was deck j
+                let term_b = if let Some(err) = rejection_b {
+                    TerminationClassification::InvalidCommand(err)
+                } else if actions_b >= 1000 && state_b.outcome == MatchOutcome::InProgress {
+                    TerminationClassification::CommandLimitExhausted
+                } else {
+                    match state_b.outcome {
+                        MatchOutcome::PlayerVictory(w) => TerminationClassification::VitalityKO(w),
+                        MatchOutcome::Draw => TerminationClassification::NaturalDraw,
+                        MatchOutcome::InProgress => TerminationClassification::TurnLimitTimeout,
+                        _ => TerminationClassification::TurnLimitTimeout,
+                    }
+                };
+
+                match term_b {
+                    TerminationClassification::VitalityKO(0) => {
                         record.deck_b_wins += 1;
                         deck_non_mirror_wins[j] += 1;
                         p0_wins_non_mirror += 1;
                         total_vitality_kos_non_mirror += 1;
                     }
-                    MatchOutcome::PlayerVictory(1) => {
-                        // Seat 1 was deck i
+                    TerminationClassification::VitalityKO(1) => {
                         record.deck_a_wins += 1;
                         deck_non_mirror_wins[i] += 1;
                         p1_wins_non_mirror += 1;
                         total_vitality_kos_non_mirror += 1;
                     }
-                    _ => {
-                        record.draws += 1;
-                        draws_non_mirror += 1;
-                        record.timeouts += 1;
+                    TerminationClassification::NaturalDraw => {
+                        record.natural_draws += 1;
+                        natural_draws_non_mirror += 1;
+                    }
+                    TerminationClassification::TurnLimitTimeout => {
+                        record.rule_timeouts += 1;
                         total_timeouts_non_mirror += 1;
                     }
+                    TerminationClassification::InvalidCommand(_) => {
+                        record.invalid_actions += 1;
+                        total_invalid_actions_non_mirror += 1;
+                    }
+                    TerminationClassification::CommandLimitExhausted => {
+                        record.exhausted_commands += 1;
+                        total_exhausted_commands_non_mirror += 1;
+                    }
+                    TerminationClassification::VitalityKO(_) => {}
                 }
             }
 
@@ -206,10 +273,12 @@ fn test_exhaustive_pairwise_matchup_simulation() {
     println!("Mean Global Turns Per Match:         {:.1}", mean_turns);
     println!("Median Global Turns Per Match:       {}", median_turns);
     println!("Vitality Depletion Knockouts:        {} ({:.1}%)", total_vitality_kos_non_mirror, (total_vitality_kos_non_mirror as f64 / total_non_mirror_matches as f64) * 100.0);
-    println!("Timeouts / Draws:                    {} ({:.1}%)", total_timeouts_non_mirror, (total_timeouts_non_mirror as f64 / total_non_mirror_matches as f64) * 100.0);
+    println!("Game-Rule Timeouts:                  {} ({:.1}%)", total_timeouts_non_mirror, (total_timeouts_non_mirror as f64 / total_non_mirror_matches as f64) * 100.0);
+    println!("Natural Draws:                       {}", natural_draws_non_mirror);
+    println!("Invalid Action Failures:             {}", total_invalid_actions_non_mirror);
+    println!("Exhausted Command Loops:             {}", total_exhausted_commands_non_mirror);
     println!("First-Player (Seat 0) Wins:          {} ({:.1}%)", p0_wins_non_mirror, (p0_wins_non_mirror as f64 / total_non_mirror_matches as f64) * 100.0);
     println!("Second-Player (Seat 1) Wins:         {} ({:.1}%)", p1_wins_non_mirror, (p1_wins_non_mirror as f64 / total_non_mirror_matches as f64) * 100.0);
-    println!("Draws:                               {}", draws_non_mirror);
     println!("---------------------------------------------------------------------------------");
     println!("Mirror Matches (160 Games): Seat 0 Wins: {} ({:.1}%), Seat 1 Wins: {} ({:.1}%), Draws: {}",
         mirror_p0_wins, (mirror_p0_wins as f64 / 160.0) * 100.0,
@@ -230,7 +299,9 @@ fn test_exhaustive_pairwise_matchup_simulation() {
     }
     println!("=================================================================================\n");
 
-    assert_eq!(p0_wins_non_mirror + p1_wins_non_mirror + draws_non_mirror, 2400);
+    assert_eq!(total_invalid_actions_non_mirror, 0, "No simulation match should fail due to invalid AI actions");
+    assert_eq!(total_exhausted_commands_non_mirror, 0, "No simulation match should exhaust the 1,000 command limit");
+    assert_eq!(p0_wins_non_mirror + p1_wins_non_mirror + natural_draws_non_mirror + total_timeouts_non_mirror, 2400);
     for total_g in deck_non_mirror_games {
         assert_eq!(total_g, 300, "Every deck must play exactly 300 non-mirror matches across all 15 opponents");
     }

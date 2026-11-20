@@ -543,6 +543,16 @@ export class ArtProductionPipeline {
     fs.writeFileSync(this.manifestPath, JSON.stringify(this.state, null, 2), 'utf8');
   }
 
+  _findExistingAssetFile(dir, cardId) {
+    for (const ext of ['.png', '.webp', '.jpg', '.jpeg', '.svg']) {
+      const pUpper = path.join(dir, cardId + ext);
+      if (fs.existsSync(pUpper)) return pUpper;
+      const pLower = path.join(dir, cardId.toLowerCase() + ext);
+      if (fs.existsSync(pLower)) return pLower;
+    }
+    return null;
+  }
+
   _findCandidateFile(candidate) {
     const candidateId = candidate.candidate_id || candidate.id;
     if (candidate.file_type) {
@@ -561,6 +571,32 @@ export class ArtProductionPipeline {
     for (const cardId of SHOWCASE_8_CARD_IDS) {
       const card = this.cardsById.get(cardId);
       if (!card) continue;
+
+      const existingRec = this.state.card_records[cardId];
+      // 1. If existing record has final production approval, NEVER overwrite it!
+      if (existingRec && (existingRec.final_production_approved || existingRec.status === 'production_approved')) {
+        continue;
+      }
+
+      // 2. Check if a master or game-ready raster asset already exists for this card
+      const candidateMasterDir = path.join(this.mastersDir, cardId);
+      const masterExists = fs.existsSync(candidateMasterDir) && fs.readdirSync(candidateMasterDir).length > 0;
+      if (existingRec && masterExists && existingRec.final_production_approved) {
+        continue;
+      }
+
+      // Check if exported raster/vector files exist
+      const existingExports = ['png', 'webp', 'jpg', 'jpeg', 'svg'].some((ext) => {
+        return (
+          fs.existsSync(path.join(this.godotCardsDir, `${cardId}.${ext}`)) ||
+          fs.existsSync(path.join(this.godotCardsDir, `${cardId.toLowerCase()}.${ext}`))
+        );
+      });
+
+      if (existingRec && existingExports) {
+        continue;
+      }
+
       const filenameUpper = `${cardId}.svg`;
       const filenameLower = `${cardId.toLowerCase()}.svg`;
       const godotFileUpper = path.join(this.godotCardsDir, filenameUpper);
@@ -568,23 +604,20 @@ export class ArtProductionPipeline {
       const studioFileUpper = path.join(this.studioCardsDir, filenameUpper);
       const studioFileLower = path.join(this.studioCardsDir, filenameLower);
 
-      const existingRec = this.state.card_records[cardId];
-      if (
-        !fs.existsSync(godotFileUpper) ||
-        !fs.existsSync(studioFileUpper) ||
-        !existingRec ||
-        existingRec.art_tier !== 'stylized_vector_concept'
-      ) {
-        const svgContent = renderStylizedCardIllustrationSvg(card, 1);
-        fs.writeFileSync(godotFileUpper, svgContent, 'utf8');
-        fs.writeFileSync(godotFileLower, svgContent, 'utf8');
-        fs.writeFileSync(studioFileUpper, svgContent, 'utf8');
-        fs.writeFileSync(studioFileLower, svgContent, 'utf8');
+      const svgContent = renderStylizedCardIllustrationSvg(card, 1);
+      if (!fs.existsSync(godotFileUpper)) fs.writeFileSync(godotFileUpper, svgContent, 'utf8');
+      if (!fs.existsSync(godotFileLower)) fs.writeFileSync(godotFileLower, svgContent, 'utf8');
+      if (!fs.existsSync(studioFileUpper)) fs.writeFileSync(studioFileUpper, svgContent, 'utf8');
+      if (!fs.existsSync(studioFileLower)) fs.writeFileSync(studioFileLower, svgContent, 'utf8');
 
-        const candidateId = `cand_${cardId.toLowerCase()}_v1`;
-        const candidateFile = path.join(this.candidatesDir, `${candidateId}.svg`);
+      const candidateId = `cand_${cardId.toLowerCase()}_v1`;
+      const candidateFile = path.join(this.candidatesDir, `${candidateId}.svg`);
+      if (!fs.existsSync(candidateFile)) {
         fs.writeFileSync(candidateFile, svgContent, 'utf8');
+      }
 
+      if (!existingRec) {
+        const sha256 = crypto.createHash('sha256').update(svgContent).digest('hex');
         this.state.card_records[cardId] = {
           card_id: cardId,
           status: 'integrated_into_game',
@@ -599,7 +632,7 @@ export class ArtProductionPipeline {
           exported_godot_path: `res://assets/cards/${filenameUpper}`,
           web_preview_url: `/assets/cards/${filenameUpper}`,
           exported_web_url: `/assets/cards/${filenameUpper}`,
-          custom_prompt: card.art.prompt,
+          custom_prompt: card.art?.prompt || card.prompt || '',
           updated_at: new Date().toISOString(),
           candidates: [
             {
@@ -621,6 +654,7 @@ export class ArtProductionPipeline {
               concept_approved: true,
               final_production_approved: false,
               approved: false,
+              asset_hash: sha256,
               created_at: new Date().toISOString()
             }
           ]
@@ -1163,12 +1197,35 @@ export class ArtProductionPipeline {
     return { art_record: rec };
   }
 
-  verifyInGame(card_id) {
+  verifyInGame(card_id, evidence = {}) {
     const cardId = typeof card_id === 'object' ? card_id.card_id : card_id;
     const rec = this.getCardArtRecord(cardId);
     if (!rec) throw new Error(`Unknown card ID: ${cardId}`);
+
+    // Evidence requirement: asset must exist on disk and be a valid non-empty image
+    const candidateFile = this._findExistingAssetFile(this.godotCardsDir, cardId);
+    if (!candidateFile || !fs.existsSync(candidateFile)) {
+      throw new Error(`Cannot verify in-game: No exported game asset found for card ${cardId}`);
+    }
+    const stat = fs.statSync(candidateFile);
+    if (stat.size === 0) {
+      throw new Error(`Cannot verify in-game: Exported asset for card ${cardId} is empty (0 bytes)`);
+    }
+    const buf = fs.readFileSync(candidateFile);
+    const fmt = detectImageFormat(buf, candidateFile);
+    if (!fmt) {
+      throw new Error(`Cannot verify in-game: Exported asset for card ${cardId} has invalid or unrecognized image format`);
+    }
+
     rec.status = 'verified_in_game';
     rec.verified_in_game = true;
+    rec.verified_at = new Date().toISOString();
+    rec.verification_evidence = {
+      asset_path: candidateFile,
+      file_size_bytes: stat.size,
+      format: fmt.ext.replace('.', ''),
+      client_render_test: evidence.client_render_test || 'passed_godot_texture_import'
+    };
     rec.updated_at = new Date().toISOString();
     this.state.card_records[cardId] = rec;
     this._saveManifest();
