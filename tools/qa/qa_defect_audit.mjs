@@ -288,6 +288,15 @@ export function runFullQaAudit(options = {}) {
       impact: 'All difficulty levels execute identical greedy heuristics.',
       remediation_owner: 'AI / Rules Lead'
     });
+  } else {
+    findings.resolved_defects.push({
+      id: 'DEFECT-003',
+      severity: 'P1 - AI TACTICAL TUNING',
+      title: 'NpcAi::choose_command implements 4-tier AiDifficulty heuristics',
+      subsystem: 'services/battle-server',
+      status: 'RESOLVED (BEHAVIORALLY VERIFIED)',
+      remediation_owner: 'Rules / AI Lead (MAIN PR #5)'
+    });
   }
 
   // --- GAP-001: FACTION COUNTER AUDIT (P1) ---
