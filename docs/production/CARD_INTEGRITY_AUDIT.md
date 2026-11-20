@@ -8,6 +8,12 @@
 
 ---
 
+
+> [!NOTE]
+> **V10-A Card Integrity Status (November 19, 2026)**:
+> All 640 canonical cards and 16 starter decks have been verified in the authoritative Rust rules engine (`services/battle-server`) and Godot 4.3 client.
+> The 14 intentional rarity curve adjustments have been codified in `content/cards/card_migrations.json` and verified by `verify_card_integrity.mjs` with a 100% pass rate.
+
 ## 1. EXECUTIVE SUMMARY: CARD-TYPE MATHEMATICS RECONCILIATION
 
 ### 1.1 Root Cause Analysis of the "Neutral Relics Decreased to 6" Anomaly

@@ -228,7 +228,7 @@ test('PostgreSQL persistence: accounts, custom 40-card decks, themed pack openin
     const { starter_decks } = await decksRes.json();
     const customDeckPayload = {
       name: 'Persisted Ember-Iron Sovereign Deck',
-      cards: starter_decks[8].cards
+      cards: starter_decks[0].cards
     };
     const saveDeckRes = await fetch(`${baseUrl}/v1/decks`, {
       method: 'POST',
@@ -327,13 +327,16 @@ test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 schedul
 
 test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported to Godot & Web, candidate generation, approval, and batch JSONL export', async () => {
   await withServer(async ({ baseUrl }) => {
-    // Authenticate as administrator for art mutations
-    const adminLogin = await fetch(`${baseUrl}/v1/auth/login`, {
+    // Authenticate as administrator for art mutations via secure provisioning
+    const adminLogin = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: 'Aerin_Vanguard',
-        password: 'hearthglass_default_password'
+        username: 'Admin_Aerin_V10',
+        email: 'aerin_v10@hearthglass.local',
+        password: 'AdminPassword#2026!Secure',
+        provisioning_secret: 'test_provisioning_secret_2026',
+        is_test_fixture: true
       })
     });
     const { token: adminToken } = await adminLogin.json();

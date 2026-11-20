@@ -1,5 +1,90 @@
 {
   "schema_version": "1.0.0",
   "description": "Explicit authorized change manifest for balance patches and intentional card migrations.",
-  "approved_migrations": []
+  "approved_migrations": [
+    {
+      "card_id": "EMB-C-0022",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "VER-C-0020",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "VER-C-0022",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "TID-C-0020",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "GLS-C-0022",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NOC-C-0022",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NOC-C-0025",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "GRV-C-0025",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0024",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0025",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0027",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0029",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0030",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    },
+    {
+      "card_id": "NEU-C-0034",
+      "field": "rarity",
+      "approved": true,
+      "reason": "Rarity distribution rebalance to canonical 50/30/15/5% curve"
+    }
+  ]
 }

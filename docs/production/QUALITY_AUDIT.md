@@ -8,6 +8,16 @@
 
 ---
 
+
+> [!IMPORTANT]
+> **V10 Independent Audit Remediation (November 19, 2026)**:
+> Following an independent source audit of the master branch, critical P0 security and integrity vulnerabilities were remediated and verified under Milestone V10-A:
+> - Predictable default administrator account disabled outside isolated test fixtures.
+> - Outbound battle events across WebSocket and REST redact private card draws/overdraws for opponents and spectators.
+> - Deck UUID update enforces account ownership check (preventing cross-account deck overwrite).
+> - Ordinary player accounts receive starter collections (237 cards), with remaining cards earned or crafted.
+> - Full remediation report available in [V10_INDEPENDENT_REMEDIATION.md](file:///C:/Users/billy/.t3/projects/hearthglass/docs/production/V10_INDEPENDENT_REMEDIATION.md).
+
 ## 1. EXECUTIVE SUMMARY & CANONICAL GEOGRAPHY MATHEMATICS
 
 ### 1.1 Resolution of the "54 Landmarks and 54 Named Figures" Specification

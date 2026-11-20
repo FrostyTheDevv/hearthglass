@@ -1299,11 +1299,12 @@ export class ArtProductionPipeline {
       });
     }
 
-    const exportPath = path.join(this.rootDir, 'content', 'art', 'batch_prompts_320.jsonl');
+    const fileName = `batch_prompts_${items.length}.jsonl`;
+    const exportPath = path.join(this.rootDir, 'content', 'art', fileName);
     fs.writeFileSync(exportPath, items.map((i) => JSON.stringify(i)).join('\n') + '\n', 'utf8');
     return {
       exported_count: items.length,
-      manifest_path: 'content/art/batch_prompts_320.jsonl',
+      manifest_path: `content/art/${fileName}`,
       export_file: exportPath,
       items
     };

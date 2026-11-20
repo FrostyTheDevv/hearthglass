@@ -101,6 +101,17 @@ export class HearthglassDatabase {
     await this.exec(migrationSql);
     await this.exec("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(32) NOT NULL DEFAULT 'player';");
     await this.exec("ALTER TABLE crafting_transactions ADD COLUMN IF NOT EXISTS idempotency_key VARCHAR(96) UNIQUE;");
+    await this.exec(`
+      CREATE TABLE IF NOT EXISTS role_change_audit (
+        id UUID PRIMARY KEY,
+        target_user_id UUID NOT NULL,
+        changed_by UUID,
+        old_role VARCHAR(32) NOT NULL,
+        new_role VARCHAR(32) NOT NULL,
+        reason TEXT,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+    `);
 
     // 2. Load canonical JSON content and seed reference tables
     const bundle = JSON.parse(
@@ -128,14 +139,19 @@ export class HearthglassDatabase {
 
     await this.seedReferenceData(bundle.cards, this.npcs, this.quests);
 
-    // 3. Ensure default pioneer account exists so local studio & default client work seamlessly
-    await this.ensureUserAccount({
-      userId: DEFAULT_USER_ID,
-      email: 'pioneer@hearthglass.local',
-      username: 'Aerin_Vanguard',
-      password: 'hearthglass_default_password',
-      role: 'administrator'
-    });
+    // 3. Security Hardening (V10-A): Zero predictable administrators are created on startup.
+    // Explicit administrator provisioning via provisionAdministrator() or CLI is strictly required.
+    // Dev account seeding is strictly disabled in production.
+    if (process.env.NODE_ENV !== 'production' && process.env.HEARTHGLASS_SEED_DEV_ACCOUNT === 'true') {
+      await this.ensureUserAccount({
+        userId: DEFAULT_USER_ID,
+        email: 'pioneer@hearthglass.local',
+        username: 'Aerin_Vanguard',
+        password: process.env.DEV_PIONEER_PASSWORD || 'hearthglass_dev_password_test',
+        role: 'player',
+        isTestFixture: true
+      });
+    }
   }
 
   async withTransaction(callback) {
@@ -235,44 +251,24 @@ export class HearthglassDatabase {
     }
   }
 
-  async ensureUserAccount({ userId = null, email, username, password, role = 'player', characterName = null, appearance = null }) {
+  async ensureUserAccount({
+    userId = null,
+    email,
+    username,
+    password,
+    role = 'player',
+    characterName = null,
+    appearance = null,
+    isTestFixture = false
+  }) {
     const existing = await this.query(
-      `SELECT id, email, username FROM users WHERE email = $1 OR username = $2 OR ($3::uuid IS NOT NULL AND id = $3::uuid) LIMIT 1`,
+      `SELECT id, email, username, role FROM users WHERE email = $1 OR username = $2 OR ($3::uuid IS NOT NULL AND id = $3::uuid) LIMIT 1`,
       [email, username, userId]
     );
     if (existing.rows.length > 0) {
       const uid = existing.rows[0].id;
-      if (role) {
-        await this.query("UPDATE users SET role = $1 WHERE id = $2", [role, uid]);
-      }
-      // Ensure any newly added cards, NPCs, or quests from V3 expansion are also seeded for existing accounts
-      for (const c of this.cardById.values()) {
-        const qty = COPY_LIMITS[c.rarity] || 3;
-        await this.query(
-          `INSERT INTO player_card_ownership (user_id, card_id, quantity)
-           VALUES ($1, $2, $3) ON CONFLICT (user_id, card_id) DO NOTHING`,
-          [uid, c.id, qty]
-        );
-      }
-      for (const npc of this.npcs) {
-        const score = npc.initial_relationship || 20;
-        await this.query(
-          `INSERT INTO npc_relationships (user_id, npc_id, score, companion_unlocked)
-           VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING`,
-          [uid, npc.id, score, score >= 40]
-        );
-      }
-      for (const q of this.quests) {
-        const initProgress = {};
-        for (const obj of q.objectives) {
-          initProgress[obj.id] = 0;
-        }
-        await this.query(
-          `INSERT INTO player_quests (user_id, quest_id, status, progress_json)
-           VALUES ($1, $2, 'active', $3::jsonb) ON CONFLICT DO NOTHING`,
-          [uid, q.id, JSON.stringify(initProgress)]
-        );
-      }
+      // CRITICAL SECURITY FIX (V10-A): Roles are strictly immutable during normal startup and logins.
+      // Existing accounts are grandfathered: do not silently alter roles or wipe/change collections.
       return this.getFullPlayerProfile(uid);
     }
 
@@ -335,14 +331,42 @@ export class HearthglassDatabase {
       [uid]
     );
 
-    // Seed starter card ownership (max playable copies of all 320 cards for seamless deckbuilding & testing)
-    for (const c of this.cardById.values()) {
-      const qty = COPY_LIMITS[c.rarity] || 3;
-      await this.query(
-        `INSERT INTO player_card_ownership (user_id, card_id, quantity)
-         VALUES ($1, $2, $3) ON CONFLICT (user_id, card_id) DO NOTHING`,
-        [uid, c.id, qty]
-      );
+    // Seed card ownership:
+    // If isTestFixture === true: grant full 640-card collection for isolated integration test suites.
+    // If ordinary player account: grant starter collection (cards from the 4 starter decks + common neutrals).
+    if (isTestFixture) {
+      for (const c of this.cardById.values()) {
+        const qty = COPY_LIMITS[c.rarity] || 3;
+        await this.query(
+          `INSERT INTO player_card_ownership (user_id, card_id, quantity)
+           VALUES ($1, $2, $3) ON CONFLICT (user_id, card_id) DO NOTHING`,
+          [uid, c.id, qty]
+        );
+      }
+    } else {
+      const starterCardIds = new Map();
+      for (const sd of this.starterDecks.slice(0, 4)) {
+        for (const entry of sd.cards) {
+          starterCardIds.set(
+            entry.card_id,
+            Math.max(starterCardIds.get(entry.card_id) || 0, entry.count)
+          );
+        }
+      }
+      for (const card of this.cardById.values()) {
+        if (card.faction === 'neutral' && card.rarity === 'common') {
+          if (!starterCardIds.has(card.id)) {
+            starterCardIds.set(card.id, 2);
+          }
+        }
+      }
+      for (const [cardId, qty] of starterCardIds.entries()) {
+        await this.query(
+          `INSERT INTO player_card_ownership (user_id, card_id, quantity)
+           VALUES ($1, $2, $3) ON CONFLICT (user_id, card_id) DO NOTHING`,
+          [uid, cardId, qty]
+        );
+      }
     }
 
     // Seed the first 4 starter decks for this account
@@ -424,11 +448,15 @@ export class HearthglassDatabase {
       [usernameOrEmail]
     );
     if (res.rows.length === 0) {
-      throw new Error('Invalid username/email or password');
+      const err = new Error('Invalid username/email or password');
+      err.statusCode = 401;
+      throw err;
     }
     const row = res.rows[0];
     if (!verifyPassword(password, row.password_hash)) {
-      throw new Error('Invalid username/email or password');
+      const err = new Error('Invalid username/email or password');
+      err.statusCode = 401;
+      throw err;
     }
     await this.query(
       `UPDATE authentication_identities SET last_login_at = NOW() WHERE user_id = $1`,
@@ -471,6 +499,192 @@ export class HearthglassDatabase {
       return null;
     }
     return res.rows[0].user_id;
+  }
+
+
+  validateAdminCredentials(email, username, password) {
+    if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      const err = new Error('Invalid email format for administrator provisioning');
+      err.statusCode = 400;
+      throw err;
+    }
+    if (!username || typeof username !== 'string' || !/^[a-zA-Z0-9_-]{3,32}$/.test(username)) {
+      const err = new Error('Username must be 3-32 alphanumeric characters or underscores');
+      err.statusCode = 400;
+      throw err;
+    }
+    if (!password || typeof password !== 'string' || password.length < 12) {
+      const err = new Error('Administrator password must be at least 12 characters');
+      err.statusCode = 400;
+      throw err;
+    }
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasDigit = /[0-9]/.test(password);
+    const hasSpecial = /[^A-Za-z0-9]/.test(password);
+    if (!hasUpper || !hasLower || !hasDigit || !hasSpecial) {
+      const err = new Error('Administrator password must contain uppercase, lowercase, number, and special character');
+      err.statusCode = 400;
+      throw err;
+    }
+    const banned = ['hearthglass_default_password', 'password12345', 'administrator1', 'admin12345678'];
+    if (banned.includes(password.toLowerCase())) {
+      const err = new Error('Weak or predictable administrator password is prohibited');
+      err.statusCode = 400;
+      throw err;
+    }
+  }
+
+  async getAdministratorCount() {
+    const res = await this.query("SELECT COUNT(*)::int as count FROM users WHERE role = 'administrator'");
+    return Number(res.rows[0]?.count || 0);
+  }
+
+  async provisionAdministrator({
+    email,
+    username,
+    password,
+    provisioningSecret = null,
+    requestedByUserId = null,
+    reason = 'Initial administrator provisioning',
+    isTestFixture = false
+  }) {
+    this.validateAdminCredentials(email, username, password);
+    const adminCount = await this.getAdministratorCount();
+
+    if (adminCount === 0) {
+      const configuredSecret = process.env.INITIAL_ADMIN_PROVISIONING_SECRET || (process.env.NODE_ENV !== 'production' ? 'test_provisioning_secret_2026' : null);
+      if (!configuredSecret) {
+        const err = new Error('Initial administrator provisioning secret is not configured on server');
+        err.statusCode = 500;
+        throw err;
+      }
+      if (!provisioningSecret || provisioningSecret !== configuredSecret) {
+        const err = new Error('Forbidden: Invalid or missing initial administrator provisioning secret');
+        err.statusCode = 403;
+        throw err;
+      }
+    } else {
+      if (!requestedByUserId) {
+        const err = new Error('Forbidden: An administrator already exists. Provisioning additional administrators requires an authenticated administrator session.');
+        err.statusCode = 403;
+        throw err;
+      }
+      const callerRole = await this.getUserRole(requestedByUserId);
+      if (callerRole !== 'administrator') {
+        const err = new Error('Forbidden: Only an existing administrator can provision or promote administrators');
+        err.statusCode = 403;
+        throw err;
+      }
+    }
+
+    const existing = await this.query(
+      `SELECT id, role FROM users WHERE LOWER(email) = LOWER($1) OR LOWER(username) = LOWER($2) LIMIT 1`,
+      [email, username]
+    );
+
+    let uid;
+    if (existing.rows.length > 0) {
+      uid = existing.rows[0].id;
+      const oldRole = existing.rows[0].role || 'player';
+      await this.query("UPDATE users SET role = 'administrator' WHERE id = $1", [uid]);
+      await this.query(
+        `INSERT INTO role_change_audit (id, target_user_id, changed_by, old_role, new_role, reason, created_at)
+         VALUES ($1, $2, $3, $4, 'administrator', $5, NOW())`,
+        [crypto.randomUUID(), uid, requestedByUserId, oldRole, reason]
+      );
+    } else {
+      const profile = await this.ensureUserAccount({
+        email,
+        username,
+        password,
+        role: 'administrator',
+        isTestFixture
+      });
+      uid = profile.user_id;
+      await this.query(
+        `INSERT INTO role_change_audit (id, target_user_id, changed_by, old_role, new_role, reason, created_at)
+         VALUES ($1, $2, $3, 'none', 'administrator', $4, NOW())`,
+        [crypto.randomUUID(), uid, requestedByUserId, reason]
+      );
+    }
+
+    const session = await this.createSession(uid);
+    const profile = await this.getFullPlayerProfile(uid);
+    return { profile, session };
+  }
+
+  async updateUserRole({ targetUserId, newRole, changedByUserId, reason = 'Administrative role update' }) {
+    if (!changedByUserId) {
+      const err = new Error('Authentication required');
+      err.statusCode = 401;
+      throw err;
+    }
+    const callerRole = await this.getUserRole(changedByUserId);
+    if (callerRole !== 'administrator') {
+      const err = new Error('Forbidden: Only an administrator can update user roles');
+      err.statusCode = 403;
+      throw err;
+    }
+    const allowedRoles = ['player', 'content_editor', 'administrator'];
+    if (!allowedRoles.includes(newRole)) {
+      const err = new Error(`Invalid role. Must be one of: ${allowedRoles.join(', ')}`);
+      err.statusCode = 400;
+      throw err;
+    }
+    const targetRes = await this.query("SELECT id, role FROM users WHERE id = $1 LIMIT 1", [targetUserId]);
+    if (targetRes.rows.length === 0) {
+      const err = new Error(`Target user ${targetUserId} not found`);
+      err.statusCode = 404;
+      throw err;
+    }
+    const oldRole = targetRes.rows[0].role || 'player';
+    if (oldRole === newRole) {
+      return { success: true, unchanged: true, target_user_id: targetUserId, role: newRole };
+    }
+    await this.query("UPDATE users SET role = $1 WHERE id = $2", [newRole, targetUserId]);
+    await this.query(
+      `INSERT INTO role_change_audit (id, target_user_id, changed_by, old_role, new_role, reason, created_at)
+       VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
+      [crypto.randomUUID(), targetUserId, changedByUserId, oldRole, newRole, reason]
+    );
+    return { success: true, target_user_id: targetUserId, old_role: oldRole, new_role: newRole };
+  }
+
+  async getRoleChangeAuditLogs(limit = 50) {
+    const res = await this.query(
+      `SELECT a.id, a.target_user_id, u.username as target_username,
+              a.changed_by, cb.username as changed_by_username,
+              a.old_role, a.new_role, a.reason, a.created_at
+       FROM role_change_audit a
+       LEFT JOIN users u ON u.id = a.target_user_id
+       LEFT JOIN users cb ON cb.id = a.changed_by
+       ORDER BY a.created_at DESC
+       LIMIT $1`,
+      [limit]
+    );
+    return res.rows;
+  }
+
+  async revokeSession(token) {
+    if (!token) return false;
+    const clean = token.replace(/^Bearer\s+/i, '').trim();
+    if (!clean) return false;
+    const tokenHash = crypto.createHash('sha256').update(clean).digest('hex');
+    await this.query(
+      `UPDATE sessions SET revoked_at = NOW() WHERE refresh_token_hash = $1`,
+      [tokenHash]
+    );
+    return true;
+  }
+
+  async revokeAllUserSessions(userId) {
+    if (!userId) return false;
+    await this.query(
+      `UPDATE sessions SET revoked_at = NOW() WHERE user_id = $1 AND revoked_at IS NULL`,
+      [userId]
+    );
+    return true;
   }
 
   async getFullPlayerProfile(userId = DEFAULT_USER_ID) {
@@ -660,30 +874,48 @@ export class HearthglassDatabase {
     const deckId = isUuid ? deckDef.id : crypto.randomUUID();
     const factions = Array.from(majorFactions);
 
-    await this.query(
-      `INSERT INTO decks (id, user_id, name, factions, format, revision, updated_at)
-       VALUES ($1, $2, $3, $4::jsonb, 'standard_1v1', 1, NOW())
-       ON CONFLICT (id) DO UPDATE SET
-         name = EXCLUDED.name,
-         factions = EXCLUDED.factions,
-         revision = decks.revision + 1,
-         updated_at = NOW()`,
-      [deckId, userId, deckDef.name || 'Custom Convergence Deck', JSON.stringify(factions)]
-    );
-
-    await this.query(`DELETE FROM deck_cards WHERE deck_id = $1`, [deckId]);
-    for (const entry of deckDef.cards) {
-      await this.query(
-        `INSERT INTO deck_cards (deck_id, card_id, quantity) VALUES ($1, $2, $3)`,
-        [deckId, entry.card_id, entry.count]
+    // CRITICAL SECURITY FIX (V10-A): Prevent cross-account deck overwrite!
+    if (isUuid) {
+      const existingDeck = await this.query(
+        `SELECT id, user_id FROM decks WHERE id = $1 LIMIT 1`,
+        [deckId]
       );
+      if (existingDeck.rows.length > 0 && existingDeck.rows[0].user_id !== userId) {
+        return {
+          valid: false,
+          forbidden: true,
+          errors: ['Forbidden: Cannot modify a deck belonging to another user']
+        };
+      }
     }
 
-    await this.query(
-      `INSERT INTO deck_revisions (id, deck_id, revision, cards_snapshot)
-       VALUES ($1, $2, 1, $3::jsonb)`,
-      [crypto.randomUUID(), deckId, JSON.stringify(deckDef.cards)]
-    );
+    // Atomic transaction for deck metadata, card list replacement, and revision snapshot
+    await this.withTransaction(async (tx) => {
+      await tx(
+        `INSERT INTO decks (id, user_id, name, factions, format, revision, updated_at)
+         VALUES ($1, $2, $3, $4::jsonb, 'standard_1v1', 1, NOW())
+         ON CONFLICT (id) DO UPDATE SET
+           name = EXCLUDED.name,
+           factions = EXCLUDED.factions,
+           revision = decks.revision + 1,
+           updated_at = NOW()`,
+        [deckId, userId, deckDef.name || 'Custom Convergence Deck', JSON.stringify(factions)]
+      );
+
+      await tx(`DELETE FROM deck_cards WHERE deck_id = $1`, [deckId]);
+      for (const entry of deckDef.cards) {
+        await tx(
+          `INSERT INTO deck_cards (deck_id, card_id, quantity) VALUES ($1, $2, $3)`,
+          [deckId, entry.card_id, entry.count]
+        );
+      }
+
+      await tx(
+        `INSERT INTO deck_revisions (id, deck_id, revision, cards_snapshot)
+         VALUES ($1, $2, 1, $3::jsonb)`,
+        [crypto.randomUUID(), deckId, JSON.stringify(deckDef.cards)]
+      );
+    });
 
     await this.advanceQuestObjective(userId, 'validate_legal_deck', 'any_40_card_deck');
 

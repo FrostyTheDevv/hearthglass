@@ -20,13 +20,16 @@ async function withAuthServer(fn) {
   const baseUrl = `http://127.0.0.1:${port}`;
   const wsUrl = `ws://127.0.0.1:${port}/v1/ws`;
 
-  // Create standard player session and admin session
-  const adminLogin = await fetch(`${baseUrl}/v1/auth/login`, {
+  // Provision explicit administrator with secure unique credentials
+  const adminLogin = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username: 'Aerin_Vanguard',
-      password: 'hearthglass_default_password'
+      username: 'Admin_Provisioned_V10',
+      email: 'admin_fixture_v10@hearthglass.local',
+      password: 'AdminPassword#2026!Fixture',
+      provisioning_secret: 'test_provisioning_secret_2026',
+      is_test_fixture: true
     })
   });
   const adminAuth = await adminLogin.json();
@@ -790,5 +793,295 @@ test('SECURITY: Private matches deny spectator access by default', async () => {
     assert.ok(denied, 'Spectating private match must be denied');
     assert.match(denied.error, /Spectating is disabled for this private match/i);
     ws.terminate();
+  });
+});
+
+test('SECURITY (V10-A): Fresh startup creates ZERO predictable administrators; predictable login fails closed', async () => {
+  const dataDir = makeTempPgDir();
+  const ctx = await createServer({ dataDir });
+  await new Promise((resolve) => ctx.server.listen(0, '127.0.0.1', resolve));
+  const { port } = ctx.server.address();
+  const baseUrl = `http://127.0.0.1:${port}`;
+
+  try {
+    // 1. Verify predictable admin account 'Aerin_Vanguard' does not exist or allow default password login
+    const loginRes = await fetch(`${baseUrl}/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'Aerin_Vanguard',
+        password: 'hearthglass_default_password'
+      })
+    });
+    assert.equal(loginRes.status, 401, 'Predictable default admin login must fail closed with HTTP 401');
+
+    // 2. Query database directly: verify zero administrators exist
+    const adminCount = await ctx.db.getAdministratorCount();
+    assert.equal(adminCount, 0, 'Fresh database startup must contain exactly zero administrators');
+  } finally {
+    await ctx.closeServer();
+  }
+});
+
+test('SECURITY (V10-A): Administrator provisioning enforces secret, credential complexity, and fails closed', async () => {
+  const dataDir = makeTempPgDir();
+  const ctx = await createServer({ dataDir });
+  await new Promise((resolve) => ctx.server.listen(0, '127.0.0.1', resolve));
+  const { port } = ctx.server.address();
+  const baseUrl = `http://127.0.0.1:${port}`;
+
+  try {
+    // 1. Attempt provisioning with invalid secret
+    const badSecretRes = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'HackerAdmin',
+        email: 'hacker@admin.local',
+        password: 'Strong#AdminPassword123!',
+        provisioning_secret: 'wrong_secret_12345'
+      })
+    });
+    assert.equal(badSecretRes.status, 403, 'Invalid secret must return HTTP 403 Forbidden');
+
+    // 2. Attempt provisioning with weak / predictable password
+    const weakPassRes = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'HackerAdmin',
+        email: 'hacker@admin.local',
+        password: 'hearthglass_default_password',
+        provisioning_secret: 'test_provisioning_secret_2026'
+      })
+    });
+    assert.equal(weakPassRes.status, 400, 'Weak/predictable password must return HTTP 400 Bad Request');
+
+    // 3. Legitimate provisioning with valid secret and strong credentials
+    const provRes = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'LeadAuditor_2026',
+        email: 'lead.auditor@hearthglass.local',
+        password: 'Complex#AdminPass987!',
+        provisioning_secret: 'test_provisioning_secret_2026'
+      })
+    });
+    assert.equal(provRes.status, 201, 'Valid provisioning must return HTTP 201 Created');
+    const provJson = await provRes.json();
+    assert.equal(provJson.profile.role, 'administrator');
+    assert.ok(provJson.token);
+
+    // 4. Once bootstrap administrator is provisioned, another unauthenticated attempt must fail 403
+    const secondProvRes = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'SecondAdmin',
+        email: 'second@admin.local',
+        password: 'Complex#AdminPass987!',
+        provisioning_secret: 'test_provisioning_secret_2026'
+      })
+    });
+    assert.equal(secondProvRes.status, 403, 'Subsequent unauthenticated provisioning attempts must fail 403');
+  } finally {
+    await ctx.closeServer();
+  }
+});
+
+test('SECURITY (V10-A): User roles remain immutable across logins and restarts; ordinary users cannot elevate roles', async () => {
+  const dataDir = makeTempPgDir();
+  let ctx1 = await createServer({ dataDir });
+  await new Promise((resolve) => ctx1.server.listen(0, '127.0.0.1', resolve));
+  let port = ctx1.server.address().port;
+  let baseUrl = `http://127.0.0.1:${port}`;
+
+  let playerToken;
+  let playerId;
+
+  try {
+    // 1. Provision legitimate admin
+    const adminRes = await fetch(`${baseUrl}/v1/auth/provision-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'SystemAdmin_V10',
+        email: 'sysadmin@hearthglass.local',
+        password: 'Complex#AdminPass987!',
+        provisioning_secret: 'test_provisioning_secret_2026'
+      })
+    });
+    const adminData = await adminRes.json();
+    const adminToken = adminData.token;
+
+    // 2. Register ordinary player
+    const regRes = await fetch(`${baseUrl}/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'PlayerOne',
+        email: 'playerone@hearthglass.local',
+        password: 'PlayerPassword123!'
+      })
+    });
+    const regData = await regRes.json();
+    playerToken = regData.token;
+    playerId = regData.user_id;
+    assert.equal(regData.profile.role, 'player');
+
+    // 3. Ordinary player attempts to elevate own role to administrator -> fails 403
+    const elevateAttempt = await fetch(`${baseUrl}/v1/admin/users/${playerId}/role`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${playerToken}`
+      },
+      body: JSON.stringify({ role: 'administrator' })
+    });
+    assert.equal(elevateAttempt.status, 403, 'Ordinary player cannot elevate role');
+
+    // 4. Admin updates player role legitimately -> recorded in audit log
+    const adminUpdate = await fetch(`${baseUrl}/v1/admin/users/${playerId}/role`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${adminToken}`
+      },
+      body: JSON.stringify({ role: 'content_editor', reason: 'Promoted to content editor' })
+    });
+    assert.equal(adminUpdate.status, 200);
+
+    // 5. Verify audit logs
+    const auditRes = await fetch(`${baseUrl}/v1/admin/audit/roles`, {
+      headers: { Authorization: `Bearer ${adminToken}` }
+    });
+    assert.equal(auditRes.status, 200);
+    const auditJson = await auditRes.json();
+    assert.ok(auditJson.audit_logs.length >= 2, 'Audit log should record admin provisioning and role update');
+  } finally {
+    await ctx1.closeServer();
+  }
+
+  // 6. Restart server on the same dataDir: verify user role is preserved and not reset
+  const ctx2 = await createServer({ dataDir });
+  await new Promise((resolve) => ctx2.server.listen(0, '127.0.0.1', resolve));
+  port = ctx2.server.address().port;
+  baseUrl = `http://127.0.0.1:${port}`;
+
+  try {
+    const loginRes = await fetch(`${baseUrl}/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'PlayerOne',
+        password: 'PlayerPassword123!'
+      })
+    });
+    assert.equal(loginRes.status, 200);
+    const loginData = await loginRes.json();
+    assert.equal(loginData.profile.role, 'content_editor', 'Role must remain intact after server restart');
+  } finally {
+    await ctx2.closeServer();
+  }
+});
+
+test('SECURITY (V10-A): Session revocation and logout fail closed; expired sessions return 401', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth }) => {
+    // 1. Verify active session works
+    const profileRes = await fetch(`${baseUrl}/v1/account/profile`, {
+      headers: { Authorization: `Bearer ${playerAuth.token}` }
+    });
+    assert.equal(profileRes.status, 200);
+
+    // 2. Call logout endpoint
+    const logoutRes = await fetch(`${baseUrl}/v1/auth/logout`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${playerAuth.token}` }
+    });
+    assert.equal(logoutRes.status, 200);
+
+    // 3. Subsequent request with revoked token must return HTTP 401
+    const revokedRes = await fetch(`${baseUrl}/v1/account/profile`, {
+      headers: { Authorization: `Bearer ${playerAuth.token}` }
+    });
+    assert.equal(revokedRes.status, 401, 'Revoked token must fail closed with HTTP 401');
+  });
+});
+
+test('SECURITY (V10-A): Cross-account deck update attempt returns 403 Forbidden without modifying victim deck', async () => {
+  await withAuthServer(async ({ baseUrl, playerAuth, victimAuth }) => {
+    // 1. Victim saves a custom deck
+    const victimDecks = await fetch(`${baseUrl}/v1/decks`, {
+      headers: { Authorization: `Bearer ${victimAuth.token}` }
+    });
+    const { starter_decks } = await victimDecks.json();
+    const saveVictimRes = await fetch(`${baseUrl}/v1/decks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${victimAuth.token}`
+      },
+      body: JSON.stringify({
+        name: "Victim's Untouchable Deck",
+        cards: starter_decks[0].cards
+      })
+    });
+    assert.equal(saveVictimRes.status, 201);
+    const { deck: victimDeck } = await saveVictimRes.json();
+    const victimDeckId = victimDeck.id;
+
+    // 2. Attacker attempts to overwrite victim's deck using victimDeckId
+    const overwriteAttempt = await fetch(`${baseUrl}/v1/decks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${playerAuth.token}`
+      },
+      body: JSON.stringify({
+        id: victimDeckId,
+        name: "Hacked Overwritten Deck",
+        cards: starter_decks[1].cards
+      })
+    });
+    assert.equal(overwriteAttempt.status, 403, 'Cross-account deck update must return HTTP 403 Forbidden');
+    const overwriteJson = await overwriteAttempt.json();
+    assert.match(overwriteJson.error, /Forbidden: Cannot modify a deck belonging to another user/i);
+
+    // 3. Verify victim's deck is untouched
+    const verifyVictim = await fetch(`${baseUrl}/v1/decks`, {
+      headers: { Authorization: `Bearer ${victimAuth.token}` }
+    });
+    const victimDecksAfter = await verifyVictim.json();
+    const intactDeck = (victimDecksAfter.decks || []).find((d) => d.id === victimDeckId);
+    assert.equal(intactDeck.name, "Victim's Untouchable Deck", 'Victim deck name must remain untouched');
+  });
+});
+
+test('SECURITY (V10-A): Ordinary player accounts receive starter collection, NOT all 640 cards', async () => {
+  await withAuthServer(async ({ baseUrl }) => {
+    // Register fresh ordinary player
+    const reg = await fetch(`${baseUrl}/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'NewAdventurer',
+        email: 'newadv@hearthglass.local',
+        password: 'Adventurer#Pass2026'
+      })
+    });
+    assert.equal(reg.status, 201);
+    const data = await reg.json();
+    const token = data.token;
+
+    const profileRes = await fetch(`${baseUrl}/v1/account/profile`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const { profile } = await profileRes.json();
+    const ownedCardIds = Object.keys(profile.collection || {});
+
+    // Starter collection has ~60-240 cards (from the starter decks + common neutrals), NOT 640 cards!
+    assert.ok(ownedCardIds.length > 30, 'Player should have starter cards');
+    assert.ok(ownedCardIds.length < 300, `Player should NOT own all 640 cards upon registration (owned: ${ownedCardIds.length})`);
   });
 });

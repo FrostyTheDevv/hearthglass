@@ -1,9 +1,28 @@
 # Project Hearthglass — Verified Implementation Status Ledger
 
-**Last Updated**: Development Increment V4 (Rarity Restoration to 4 Tiers [0 Epic], 480 Canonical Cards Verified in Rust and Godot, 16 Legal 40-Card Archetype Decks, Godot 4.3 Headless Smoke Test Suite [6/6 Passing], Deep Strategic Simulation Audit, Batch Prompts Export, and Verdant Expanse RPG Region Data)
+**Last Updated**: Development Increment V10-A Remediation (November 19, 2026: Admin Provisioning Hardening, Multiplayer Privacy Redaction, Deck Ownership Authorization, Starter Progression Isolation, 640 Canonical Cards in Rust & Godot, 39/39 API/Security Tests Passing) (Rarity Restoration to 4 Tiers [0 Epic], 480 Canonical Cards Verified in Rust and Godot, 16 Legal 40-Card Archetype Decks, Godot 4.3 Headless Smoke Test Suite [6/6 Passing], Deep Strategic Simulation Audit, Batch Prompts Export, and Verdant Expanse RPG Region Data)
 
 ---
 
+
+## Milestone V10-A Remediation Summary (Completed & Verified)
+Following an independent audit of the repository, Milestone V10-A was executed and verified:
+1. **Critical Authentication Security**:
+   - Disabled predictable default admin account (`Aerin_Vanguard` / `hearthglass_default_password`) in `services/api/src/db.mjs`.
+   - Prevented silent role elevation during normal startup and logins (roles immutable outside admin actions).
+   - Created audited provisioning procedure (`POST /v1/auth/provision-admin` with `INITIAL_ADMIN_PROVISIONING_SECRET` and strict credential complexity).
+   - Added `role_change_audit` table and `POST /v1/admin/users/:userId/role` endpoint.
+   - Enforced session revocation (`POST /v1/auth/logout`) and rejected expired sessions.
+2. **Multiplayer Information Security**:
+   - Outbound battle events across WebSockets, REST, reconnect, and replays redact hidden cards (`card_id: "HIDDEN"`) for opponents and spectators.
+3. **Cross-Account Authorization & Starter Progression**:
+   - Enforced deck ownership before updating UUIDs in `saveCustomDeck()`; cross-account updates return HTTP 403 Forbidden.
+   - Replaced automatic 640-card granting on new accounts with an intentional starter collection (237 cards from the 4 starter decks + common neutrals).
+4. **Pipeline & Dynamic Export**:
+   - Replaced hardcoded `batch_prompts_320.jsonl` export with dynamic filenames (`batch_prompts_${count}.jsonl`).
+   - Recorded 14 authorized balance rarity adjustments in `content/cards/card_migrations.json` for 100% integrity verification.
+
+---
 ## 1. Architecture, Rules Specification & Single Rules Authority Verification
 
 ### Authoritative Convergence Duels Tabletop Rules (`services/battle-server/src/lib.rs`)

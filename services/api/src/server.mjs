@@ -92,7 +92,7 @@ export function redactEventsForViewer(events = [], viewerSlot = null) {
  * Converts a Rust `MatchState` into the UI-friendly match envelope used by the Web Studio,
  * Godot client, and REST/WebSocket APIs, while preserving 100% of Rust authoritative state.
  */
-function formatMatchEnvelope(session, redactedRustState, checksum = null) {
+function formatMatchEnvelope(session, redactedRustState, checksum = null, viewerSlot = null) {
   const outcomeRaw = redactedRustState.outcome;
   let outcomeStr = 'in_progress';
   let winnerSlot = null;
@@ -146,6 +146,14 @@ function formatMatchEnvelope(session, redactedRustState, checksum = null) {
         return ev.active
           ? `Player ${ev.player} controls ${ev.controlled_lanes} lanes \u2014 RESONATE is active!`
           : `Player ${ev.player} controls ${ev.controlled_lanes} lane(s).`;
+      case 'card_drawn':
+        return ev.card_id === 'HIDDEN'
+          ? `Player ${ev.player} drew a card.`
+          : `Player ${ev.player} drew ${ev.card_id}.`;
+      case 'card_burned_overdraw':
+        return ev.card_id === 'HIDDEN'
+          ? `Player ${ev.player} over-drew a card (burned).`
+          : `Player ${ev.player} over-drew ${ev.card_id} (burned).`;
       case 'match_ended':
         return `Match ended: ${ev.reason}`;
       default:
@@ -182,7 +190,7 @@ function formatMatchEnvelope(session, redactedRustState, checksum = null) {
     },
     reward_summary: session.rewardSummary || null,
     event_log: humanReadableLogs,
-    raw_events: redactedRustState.event_log || []
+    raw_events: redactEventsForViewer(redactedRustState.event_log || [], viewerSlot)
   };
 }
 
@@ -280,7 +288,27 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
   const tagLobbies = new Map(); // lobby_id -> { id, hostUserId, seats: [entry0, entry1, entry2, entry3], seed }
 
   async function syncLegacyAppState(userId = undefined) {
-    const profile = await db.getFullPlayerProfile(userId);
+    let targetUid = userId;
+    if (!targetUid) {
+      const firstUser = await db.query('SELECT id FROM users LIMIT 1');
+      if (firstUser.rows.length > 0) {
+        targetUid = firstUser.rows[0].id;
+      }
+    }
+    if (!targetUid) {
+      return {
+        account: null,
+        character: null,
+        housing: null,
+        collection: {},
+        decks: starterDecksData.decks,
+        active_deck_id: starterDecksData.decks[0]?.id || null,
+        relationships: {},
+        quests: {},
+        ranking: { rating: 1500, wins: 0, losses: 0 }
+      };
+    }
+    const profile = await db.getFullPlayerProfile(targetUid);
     return {
       account: {
         id: profile.user_id,
@@ -499,7 +527,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       session.state,
       typeof viewerSlot === 'number' ? viewerSlot : null
     );
-    return formatMatchEnvelope(session, redacted.state, redacted.checksum);
+    return formatMatchEnvelope(session, redacted.state, redacted.checksum, viewerSlot);
   }
 
   async function broadcastSessionState(session, events = []) {
@@ -615,7 +643,7 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
       const { required = true, requireAdmin = false } = options;
       const authHeader = req.headers.authorization;
       let uid = await db.resolveUserIdFromToken(authHeader);
-      if (!uid && process.env.ALLOW_DEV_AUTH_BYPASS === 'true' && process.env.NODE_ENV === 'development') {
+      if (!uid && process.env.NODE_ENV !== 'production' && process.env.ALLOW_DEV_AUTH_BYPASS === 'true') {
         uid = '00000000-0000-4000-8000-000000000001';
       }
       if (!uid) {
@@ -730,6 +758,61 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
           user_id: profile.user_id,
           profile
         });
+      }
+
+      if (req.method === 'POST' && pathname === '/v1/auth/provision-admin') {
+        const body = await readJsonBody();
+        const authUid = await getAuthenticatedUserId({ required: false });
+        const { profile, session } = await db.provisionAdministrator({
+          email: body.email,
+          username: body.username,
+          password: body.password,
+          provisioningSecret: body.provisioning_secret,
+          requestedByUserId: authUid,
+          reason: body.reason || 'Initial administrator provisioning',
+          isTestFixture: Boolean(body.is_test_fixture)
+        });
+        return sendJson(201, {
+          token: session.token,
+          session_id: session.session_id,
+          user_id: profile.user_id,
+          profile
+        });
+      }
+
+      if (req.method === 'POST' && pathname === '/v1/auth/logout') {
+        const authHeader = req.headers.authorization;
+        await getAuthenticatedUserId({ required: true });
+        await db.revokeSession(authHeader);
+        return sendJson(200, { success: true, message: 'Logged out successfully' });
+      }
+
+      if (req.method === 'POST' && pathname.startsWith('/v1/admin/users/') && pathname.endsWith('/role')) {
+        const adminId = await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const targetUserId = pathname.replace('/v1/admin/users/', '').replace('/role', '');
+        const body = await readJsonBody();
+        if (!body.role) {
+          return sendJson(400, { error: 'role is required' });
+        }
+        const result = await db.updateUserRole({
+          targetUserId,
+          newRole: body.role,
+          changedByUserId: adminId,
+          reason: body.reason || 'Administrative role change'
+        });
+        return sendJson(200, result);
+      }
+
+      if (req.method === 'GET' && pathname === '/v1/admin/audit/roles') {
+        await getAuthenticatedUserId({ required: true, requireAdmin: true });
+        const logs = await db.getRoleChangeAuditLogs();
+        return sendJson(200, { audit_logs: logs });
+      }
+
+      if (req.method === 'GET' && pathname === '/v1/account/profile') {
+        const userId = await getAuthenticatedUserId();
+        const profile = await db.getFullPlayerProfile(userId);
+        return sendJson(200, { profile });
       }
 
       if (req.method === 'GET' && pathname === '/v1/bootstrap') {
@@ -865,6 +948,9 @@ export async function createServer({ dataDir = null, databaseUrl = process.env.D
         verifyAccountAccess(userId, body.user_id);
         const saved = await db.saveCustomDeck(userId, body, rustBridge);
         if (!saved.valid) {
+          if (saved.forbidden) {
+            return sendJson(403, { error: 'Forbidden: Cannot modify a deck belonging to another user', details: saved.errors });
+          }
           return sendJson(400, { error: 'Invalid 40-card deck', details: saved.errors });
         }
         return sendJson(201, { deck: saved.deck, validation: { valid: true, errors: [] } });
