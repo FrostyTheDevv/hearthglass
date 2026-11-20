@@ -3587,7 +3587,7 @@
     "type": "creature",
     "subtype": "prism_gunner",
     "faction": "glassborne",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "marksman",
     "cost": 3,
     "attack": 3,
@@ -5783,7 +5783,7 @@
     "type": "creature",
     "subtype": "human_assassin",
     "faction": "glassborne",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -8161,6 +8161,1946 @@
         "visual_effects": "translucent hexagonal prismatic spell-ward halo",
         "mood": "Luminous, crystalline, and razor-sharp",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Long crystalline dueling corridor with faceted mirror walls and violet light beams. Faction Style (Glassborne — Quartz-Facet Proving Gallery): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Perspective hall of geometric crystal facets; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Quartz-Facet Proving Gallery in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Razor-sharp prismatic light beams and rainbow spectral caustics; dominant colors violet, silver, translucent_cyan. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0049",
+    "revision": 1,
+    "name": "Prism-Shard Initiate",
+    "name_key": "cards.gls_c_0049.name",
+    "description": "Swift. On Death: Deal 1 damage to the enemy creature in this lane.",
+    "description_key": "cards.gls_c_0049.description",
+    "type": "creature",
+    "subtype": "glass_construct",
+    "faction": "glassborne",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_death",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Shattering into razor-edged crystalline splinters when struck down.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "refraction"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 4
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Prism-Shard Initiate",
+      "species_or_classification": "glass construct",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_first_refraction_spire",
+        "secondary_landmark_id": "lm_gls_quartz_proving_gallery",
+        "primary_figure_id": "fig_gls_eluned",
+        "secondary_figure_id": "fig_gls_seraphina",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Prism Spire of the First Refraction, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Slender humanoid glass mannequin brandishing a sharp crystal rapier — a nimble, quick-deploying glass construct (Faceted geometric runner with trailing light refractions) clad in iridescent silk and faceted resonant quartz, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "history": "Shattering into razor-edged crystalline splinters when struck down. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Eluned Prismwright mobilized the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "important_relationships": "Serves alongside Eluned Prismwright (Master of Echo Illustration & Optics) at Prism Spire of the First Refraction and coordinates three-lane maneuvers with Arch-Refractor Seraphina.",
+      "habitats": [
+        "The Prismatic Spire",
+        "Quartz-Facet Proving Gallery",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Swift. On Death: Deal 1 damage to the enemy creature in this lane.",
+      "narrative_importance": "Dependable glass construct forming the field backbone of the Opticians of the Glass Cathedral across Prism Spire of the First Refraction.",
+      "flavor_text": "Shattering into razor-edged crystalline splinters when struck down.",
+      "collection_biography": "Eluned Prismwright often warns initiates at Prism Spire of the First Refraction never to misjudge Prism-Shard Initiate. Shattering into razor-edged crystalline splinters when struck down. Whether patrolling Quartz-Facet Proving Gallery for the Opticians of the Glass Cathedral or manifesting on the Convergence slate, its 2 Attack and 1 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0049",
+      "direction_id": "brief_gls_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Slender humanoid glass mannequin brandishing a sharp crystal rapier. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Faceted geometric runner with trailing light refractions; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Slender humanoid glass mannequin brandishing a sharp crystal rapier",
+        "silhouette": "Faceted geometric runner with trailing light refractions",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Slender humanoid glass mannequin brandishing a sharp crystal rapier. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Faceted geometric runner with trailing light refractions; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0050",
+    "revision": 1,
+    "name": "Mirror-Shield Guardian",
+    "name_key": "cards.gls_c_0050.name",
+    "description": "Guard, Ward.",
+    "description_key": "cards.gls_c_0050.description",
+    "type": "creature",
+    "subtype": "glass_construct",
+    "faction": "glassborne",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard",
+      "ward"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Its tower shield is a flawless silver mirror that bounces hostile spellcraft back to the sender.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "ward",
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Mirror-Shield Guardian",
+      "species_or_classification": "glass construct",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_ten_thousand_reflections",
+        "secondary_landmark_id": "lm_gls_glass_cathedral",
+        "primary_figure_id": "fig_gls_isolde",
+        "secondary_figure_id": "fig_gls_eluned",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Hall of Ten Thousand Reflections, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Heavy faceted glass knight holding a massive mirror-polished shield — a nimble, quick-deploying glass construct (Rectangular mirror shield reflecting rainbow light) clad in silver filigree and prismatic mirror-glass, exhibiting interlocking defensive barrier aura and planted shield stance and translucent hexagonal prismatic spell-ward halo.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Opticians of the Glass Cathedral at Hall of Ten Thousand Reflections.",
+      "history": "Its tower shield is a flawless silver mirror that bounces hostile spellcraft back to the sender. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Lens-Scholar Isolde mobilized the Opticians of the Glass Cathedral at Hall of Ten Thousand Reflections.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "important_relationships": "Serves alongside Lens-Scholar Isolde (Keeper of the Ten Thousand Reflections) at Hall of Ten Thousand Reflections and coordinates three-lane maneuvers with Eluned Prismwright.",
+      "habitats": [
+        "The Prismatic Spire",
+        "The Glass Cathedral Choir-Loft",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Guard, Ward.",
+      "narrative_importance": "Dependable glass construct forming the field backbone of the Opticians of the Glass Cathedral across Hall of Ten Thousand Reflections.",
+      "flavor_text": "Its tower shield is a flawless silver mirror that bounces hostile spellcraft back to the sender.",
+      "collection_biography": "Few sights along Hall of Ten Thousand Reflections are as unmistakable as heavy faceted glass knight holding a massive mirror-polished shield. Its tower shield is a flawless silver mirror that bounces hostile spellcraft back to the sender. Sworn to the Opticians of the Glass Cathedral since the Third Harmonic Reformation of the Seventh Chime, this common glass construct answers Lens-Scholar Isolde's call as a 1/5 bulwark."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0050",
+      "direction_id": "brief_gls_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy faceted glass knight holding a massive mirror-polished shield. Faction Style (Glassborne — Hall of Ten Thousand Reflections): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Rectangular mirror shield reflecting rainbow light; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; translucent hexagonal prismatic spell-ward halo. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Heavy faceted glass knight holding a massive mirror-polished shield",
+        "silhouette": "Rectangular mirror shield reflecting rainbow light",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance; translucent hexagonal prismatic spell-ward halo",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy faceted glass knight holding a massive mirror-polished shield. Faction Style (Glassborne — Hall of Ten Thousand Reflections): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Rectangular mirror shield reflecting rainbow light; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; translucent hexagonal prismatic spell-ward halo. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0051",
+    "revision": 1,
+    "name": "Refracting Stiletto",
+    "name_key": "cards.gls_c_0051.name",
+    "description": "Pierce. After this attacks, deal 1 damage to the enemy Leader.",
+    "description_key": "cards.gls_c_0051.description",
+    "type": "creature",
+    "subtype": "glass_assassin",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "pierce"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Bends ambient light around its body, appearing three feet to the left of where it actually strikes.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "pierce",
+        "refraction"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_leader",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Refracting Stiletto",
+      "species_or_classification": "glass assassin",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_ten_thousand_reflections",
+        "secondary_landmark_id": "lm_gls_glass_cathedral",
+        "primary_figure_id": "fig_gls_isolde",
+        "secondary_figure_id": "fig_gls_eluned",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Hall of Ten Thousand Reflections, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Translucent crystalline assassin lunging forward through optical distortions — a battle-tested mid-weight glass assassin (Faceted glass rogue striking with twin crystal daggers) clad in silver filigree and prismatic mirror-glass, exhibiting armor-shattering kinetic impact spike.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a assassin (4 Attack / 2 Health) affiliated with the Opticians of the Glass Cathedral at Hall of Ten Thousand Reflections.",
+      "history": "Bends ambient light around its body, appearing three feet to the left of where it actually strikes. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Lens-Scholar Isolde mobilized the Opticians of the Glass Cathedral at Hall of Ten Thousand Reflections.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "important_relationships": "Serves alongside Lens-Scholar Isolde (Keeper of the Ten Thousand Reflections) at Hall of Ten Thousand Reflections and coordinates three-lane maneuvers with Eluned Prismwright.",
+      "habitats": [
+        "The Prismatic Spire",
+        "The Glass Cathedral Choir-Loft",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Pierce. After this attacks, deal 1 damage to the enemy Leader.",
+      "narrative_importance": "Dependable glass assassin forming the field backbone of the Opticians of the Glass Cathedral across Hall of Ten Thousand Reflections.",
+      "flavor_text": "Bends ambient light around its body, appearing three feet to the left of where it actually strikes.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Lens-Scholar Isolde and Eluned Prismwright first encountered Refracting Stiletto guarding the approaches to Hall of Ten Thousand Reflections. Bends ambient light around its body, appearing three feet to the left of where it actually strikes. Now a mainstay of the Opticians of the Glass Cathedral, this 3-Aether assassin rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0051",
+      "direction_id": "brief_gls_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Translucent crystalline assassin lunging forward through optical distortions. Faction Style (Glassborne — Hall of Ten Thousand Reflections): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Faceted glass rogue striking with twin crystal daggers; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Translucent crystalline assassin lunging forward through optical distortions",
+        "silhouette": "Faceted glass rogue striking with twin crystal daggers",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "armor-shattering kinetic impact spike",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Translucent crystalline assassin lunging forward through optical distortions. Faction Style (Glassborne — Hall of Ten Thousand Reflections): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Faceted glass rogue striking with twin crystal daggers; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0052",
+    "revision": 1,
+    "name": "Glass-Lens Marksman",
+    "name_key": "cards.gls_c_0052.name",
+    "description": "Reach. After this attacks, gain Ward.",
+    "description_key": "cards.gls_c_0052.description",
+    "type": "creature",
+    "subtype": "glass_marksman",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Focuses sunlight through telescopic ocular prisms into a searing beam.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Glass-Lens Marksman",
+      "species_or_classification": "glass marksman",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_first_refraction_spire",
+        "secondary_landmark_id": "lm_gls_quartz_proving_gallery",
+        "primary_figure_id": "fig_gls_eluned",
+        "secondary_figure_id": "fig_gls_seraphina",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Prism Spire of the First Refraction, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Glass sniper aiming a brass-and-crystal telescope bow from a high pedestal — a battle-tested mid-weight glass marksman (Sniper aiming long crystal scope weapon) clad in iridescent silk and faceted resonant quartz, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a marksman (2 Attack / 4 Health) affiliated with the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "history": "Focuses sunlight through telescopic ocular prisms into a searing beam. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Eluned Prismwright mobilized the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "important_relationships": "Serves alongside Eluned Prismwright (Master of Echo Illustration & Optics) at Prism Spire of the First Refraction and coordinates three-lane maneuvers with Arch-Refractor Seraphina.",
+      "habitats": [
+        "The Prismatic Spire",
+        "Quartz-Facet Proving Gallery",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Reach. After this attacks, gain Ward.",
+      "narrative_importance": "Dependable glass marksman forming the field backbone of the Opticians of the Glass Cathedral across Prism Spire of the First Refraction.",
+      "flavor_text": "Focuses sunlight through telescopic ocular prisms into a searing beam.",
+      "collection_biography": "Few sights along Prism Spire of the First Refraction are as unmistakable as glass sniper aiming a brass-and-crystal telescope bow from a high pedestal. Focuses sunlight through telescopic ocular prisms into a searing beam. Sworn to the Opticians of the Glass Cathedral since the Third Harmonic Reformation of the Seventh Chime, this uncommon glass marksman answers Eluned Prismwright's call as a 2/4 marksman."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0052",
+      "direction_id": "brief_gls_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glass sniper aiming a brass-and-crystal telescope bow from a high pedestal. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Sniper aiming long crystal scope weapon; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Glass sniper aiming a brass-and-crystal telescope bow from a high pedestal",
+        "silhouette": "Sniper aiming long crystal scope weapon",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glass sniper aiming a brass-and-crystal telescope bow from a high pedestal. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Sniper aiming long crystal scope weapon; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0053",
+    "revision": 1,
+    "name": "Prism Weaver-Chanter",
+    "name_key": "cards.gls_c_0053.name",
+    "description": "On Summon: Deal 1 damage to all enemy creatures and grant an allied creature Ward.",
+    "description_key": "cards.gls_c_0053.description",
+    "type": "creature",
+    "subtype": "human_arcanist",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 1
+          },
+          {
+            "operation": "grant_keyword",
+            "target": "ally_creature_in_lane_or_any",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Splits white Aether into the seven chromatic harmonies of the Prism Spire.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Prism Weaver-Chanter",
+      "species_or_classification": "human arcanist",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_mirror_labyrinth",
+        "secondary_landmark_id": "lm_gls_accord_optical_wing",
+        "primary_figure_id": "fig_gls_lyra",
+        "secondary_figure_id": "fig_gls_orin",
+        "organization_id": "org_mirror_duelists",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "The Infinite Mirror Labyrinth, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Arcanist weaving floating rainbow glass shards that emit laser-like beams — a battle-tested mid-weight human arcanist (Caster surrounded by orbit of levitating crystal triangles) clad in faceted resonant quartz and silver filigree, attuned to Glassborne Aether discipline.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a caster (3 Attack / 4 Health) affiliated with the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "history": "Splits white Aether into the seven chromatic harmonies of the Prism Spire. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Lyra Vane mobilized the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "faction_allegiance": "Glassborne (Fellowship of the First Refraction)",
+      "important_relationships": "Serves alongside Lyra Vane (Glassborne Archivist & Rival Duelist) at The Infinite Mirror Labyrinth and coordinates three-lane maneuvers with Master Orin Glasswright.",
+      "habitats": [
+        "The Prismatic Spire",
+        "Accord Institute Optical Wing",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: On Summon: Deal 1 damage to all enemy creatures and grant an allied creature Ward.",
+      "narrative_importance": "Dependable human arcanist forming the field backbone of the Fellowship of the First Refraction across The Infinite Mirror Labyrinth.",
+      "flavor_text": "Splits white Aether into the seven chromatic harmonies of the Prism Spire.",
+      "collection_biography": "Born of the traditions that shaped The Infinite Mirror Labyrinth after the Great Caldera Eruption of Year 412, Prism Weaver-Chanter serves the Fellowship of the First Refraction as a dedicated caster. Splits white Aether into the seven chromatic harmonies of the Prism Spire. Even Master Orin Glasswright acknowledges the tactical leverage its focused lane presence brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0053",
+      "direction_id": "brief_gls_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Arcanist weaving floating rainbow glass shards that emit laser-like beams. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Caster surrounded by orbit of levitating crystal triangles; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Arcanist weaving floating rainbow glass shards that emit laser-like beams",
+        "silhouette": "Caster surrounded by orbit of levitating crystal triangles",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Glassborne Aether particles and resonant light motes",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Arcanist weaving floating rainbow glass shards that emit laser-like beams. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Caster surrounded by orbit of levitating crystal triangles; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0054",
+    "revision": 1,
+    "name": "Lustrous Reflector-Matron",
+    "name_key": "cards.gls_c_0054.name",
+    "description": "Guard. At the start of your turn, grant your strongest allied creature Ward.",
+    "description_key": "cards.gls_c_0054.description",
+    "type": "creature",
+    "subtype": "glass_artisan",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "strongest_ally_creature",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Polishes the silvered backs of allied armor until every spell glances away harmlessly.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Lustrous Reflector-Matron",
+      "species_or_classification": "glass artisan",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_accord_optical_wing",
+        "secondary_landmark_id": "lm_gls_mirror_labyrinth",
+        "primary_figure_id": "fig_gls_seraphina",
+        "secondary_figure_id": "fig_gls_isolde",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Accord Institute Optical Wing, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Glass artisan woman buffing a glowing silver breastplate on a velvet pedestal — a battle-tested mid-weight glass artisan (Artisan with polishing cloth working on reflective armor) clad in iridescent silk and faceted resonant quartz, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Wary of outsiders but unshakably loyal to lane-mates. Operates as a support (2 Attack / 5 Health) affiliated with the Opticians of the Glass Cathedral at Accord Institute Optical Wing.",
+      "history": "Polishes the silvered backs of allied armor until every spell glances away harmlessly. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Arch-Refractor Seraphina mobilized the Opticians of the Glass Cathedral at Accord Institute Optical Wing.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "important_relationships": "Serves alongside Arch-Refractor Seraphina (Prelate of the Glass Cathedral) at Accord Institute Optical Wing and coordinates three-lane maneuvers with Lens-Scholar Isolde.",
+      "habitats": [
+        "The Prismatic Spire",
+        "The Infinite Mirror Labyrinth",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Guard. At the start of your turn, grant your strongest allied creature Ward.",
+      "narrative_importance": "Dependable glass artisan forming the field backbone of the Opticians of the Glass Cathedral across Accord Institute Optical Wing.",
+      "flavor_text": "Polishes the silvered backs of allied armor until every spell glances away harmlessly.",
+      "collection_biography": "At Accord Institute Optical Wing — where lumenport laboratory where Lyra Vane and Eluned Prismwright study Echo refraction. — Lustrous Reflector-Matron earned a lasting reputation among the Opticians of the Glass Cathedral. Polishes the silvered backs of allied armor until every spell glances away harmlessly. In Convergence Duels, Arch-Refractor Seraphina pairs it with Lens-Scholar Isolde's formations to leverage guard across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0054",
+      "direction_id": "brief_gls_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glass artisan woman buffing a glowing silver breastplate on a velvet pedestal. Faction Style (Glassborne — Accord Institute Optical Wing): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Artisan with polishing cloth working on reflective armor; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Glass artisan woman buffing a glowing silver breastplate on a velvet pedestal",
+        "silhouette": "Artisan with polishing cloth working on reflective armor",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glass artisan woman buffing a glowing silver breastplate on a velvet pedestal. Faction Style (Glassborne — Accord Institute Optical Wing): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Artisan with polishing cloth working on reflective armor; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0055",
+    "revision": 1,
+    "name": "Luminor, Apex of the Seven Facets",
+    "name_key": "cards.gls_c_0055.name",
+    "description": "Ward, Pierce. On Summon: Deal 2 damage to all enemy creatures and grant all allied creatures Ward.",
+    "description_key": "cards.gls_c_0055.description",
+    "type": "creature",
+    "subtype": "colossal_glass_titan",
+    "faction": "glassborne",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 8,
+    "health": 7,
+    "keywords": [
+      "ward",
+      "pierce"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 2
+          },
+          {
+            "operation": "grant_keyword",
+            "target": "all_ally_creatures",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "The apex living prism of the Spire. Its multifaceted gaze refracts reality into impossible prismatic spectrums.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "all_ally_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "ward",
+        "pierce",
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, all_ally_creatures",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 17
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Luminor, Apex of the Seven Facets",
+      "species_or_classification": "colossal glass titan",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_glass_cathedral",
+        "secondary_landmark_id": "lm_gls_ten_thousand_reflections",
+        "primary_figure_id": "fig_gls_orin",
+        "secondary_figure_id": "fig_gls_caelum",
+        "organization_id": "org_mirror_duelists",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "The Glass Cathedral Choir-Loft, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Titanic multifaceted diamond-and-glass colossus refracting daylight into blinding rainbows — a towering, high-Aether colossal glass titan (Towering geometric crystal titan with radiant halo) clad in faceted resonant quartz and silver filigree, exhibiting translucent hexagonal prismatic spell-ward halo and armor-shattering kinetic impact spike.",
+      "personality_or_disposition": "Grimly resolute, carrying the memory of fallen predecessors. Operates as a colossus (8 Attack / 7 Health) affiliated with the Fellowship of the First Refraction at The Glass Cathedral Choir-Loft.",
+      "history": "The apex living prism of the Spire. Its multifaceted gaze refracts reality into impossible prismatic spectrums. First recorded during the First Convergence Concordat (Year 1 AC) when Master Orin Glasswright mobilized the Fellowship of the First Refraction at The Glass Cathedral Choir-Loft.",
+      "faction_allegiance": "Glassborne (Fellowship of the First Refraction)",
+      "important_relationships": "Serves alongside Master Orin Glasswright (Elder Lens-Smith of the First Spire) at The Glass Cathedral Choir-Loft and coordinates three-lane maneuvers with Blade-Dancer Caelum.",
+      "habitats": [
+        "The Prismatic Spire",
+        "Hall of Ten Thousand Reflections",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Ward, Pierce. On Summon: Deal 2 damage to all enemy creatures and grant all allied creatures Ward.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of The Glass Cathedral Choir-Loft, counselled directly by Master Orin Glasswright.",
+      "flavor_text": "The apex living prism of the Spire. Its multifaceted gaze refracts reality into impossible prismatic spectrums.",
+      "collection_biography": "The apex living prism of the Spire. Its multifaceted gaze refracts reality into impossible prismatic spectrums. Within the ranks of the Fellowship of the First Refraction, Luminor, Apex of the Seven Facets is remembered from the records of the First Convergence Concordat at The Glass Cathedral Choir-Loft. Master Orin Glasswright (Elder Lens-Smith of the First Spire) still deploys this colossal glass titan whenever a 8-Aether colossus is needed to anchor the Front-to-Rear geometry with 8 Attack and 7 Health."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0055",
+      "direction_id": "brief_gls_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Titanic multifaceted diamond-and-glass colossus refracting daylight into blinding rainbows. Faction Style (Glassborne — The Glass Cathedral Choir-Loft): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Towering geometric crystal titan with radiant halo; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo; armor-shattering kinetic impact spike. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Titanic multifaceted diamond-and-glass colossus refracting daylight into blinding rainbows",
+        "silhouette": "Towering geometric crystal titan with radiant halo",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "translucent hexagonal prismatic spell-ward halo; armor-shattering kinetic impact spike",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Titanic multifaceted diamond-and-glass colossus refracting daylight into blinding rainbows. Faction Style (Glassborne — The Glass Cathedral Choir-Loft): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Towering geometric crystal titan with radiant halo; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo; armor-shattering kinetic impact spike. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-C-0056",
+    "revision": 1,
+    "name": "Kaleidoscope Acrobat",
+    "name_key": "cards.gls_c_0056.name",
+    "description": "Skirmish. When this moves lanes, gain Ward.",
+    "description_key": "cards.gls_c_0056.description",
+    "type": "creature",
+    "subtype": "glass_skirmisher",
+    "faction": "glassborne",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Dances across mirrors, trading places with optical reflections across lanes.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "refraction",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Kaleidoscope Acrobat",
+      "species_or_classification": "glass skirmisher",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_quartz_proving_gallery",
+        "secondary_landmark_id": "lm_gls_first_refraction_spire",
+        "primary_figure_id": "fig_gls_caelum",
+        "secondary_figure_id": "fig_gls_lyra",
+        "organization_id": "org_mirror_duelists",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Quartz-Facet Proving Gallery, The Mirror Labyrinth & Prism Spires",
+      "physical_appearance": "Acrobatic performer leaping through a shattered mirror archway with silver ribbons — a nimble, quick-deploying glass skirmisher (Gymnast silhouette framed by floating mirror shards) clad in faceted resonant quartz and silver filigree, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Recklessly bold when channeling peak Aether resonance. Operates as a trickster (2 Attack / 3 Health) affiliated with the Fellowship of the First Refraction at Quartz-Facet Proving Gallery.",
+      "history": "Dances across mirrors, trading places with optical reflections across lanes. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Blade-Dancer Caelum mobilized the Fellowship of the First Refraction at Quartz-Facet Proving Gallery.",
+      "faction_allegiance": "Glassborne (Fellowship of the First Refraction)",
+      "important_relationships": "Serves alongside Blade-Dancer Caelum (Champion of the Quartz Proving Gallery) at Quartz-Facet Proving Gallery and coordinates three-lane maneuvers with Lyra Vane.",
+      "habitats": [
+        "The Prismatic Spire",
+        "Prism Spire of the First Refraction",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "world_abilities": "Channels Glassborne resonance (refraction) to manifest: Skirmish. When this moves lanes, gain Ward.",
+      "narrative_importance": "Dependable glass skirmisher forming the field backbone of the Fellowship of the First Refraction across Quartz-Facet Proving Gallery.",
+      "flavor_text": "Dances across mirrors, trading places with optical reflections across lanes.",
+      "collection_biography": "\"Dances across mirrors, trading places with optical reflections across lanes.\" — field annotation by Blade-Dancer Caelum. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Kaleidoscope Acrobat exemplifies how the Fellowship of the First Refraction adapts to high-pressure three-lane duels between Quartz-Facet Proving Gallery and Prism Spire of the First Refraction."
+    },
+    "art": {
+      "asset_id": "art_card_gls_c_0056",
+      "direction_id": "brief_gls_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Acrobatic performer leaping through a shattered mirror archway with silver ribbons. Faction Style (Glassborne — Quartz-Facet Proving Gallery): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Gymnast silhouette framed by floating mirror shards; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Acrobatic performer leaping through a shattered mirror archway with silver ribbons",
+        "silhouette": "Gymnast silhouette framed by floating mirror shards",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Acrobatic performer leaping through a shattered mirror archway with silver ribbons. Faction Style (Glassborne — Quartz-Facet Proving Gallery): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Gymnast silhouette framed by floating mirror shards; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-T-0057",
+    "revision": 1,
+    "name": "Blinding Refraction",
+    "name_key": "cards.gls_t_0057.name",
+    "description": "Quick Tactic. Silence an enemy creature in target lane.",
+    "description_key": "cards.gls_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "glassborne",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "silence",
+            "target": "enemy_in_lane"
+          }
+        ]
+      }
+    ],
+    "lore": "A flash of concentrated sunlight burns out enemy runes and temporary enchantments.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "refraction",
+        "silence"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Blinding Refraction",
+      "classification": "Glassborne tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_mirror_labyrinth",
+        "secondary_landmark_id": "lm_gls_accord_optical_wing",
+        "primary_figure_id": "fig_gls_lyra",
+        "secondary_figure_id": "fig_gls_orin",
+        "organization_id": "org_mirror_duelists",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "The Infinite Mirror Labyrinth (The Mirror Labyrinth & Prism Spires)",
+      "historical_provenance": "A flash of concentrated sunlight burns out enemy runes and temporary enchantments. Established during the First Convergence Concordat (Year 1 AC) by Lyra Vane and the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of The Infinite Mirror Labyrinth: Quick Tactic. Silence an enemy creature in target lane.",
+      "faction_allegiance": "Glassborne (Fellowship of the First Refraction)",
+      "associated_locations": [
+        "The Prismatic Spire",
+        "Accord Institute Optical Wing",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Lyra Vane and the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "flavor_text": "A flash of concentrated sunlight burns out enemy runes and temporary enchantments.",
+      "collection_biography": "A flash of concentrated sunlight burns out enemy runes and temporary enchantments. Codified by Lyra Vane (Glassborne Archivist & Rival Duelist) for the Fellowship of the First Refraction during the First Convergence Concordat, Blinding Refraction channels the resonant signature of The Infinite Mirror Labyrinth into a 1-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_gls_t_0057",
+      "direction_id": "brief_gls_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Blinding white-hot prism beam striking the head of an armored warrior. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Conical beam of light striking a target; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Blinding white-hot prism beam striking the head of an armored warrior",
+        "silhouette": "Conical beam of light striking a target",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Glassborne Aether particles and resonant light motes",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Blinding white-hot prism beam striking the head of an armored warrior. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Conical beam of light striking a target; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-T-0058",
+    "revision": 1,
+    "name": "Mirror-Image Mirage",
+    "name_key": "cards.gls_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards.",
+    "description_key": "cards.gls_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "What appears to be an empty lane is merely an optical illusion concealing reserves.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "refraction"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Mirror-Image Mirage",
+      "classification": "Glassborne tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_mirror_labyrinth",
+        "secondary_landmark_id": "lm_gls_accord_optical_wing",
+        "primary_figure_id": "fig_gls_lyra",
+        "secondary_figure_id": "fig_gls_orin",
+        "organization_id": "org_mirror_duelists",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "The Infinite Mirror Labyrinth (The Mirror Labyrinth & Prism Spires)",
+      "historical_provenance": "What appears to be an empty lane is merely an optical illusion concealing reserves. Established during the First Convergence Concordat (Year 1 AC) by Lyra Vane and the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of The Infinite Mirror Labyrinth: Standard Tactic. Draw 2 cards.",
+      "faction_allegiance": "Glassborne (Fellowship of the First Refraction)",
+      "associated_locations": [
+        "The Prismatic Spire",
+        "Accord Institute Optical Wing",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Lyra Vane and the Fellowship of the First Refraction at The Infinite Mirror Labyrinth.",
+      "flavor_text": "What appears to be an empty lane is merely an optical illusion concealing reserves.",
+      "collection_biography": "What appears to be an empty lane is merely an optical illusion concealing reserves. Codified by Lyra Vane (Glassborne Archivist & Rival Duelist) for the Fellowship of the First Refraction during the First Convergence Concordat, Mirror-Image Mirage channels the resonant signature of The Infinite Mirror Labyrinth into a 3-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_gls_t_0058",
+      "direction_id": "brief_gls_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hall of endless mirrors reflecting identical cards receding to infinity. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Perspective tunnel of repeated arching mirrors; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Hall of endless mirrors reflecting identical cards receding to infinity",
+        "silhouette": "Perspective tunnel of repeated arching mirrors",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Glassborne Aether particles and resonant light motes",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hall of endless mirrors reflecting identical cards receding to infinity. Faction Style (Glassborne — The Infinite Mirror Labyrinth): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Perspective tunnel of repeated arching mirrors; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-T-0059",
+    "revision": 1,
+    "name": "Shatter-Glass Cataclysm",
+    "name_key": "cards.gls_t_0059.name",
+    "description": "Standard Tactic. Deal 3 damage to all enemy creatures.",
+    "description_key": "cards.gls_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "glassborne",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 3
+          }
+        ]
+      }
+    ],
+    "lore": "Resonating sound vibrations shatter every crystalline surface across the battlefield.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "refraction"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Shatter-Glass Cataclysm",
+      "classification": "Glassborne tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_first_refraction_spire",
+        "secondary_landmark_id": "lm_gls_quartz_proving_gallery",
+        "primary_figure_id": "fig_gls_eluned",
+        "secondary_figure_id": "fig_gls_seraphina",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Prism Spire of the First Refraction (The Mirror Labyrinth & Prism Spires)",
+      "historical_provenance": "Resonating sound vibrations shatter every crystalline surface across the battlefield. Established during the Reclamation of the Sunken Ossuary (Year 381 AC) by Eluned Prismwright and the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Prism Spire of the First Refraction: Standard Tactic. Deal 3 damage to all enemy creatures.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "associated_locations": [
+        "The Prismatic Spire",
+        "Quartz-Facet Proving Gallery",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Eluned Prismwright and the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "flavor_text": "Resonating sound vibrations shatter every crystalline surface across the battlefield.",
+      "collection_biography": "At Prism Spire of the First Refraction, Splits raw zenith sunlight into seven weaponized spectral beams. Shatter-Glass Cataclysm draws directly upon that legacy: Resonating sound vibrations shatter every crystalline surface across the battlefield. Preserved by the Opticians of the Glass Cathedral since Year 381 AC, it remains a signature standard tool in Eluned Prismwright's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_gls_t_0059",
+      "direction_id": "brief_gls_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Catastrophic explosion of millions of sharp razor glass shards flying outward. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Radial starburst of flying geometric shards; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Catastrophic explosion of millions of sharp razor glass shards flying outward",
+        "silhouette": "Radial starburst of flying geometric shards",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Glassborne Aether particles and resonant light motes",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Catastrophic explosion of millions of sharp razor glass shards flying outward. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Radial starburst of flying geometric shards; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GLS-R-0060",
+    "revision": 1,
+    "name": "Prismatic Lens of Seraphina",
+    "name_key": "cards.gls_r_0060.name",
+    "description": "Relic. At the start of your turn, Scry 2.",
+    "description_key": "cards.gls_r_0060.description",
+    "type": "relic",
+    "subtype": "crystal_relic",
+    "faction": "glassborne",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "refraction"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Peer through its triangular facets to view the most probable resonance timeline.",
+    "archetypes": [
+      "refraction_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "refraction"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "refraction_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "refraction",
+        "refraction_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Prismatic Lens of Seraphina",
+      "classification": "Glassborne relic (crystal relic)",
+      "world_bible_refs": {
+        "region_id": "reg_mirror_labyrinth",
+        "primary_landmark_id": "lm_gls_first_refraction_spire",
+        "secondary_landmark_id": "lm_gls_quartz_proving_gallery",
+        "primary_figure_id": "fig_gls_eluned",
+        "secondary_figure_id": "fig_gls_seraphina",
+        "organization_id": "org_glass_choristers",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "Prism Spire of the First Refraction (The Mirror Labyrinth & Prism Spires)",
+      "historical_provenance": "Peer through its triangular facets to view the most probable resonance timeline. Established during the Whisperleaf Root-Compact (Year 450 AC) by Eluned Prismwright and the Opticians of the Glass Cathedral at Prism Spire of the First Refraction.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Prism Spire of the First Refraction: Relic. At the start of your turn, Scry 2.",
+      "faction_allegiance": "Glassborne (Opticians of the Glass Cathedral)",
+      "associated_locations": [
+        "The Prismatic Spire",
+        "Quartz-Facet Proving Gallery",
+        "The Mirror Labyrinth & Prism Spires"
+      ],
+      "narrative_importance": "An enduring artifact of the Opticians of the Glass Cathedral, forged during the Whisperleaf Root-Compact and safeguarded by Eluned Prismwright.",
+      "flavor_text": "Peer through its triangular facets to view the most probable resonance timeline.",
+      "collection_biography": "At Prism Spire of the First Refraction, Splits raw zenith sunlight into seven weaponized spectral beams. Prismatic Lens of Seraphina draws directly upon that legacy: Peer through its triangular facets to view the most probable resonance timeline. Preserved by the Opticians of the Glass Cathedral since Year 450 AC, it remains a signature crystal relic tool in Eluned Prismwright's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_gls_r_0060",
+      "direction_id": "brief_gls_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/gls-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Flawless triangular crystal prism hovering on a silver filigree stand. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Triangular prism hovering above ornate stand; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Flawless triangular crystal prism hovering on a silver filigree stand",
+        "silhouette": "Triangular prism hovering above ornate stand",
+        "palette": [
+          "prismatic_crystal",
+          "mirror_silver",
+          "lucent_white"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Prismatic Spire",
+        "materials": [
+          "faceted resonant quartz",
+          "silver filigree",
+          "prismatic mirror-glass",
+          "iridescent silk"
+        ],
+        "clothing_or_armor": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "weapons_or_equipment": "Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields",
+        "background": "The Prismatic Spire (The Mirror Labyrinth & Prism Spires)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Glassborne Aether particles and resonant light motes",
+        "mood": "Luminous, crystalline, and razor-sharp",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Flawless triangular crystal prism hovering on a silver filigree stand. Faction Style (Glassborne — Prism Spire of the First Refraction): Geometric crystal pauldrons, refractive rapiers, floating prism lenses, and mirror-shields, crafted from faceted resonant quartz, silver filigree, prismatic mirror-glass, iridescent silk. Silhouette & Pose: Triangular prism hovering above ornate stand; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Prismatic Spire in The Mirror Labyrinth & Prism Spires (Infinite mirror galleries, soaring stained-crystal cathedrals, optical observatory halls). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors prismatic_crystal, mirror_silver, lucent_white. Visual Effects & Mood: Subtle Glassborne Aether particles and resonant light motes. Mood: Luminous, crystalline, and razor-sharp. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

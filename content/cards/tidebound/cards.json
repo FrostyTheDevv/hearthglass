@@ -3227,7 +3227,7 @@
     "type": "creature",
     "subtype": "crustacean_guard",
     "faction": "tidebound",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "bulwark",
     "cost": 3,
     "attack": 2,
@@ -8110,6 +8110,1942 @@
         "visual_effects": "fluid side-stepping water or wind trail",
         "mood": "Fluid, mysterious, and surging",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Ring of jagged sea-stacks surrounding a luminous spinning ocean eddy. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Circular sea-stack horizon around a glowing whirlpool; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Shattered Atoll Whirlpool Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Luminous underwater caustics and crashing seafoam spray; dominant colors azure, turquoise, seafoam. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0049",
+    "revision": 1,
+    "name": "Tide-Runner Scout",
+    "name_key": "cards.tid_c_0049.name",
+    "description": "Swift. After this attacks, restore 1 Vitality to your Leader.",
+    "description_key": "cards.tid_c_0049.description",
+    "type": "creature",
+    "subtype": "merfolk_scout",
+    "faction": "tidebound",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Glides across the surf on fins of spun pearl, spearing foes before they can plant their boots.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 4
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Tide-Runner Scout",
+      "species_or_classification": "merfolk scout",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_abyssal_trench",
+        "secondary_landmark_id": "lm_tid_nacreous_grotto",
+        "primary_figure_id": "fig_tid_corvus",
+        "secondary_figure_id": "fig_tid_kaelo",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Abyssal Trench of the Leviathan, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Merfolk scout skimming across cresting blue wave with coral-tipped javelin — a nimble, quick-deploying merfolk scout (Low-slung hydrodynamic swimmer leaping from wave) clad in abyssal sea-glass and woven kelp-silk, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Zealously devoted to the harmonic purity of their order. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "history": "Glides across the surf on fins of spun pearl, spearing foes before they can plant their boots. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Harpoon-Master Corvus mobilized the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Harpoon-Master Corvus (Vanguard of the Coral Spire) at Abyssal Trench of the Leviathan and coordinates three-lane maneuvers with Abyssal Navigator Kaelo.",
+      "habitats": [
+        "The Sunken Reach",
+        "Nacreous Grotto of the Tide-Singers",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Swift. After this attacks, restore 1 Vitality to your Leader.",
+      "narrative_importance": "Dependable merfolk scout forming the field backbone of the Pelagic Navigators of the Wake across Abyssal Trench of the Leviathan.",
+      "flavor_text": "Glides across the surf on fins of spun pearl, spearing foes before they can plant their boots.",
+      "collection_biography": "Born of the traditions that shaped Abyssal Trench of the Leviathan after the Great Caldera Eruption of Year 412, Tide-Runner Scout serves the Pelagic Navigators of the Wake as a dedicated vanguard. Glides across the surf on fins of spun pearl, spearing foes before they can plant their boots. Even Abyssal Navigator Kaelo acknowledges the tactical leverage its swift brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0049",
+      "direction_id": "brief_tid_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Merfolk scout skimming across cresting blue wave with coral-tipped javelin. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Low-slung hydrodynamic swimmer leaping from wave; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Merfolk scout skimming across cresting blue wave with coral-tipped javelin",
+        "silhouette": "Low-slung hydrodynamic swimmer leaping from wave",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Merfolk scout skimming across cresting blue wave with coral-tipped javelin. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Low-slung hydrodynamic swimmer leaping from wave; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0050",
+    "revision": 1,
+    "name": "Abyssal Shell-Crab",
+    "name_key": "cards.tid_c_0050.name",
+    "description": "Guard. When damaged, restore 1 Vitality to your Leader.",
+    "description_key": "cards.tid_c_0050.description",
+    "type": "creature",
+    "subtype": "crustacean_beast",
+    "faction": "tidebound",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "when_damaged",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Carapace forged in the deep oceanic trenches can withstand hydraulic pressure of miles of water.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Abyssal Shell-Crab",
+      "species_or_classification": "crustacean beast",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_abyssal_trench",
+        "secondary_landmark_id": "lm_tid_nacreous_grotto",
+        "primary_figure_id": "fig_tid_corvus",
+        "secondary_figure_id": "fig_tid_kaelo",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Abyssal Trench of the Leviathan, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Massive armored sea crab hunkered among kelp with iridescent blue-black shell — a nimble, quick-deploying crustacean beast (Broad flattened dome carapace with heavy claws) clad in abyssal sea-glass and woven kelp-silk, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Zealously devoted to the harmonic purity of their order. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "history": "Carapace forged in the deep oceanic trenches can withstand hydraulic pressure of miles of water. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Harpoon-Master Corvus mobilized the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Harpoon-Master Corvus (Vanguard of the Coral Spire) at Abyssal Trench of the Leviathan and coordinates three-lane maneuvers with Abyssal Navigator Kaelo.",
+      "habitats": [
+        "The Sunken Reach",
+        "Nacreous Grotto of the Tide-Singers",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Guard. When damaged, restore 1 Vitality to your Leader.",
+      "narrative_importance": "Dependable crustacean beast forming the field backbone of the Pelagic Navigators of the Wake across Abyssal Trench of the Leviathan.",
+      "flavor_text": "Carapace forged in the deep oceanic trenches can withstand hydraulic pressure of miles of water.",
+      "collection_biography": "Where ordinary crustacean beast units falter, Abyssal Shell-Crab thrives amidst the hazards of Abyssal Trench of the Leviathan. Carapace forged in the deep oceanic trenches can withstand hydraulic pressure of miles of water. Trained under the doctrine of Harpoon-Master Corvus and the Pelagic Navigators of the Wake, it turns every skirmish near Nacreous Grotto of the Tide-Singers into a display of guard."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0050",
+      "direction_id": "brief_tid_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive armored sea crab hunkered among kelp with iridescent blue-black shell. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Broad flattened dome carapace with heavy claws; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Massive armored sea crab hunkered among kelp with iridescent blue-black shell",
+        "silhouette": "Broad flattened dome carapace with heavy claws",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive armored sea crab hunkered among kelp with iridescent blue-black shell. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Broad flattened dome carapace with heavy claws; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0051",
+    "revision": 1,
+    "name": "Reef-Fang Marauder",
+    "name_key": "cards.tid_c_0051.name",
+    "description": "Drain. After this attacks, restore 2 Vitality to your Leader.",
+    "description_key": "cards.tid_c_0051.description",
+    "type": "creature",
+    "subtype": "merfolk_rogue",
+    "faction": "tidebound",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "drain"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Daggers carved from shark-tooth ivory draw the life-tide directly into the sea.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "drain",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Reef-Fang Marauder",
+      "species_or_classification": "merfolk rogue",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_whirlpool_reach",
+        "secondary_landmark_id": "lm_tid_coral_spire",
+        "primary_figure_id": "fig_tid_kaelo",
+        "secondary_figure_id": "fig_tid_nerissa",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Shattered Atoll Whirlpool Reach, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Dual-dagger merfolk raider striking from swirling turquoise undertow — a battle-tested mid-weight merfolk rogue (Twisting predator silhouette with curved blades) clad in iridescent mother-of-pearl and living reef-coral, exhibiting siphoning ribbons of vital crimson-emerald energy.",
+      "personality_or_disposition": "Recklessly bold when channeling peak Aether resonance. Operates as a assassin (4 Attack / 2 Health) affiliated with the Pelagic Navigators of the Wake at Shattered Atoll Whirlpool Reach.",
+      "history": "Daggers carved from shark-tooth ivory draw the life-tide directly into the sea. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Abyssal Navigator Kaelo mobilized the Pelagic Navigators of the Wake at Shattered Atoll Whirlpool Reach.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Abyssal Navigator Kaelo (Chartmaster of Whirlpool Reach) at Shattered Atoll Whirlpool Reach and coordinates three-lane maneuvers with Captain Nerissa Wake.",
+      "habitats": [
+        "The Sunken Reach",
+        "Coral Spire of the Pelagic Sanctum",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Drain. After this attacks, restore 2 Vitality to your Leader.",
+      "narrative_importance": "Dependable merfolk rogue forming the field backbone of the Pelagic Navigators of the Wake across Shattered Atoll Whirlpool Reach.",
+      "flavor_text": "Daggers carved from shark-tooth ivory draw the life-tide directly into the sea.",
+      "collection_biography": "Born of the traditions that shaped Shattered Atoll Whirlpool Reach after the Great Caldera Eruption of Year 412, Reef-Fang Marauder serves the Pelagic Navigators of the Wake as a dedicated assassin. Daggers carved from shark-tooth ivory draw the life-tide directly into the sea. Even Captain Nerissa Wake acknowledges the tactical leverage its drain brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0051",
+      "direction_id": "brief_tid_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dual-dagger merfolk raider striking from swirling turquoise undertow. Faction Style (Tidebound — Shattered Atoll Whirlpool Reach): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Twisting predator silhouette with curved blades; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Dual-dagger merfolk raider striking from swirling turquoise undertow",
+        "silhouette": "Twisting predator silhouette with curved blades",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "siphoning ribbons of vital crimson-emerald energy",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dual-dagger merfolk raider striking from swirling turquoise undertow. Faction Style (Tidebound — Shattered Atoll Whirlpool Reach): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Twisting predator silhouette with curved blades; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0052",
+    "revision": 1,
+    "name": "Harpoon Trident Guard",
+    "name_key": "cards.tid_c_0052.name",
+    "description": "Reach. On Summon: Deal 1 damage to an enemy creature in this lane.",
+    "description_key": "cards.tid_c_0052.description",
+    "type": "creature",
+    "subtype": "merfolk_soldier",
+    "faction": "tidebound",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Heavy barbed tridents trailing kelp line can drag foes across the arena.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Harpoon Trident Guard",
+      "species_or_classification": "merfolk soldier",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_whirlpool_reach",
+        "secondary_landmark_id": "lm_tid_coral_spire",
+        "primary_figure_id": "fig_tid_kaelo",
+        "secondary_figure_id": "fig_tid_nerissa",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Shattered Atoll Whirlpool Reach, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Armored merfolk warrior hurling a barbed silver trident across turbulent water — a battle-tested mid-weight merfolk soldier (Athletic warrior silhouette with raised three-pronged spear) clad in abyssal sea-glass and woven kelp-silk, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a marksman (2 Attack / 4 Health) affiliated with the Pelagic Navigators of the Wake at Shattered Atoll Whirlpool Reach.",
+      "history": "Heavy barbed tridents trailing kelp line can drag foes across the arena. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Abyssal Navigator Kaelo mobilized the Pelagic Navigators of the Wake at Shattered Atoll Whirlpool Reach.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Abyssal Navigator Kaelo (Chartmaster of Whirlpool Reach) at Shattered Atoll Whirlpool Reach and coordinates three-lane maneuvers with Captain Nerissa Wake.",
+      "habitats": [
+        "The Sunken Reach",
+        "Coral Spire of the Pelagic Sanctum",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Reach. On Summon: Deal 1 damage to an enemy creature in this lane.",
+      "narrative_importance": "Dependable merfolk soldier forming the field backbone of the Pelagic Navigators of the Wake across Shattered Atoll Whirlpool Reach.",
+      "flavor_text": "Heavy barbed tridents trailing kelp line can drag foes across the arena.",
+      "collection_biography": "\"Heavy barbed tridents trailing kelp line can drag foes across the arena.\" — field annotation by Abyssal Navigator Kaelo. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Harpoon Trident Guard exemplifies how the Pelagic Navigators of the Wake adapts to high-pressure three-lane duels between Shattered Atoll Whirlpool Reach and Coral Spire of the Pelagic Sanctum."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0052",
+      "direction_id": "brief_tid_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored merfolk warrior hurling a barbed silver trident across turbulent water. Faction Style (Tidebound — Shattered Atoll Whirlpool Reach): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Athletic warrior silhouette with raised three-pronged spear; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Armored merfolk warrior hurling a barbed silver trident across turbulent water",
+        "silhouette": "Athletic warrior silhouette with raised three-pronged spear",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored merfolk warrior hurling a barbed silver trident across turbulent water. Faction Style (Tidebound — Shattered Atoll Whirlpool Reach): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Athletic warrior silhouette with raised three-pronged spear; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0053",
+    "revision": 1,
+    "name": "Surge Siren-Caller",
+    "name_key": "cards.tid_c_0053.name",
+    "description": "On Summon: Return an enemy creature in this lane to its owner’s hand.",
+    "description_key": "cards.tid_c_0053.description",
+    "type": "creature",
+    "subtype": "merfolk_mage",
+    "faction": "tidebound",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "return_to_hand",
+            "target": "enemy_in_lane"
+          }
+        ]
+      }
+    ],
+    "lore": "Her hypnotic song creates whirlpools that wash invaders completely off the field.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Surge Siren-Caller",
+      "species_or_classification": "merfolk mage",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_palace_beneath_wake",
+        "secondary_landmark_id": "lm_tid_old_harbor_breakwater",
+        "primary_figure_id": "fig_tid_nerissa",
+        "secondary_figure_id": "fig_tid_corvus",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "The Palace Beneath the Wake, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Siren floating in a pillar of spiraling sea water with glowing coral crown — a battle-tested mid-weight merfolk mage (Graceful swimming siren framed by vertical water vortex) clad in iridescent mother-of-pearl and living reef-coral, attuned to Tidebound Aether discipline.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a caster (3 Attack / 4 Health) affiliated with the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "history": "Her hypnotic song creates whirlpools that wash invaders completely off the field. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Captain Nerissa Wake mobilized the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Captain Nerissa Wake (Tidebound Harbor Fleetmaster) at The Palace Beneath the Wake and coordinates three-lane maneuvers with Harpoon-Master Corvus.",
+      "habitats": [
+        "The Sunken Reach",
+        "Lumenport Old Harbor Breakwater",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: On Summon: Return an enemy creature in this lane to its owner’s hand.",
+      "narrative_importance": "Dependable merfolk mage forming the field backbone of the Pelagic Navigators of the Wake across The Palace Beneath the Wake.",
+      "flavor_text": "Her hypnotic song creates whirlpools that wash invaders completely off the field.",
+      "collection_biography": "Where ordinary merfolk mage units falter, Surge Siren-Caller thrives amidst the hazards of The Palace Beneath the Wake. Her hypnotic song creates whirlpools that wash invaders completely off the field. Trained under the doctrine of Captain Nerissa Wake and the Pelagic Navigators of the Wake, it turns every skirmish near Lumenport Old Harbor Breakwater into a display of focused lane presence."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0053",
+      "direction_id": "brief_tid_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Siren floating in a pillar of spiraling sea water with glowing coral crown. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Graceful swimming siren framed by vertical water vortex; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Siren floating in a pillar of spiraling sea water with glowing coral crown",
+        "silhouette": "Graceful swimming siren framed by vertical water vortex",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Tidebound Aether particles and resonant light motes",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Siren floating in a pillar of spiraling sea water with glowing coral crown. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Graceful swimming siren framed by vertical water vortex; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0054",
+    "revision": 1,
+    "name": "Pearl-Priest of the Deep",
+    "name_key": "cards.tid_c_0054.name",
+    "description": "Guard. At the start of your turn, restore 2 Vitality to your Leader.",
+    "description_key": "cards.tid_c_0054.description",
+    "type": "creature",
+    "subtype": "merfolk_cleric",
+    "faction": "tidebound",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Chants ancient liturgical hymns of the sunken sunken temples to soothe wounded champions.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Pearl-Priest of the Deep",
+      "species_or_classification": "merfolk cleric",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_coral_spire",
+        "secondary_landmark_id": "lm_tid_whirlpool_reach",
+        "primary_figure_id": "fig_tid_thalassa",
+        "secondary_figure_id": "fig_tid_nereus",
+        "organization_id": "org_coral_harpooners",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Coral Spire of the Pelagic Sanctum, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Robed sea cleric holding a staff crowned with a giant luminous pearl — a battle-tested mid-weight merfolk cleric (Eldritch cleric holding glowing spherical pearl staff) clad in woven kelp-silk and iridescent mother-of-pearl, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a support (2 Attack / 5 Health) affiliated with the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "history": "Chants ancient liturgical hymns of the sunken sunken temples to soothe wounded champions. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Tide-Oracle Thalassa mobilized the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "faction_allegiance": "Tidebound (Coral Spire Harpoon Company)",
+      "important_relationships": "Serves alongside Tide-Oracle Thalassa (Seer of the Palace Beneath the Wake) at Coral Spire of the Pelagic Sanctum and coordinates three-lane maneuvers with Reef-Warden Nereus.",
+      "habitats": [
+        "The Sunken Reach",
+        "Shattered Atoll Whirlpool Reach",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Guard. At the start of your turn, restore 2 Vitality to your Leader.",
+      "narrative_importance": "Dependable merfolk cleric forming the field backbone of the Coral Spire Harpoon Company across Coral Spire of the Pelagic Sanctum.",
+      "flavor_text": "Chants ancient liturgical hymns of the sunken sunken temples to soothe wounded champions.",
+      "collection_biography": "Tide-Oracle Thalassa often warns initiates at Coral Spire of the Pelagic Sanctum never to misjudge Pearl-Priest of the Deep. Chants ancient liturgical hymns of the sunken sunken temples to soothe wounded champions. Whether patrolling Shattered Atoll Whirlpool Reach for the Coral Spire Harpoon Company or manifesting on the Convergence slate, its 2 Attack and 5 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0054",
+      "direction_id": "brief_tid_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Robed sea cleric holding a staff crowned with a giant luminous pearl. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Eldritch cleric holding glowing spherical pearl staff; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Robed sea cleric holding a staff crowned with a giant luminous pearl",
+        "silhouette": "Eldritch cleric holding glowing spherical pearl staff",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Robed sea cleric holding a staff crowned with a giant luminous pearl. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Eldritch cleric holding glowing spherical pearl staff; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0055",
+    "revision": 1,
+    "name": "Leviathan of the Abyssal Trench",
+    "name_key": "cards.tid_c_0055.name",
+    "description": "Drain, Anchor. On Summon: Restore 6 Vitality to your Leader and deal 2 damage to all enemy creatures.",
+    "description_key": "cards.tid_c_0055.description",
+    "type": "creature",
+    "subtype": "colossal_sea_beast",
+    "faction": "tidebound",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 7,
+    "health": 9,
+    "keywords": [
+      "drain",
+      "anchor"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 6
+          },
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "The ocean abyss personified; a creature older than the land itself whose surfacing heralds cataclysmic tidal waves.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader",
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "drain",
+        "anchor",
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader, all_enemy_creatures",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Leviathan of the Abyssal Trench",
+      "species_or_classification": "colossal sea beast",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_abyssal_trench",
+        "secondary_landmark_id": "lm_tid_nacreous_grotto",
+        "primary_figure_id": "fig_tid_corvus",
+        "secondary_figure_id": "fig_tid_kaelo",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "Abyssal Trench of the Leviathan, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Immense serpent-headed sea leviathan crashing through storm waves above a sunken city — a towering, high-Aether colossal sea beast (Colossal serpentine ocean titan rising from foam) clad in abyssal sea-glass and woven kelp-silk, exhibiting siphoning ribbons of vital crimson-emerald energy and heavy gravity runes locking the base to the stone floorplates.",
+      "personality_or_disposition": "Zealously devoted to the harmonic purity of their order. Operates as a colossus (7 Attack / 9 Health) affiliated with the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "history": "The ocean abyss personified; a creature older than the land itself whose surfacing heralds cataclysmic tidal waves. First recorded during the First Convergence Concordat (Year 1 AC) when Harpoon-Master Corvus mobilized the Pelagic Navigators of the Wake at Abyssal Trench of the Leviathan.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "important_relationships": "Serves alongside Harpoon-Master Corvus (Vanguard of the Coral Spire) at Abyssal Trench of the Leviathan and coordinates three-lane maneuvers with Abyssal Navigator Kaelo.",
+      "habitats": [
+        "The Sunken Reach",
+        "Nacreous Grotto of the Tide-Singers",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Drain, Anchor. On Summon: Restore 6 Vitality to your Leader and deal 2 damage to all enemy creatures.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Abyssal Trench of the Leviathan, counselled directly by Harpoon-Master Corvus.",
+      "flavor_text": "The ocean abyss personified; a creature older than the land itself whose surfacing heralds cataclysmic tidal waves.",
+      "collection_biography": "The ocean abyss personified; a creature older than the land itself whose surfacing heralds cataclysmic tidal waves. Within the ranks of the Pelagic Navigators of the Wake, Leviathan of the Abyssal Trench is remembered from the records of the First Convergence Concordat at Abyssal Trench of the Leviathan. Harpoon-Master Corvus (Vanguard of the Coral Spire) still deploys this colossal sea beast whenever a 8-Aether colossus is needed to anchor the Front-to-Rear geometry with 7 Attack and 9 Health."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0055",
+      "direction_id": "brief_tid_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Immense serpent-headed sea leviathan crashing through storm waves above a sunken city. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Colossal serpentine ocean titan rising from foam; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy; heavy gravity runes locking the base to the stone floorplates. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Immense serpent-headed sea leviathan crashing through storm waves above a sunken city",
+        "silhouette": "Colossal serpentine ocean titan rising from foam",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "siphoning ribbons of vital crimson-emerald energy; heavy gravity runes locking the base to the stone floorplates",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Immense serpent-headed sea leviathan crashing through storm waves above a sunken city. Faction Style (Tidebound — Abyssal Trench of the Leviathan): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Colossal serpentine ocean titan rising from foam; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy; heavy gravity runes locking the base to the stone floorplates. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-C-0056",
+    "revision": 1,
+    "name": "Current-Rider Skimmer",
+    "name_key": "cards.tid_c_0056.name",
+    "description": "Skirmish. When this moves lanes, draw 1 card.",
+    "description_key": "cards.tid_c_0056.description",
+    "type": "creature",
+    "subtype": "merfolk_skirmisher",
+    "faction": "tidebound",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Surfing the undertow between lanes with effortless grace.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "current"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Current-Rider Skimmer",
+      "species_or_classification": "merfolk skirmisher",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_coral_spire",
+        "secondary_landmark_id": "lm_tid_whirlpool_reach",
+        "primary_figure_id": "fig_tid_thalassa",
+        "secondary_figure_id": "fig_tid_nereus",
+        "organization_id": "org_coral_harpooners",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Coral Spire of the Pelagic Sanctum, The Shattered Archipelago & Abyssal Shelf",
+      "physical_appearance": "Merfolk riding a luminous blue water-board between stone arena pillars — a nimble, quick-deploying merfolk skirmisher (Dynamic wave-riding figure leaning into a turn) clad in living reef-coral and abyssal sea-glass, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Methodical and calculating under battlefield pressure. Operates as a trickster (2 Attack / 3 Health) affiliated with the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "history": "Surfing the undertow between lanes with effortless grace. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Tide-Oracle Thalassa mobilized the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "faction_allegiance": "Tidebound (Coral Spire Harpoon Company)",
+      "important_relationships": "Serves alongside Tide-Oracle Thalassa (Seer of the Palace Beneath the Wake) at Coral Spire of the Pelagic Sanctum and coordinates three-lane maneuvers with Reef-Warden Nereus.",
+      "habitats": [
+        "The Sunken Reach",
+        "Shattered Atoll Whirlpool Reach",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "world_abilities": "Channels Tidebound resonance (current) to manifest: Skirmish. When this moves lanes, draw 1 card.",
+      "narrative_importance": "Dependable merfolk skirmisher forming the field backbone of the Coral Spire Harpoon Company across Coral Spire of the Pelagic Sanctum.",
+      "flavor_text": "Surfing the undertow between lanes with effortless grace.",
+      "collection_biography": "Few sights along Coral Spire of the Pelagic Sanctum are as unmistakable as merfolk riding a luminous blue water-board between stone arena pillars. Surfing the undertow between lanes with effortless grace. Sworn to the Coral Spire Harpoon Company since the Third Harmonic Reformation of the Seventh Chime, this common merfolk skirmisher answers Tide-Oracle Thalassa's call as a 2/3 trickster."
+    },
+    "art": {
+      "asset_id": "art_card_tid_c_0056",
+      "direction_id": "brief_tid_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Merfolk riding a luminous blue water-board between stone arena pillars. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Dynamic wave-riding figure leaning into a turn; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Merfolk riding a luminous blue water-board between stone arena pillars",
+        "silhouette": "Dynamic wave-riding figure leaning into a turn",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Merfolk riding a luminous blue water-board between stone arena pillars. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Dynamic wave-riding figure leaning into a turn; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-T-0057",
+    "revision": 1,
+    "name": "Crashing Undertow",
+    "name_key": "cards.tid_t_0057.name",
+    "description": "Quick Tactic. Deal 2 damage to an enemy creature in target lane.",
+    "description_key": "cards.tid_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "tidebound",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "A sudden burst of saline water slams the attacker off-balance.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Crashing Undertow",
+      "classification": "Tidebound tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_coral_spire",
+        "secondary_landmark_id": "lm_tid_whirlpool_reach",
+        "primary_figure_id": "fig_tid_thalassa",
+        "secondary_figure_id": "fig_tid_nereus",
+        "organization_id": "org_coral_harpooners",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Coral Spire of the Pelagic Sanctum (The Shattered Archipelago & Abyssal Shelf)",
+      "historical_provenance": "A sudden burst of saline water slams the attacker off-balance. Established during the Sunken Wake Cataclysm (Year 114 AC) by Tide-Oracle Thalassa and the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of Coral Spire of the Pelagic Sanctum: Quick Tactic. Deal 2 damage to an enemy creature in target lane.",
+      "faction_allegiance": "Tidebound (Coral Spire Harpoon Company)",
+      "associated_locations": [
+        "The Sunken Reach",
+        "Shattered Atoll Whirlpool Reach",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Tide-Oracle Thalassa and the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "flavor_text": "A sudden burst of saline water slams the attacker off-balance.",
+      "collection_biography": "At Coral Spire of the Pelagic Sanctum, Living calcified spire rising from the outer reef where harpooners and conchists muster. Crashing Undertow draws directly upon that legacy: A sudden burst of saline water slams the attacker off-balance. Preserved by the Coral Spire Harpoon Company since Year 114 AC, it remains a signature quick tool in Tide-Oracle Thalassa's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_tid_t_0057",
+      "direction_id": "brief_tid_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Curling wall of translucent blue sea water crashing onto stone steps. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Diagonal cresting wave profile; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Curling wall of translucent blue sea water crashing onto stone steps",
+        "silhouette": "Diagonal cresting wave profile",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Tidebound Aether particles and resonant light motes",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Curling wall of translucent blue sea water crashing onto stone steps. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Diagonal cresting wave profile; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-T-0058",
+    "revision": 1,
+    "name": "Calm of the Lagoon",
+    "name_key": "cards.tid_t_0058.name",
+    "description": "Standard Tactic. Restore 4 Vitality to your Leader and draw 1 card.",
+    "description_key": "cards.tid_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "tidebound",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 4
+          },
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Gentle tropical swells wash away fatigue and salt-sting.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "current"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Calm of the Lagoon",
+      "classification": "Tidebound tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_palace_beneath_wake",
+        "secondary_landmark_id": "lm_tid_old_harbor_breakwater",
+        "primary_figure_id": "fig_tid_nerissa",
+        "secondary_figure_id": "fig_tid_corvus",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "The Palace Beneath the Wake (The Shattered Archipelago & Abyssal Shelf)",
+      "historical_provenance": "Gentle tropical swells wash away fatigue and salt-sting. Established during the Ninth Hour Celestial Conjunction (Year 488 AC) by Captain Nerissa Wake and the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of The Palace Beneath the Wake: Standard Tactic. Restore 4 Vitality to your Leader and draw 1 card.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "associated_locations": [
+        "The Sunken Reach",
+        "Lumenport Old Harbor Breakwater",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Captain Nerissa Wake and the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "flavor_text": "Gentle tropical swells wash away fatigue and salt-sting.",
+      "collection_biography": "Gentle tropical swells wash away fatigue and salt-sting. Codified by Captain Nerissa Wake (Tidebound Harbor Fleetmaster) for the Pelagic Navigators of the Wake during the Ninth Hour Celestial Conjunction, Calm of the Lagoon channels the resonant signature of The Palace Beneath the Wake into a 3-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_tid_t_0058",
+      "direction_id": "brief_tid_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Serene sunlit shallow lagoon bordered by white sand and pink coral. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Horizontal calm water horizon with distant palm silhouette; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Serene sunlit shallow lagoon bordered by white sand and pink coral",
+        "silhouette": "Horizontal calm water horizon with distant palm silhouette",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Tidebound Aether particles and resonant light motes",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Serene sunlit shallow lagoon bordered by white sand and pink coral. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Horizontal calm water horizon with distant palm silhouette; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-T-0059",
+    "revision": 1,
+    "name": "Tidal Wave Cataclysm",
+    "name_key": "cards.tid_t_0059.name",
+    "description": "Standard Tactic. Deal 2 damage to all enemy creatures and restore 2 Vitality to your Leader.",
+    "description_key": "cards.tid_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "tidebound",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 2
+          },
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "A three-story tsunami washes across the arena, scouring the stones clean.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Tidal Wave Cataclysm",
+      "classification": "Tidebound tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_palace_beneath_wake",
+        "secondary_landmark_id": "lm_tid_old_harbor_breakwater",
+        "primary_figure_id": "fig_tid_nerissa",
+        "secondary_figure_id": "fig_tid_corvus",
+        "organization_id": "org_pelagic_navigators",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "The Palace Beneath the Wake (The Shattered Archipelago & Abyssal Shelf)",
+      "historical_provenance": "A three-story tsunami washes across the arena, scouring the stones clean. Established during the Prism Schism of the Mirror Galleries (Year 208 AC) by Captain Nerissa Wake and the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of The Palace Beneath the Wake: Standard Tactic. Deal 2 damage to all enemy creatures and restore 2 Vitality to your Leader.",
+      "faction_allegiance": "Tidebound (Pelagic Navigators of the Wake)",
+      "associated_locations": [
+        "The Sunken Reach",
+        "Lumenport Old Harbor Breakwater",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Captain Nerissa Wake and the Pelagic Navigators of the Wake at The Palace Beneath the Wake.",
+      "flavor_text": "A three-story tsunami washes across the arena, scouring the stones clean.",
+      "collection_biography": "A three-story tsunami washes across the arena, scouring the stones clean. Codified by Captain Nerissa Wake (Tidebound Harbor Fleetmaster) for the Pelagic Navigators of the Wake during the Prism Schism of the Mirror Galleries, Tidal Wave Cataclysm channels the resonant signature of The Palace Beneath the Wake into a 4-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_tid_t_0059",
+      "direction_id": "brief_tid_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering ocean tsunami blotting out the sky as it breaks over the battlefield. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Massive wave wall curling over arena structures; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Towering ocean tsunami blotting out the sky as it breaks over the battlefield",
+        "silhouette": "Massive wave wall curling over arena structures",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Tidebound Aether particles and resonant light motes",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering ocean tsunami blotting out the sky as it breaks over the battlefield. Faction Style (Tidebound — The Palace Beneath the Wake): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Massive wave wall curling over arena structures; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "TID-R-0060",
+    "revision": 1,
+    "name": "Conch of the Sunken King",
+    "name_key": "cards.tid_r_0060.name",
+    "description": "Relic. At the start of your turn, restore 1 Vitality to your Leader.",
+    "description_key": "cards.tid_r_0060.description",
+    "type": "relic",
+    "subtype": "ocean_relic",
+    "faction": "tidebound",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "current"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Listening to its spiral reveals the rhythmic pulse of oceanic tides.",
+    "archetypes": [
+      "current_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "current"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "current_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "current",
+        "current_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Conch of the Sunken King",
+      "classification": "Tidebound relic (ocean relic)",
+      "world_bible_refs": {
+        "region_id": "reg_shattered_archipelago",
+        "primary_landmark_id": "lm_tid_coral_spire",
+        "secondary_landmark_id": "lm_tid_whirlpool_reach",
+        "primary_figure_id": "fig_tid_thalassa",
+        "secondary_figure_id": "fig_tid_nereus",
+        "organization_id": "org_coral_harpooners",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Coral Spire of the Pelagic Sanctum (The Shattered Archipelago & Abyssal Shelf)",
+      "historical_provenance": "Listening to its spiral reveals the rhythmic pulse of oceanic tides. Established during the Sunken Wake Cataclysm (Year 114 AC) by Tide-Oracle Thalassa and the Coral Spire Harpoon Company at Coral Spire of the Pelagic Sanctum.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Coral Spire of the Pelagic Sanctum: Relic. At the start of your turn, restore 1 Vitality to your Leader.",
+      "faction_allegiance": "Tidebound (Coral Spire Harpoon Company)",
+      "associated_locations": [
+        "The Sunken Reach",
+        "Shattered Atoll Whirlpool Reach",
+        "The Shattered Archipelago & Abyssal Shelf"
+      ],
+      "narrative_importance": "An enduring artifact of the Coral Spire Harpoon Company, forged during the Sunken Wake Cataclysm and safeguarded by Tide-Oracle Thalassa.",
+      "flavor_text": "Listening to its spiral reveals the rhythmic pulse of oceanic tides.",
+      "collection_biography": "At Coral Spire of the Pelagic Sanctum, Living calcified spire rising from the outer reef where harpooners and conchists muster. Conch of the Sunken King draws directly upon that legacy: Listening to its spiral reveals the rhythmic pulse of oceanic tides. Preserved by the Coral Spire Harpoon Company since Year 114 AC, it remains a signature ocean relic tool in Tide-Oracle Thalassa's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_tid_r_0060",
+      "direction_id": "brief_tid_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/tid-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Spiral mother-of-pearl conch shell resting on wet sand, glowing with blue light. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Coiled conch shell profile; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Spiral mother-of-pearl conch shell resting on wet sand, glowing with blue light",
+        "silhouette": "Coiled conch shell profile",
+        "palette": [
+          "ocean_sapphire",
+          "seafoam_cyan",
+          "coral_pearl"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Sunken Reach",
+        "materials": [
+          "iridescent mother-of-pearl",
+          "living reef-coral",
+          "abyssal sea-glass",
+          "woven kelp-silk"
+        ],
+        "clothing_or_armor": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "weapons_or_equipment": "Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes",
+        "background": "The Sunken Reach (The Shattered Archipelago & Abyssal Shelf)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Tidebound Aether particles and resonant light motes",
+        "mood": "Fluid, mysterious, and surging",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Spiral mother-of-pearl conch shell resting on wet sand, glowing with blue light. Faction Style (Tidebound — Coral Spire of the Pelagic Sanctum): Scalloped nacre lamellar, hydro-fan blades, twin-pronged coral tridents, and tidal astrolabes, crafted from iridescent mother-of-pearl, living reef-coral, abyssal sea-glass, woven kelp-silk. Silhouette & Pose: Coiled conch shell profile; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Sunken Reach in The Shattered Archipelago & Abyssal Shelf (Submerged marble temples, storm-lashed breakwaters, bioluminescent abyssal trenches). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors ocean_sapphire, seafoam_cyan, coral_pearl. Visual Effects & Mood: Subtle Tidebound Aether particles and resonant light motes. Mood: Fluid, mysterious, and surging. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

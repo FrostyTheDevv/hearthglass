@@ -299,9 +299,9 @@ export function validateCardCatalogue() {
   }
 
   // Verify Milestone requirement: supports 320 cards or 480 expansion milestone
-  const expectedTotal = bundle.milestone === 'phase_4_expansion_480' || bundle.cards.length === 480 ? 480 : 320;
-  const expectedMajor = expectedTotal === 480 ? 48 : 32;
-  const expectedNeutral = expectedTotal === 480 ? 96 : 64;
+  const expectedTotal = bundle.milestone === 'phase_5_complete_640' || bundle.cards.length === 640 ? 640 : (bundle.milestone === 'phase_4_expansion_480' || bundle.cards.length === 480 ? 480 : 320);
+  const expectedMajor = expectedTotal === 640 ? 60 : (expectedTotal === 480 ? 48 : 32);
+  const expectedNeutral = expectedTotal === 640 ? 160 : (expectedTotal === 480 ? 96 : 64);
 
   if (bundle.cards.length !== expectedTotal) {
     errors.push(`Milestone requires ${expectedTotal} implemented cards, found ${bundle.cards.length}`);

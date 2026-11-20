@@ -19,7 +19,7 @@
       <path d="M 120 1024 Q 260 720 384 690 Q 520 720 650 1024 Z" fill="#ff3b14" opacity="0.28"/>
     
   
-        <g transform="translate(376.4, 523.1) scale(1.03)">
+        <g transform="translate(388, 539.3) scale(0.9500000000000001)">
           <path d="M -165 260 L -195 -40 L -110 -170 L 0 -220 L 110 -170 L 195 -40 L 165 260 Z" fill="#120709" stroke="#ff5d2e" stroke-width="8"/>
           <polygon points="0,-275 75,-175 0,-115 -75,-175" fill="#ffb347" stroke="#ffd875" stroke-width="5"/>
           <path d="M -220 -30 L -95 -95 L -75 145 L -165 215 Z" fill="#ff5d2e" opacity="0.88" stroke="#ffd875" stroke-width="5"/>
@@ -28,18 +28,18 @@
           <circle cx="28" cy="-175" r="10" fill="#ffd875"/>
         </g>
       
-  <g><circle cx="431" cy="494" r="4" fill="#ffd875" opacity="0.65"/>
-    <circle cx="549" cy="95" r="7" fill="#ffb347" opacity="0.65"/>
-    <circle cx="623" cy="93" r="6" fill="#ffd875" opacity="0.65"/>
-    <circle cx="570" cy="606" r="3" fill="#ffb347" opacity="0.65"/>
-    <circle cx="302" cy="654" r="8" fill="#ffd875" opacity="0.65"/>
-    <circle cx="647" cy="368" r="8" fill="#ffb347" opacity="0.65"/>
-    <circle cx="666" cy="479" r="3" fill="#ffd875" opacity="0.65"/>
-    <circle cx="558" cy="394" r="6" fill="#ffb347" opacity="0.65"/>
-    <circle cx="225" cy="392" r="9" fill="#ffd875" opacity="0.65"/>
-    <circle cx="87" cy="940" r="8" fill="#ffb347" opacity="0.65"/>
-    <circle cx="423" cy="438" r="6" fill="#ffd875" opacity="0.65"/>
-    <circle cx="632" cy="493" r="8" fill="#ffb347" opacity="0.65"/>
-    <circle cx="697" cy="237" r="7" fill="#ffd875" opacity="0.65"/>
-    <circle cx="589" cy="644" r="9" fill="#ffb347" opacity="0.65"/></g>
+  <g><circle cx="484" cy="881" r="4" fill="#ffd875" opacity="0.65"/>
+    <circle cx="727" cy="137" r="8" fill="#ffb347" opacity="0.65"/>
+    <circle cx="687" cy="934" r="9" fill="#ffd875" opacity="0.65"/>
+    <circle cx="277" cy="542" r="5" fill="#ffb347" opacity="0.65"/>
+    <circle cx="475" cy="744" r="8" fill="#ffd875" opacity="0.65"/>
+    <circle cx="210" cy="970" r="7" fill="#ffb347" opacity="0.65"/>
+    <circle cx="284" cy="919" r="4" fill="#ffd875" opacity="0.65"/>
+    <circle cx="207" cy="114" r="3" fill="#ffb347" opacity="0.65"/>
+    <circle cx="469" cy="169" r="4" fill="#ffd875" opacity="0.65"/>
+    <circle cx="157" cy="932" r="9" fill="#ffb347" opacity="0.65"/>
+    <circle cx="201" cy="536" r="9" fill="#ffd875" opacity="0.65"/>
+    <circle cx="232" cy="304" r="5" fill="#ffb347" opacity="0.65"/>
+    <circle cx="617" cy="150" r="6" fill="#ffd875" opacity="0.65"/>
+    <circle cx="722" cy="58" r="3" fill="#ffb347" opacity="0.65"/></g>
 </svg>

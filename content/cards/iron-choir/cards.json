@@ -5805,7 +5805,7 @@
     "type": "creature",
     "subtype": "construct_duelist",
     "faction": "iron_choir",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -5911,7 +5911,7 @@
       "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Swift. After this attacks, gain 1 Assembly counter.",
       "narrative_importance": "Dependable construct duelist forming the field backbone of the Ironreach Guild of Harmonic Artificers across The Clockwork Proving Floor.",
       "flavor_text": "Each slash winds its internal mainspring tighter for the follow-up lunge.",
-      "collection_biography": "Few sights along The Clockwork Proving Floor are as unmistakable as slender clockwork duelist lunging with twin blue-hot induction sabers. Each slash winds its internal mainspring tighter for the follow-up lunge. Sworn to the Ironreach Guild of Harmonic Artificers since the Third Harmonic Reformation of the Seventh Chime, this uncommon construct duelist answers Tactical Instructor Garrick Hale's call as a 4/2 assassin."
+      "collection_biography": "Few sights along The Clockwork Proving Floor are as unmistakable as slender clockwork duelist lunging with twin blue-hot induction sabers. Each slash winds its internal mainspring tighter for the follow-up lunge. Sworn to the Ironreach Guild of Harmonic Artificers since the Third Harmonic Reformation of the Seventh Chime, this common construct duelist answers Tactical Instructor Garrick Hale's call as a 4/2 assassin."
     },
     "art": {
       "asset_id": "art_card_irn_c_0035",
@@ -8178,6 +8178,1946 @@
         "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
         "mood": "Precise, disciplined, and harmonic",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Vaulted iron-and-glass railway terminal with glowing blue induction tracks. Faction Style (Iron Choir — The Harmonic Dynamo Vaults): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Arched train shed perspective with converging glowing rails; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Ironreach Induction Railhead in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Crisp electric-blue arc light and burnished brass reflections; dominant colors steel_gray, brass, electric_blue. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0049",
+    "revision": 1,
+    "name": "Clockwork Automaton Scout",
+    "name_key": "cards.irn_c_0049.name",
+    "description": "Swift. After this attacks, gain Shield (1).",
+    "description_key": "cards.irn_c_0049.description",
+    "type": "creature",
+    "subtype": "clockwork_construct",
+    "faction": "iron_choir",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "Spring-driven brass courser clicking rhythmically as its optical lenses scan the perimeter.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 4
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Clockwork Automaton Scout",
+      "species_or_classification": "clockwork construct",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_seventh_chime_gantry",
+        "secondary_landmark_id": "lm_irn_induction_railhead",
+        "primary_figure_id": "fig_irn_vance",
+        "secondary_figure_id": "fig_irn_cassian",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Grand Gantry of the Seventh Chime, The Ironreach Canyons",
+      "physical_appearance": "Brass clockwork mechanical hound with exposed gears bounding across cobblestones — a nimble, quick-deploying clockwork construct (Angular quadruped construct with gear teeth) clad in polished clockwork brass and tempered steel, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "history": "Spring-driven brass courser clicking rhythmically as its optical lenses scan the perimeter. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Master Artificer Vance mobilized the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "important_relationships": "Serves alongside Master Artificer Vance (Proprietor of the Resonance Emporium) at Grand Gantry of the Seventh Chime and coordinates three-lane maneuvers with Conductor Cassian Bell.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "Ironreach Induction Railhead",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Swift. After this attacks, gain Shield (1).",
+      "narrative_importance": "Dependable clockwork construct forming the field backbone of the Synod of the Seventh Chime across Grand Gantry of the Seventh Chime.",
+      "flavor_text": "Spring-driven brass courser clicking rhythmically as its optical lenses scan the perimeter.",
+      "collection_biography": "Where ordinary clockwork construct units falter, Clockwork Automaton Scout thrives amidst the hazards of Grand Gantry of the Seventh Chime. Spring-driven brass courser clicking rhythmically as its optical lenses scan the perimeter. Trained under the doctrine of Master Artificer Vance and the Synod of the Seventh Chime, it turns every skirmish near Ironreach Induction Railhead into a display of swift."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0049",
+      "direction_id": "brief_irn_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Brass clockwork mechanical hound with exposed gears bounding across cobblestones. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Angular quadruped construct with gear teeth; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Brass clockwork mechanical hound with exposed gears bounding across cobblestones",
+        "silhouette": "Angular quadruped construct with gear teeth",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Brass clockwork mechanical hound with exposed gears bounding across cobblestones. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Angular quadruped construct with gear teeth; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0050",
+    "revision": 1,
+    "name": "Bastion Steel-Warden",
+    "name_key": "cards.irn_c_0050.name",
+    "description": "Guard. On Summon: Gain Shield (1).",
+    "description_key": "cards.irn_c_0050.description",
+    "type": "creature",
+    "subtype": "forged_construct",
+    "faction": "iron_choir",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "An immovable pillar of riveted iron plate and hydraulic stabilizer pistons.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Bastion Steel-Warden",
+      "species_or_classification": "forged construct",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_induction_railhead",
+        "secondary_landmark_id": "lm_irn_seventh_chime_gantry",
+        "primary_figure_id": "fig_irn_vespera",
+        "secondary_figure_id": "fig_irn_vorne",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Ironreach Induction Railhead, The Ironreach Canyons",
+      "physical_appearance": "Towering armored automaton bracing heavy steel pavise against floor rails — a nimble, quick-deploying forged construct (Monolithic rectangular shield with mechanical legs) clad in tempered steel and copper induction coils, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Proud, disciplined, and relentless in pursuit of tactical superiority. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Ironreach Guild of Harmonic Artificers at Ironreach Induction Railhead.",
+      "history": "An immovable pillar of riveted iron plate and hydraulic stabilizer pistons. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Conductor-General Vespera mobilized the Ironreach Guild of Harmonic Artificers at Ironreach Induction Railhead.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "important_relationships": "Serves alongside Conductor-General Vespera (First Baton of the Seventh Chime) at Ironreach Induction Railhead and coordinates three-lane maneuvers with Dynamo Architect Vorne.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "Grand Gantry of the Seventh Chime",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Guard. On Summon: Gain Shield (1).",
+      "narrative_importance": "Dependable forged construct forming the field backbone of the Ironreach Guild of Harmonic Artificers across Ironreach Induction Railhead.",
+      "flavor_text": "An immovable pillar of riveted iron plate and hydraulic stabilizer pistons.",
+      "collection_biography": "Conductor-General Vespera often warns initiates at Ironreach Induction Railhead never to misjudge Bastion Steel-Warden. An immovable pillar of riveted iron plate and hydraulic stabilizer pistons. Whether patrolling Grand Gantry of the Seventh Chime for the Ironreach Guild of Harmonic Artificers or manifesting on the Convergence slate, its 1 Attack and 5 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0050",
+      "direction_id": "brief_irn_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering armored automaton bracing heavy steel pavise against floor rails. Faction Style (Iron Choir — Ironreach Induction Railhead): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Monolithic rectangular shield with mechanical legs; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Towering armored automaton bracing heavy steel pavise against floor rails",
+        "silhouette": "Monolithic rectangular shield with mechanical legs",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering armored automaton bracing heavy steel pavise against floor rails. Faction Style (Iron Choir — Ironreach Induction Railhead): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Monolithic rectangular shield with mechanical legs; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0051",
+    "revision": 1,
+    "name": "Precision Gear-Blade",
+    "name_key": "cards.irn_c_0051.name",
+    "description": "Pierce. On Summon: Deal 1 damage to the enemy creature in this lane.",
+    "description_key": "cards.irn_c_0051.description",
+    "type": "creature",
+    "subtype": "clockwork_assassin",
+    "faction": "iron_choir",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "pierce"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Dual rotating circular sawblades whir at twenty thousand revolutions per minute.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "pierce",
+        "assembly"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Precision Gear-Blade",
+      "species_or_classification": "clockwork assassin",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_clockwork_proving_floor",
+        "secondary_landmark_id": "lm_irn_dynamo_vaults",
+        "primary_figure_id": "fig_irn_hale",
+        "secondary_figure_id": "fig_irn_vespera",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "The Clockwork Proving Floor, The Ironreach Canyons",
+      "physical_appearance": "Sleek brass mechanical assassin deploying spinning circular blades from wrists — a battle-tested mid-weight clockwork assassin (Sleek robotic silhouette with twin circular blade discs) clad in tempered steel and copper induction coils, exhibiting armor-shattering kinetic impact spike.",
+      "personality_or_disposition": "Methodical and calculating under battlefield pressure. Operates as a assassin (4 Attack / 2 Health) affiliated with the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "history": "Dual rotating circular sawblades whir at twenty thousand revolutions per minute. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Tactical Instructor Garrick Hale mobilized the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "important_relationships": "Serves alongside Tactical Instructor Garrick Hale (Master of Lane Geometry) at The Clockwork Proving Floor and coordinates three-lane maneuvers with Conductor-General Vespera.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "The Harmonic Dynamo Vaults",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Pierce. On Summon: Deal 1 damage to the enemy creature in this lane.",
+      "narrative_importance": "Dependable clockwork assassin forming the field backbone of the Ironreach Guild of Harmonic Artificers across The Clockwork Proving Floor.",
+      "flavor_text": "Dual rotating circular sawblades whir at twenty thousand revolutions per minute.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Tactical Instructor Garrick Hale and Conductor-General Vespera first encountered Precision Gear-Blade guarding the approaches to The Clockwork Proving Floor. Dual rotating circular sawblades whir at twenty thousand revolutions per minute. Now a mainstay of the Ironreach Guild of Harmonic Artificers, this 3-Aether assassin rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0051",
+      "direction_id": "brief_irn_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek brass mechanical assassin deploying spinning circular blades from wrists. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Sleek robotic silhouette with twin circular blade discs; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Sleek brass mechanical assassin deploying spinning circular blades from wrists",
+        "silhouette": "Sleek robotic silhouette with twin circular blade discs",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "armor-shattering kinetic impact spike",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek brass mechanical assassin deploying spinning circular blades from wrists. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Sleek robotic silhouette with twin circular blade discs; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0052",
+    "revision": 1,
+    "name": "Pneumatic Crossbow Construct",
+    "name_key": "cards.irn_c_0052.name",
+    "description": "Reach. After this attacks, deal 1 damage to the enemy Leader.",
+    "description_key": "cards.irn_c_0052.description",
+    "type": "creature",
+    "subtype": "clockwork_marksman",
+    "faction": "iron_choir",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Pressurized steam reservoirs launch tungsten bolts with rhythmic precision.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "assembly"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_leader",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Pneumatic Crossbow Construct",
+      "species_or_classification": "clockwork marksman",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_dynamo_vaults",
+        "secondary_landmark_id": "lm_irn_clockwork_proving_floor",
+        "primary_figure_id": "fig_irn_aegis_ix",
+        "secondary_figure_id": "fig_irn_vance",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "The Harmonic Dynamo Vaults, The Ironreach Canyons",
+      "physical_appearance": "Tripod-mounted brass repeater crossbow firing steam-propelled quarrel — a battle-tested mid-weight clockwork marksman (Tripod automaton with horizontal crossbow bow) clad in copper induction coils and blue Aether glass, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a marksman (2 Attack / 4 Health) affiliated with the Synod of the Seventh Chime at The Harmonic Dynamo Vaults.",
+      "history": "Pressurized steam reservoirs launch tungsten bolts with rhythmic precision. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Prime Automaton Aegis-IX mobilized the Synod of the Seventh Chime at The Harmonic Dynamo Vaults.",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "important_relationships": "Serves alongside Prime Automaton Aegis-IX (Sentient Bulwark of Saint Automaton) at The Harmonic Dynamo Vaults and coordinates three-lane maneuvers with Master Artificer Vance.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "The Clockwork Proving Floor",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Reach. After this attacks, deal 1 damage to the enemy Leader.",
+      "narrative_importance": "Dependable clockwork marksman forming the field backbone of the Synod of the Seventh Chime across The Harmonic Dynamo Vaults.",
+      "flavor_text": "Pressurized steam reservoirs launch tungsten bolts with rhythmic precision.",
+      "collection_biography": "Born of the traditions that shaped The Harmonic Dynamo Vaults after the Great Caldera Eruption of Year 412, Pneumatic Crossbow Construct serves the Synod of the Seventh Chime as a dedicated marksman. Pressurized steam reservoirs launch tungsten bolts with rhythmic precision. Even Master Artificer Vance acknowledges the tactical leverage its reach brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0052",
+      "direction_id": "brief_irn_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Tripod-mounted brass repeater crossbow firing steam-propelled quarrel. Faction Style (Iron Choir — The Harmonic Dynamo Vaults): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Tripod automaton with horizontal crossbow bow; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Tripod-mounted brass repeater crossbow firing steam-propelled quarrel",
+        "silhouette": "Tripod automaton with horizontal crossbow bow",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Tripod-mounted brass repeater crossbow firing steam-propelled quarrel. Faction Style (Iron Choir — The Harmonic Dynamo Vaults): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Tripod automaton with horizontal crossbow bow; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0053",
+    "revision": 1,
+    "name": "Chorus Resonator-Core",
+    "name_key": "cards.irn_c_0053.name",
+    "description": "On Summon: Grant all allied creatures Shield (1).",
+    "description_key": "cards.irn_c_0053.description",
+    "type": "creature",
+    "subtype": "clockwork_caster",
+    "faction": "iron_choir",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "all_ally_creatures",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "Tuned bells inside its bronze thorax harmonize to project protective sonic forcefields.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_ally_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_ally_creatures",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Chorus Resonator-Core",
+      "species_or_classification": "clockwork caster",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_bellspire_automaton",
+        "secondary_landmark_id": "lm_irn_resonance_emporium",
+        "primary_figure_id": "fig_irn_cassian",
+        "secondary_figure_id": "fig_irn_aegis_ix",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Bell-Spire of Saint Automaton, The Ironreach Canyons",
+      "physical_appearance": "Ornate mechanical automaton with exposed chiming bells inside ribbed brass chest — a battle-tested mid-weight clockwork caster (Upright construct with radiating concentric sonic rings) clad in copper induction coils and blue Aether glass, attuned to Iron Choir Aether discipline.",
+      "personality_or_disposition": "Zealously devoted to the harmonic purity of their order. Operates as a caster (3 Attack / 4 Health) affiliated with the Synod of the Seventh Chime at Bell-Spire of Saint Automaton.",
+      "history": "Tuned bells inside its bronze thorax harmonize to project protective sonic forcefields. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Conductor Cassian Bell mobilized the Synod of the Seventh Chime at Bell-Spire of Saint Automaton.",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "important_relationships": "Serves alongside Conductor Cassian Bell (Iron Choir Harmonic Chronicler) at Bell-Spire of Saint Automaton and coordinates three-lane maneuvers with Prime Automaton Aegis-IX.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "The Resonance Emporium Workshop",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: On Summon: Grant all allied creatures Shield (1).",
+      "narrative_importance": "Dependable clockwork caster forming the field backbone of the Synod of the Seventh Chime across Bell-Spire of Saint Automaton.",
+      "flavor_text": "Tuned bells inside its bronze thorax harmonize to project protective sonic forcefields.",
+      "collection_biography": "\"Tuned bells inside its bronze thorax harmonize to project protective sonic forcefields.\" — field annotation by Conductor Cassian Bell. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Chorus Resonator-Core exemplifies how the Synod of the Seventh Chime adapts to high-pressure three-lane duels between Bell-Spire of Saint Automaton and The Resonance Emporium Workshop."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0053",
+      "direction_id": "brief_irn_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Ornate mechanical automaton with exposed chiming bells inside ribbed brass chest. Faction Style (Iron Choir — Bell-Spire of Saint Automaton): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Upright construct with radiating concentric sonic rings; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Ornate mechanical automaton with exposed chiming bells inside ribbed brass chest",
+        "silhouette": "Upright construct with radiating concentric sonic rings",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Ornate mechanical automaton with exposed chiming bells inside ribbed brass chest. Faction Style (Iron Choir — Bell-Spire of Saint Automaton): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Upright construct with radiating concentric sonic rings; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0054",
+    "revision": 1,
+    "name": "Guild Machinist Overseer",
+    "name_key": "cards.irn_c_0054.name",
+    "description": "Guard. At the start of your turn, restore 2 Health to your strongest allied creature.",
+    "description_key": "cards.irn_c_0054.description",
+    "type": "creature",
+    "subtype": "human_engineer",
+    "faction": "iron_choir",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "strongest_ally_creature",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Carries oil cans, wrenches, and spare rivets to maintain the Choir’s front ranks.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "assembly"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Guild Machinist Overseer",
+      "species_or_classification": "human engineer",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_seventh_chime_gantry",
+        "secondary_landmark_id": "lm_irn_induction_railhead",
+        "primary_figure_id": "fig_irn_vance",
+        "secondary_figure_id": "fig_irn_cassian",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_clapperless_bells"
+      },
+      "origin": "Grand Gantry of the Seventh Chime, The Ironreach Canyons",
+      "physical_appearance": "Armored engineer repairing an automaton shoulder assembly on the battlefield — a battle-tested mid-weight human engineer (Engineer holding wrench next to standing robot) clad in polished clockwork brass and tempered steel, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a support (3 Attack / 5 Health) affiliated with the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "history": "Carries oil cans, wrenches, and spare rivets to maintain the Choir’s front ranks. First recorded during the Night of Clapperless Bells (Year 339 AC) when Master Artificer Vance mobilized the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "important_relationships": "Serves alongside Master Artificer Vance (Proprietor of the Resonance Emporium) at Grand Gantry of the Seventh Chime and coordinates three-lane maneuvers with Conductor Cassian Bell.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "Ironreach Induction Railhead",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Guard. At the start of your turn, restore 2 Health to your strongest allied creature.",
+      "narrative_importance": "Dependable human engineer forming the field backbone of the Synod of the Seventh Chime across Grand Gantry of the Seventh Chime.",
+      "flavor_text": "Carries oil cans, wrenches, and spare rivets to maintain the Choir’s front ranks.",
+      "collection_biography": "During the Night of Clapperless Bells, the Synod of the Seventh Chime relied on specialists capable of holding Grand Gantry of the Seventh Chime against overwhelming odds. Guild Machinist Overseer emerged from that crucible: Carries oil cans, wrenches, and spare rivets to maintain the Choir’s front ranks. Today, duelists studying under Master Artificer Vance prize its 4-Aether tempo and guard."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0054",
+      "direction_id": "brief_irn_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored engineer repairing an automaton shoulder assembly on the battlefield. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Engineer holding wrench next to standing robot; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Armored engineer repairing an automaton shoulder assembly on the battlefield",
+        "silhouette": "Engineer holding wrench next to standing robot",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored engineer repairing an automaton shoulder assembly on the battlefield. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Engineer holding wrench next to standing robot; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0055",
+    "revision": 1,
+    "name": "The Dreadnought of High Mechanism",
+    "name_key": "cards.irn_c_0055.name",
+    "description": "Guard, Shield (1). On Summon: Grant all allied creatures Shield (1) and deal 2 damage to all enemy creatures.",
+    "description_key": "cards.irn_c_0055.description",
+    "type": "creature",
+    "subtype": "colossal_automaton",
+    "faction": "iron_choir",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 8,
+    "health": 8,
+    "keywords": [
+      "guard",
+      "shield"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "all_ally_creatures",
+            "keyword": "shield"
+          },
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "The pinnacle of Choir engineering; a four-story fortress engine walking on articulated iron pistons.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_ally_creatures",
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "shield",
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_ally_creatures, all_enemy_creatures",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "The Dreadnought of High Mechanism",
+      "species_or_classification": "colossal automaton",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_clockwork_proving_floor",
+        "secondary_landmark_id": "lm_irn_dynamo_vaults",
+        "primary_figure_id": "fig_irn_hale",
+        "secondary_figure_id": "fig_irn_vespera",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "The Clockwork Proving Floor, The Ironreach Canyons",
+      "physical_appearance": "Gargantuan walking siege fortress of brass and dark iron venting steam across the battlefield — a towering, high-Aether colossal automaton (Monumental walking fortress engine with cannon ports) clad in blue Aether glass and polished clockwork brass, exhibiting interlocking defensive barrier aura and planted shield stance and form-fitting hard-light Aether forcefield shell.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a colossus (8 Attack / 8 Health) affiliated with the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "history": "The pinnacle of Choir engineering; a four-story fortress engine walking on articulated iron pistons. First recorded during the Whisperleaf Root-Compact (Year 450 AC) when Tactical Instructor Garrick Hale mobilized the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "important_relationships": "Serves alongside Tactical Instructor Garrick Hale (Master of Lane Geometry) at The Clockwork Proving Floor and coordinates three-lane maneuvers with Conductor-General Vespera.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "The Harmonic Dynamo Vaults",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Guard, Shield (1). On Summon: Grant all allied creatures Shield (1) and deal 2 damage to all enemy creatures.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of The Clockwork Proving Floor, counselled directly by Tactical Instructor Garrick Hale.",
+      "flavor_text": "The pinnacle of Choir engineering; a four-story fortress engine walking on articulated iron pistons.",
+      "collection_biography": "The archives of the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor preserve the original Echo impression of The Dreadnought of High Mechanism, dated to Year 450 AC (the Whisperleaf Root-Compact). The pinnacle of Choir engineering; a four-story fortress engine walking on articulated iron pistons. On the tabletop, Tactical Instructor Garrick Hale uses its 8-Aether profile (8/8) to swing two-lane Resonance."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0055",
+      "direction_id": "brief_irn_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gargantuan walking siege fortress of brass and dark iron venting steam across the battlefield. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Monumental walking fortress engine with cannon ports; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; form-fitting hard-light Aether forcefield shell. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Gargantuan walking siege fortress of brass and dark iron venting steam across the battlefield",
+        "silhouette": "Monumental walking fortress engine with cannon ports",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance; form-fitting hard-light Aether forcefield shell",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gargantuan walking siege fortress of brass and dark iron venting steam across the battlefield. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Monumental walking fortress engine with cannon ports; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; form-fitting hard-light Aether forcefield shell. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-C-0056",
+    "revision": 1,
+    "name": "Spring-Loaded Skirmisher",
+    "name_key": "cards.irn_c_0056.name",
+    "description": "Skirmish. When this moves lanes, gain Shield (1).",
+    "description_key": "cards.irn_c_0056.description",
+    "type": "creature",
+    "subtype": "clockwork_scout",
+    "faction": "iron_choir",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "Coiled steel springs allow it to ricochet between lane boundaries in fractions of a second.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Spring-Loaded Skirmisher",
+      "species_or_classification": "clockwork scout",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_resonance_emporium",
+        "secondary_landmark_id": "lm_irn_bellspire_automaton",
+        "primary_figure_id": "fig_irn_vorne",
+        "secondary_figure_id": "fig_irn_hale",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "The Resonance Emporium Workshop, The Ironreach Canyons",
+      "physical_appearance": "Agile brass construct bounding between stone columns on heavy coiled spring legs — a nimble, quick-deploying clockwork scout (Coil-legged mechanical runner bouncing in mid-air) clad in blue Aether glass and polished clockwork brass, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Stoic and unyielding even when outnumbered across all three lanes. Operates as a trickster (2 Attack / 3 Health) affiliated with the Ironreach Guild of Harmonic Artificers at The Resonance Emporium Workshop.",
+      "history": "Coiled steel springs allow it to ricochet between lane boundaries in fractions of a second. First recorded during the Whisperleaf Root-Compact (Year 450 AC) when Dynamo Architect Vorne mobilized the Ironreach Guild of Harmonic Artificers at The Resonance Emporium Workshop.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "important_relationships": "Serves alongside Dynamo Architect Vorne (Chief Engineer of the Induction Rail) at The Resonance Emporium Workshop and coordinates three-lane maneuvers with Tactical Instructor Garrick Hale.",
+      "habitats": [
+        "The Ironhold Bastion",
+        "Bell-Spire of Saint Automaton",
+        "The Ironreach Canyons"
+      ],
+      "world_abilities": "Channels Iron Choir resonance (assembly) to manifest: Skirmish. When this moves lanes, gain Shield (1).",
+      "narrative_importance": "Dependable clockwork scout forming the field backbone of the Ironreach Guild of Harmonic Artificers across The Resonance Emporium Workshop.",
+      "flavor_text": "Coiled steel springs allow it to ricochet between lane boundaries in fractions of a second.",
+      "collection_biography": "The archives of the Ironreach Guild of Harmonic Artificers at The Resonance Emporium Workshop preserve the original Echo impression of Spring-Loaded Skirmisher, dated to Year 450 AC (the Whisperleaf Root-Compact). Coiled steel springs allow it to ricochet between lane boundaries in fractions of a second. On the tabletop, Dynamo Architect Vorne uses its 2-Aether profile (2/3) to swing two-lane Resonance."
+    },
+    "art": {
+      "asset_id": "art_card_irn_c_0056",
+      "direction_id": "brief_irn_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Agile brass construct bounding between stone columns on heavy coiled spring legs. Faction Style (Iron Choir — The Resonance Emporium Workshop): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Coil-legged mechanical runner bouncing in mid-air; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Agile brass construct bounding between stone columns on heavy coiled spring legs",
+        "silhouette": "Coil-legged mechanical runner bouncing in mid-air",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Agile brass construct bounding between stone columns on heavy coiled spring legs. Faction Style (Iron Choir — The Resonance Emporium Workshop): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Coil-legged mechanical runner bouncing in mid-air; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-T-0057",
+    "revision": 1,
+    "name": "Overclocked Actuators",
+    "name_key": "cards.irn_t_0057.name",
+    "description": "Quick Tactic. Grant an allied creature +2 Attack.",
+    "description_key": "cards.irn_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "iron_choir",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "modify_stats",
+            "target": "ally_creature_in_lane_or_any",
+            "attack_delta": 2,
+            "health_delta": 0
+          }
+        ]
+      }
+    ],
+    "lore": "Dumping steam valves for a single devastating piston punch.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "assembly"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Overclocked Actuators",
+      "classification": "Iron Choir tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_clockwork_proving_floor",
+        "secondary_landmark_id": "lm_irn_dynamo_vaults",
+        "primary_figure_id": "fig_irn_hale",
+        "secondary_figure_id": "fig_irn_vespera",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "The Clockwork Proving Floor (The Ironreach Canyons)",
+      "historical_provenance": "Dumping steam valves for a single devastating piston punch. Established during the Sunken Wake Cataclysm (Year 114 AC) by Tactical Instructor Garrick Hale and the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of The Clockwork Proving Floor: Quick Tactic. Grant an allied creature +2 Attack.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "associated_locations": [
+        "The Ironhold Bastion",
+        "The Harmonic Dynamo Vaults",
+        "The Ironreach Canyons"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Tactical Instructor Garrick Hale and the Ironreach Guild of Harmonic Artificers at The Clockwork Proving Floor.",
+      "flavor_text": "Dumping steam valves for a single devastating piston punch.",
+      "collection_biography": "At The Clockwork Proving Floor, An interlocking gear-plated testing ground where Choir constructs calibrate shield arcs. Overclocked Actuators draws directly upon that legacy: Dumping steam valves for a single devastating piston punch. Preserved by the Ironreach Guild of Harmonic Artificers since Year 114 AC, it remains a signature quick tool in Tactical Instructor Garrick Hale's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_irn_t_0057",
+      "direction_id": "brief_irn_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Pressure gauge needle spiking into red as steam vents violently from a gauntlet. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Steam burst radiating from a mechanical fist; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Pressure gauge needle spiking into red as steam vents violently from a gauntlet",
+        "silhouette": "Steam burst radiating from a mechanical fist",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Pressure gauge needle spiking into red as steam vents violently from a gauntlet. Faction Style (Iron Choir — The Clockwork Proving Floor): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Steam burst radiating from a mechanical fist; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-T-0058",
+    "revision": 1,
+    "name": "Assembly Line Protocol",
+    "name_key": "cards.irn_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards and grant your strongest allied creature Shield (1).",
+    "description_key": "cards.irn_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "iron_choir",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          },
+          {
+            "operation": "grant_keyword",
+            "target": "strongest_ally_creature",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "Sub-assemblies ship directly from the Ironhold foundries onto the duel table.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader",
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader, strongest_ally_creature",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Assembly Line Protocol",
+      "classification": "Iron Choir tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_seventh_chime_gantry",
+        "secondary_landmark_id": "lm_irn_induction_railhead",
+        "primary_figure_id": "fig_irn_vance",
+        "secondary_figure_id": "fig_irn_cassian",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_clapperless_bells"
+      },
+      "origin": "Grand Gantry of the Seventh Chime (The Ironreach Canyons)",
+      "historical_provenance": "Sub-assemblies ship directly from the Ironhold foundries onto the duel table. Established during the Night of Clapperless Bells (Year 339 AC) by Master Artificer Vance and the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Grand Gantry of the Seventh Chime: Standard Tactic. Draw 2 cards and grant your strongest allied creature Shield (1).",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "associated_locations": [
+        "The Ironhold Bastion",
+        "Ironreach Induction Railhead",
+        "The Ironreach Canyons"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Master Artificer Vance and the Synod of the Seventh Chime at Grand Gantry of the Seventh Chime.",
+      "flavor_text": "Sub-assemblies ship directly from the Ironhold foundries onto the duel table.",
+      "collection_biography": "Sub-assemblies ship directly from the Ironhold foundries onto the duel table. Codified by Master Artificer Vance (Proprietor of the Resonance Emporium) for the Synod of the Seventh Chime during the Night of Clapperless Bells, Assembly Line Protocol channels the resonant signature of Grand Gantry of the Seventh Chime into a 3-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_irn_t_0058",
+      "direction_id": "brief_irn_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Conveyor belts carrying freshly stamped brass automaton components. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Overhead view of rhythmic conveyor tracks; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Conveyor belts carrying freshly stamped brass automaton components",
+        "silhouette": "Overhead view of rhythmic conveyor tracks",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Conveyor belts carrying freshly stamped brass automaton components. Faction Style (Iron Choir — Grand Gantry of the Seventh Chime): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Overhead view of rhythmic conveyor tracks; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-T-0059",
+    "revision": 1,
+    "name": "Cataclysmic Discharge",
+    "name_key": "cards.irn_t_0059.name",
+    "description": "Standard Tactic. Deal 6 damage to a target enemy creature.",
+    "description_key": "cards.irn_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "iron_choir",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "target_enemy_creature",
+            "amount": 6
+          }
+        ]
+      }
+    ],
+    "lore": "High-voltage capacitors release their full energy reserve in a blinding blue electric arc.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "target_enemy_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "assembly"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: target_enemy_creature",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Cataclysmic Discharge",
+      "classification": "Iron Choir tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_induction_railhead",
+        "secondary_landmark_id": "lm_irn_seventh_chime_gantry",
+        "primary_figure_id": "fig_irn_vespera",
+        "secondary_figure_id": "fig_irn_vorne",
+        "organization_id": "org_ironreach_artificers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Ironreach Induction Railhead (The Ironreach Canyons)",
+      "historical_provenance": "High-voltage capacitors release their full energy reserve in a blinding blue electric arc. Established during the Reclamation of the Sunken Ossuary (Year 381 AC) by Conductor-General Vespera and the Ironreach Guild of Harmonic Artificers at Ironreach Induction Railhead.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Ironreach Induction Railhead: Standard Tactic. Deal 6 damage to a target enemy creature.",
+      "faction_allegiance": "Iron Choir (Ironreach Guild of Harmonic Artificers)",
+      "associated_locations": [
+        "The Ironhold Bastion",
+        "Grand Gantry of the Seventh Chime",
+        "The Ironreach Canyons"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Conductor-General Vespera and the Ironreach Guild of Harmonic Artificers at Ironreach Induction Railhead.",
+      "flavor_text": "High-voltage capacitors release their full energy reserve in a blinding blue electric arc.",
+      "collection_biography": "When the Reclamation of the Sunken Ossuary tested the defenses of Ironreach Induction Railhead, the Ironreach Guild of Harmonic Artificers unveiled Cataclysmic Discharge. High-voltage capacitors release their full energy reserve in a blinding blue electric arc. Both Conductor-General Vespera and Dynamo Architect Vorne still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_irn_t_0059",
+      "direction_id": "brief_irn_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive brass capacitor coil arcing brilliant lightning into an armored target. Faction Style (Iron Choir — Ironreach Induction Railhead): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Jagged bolt of electricity spanning two points; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Massive brass capacitor coil arcing brilliant lightning into an armored target",
+        "silhouette": "Jagged bolt of electricity spanning two points",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive brass capacitor coil arcing brilliant lightning into an armored target. Faction Style (Iron Choir — Ironreach Induction Railhead): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Jagged bolt of electricity spanning two points; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "IRN-R-0060",
+    "revision": 1,
+    "name": "Perpetual Clockwork Gyroscope",
+    "name_key": "cards.irn_r_0060.name",
+    "description": "Relic. At the start of your turn, grant your strongest allied creature Shield (1).",
+    "description_key": "cards.irn_r_0060.description",
+    "type": "relic",
+    "subtype": "machine_relic",
+    "faction": "iron_choir",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "assembly"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "strongest_ally_creature",
+            "keyword": "shield"
+          }
+        ]
+      }
+    ],
+    "lore": "Frictionless brass gimbals maintain perfect equilibrium regardless of arena tremor.",
+    "archetypes": [
+      "assembly_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "assembly",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "assembly_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "assembly",
+        "assembly_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Perpetual Clockwork Gyroscope",
+      "classification": "Iron Choir relic (machine relic)",
+      "world_bible_refs": {
+        "region_id": "reg_ironreach_canyons",
+        "primary_landmark_id": "lm_irn_bellspire_automaton",
+        "secondary_landmark_id": "lm_irn_resonance_emporium",
+        "primary_figure_id": "fig_irn_cassian",
+        "secondary_figure_id": "fig_irn_aegis_ix",
+        "organization_id": "org_seventh_chime_choir",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "Bell-Spire of Saint Automaton (The Ironreach Canyons)",
+      "historical_provenance": "Frictionless brass gimbals maintain perfect equilibrium regardless of arena tremor. Established during the First Convergence Concordat (Year 1 AC) by Conductor Cassian Bell and the Synod of the Seventh Chime at Bell-Spire of Saint Automaton.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Bell-Spire of Saint Automaton: Relic. At the start of your turn, grant your strongest allied creature Shield (1).",
+      "faction_allegiance": "Iron Choir (Synod of the Seventh Chime)",
+      "associated_locations": [
+        "The Ironhold Bastion",
+        "The Resonance Emporium Workshop",
+        "The Ironreach Canyons"
+      ],
+      "narrative_importance": "An enduring artifact of the Synod of the Seventh Chime, forged during the First Convergence Concordat and safeguarded by Conductor Cassian Bell.",
+      "flavor_text": "Frictionless brass gimbals maintain perfect equilibrium regardless of arena tremor.",
+      "collection_biography": "\"Frictionless brass gimbals maintain perfect equilibrium regardless of arena tremor.\" — treatise by Conductor Cassian Bell of the Synod of the Seventh Chime. Originating at Bell-Spire of Saint Automaton during the First Convergence Concordat, this common relic allows duelists to reshape lane momentum at 2 Aether."
+    },
+    "art": {
+      "asset_id": "art_card_irn_r_0060",
+      "direction_id": "brief_irn_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/irn-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Concentric spinning brass gimbal rings suspended in mid-air above an iron mount. Faction Style (Iron Choir — Bell-Spire of Saint Automaton): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Spherical multi-ring gyroscope silhouette; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Concentric spinning brass gimbal rings suspended in mid-air above an iron mount",
+        "silhouette": "Spherical multi-ring gyroscope silhouette",
+        "palette": [
+          "burnished_brass",
+          "steel_grey",
+          "cog_gold"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Ironhold Bastion",
+        "materials": [
+          "polished clockwork brass",
+          "tempered steel",
+          "copper induction coils",
+          "blue Aether glass"
+        ],
+        "clothing_or_armor": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "weapons_or_equipment": "Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos",
+        "background": "The Ironhold Bastion (The Ironreach Canyons)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Iron Choir Aether particles and resonant light motes",
+        "mood": "Precise, disciplined, and harmonic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Concentric spinning brass gimbal rings suspended in mid-air above an iron mount. Faction Style (Iron Choir — Bell-Spire of Saint Automaton): Articulated gear-driven plate, acoustic tuning halberds, rotating cog-bucklers, and arc-dynamos, crafted from polished clockwork brass, tempered steel, copper induction coils, blue Aether glass. Silhouette & Pose: Spherical multi-ring gyroscope silhouette; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Ironhold Bastion in The Ironreach Canyons (Monumental clockwork cathedrals, planetary gear-trains, brass bell-towers, and gantry foundries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors burnished_brass, steel_grey, cog_gold. Visual Effects & Mood: Subtle Iron Choir Aether particles and resonant light motes. Mood: Precise, disciplined, and harmonic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

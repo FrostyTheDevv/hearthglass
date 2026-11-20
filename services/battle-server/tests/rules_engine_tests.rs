@@ -30,9 +30,9 @@ fn load_catalogue_and_decks() -> (BTreeMap<String, CardDefinition>, StarterDecks
 }
 
 #[test]
-fn test_all_480_cards_and_16_starter_decks_load_and_validate() {
+fn test_all_640_cards_and_16_starter_decks_load_and_validate() {
     let (catalogue, decks) = load_catalogue_and_decks();
-    assert_eq!(catalogue.len(), 480, "Expected 480 Phase 4 Expansion cards");
+    assert_eq!(catalogue.len(), 640, "Expected 640 Phase 5 Expansion cards");
     assert_eq!(decks.decks.len(), 16, "Expected 16 legal 40-card starter/archetype decks");
 
     for deck in &decks.decks {
@@ -629,9 +629,9 @@ fn test_all_eight_faction_mechanics_and_advanced_combat_resolutions() {
 }
 
 #[test]
-fn test_every_single_one_of_the_480_cards_executes_and_verifies_state_delta() {
+fn test_every_single_one_of_the_640_cards_executes_and_verifies_state_delta() {
     let (catalogue, decks) = load_catalogue_and_decks();
-    assert_eq!(catalogue.len(), 480);
+    assert_eq!(catalogue.len(), 640);
 
     for (card_id, card_def) in &catalogue {
         let mut state = MatchState::new_1v1(&decks.decks[0], &decks.decks[1], &catalogue, 1024)

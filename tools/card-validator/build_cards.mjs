@@ -1,6 +1,7 @@
 import { EXPANSION_88_CARDS } from './expansion_160_cards.mjs';
 import { EXPANSION_320_CARDS } from './expansion_320_cards.mjs';
 import { EXPANSION_480_CARDS } from './expansion_480_cards.mjs';
+import { EXPANSION_640_CARDS } from './expansion_640_cards.mjs';
 import { compileCardLoreAndArt, MASTER_ART_STYLE_GUIDE, FACTION_VISUAL_GUIDES } from './lore_and_art_compiler.mjs';
 import { LUMENPORT_DISTRICTS, LUMENPORT_INTERIORS, LUMENPORT_NPCS, ACT1_QUESTS } from './lumenport_world_data.mjs';
 import fs from 'node:fs';
@@ -2836,14 +2837,24 @@ export const CANONICAL_LEGENDARY_IDS = new Set([
   'NEU-R-0057',
   'NEU-R-0058',
   'NEU-R-0094',
-  'NEU-E-0064'
+  'NEU-E-0064',
+  // 8 Faction Apex Titans (Phase 5 Milestone)
+  'EMB-C-0055',
+  'VER-C-0055',
+  'IRN-C-0055',
+  'TID-C-0055',
+  'GLS-C-0055',
+  'NOC-C-0055',
+  'STR-C-0055',
+  'GRV-C-0055'
 ]);
 
 const RAW_COMBINED = [
   ...RAW_CARDS,
   ...EXPANSION_88_CARDS,
   ...EXPANSION_320_CARDS,
-  ...EXPANSION_480_CARDS
+  ...EXPANSION_480_CARDS,
+  ...EXPANSION_640_CARDS
 ];
 
 // Four-Tier Rarity Calibration (zero Epic):
@@ -2863,8 +2874,8 @@ const ALL_FACTIONS_LIST = [
 
 for (const faction of ALL_FACTIONS_LIST) {
   const isNeutral = faction === 'neutral';
-  const targetCommon = isNeutral ? 48 : 24;
-  const targetUncommon = isNeutral ? 32 : 14;
+  const targetCommon = isNeutral ? 80 : 30;
+  const targetUncommon = isNeutral ? 48 : 18;
   const fCards = RAW_COMBINED.filter((c) => c.faction === faction);
 
   for (const c of fCards) {
@@ -2922,7 +2933,7 @@ fs.writeFileSync(
       schema_version: '1.1.0',
       release_set: 'foundations',
       balance_version: 'base_002',
-      milestone: 'phase_4_expansion_480',
+      milestone: 'phase_5_complete_640',
       target_release_total: 640,
       implemented_count: ALL_CARDS.length,
       art_style_guide: MASTER_ART_STYLE_GUIDE,

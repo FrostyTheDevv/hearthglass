@@ -1,5 +1,5 @@
 extends Control
-## 40-Card Deck Builder, 480-Card Collection Browser, Crafting Bench, and Resonance Emporium Card Shop
+## 40-Card Deck Builder, 640-Card Collection Browser, Crafting Bench, and Resonance Emporium Card Shop
 ## Renders live card previews using the data-driven `CardFrameWidget` (which loads approved SVG illustrations
 ## from `res://assets/cards/<id>.svg`) and persists pack openings, crafting, and custom decks to PostgreSQL.
 
@@ -78,7 +78,7 @@ func _ready() -> void:
 	vbox.add_child(filter_bar)
 
 	search_input = LineEdit.new()
-	search_input.placeholder_text = "Search 480 cards by name, keyword, subtype, or ability..."
+	search_input.placeholder_text = "Search 640 cards by name, keyword, subtype, or ability..."
 	search_input.custom_minimum_size = Vector2(320, 0)
 	search_input.text_changed.connect(func(_t: String): _populate_cards())
 	filter_bar.add_child(search_input)

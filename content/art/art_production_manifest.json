@@ -110,6 +110,24 @@
       "created_at": "2026-11-19T05:11:38.093Z",
       "completed_at": "2026-11-19T05:11:38.095Z",
       "error": null
+    },
+    {
+      "job_id": "artjob_1795146183132_hwzbn",
+      "scope": "single",
+      "provider_id": "studio_stylized_svg",
+      "art_tier": "stylized_vector_concept",
+      "model_id": "hearthglass-prismatic-illustrator-v1",
+      "card_ids": [
+        "EMB-C-0019"
+      ],
+      "variants_per_card": 1,
+      "estimated_cost_usd": 0,
+      "status": "completed",
+      "progress_completed": 1,
+      "progress_total": 1,
+      "created_at": "2026-11-20T03:43:03.132Z",
+      "completed_at": "2026-11-20T03:43:03.134Z",
+      "error": null
     }
   ],
   "card_records": {
@@ -128,7 +146,7 @@
       "web_preview_url": "/assets/cards/EMB-C-0001.svg",
       "exported_web_url": "/assets/cards/EMB-C-0001.svg",
       "custom_prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Young volcanic-armored initiate lunging forward with a glowing copper blade. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Compact agile warrior with flared furnace pauldrons; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: Emberclad forge practice hall in Slag-Gate Basalt Causeway (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Harsh under-lighting from molten floor grates; dominant colors copper, charcoal, ember_orange, ash_white. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
-      "updated_at": "2026-11-19T03:27:10.255Z",
+      "updated_at": "2026-11-20T03:43:07.468Z",
       "candidates": [
         {
           "id": "cand_emb-c-0001_v1",
@@ -421,7 +439,7 @@
       "card_id": "EMB-C-0019",
       "status": "integrated_into_game",
       "approved": false,
-      "preferred_candidate_id": "cand_emb-c-0019_v1",
+      "preferred_candidate_id": "cand_emb-c-0019_v7",
       "provider_id": "studio_stylized_svg",
       "godot_asset_path": "res://assets/cards/EMB-C-0019.svg",
       "exported_godot_path": "res://assets/cards/EMB-C-0019.svg",
@@ -444,7 +462,7 @@
           },
           "approved": false,
           "created_at": "2026-11-19T03:00:36.335Z",
-          "concept_approved": true,
+          "concept_approved": false,
           "final_production_approved": false,
           "asset_hash": "0d841683d4cd5f446438c0b49515f80f341e3a299dc3b63b737ed3244d5e5eab"
         },
@@ -542,10 +560,32 @@
           "final_production_approved": false,
           "approved": false,
           "created_at": "2026-11-19T05:11:38.095Z"
+        },
+        {
+          "id": "cand_emb-c-0019_v7",
+          "candidate_id": "cand_emb-c-0019_v7",
+          "variant_seed": 7,
+          "provider_id": "studio_stylized_svg",
+          "art_tier": "stylized_vector_concept",
+          "model_id": "hearthglass-prismatic-illustrator-v1",
+          "file_type": "svg",
+          "mime_type": "image/svg+xml",
+          "web_preview_url": "/assets/cards/cand_emb-c-0019_v7.svg",
+          "technical_validation": {
+            "valid": true,
+            "aspect_ratio": "3:4",
+            "resolution": "768x1024",
+            "contains_baked_text_or_numbers": false
+          },
+          "concept_approved": true,
+          "final_production_approved": false,
+          "approved": false,
+          "created_at": "2026-11-20T03:43:03.134Z",
+          "asset_hash": "ad6389a4b77451ae2871499b7ac64a7a57f079583c75dba94c3fdd6d2432edab"
         }
       ],
       "model_id": "hearthglass-prismatic-illustrator-v1",
-      "updated_at": "2026-11-19T23:45:37.669Z",
+      "updated_at": "2026-11-20T03:43:03.162Z",
       "art_tier": "stylized_vector_concept",
       "concept_approved": true,
       "final_production_approved": false

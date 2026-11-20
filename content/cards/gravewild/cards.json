@@ -4107,7 +4107,7 @@
     "type": "creature",
     "subtype": "necromancer_druid",
     "faction": "gravewild",
-    "rarity": "rare",
+    "rarity": "uncommon",
     "role": "summoner",
     "cost": 4,
     "attack": 2,
@@ -4210,7 +4210,7 @@
         "The Sunken Ossuary & Fossil Marshes"
       ],
       "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: On Summon: Summon a 2/2 Risen Husk token with Guard.",
-      "narrative_importance": "Renowned specialist of the Keepers of the Forgotten Names sought after by veteran tournament duelists in Lumenport.",
+      "narrative_importance": "Dependable necromancer druid forming the field backbone of the Keepers of the Forgotten Names across Briar-Cairn Memorial Crypts.",
       "flavor_text": "To the Gravewild, death is merely compost for the next generation of defenders.",
       "collection_biography": "Born of the traditions that shaped Briar-Cairn Memorial Crypts after the Great Caldera Eruption of Year 412, Ossuary Root-Caller serves the Keepers of the Forgotten Names as a dedicated summoner. To the Gravewild, death is merely compost for the next generation of defenders. Even Keeper Morwen Vale acknowledges the tactical leverage its guard brings to a forty-card deck."
     },
@@ -5808,7 +5808,7 @@
     "type": "creature",
     "subtype": "spirit_predator",
     "faction": "gravewild",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -8181,6 +8181,1945 @@
         "visual_effects": "pitting acid-green decay spores and rust wisps",
         "mood": "Melancholic, primordial, and hauntingly resilient",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Winding bone-rib bridge arching across a glowing green corrosive swamp. Faction Style (Gravewild — Peat-Fog Spirit Sanctuary): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Ribbed arch causeway over misty marsh; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Fossil-Rib Marsh Causeway in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Spectral green spirit-lantern glow through twilight bog mist; dominant colors bone_white, deep_burgundy, sickly_green. Visual Effects & Mood: pitting acid-green decay spores and rust wisps. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0049",
+    "revision": 1,
+    "name": "Grave-Digger Ghoul",
+    "name_key": "cards.grv_c_0049.name",
+    "description": "Swift, Rebirth (1). On Death: Deal 1 damage to the enemy creature in this lane.",
+    "description_key": "cards.grv_c_0049.description",
+    "type": "creature",
+    "subtype": "undead_scavenger",
+    "faction": "gravewild",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift",
+      "rebirth"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_death",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Rises from unhallowed dirt with rusted spade in hand, eager for fresh bone.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "rebirth",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Grave-Digger Ghoul",
+      "species_or_classification": "undead scavenger",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_garden_forgotten_names",
+        "secondary_landmark_id": "lm_grv_lantern_walk_unforgotten",
+        "primary_figure_id": "fig_grv_morwen",
+        "secondary_figure_id": "fig_grv_vaelen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "The Garden of Forgotten Names, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Gaunt ghoul clambering out of a fresh grave clutching a rusted iron spade — a nimble, quick-deploying undead scavenger (Hunched clawed undead silhouette rising from soil) clad in burgundy briar-vines and verdigris swamp-iron, exhibiting kinetic wind-streaks and blurred forward momentum and emerging spectral phoenix-seed or lingering Echo core.",
+      "personality_or_disposition": "Battle-scarred, pragmatic, and disdainful of ornamental flourish. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "history": "Rises from unhallowed dirt with rusted spade in hand, eager for fresh bone. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Keeper Morwen Vale mobilized the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Keeper Morwen Vale (Gravewild Memorial Medium) at The Garden of Forgotten Names and coordinates three-lane maneuvers with Bone-Sculptor Vaelen.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Lantern-Walk of the Unforgotten",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Swift, Rebirth (1). On Death: Deal 1 damage to the enemy creature in this lane.",
+      "narrative_importance": "Dependable undead scavenger forming the field backbone of the Keepers of the Forgotten Names across The Garden of Forgotten Names.",
+      "flavor_text": "Rises from unhallowed dirt with rusted spade in hand, eager for fresh bone.",
+      "collection_biography": "Where ordinary undead scavenger units falter, Grave-Digger Ghoul thrives amidst the hazards of The Garden of Forgotten Names. Rises from unhallowed dirt with rusted spade in hand, eager for fresh bone. Trained under the doctrine of Keeper Morwen Vale and the Keepers of the Forgotten Names, it turns every skirmish near Lantern-Walk of the Unforgotten into a display of swift, rebirth."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0049",
+      "direction_id": "brief_grv_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gaunt ghoul clambering out of a fresh grave clutching a rusted iron spade. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Hunched clawed undead silhouette rising from soil; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum; emerging spectral phoenix-seed or lingering Echo core. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Gaunt ghoul clambering out of a fresh grave clutching a rusted iron spade",
+        "silhouette": "Hunched clawed undead silhouette rising from soil",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum; emerging spectral phoenix-seed or lingering Echo core",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gaunt ghoul clambering out of a fresh grave clutching a rusted iron spade. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Hunched clawed undead silhouette rising from soil; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum; emerging spectral phoenix-seed or lingering Echo core. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0050",
+    "revision": 1,
+    "name": "Tomb-Slab Bulwark",
+    "name_key": "cards.grv_c_0050.name",
+    "description": "Guard. When damaged, deal 1 damage to the enemy creature in this lane.",
+    "description_key": "cards.grv_c_0050.description",
+    "type": "creature",
+    "subtype": "skeletal_guardian",
+    "faction": "gravewild",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "when_damaged",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Shield carved from a five-hundred-year-old mausoleum lintel inscribed with curses.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Tomb-Slab Bulwark",
+      "species_or_classification": "skeletal guardian",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_peat_fog_sanctuary",
+        "secondary_landmark_id": "lm_grv_fossil_rib_causeway",
+        "primary_figure_id": "fig_grv_fenwick",
+        "secondary_figure_id": "fig_grv_silas",
+        "organization_id": "org_ossuary_reclaimers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Peat-Fog Spirit Sanctuary, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Heavy skeleton in rusted chainmail bracing an engraved tombstone door — a nimble, quick-deploying skeletal guardian (Upright rectangular gravestone shield with skeletal limbs) clad in petrified bog-oak and burgundy briar-vines, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Order of the Peat-Fog Lantern at Peat-Fog Spirit Sanctuary.",
+      "history": "Shield carved from a five-hundred-year-old mausoleum lintel inscribed with curses. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Blight-Alchemist Fenwick mobilized the Order of the Peat-Fog Lantern at Peat-Fog Spirit Sanctuary.",
+      "faction_allegiance": "Gravewild (Order of the Peat-Fog Lantern)",
+      "important_relationships": "Serves alongside Blight-Alchemist Fenwick (Distiller of Corrode Spores) at Peat-Fog Spirit Sanctuary and coordinates three-lane maneuvers with Lantern-Bearer Silas.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Fossil-Rib Marsh Causeway",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Guard. When damaged, deal 1 damage to the enemy creature in this lane.",
+      "narrative_importance": "Dependable skeletal guardian forming the field backbone of the Order of the Peat-Fog Lantern across Peat-Fog Spirit Sanctuary.",
+      "flavor_text": "Shield carved from a five-hundred-year-old mausoleum lintel inscribed with curses.",
+      "collection_biography": "Blight-Alchemist Fenwick often warns initiates at Peat-Fog Spirit Sanctuary never to misjudge Tomb-Slab Bulwark. Shield carved from a five-hundred-year-old mausoleum lintel inscribed with curses. Whether patrolling Fossil-Rib Marsh Causeway for the Order of the Peat-Fog Lantern or manifesting on the Convergence slate, its 1 Attack and 5 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0050",
+      "direction_id": "brief_grv_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy skeleton in rusted chainmail bracing an engraved tombstone door. Faction Style (Gravewild — Peat-Fog Spirit Sanctuary): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Upright rectangular gravestone shield with skeletal limbs; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Heavy skeleton in rusted chainmail bracing an engraved tombstone door",
+        "silhouette": "Upright rectangular gravestone shield with skeletal limbs",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy skeleton in rusted chainmail bracing an engraved tombstone door. Faction Style (Gravewild — Peat-Fog Spirit Sanctuary): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Upright rectangular gravestone shield with skeletal limbs; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0051",
+    "revision": 1,
+    "name": "Ossuary Bone-Reaper",
+    "name_key": "cards.grv_c_0051.name",
+    "description": "Drain. After this attacks, restore 2 Vitality to your Leader.",
+    "description_key": "cards.grv_c_0051.description",
+    "type": "creature",
+    "subtype": "undead_stalker",
+    "faction": "gravewild",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "drain"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Carries scythes forged of sharpened femur bones dipped in embalming oil.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "drain",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Ossuary Bone-Reaper",
+      "species_or_classification": "undead stalker",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_fossil_rib_causeway",
+        "secondary_landmark_id": "lm_grv_peat_fog_sanctuary",
+        "primary_figure_id": "fig_grv_vaelen",
+        "secondary_figure_id": "fig_grv_odrin",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Fossil-Rib Marsh Causeway, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Hooded skeleton wielding a long bone scythe walking through misty tombstones — a battle-tested mid-weight undead stalker (Grim reaper silhouette with curved bone scythe) clad in fossilized bone and petrified bog-oak, exhibiting siphoning ribbons of vital crimson-emerald energy.",
+      "personality_or_disposition": "Grimly resolute, carrying the memory of fallen predecessors. Operates as a assassin (4 Attack / 2 Health) affiliated with the Keepers of the Forgotten Names at Fossil-Rib Marsh Causeway.",
+      "history": "Carries scythes forged of sharpened femur bones dipped in embalming oil. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Bone-Sculptor Vaelen mobilized the Keepers of the Forgotten Names at Fossil-Rib Marsh Causeway.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Bone-Sculptor Vaelen (Artisan of the Sunken Ossuary) at Fossil-Rib Marsh Causeway and coordinates three-lane maneuvers with Arch-Reclaimer Odrin.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Peat-Fog Spirit Sanctuary",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Drain. After this attacks, restore 2 Vitality to your Leader.",
+      "narrative_importance": "Dependable undead stalker forming the field backbone of the Keepers of the Forgotten Names across Fossil-Rib Marsh Causeway.",
+      "flavor_text": "Carries scythes forged of sharpened femur bones dipped in embalming oil.",
+      "collection_biography": "Born of the traditions that shaped Fossil-Rib Marsh Causeway after the Great Caldera Eruption of Year 412, Ossuary Bone-Reaper serves the Keepers of the Forgotten Names as a dedicated assassin. Carries scythes forged of sharpened femur bones dipped in embalming oil. Even Arch-Reclaimer Odrin acknowledges the tactical leverage its drain brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0051",
+      "direction_id": "brief_grv_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hooded skeleton wielding a long bone scythe walking through misty tombstones. Faction Style (Gravewild — Fossil-Rib Marsh Causeway): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Grim reaper silhouette with curved bone scythe; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Hooded skeleton wielding a long bone scythe walking through misty tombstones",
+        "silhouette": "Grim reaper silhouette with curved bone scythe",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "siphoning ribbons of vital crimson-emerald energy",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hooded skeleton wielding a long bone scythe walking through misty tombstones. Faction Style (Gravewild — Fossil-Rib Marsh Causeway): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Grim reaper silhouette with curved bone scythe; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0052",
+    "revision": 1,
+    "name": "Crypt-Bane Archer",
+    "name_key": "cards.grv_c_0052.name",
+    "description": "Reach. After this attacks, deal 1 damage to the enemy Leader.",
+    "description_key": "cards.grv_c_0052.description",
+    "type": "creature",
+    "subtype": "skeletal_marksman",
+    "faction": "gravewild",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Draws arrows crafted from human ribs that whistle like dying breath.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Crypt-Bane Archer",
+      "species_or_classification": "skeletal marksman",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_briar_cairn_crypts",
+        "secondary_landmark_id": "lm_grv_sunken_ossuary_crypt",
+        "primary_figure_id": "fig_grv_odrin",
+        "secondary_figure_id": "fig_grv_morwen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "Briar-Cairn Memorial Crypts, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Skeletal archer in rotting tattered cape drawing a rib-bone recurve bow — a battle-tested mid-weight skeletal marksman (Skeletal archer standing atop a crypt roof) clad in burgundy briar-vines and verdigris swamp-iron, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a marksman (2 Attack / 4 Health) affiliated with the Keepers of the Forgotten Names at Briar-Cairn Memorial Crypts.",
+      "history": "Draws arrows crafted from human ribs that whistle like dying breath. First recorded during the First Convergence Concordat (Year 1 AC) when Arch-Reclaimer Odrin mobilized the Keepers of the Forgotten Names at Briar-Cairn Memorial Crypts.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Arch-Reclaimer Odrin (Lord of the First-Age Catacombs) at Briar-Cairn Memorial Crypts and coordinates three-lane maneuvers with Keeper Morwen Vale.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Sunken Ossuary of the First Age",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Reach. After this attacks, deal 1 damage to the enemy Leader.",
+      "narrative_importance": "Dependable skeletal marksman forming the field backbone of the Keepers of the Forgotten Names across Briar-Cairn Memorial Crypts.",
+      "flavor_text": "Draws arrows crafted from human ribs that whistle like dying breath.",
+      "collection_biography": "Draws arrows crafted from human ribs that whistle like dying breath. Within the ranks of the Keepers of the Forgotten Names, Crypt-Bane Archer is remembered from the records of the First Convergence Concordat at Briar-Cairn Memorial Crypts. Arch-Reclaimer Odrin (Lord of the First-Age Catacombs) still deploys this skeletal marksman whenever a 3-Aether marksman is needed to anchor the Front-to-Rear geometry with 2 Attack and 4 Health."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0052",
+      "direction_id": "brief_grv_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal archer in rotting tattered cape drawing a rib-bone recurve bow. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Skeletal archer standing atop a crypt roof; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Skeletal archer in rotting tattered cape drawing a rib-bone recurve bow",
+        "silhouette": "Skeletal archer standing atop a crypt roof",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal archer in rotting tattered cape drawing a rib-bone recurve bow. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Skeletal archer standing atop a crypt roof; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0053",
+    "revision": 1,
+    "name": "Necropolis Lich-Caller",
+    "name_key": "cards.grv_c_0053.name",
+    "description": "On Summon: Deal 1 damage to all enemy creatures and restore 2 Vitality to your Leader.",
+    "description_key": "cards.grv_c_0053.description",
+    "type": "creature",
+    "subtype": "undead_necromancer",
+    "faction": "gravewild",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 1
+          },
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Raises green spectral flame that drains the life of the living to feed his phylactery.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Necropolis Lich-Caller",
+      "species_or_classification": "undead necromancer",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_garden_forgotten_names",
+        "secondary_landmark_id": "lm_grv_lantern_walk_unforgotten",
+        "primary_figure_id": "fig_grv_morwen",
+        "secondary_figure_id": "fig_grv_vaelen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "The Garden of Forgotten Names, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Skeletal lich in high-collared emerald robes channeling green necromantic fire — a battle-tested mid-weight undead necromancer (Tall horned lich silhouette with floating green skulls) clad in burgundy briar-vines and verdigris swamp-iron, attuned to Gravewild Aether discipline.",
+      "personality_or_disposition": "Battle-scarred, pragmatic, and disdainful of ornamental flourish. Operates as a caster (3 Attack / 4 Health) affiliated with the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "history": "Raises green spectral flame that drains the life of the living to feed his phylactery. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Keeper Morwen Vale mobilized the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Keeper Morwen Vale (Gravewild Memorial Medium) at The Garden of Forgotten Names and coordinates three-lane maneuvers with Bone-Sculptor Vaelen.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Lantern-Walk of the Unforgotten",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: On Summon: Deal 1 damage to all enemy creatures and restore 2 Vitality to your Leader.",
+      "narrative_importance": "Dependable undead necromancer forming the field backbone of the Keepers of the Forgotten Names across The Garden of Forgotten Names.",
+      "flavor_text": "Raises green spectral flame that drains the life of the living to feed his phylactery.",
+      "collection_biography": "Born of the traditions that shaped The Garden of Forgotten Names after the Great Caldera Eruption of Year 412, Necropolis Lich-Caller serves the Keepers of the Forgotten Names as a dedicated caster. Raises green spectral flame that drains the life of the living to feed his phylactery. Even Bone-Sculptor Vaelen acknowledges the tactical leverage its focused lane presence brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0053",
+      "direction_id": "brief_grv_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal lich in high-collared emerald robes channeling green necromantic fire. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Tall horned lich silhouette with floating green skulls; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Skeletal lich in high-collared emerald robes channeling green necromantic fire",
+        "silhouette": "Tall horned lich silhouette with floating green skulls",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Gravewild Aether particles and resonant light motes",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal lich in high-collared emerald robes channeling green necromantic fire. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Tall horned lich silhouette with floating green skulls; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0054",
+    "revision": 1,
+    "name": "Catacomb Embalmer",
+    "name_key": "cards.grv_c_0054.name",
+    "description": "Guard. At the start of your turn, restore 2 Health to your strongest allied creature.",
+    "description_key": "cards.grv_c_0054.description",
+    "type": "creature",
+    "subtype": "undead_priest",
+    "faction": "gravewild",
+    "rarity": "rare",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "strongest_ally_creature",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Wraps splintered bone and rotten sinew in sacred linen steeped in natron salts.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Catacomb Embalmer",
+      "species_or_classification": "undead priest",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_garden_forgotten_names",
+        "secondary_landmark_id": "lm_grv_lantern_walk_unforgotten",
+        "primary_figure_id": "fig_grv_morwen",
+        "secondary_figure_id": "fig_grv_vaelen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "The Garden of Forgotten Names, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Masked embalmer applying embalming linen to a skeleton on a stone table — a battle-tested mid-weight undead priest (Bent figure wrapping a corpse on a pedestal) clad in fossilized bone and petrified bog-oak, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a support (2 Attack / 5 Health) affiliated with the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "history": "Wraps splintered bone and rotten sinew in sacred linen steeped in natron salts. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Keeper Morwen Vale mobilized the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Keeper Morwen Vale (Gravewild Memorial Medium) at The Garden of Forgotten Names and coordinates three-lane maneuvers with Bone-Sculptor Vaelen.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Lantern-Walk of the Unforgotten",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Guard. At the start of your turn, restore 2 Health to your strongest allied creature.",
+      "narrative_importance": "Renowned specialist of the Keepers of the Forgotten Names sought after by veteran tournament duelists in Lumenport.",
+      "flavor_text": "Wraps splintered bone and rotten sinew in sacred linen steeped in natron salts.",
+      "collection_biography": "Born of the traditions that shaped The Garden of Forgotten Names after the Great Caldera Eruption of Year 412, Catacomb Embalmer serves the Keepers of the Forgotten Names as a dedicated support. Wraps splintered bone and rotten sinew in sacred linen steeped in natron salts. Even Bone-Sculptor Vaelen acknowledges the tactical leverage its guard brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0054",
+      "direction_id": "brief_grv_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Masked embalmer applying embalming linen to a skeleton on a stone table. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Bent figure wrapping a corpse on a pedestal; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Masked embalmer applying embalming linen to a skeleton on a stone table",
+        "silhouette": "Bent figure wrapping a corpse on a pedestal",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Masked embalmer applying embalming linen to a skeleton on a stone table. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Bent figure wrapping a corpse on a pedestal; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0055",
+    "revision": 1,
+    "name": "Thanatos, Sovereign of the Catacombs",
+    "name_key": "cards.grv_c_0055.name",
+    "description": "Drain, Rebirth (1). On Summon: Deal 3 damage to all enemy creatures and restore 4 Vitality to your Leader.",
+    "description_key": "cards.grv_c_0055.description",
+    "type": "creature",
+    "subtype": "undead_avatar",
+    "faction": "gravewild",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 8,
+    "health": 8,
+    "keywords": [
+      "drain",
+      "rebirth"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 3
+          },
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 4
+          }
+        ]
+      }
+    ],
+    "lore": "The primordial death-lord of the sunken ossuary. The dead rise from every paving stone when Thanatos marches.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "drain",
+        "rebirth",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Thanatos, Sovereign of the Catacombs",
+      "species_or_classification": "undead avatar",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_briar_cairn_crypts",
+        "secondary_landmark_id": "lm_grv_sunken_ossuary_crypt",
+        "primary_figure_id": "fig_grv_odrin",
+        "secondary_figure_id": "fig_grv_morwen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_clapperless_bells"
+      },
+      "origin": "Briar-Cairn Memorial Crypts, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Colossal armored death king crowned in glowing bone spikes wielding an executioner greatsword — a towering, high-Aether undead avatar (Towering skeletal king with spiked crown and massive two-handed sword) clad in fossilized bone and petrified bog-oak, exhibiting siphoning ribbons of vital crimson-emerald energy and emerging spectral phoenix-seed or lingering Echo core.",
+      "personality_or_disposition": "Recklessly bold when channeling peak Aether resonance. Operates as a colossus (8 Attack / 8 Health) affiliated with the Keepers of the Forgotten Names at Briar-Cairn Memorial Crypts.",
+      "history": "The primordial death-lord of the sunken ossuary. The dead rise from every paving stone when Thanatos marches. First recorded during the Night of Clapperless Bells (Year 339 AC) when Arch-Reclaimer Odrin mobilized the Keepers of the Forgotten Names at Briar-Cairn Memorial Crypts.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "important_relationships": "Serves alongside Arch-Reclaimer Odrin (Lord of the First-Age Catacombs) at Briar-Cairn Memorial Crypts and coordinates three-lane maneuvers with Keeper Morwen Vale.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Sunken Ossuary of the First Age",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Drain, Rebirth (1). On Summon: Deal 3 damage to all enemy creatures and restore 4 Vitality to your Leader.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Briar-Cairn Memorial Crypts, counselled directly by Arch-Reclaimer Odrin.",
+      "flavor_text": "The primordial death-lord of the sunken ossuary. The dead rise from every paving stone when Thanatos marches.",
+      "collection_biography": "During the Night of Clapperless Bells, the Keepers of the Forgotten Names relied on specialists capable of holding Briar-Cairn Memorial Crypts against overwhelming odds. Thanatos, Sovereign of the Catacombs emerged from that crucible: The primordial death-lord of the sunken ossuary. The dead rise from every paving stone when Thanatos marches. Today, duelists studying under Arch-Reclaimer Odrin prize its 8-Aether tempo and drain, rebirth."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0055",
+      "direction_id": "brief_grv_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Colossal armored death king crowned in glowing bone spikes wielding an executioner greatsword. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Towering skeletal king with spiked crown and massive two-handed sword; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy; emerging spectral phoenix-seed or lingering Echo core. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Colossal armored death king crowned in glowing bone spikes wielding an executioner greatsword",
+        "silhouette": "Towering skeletal king with spiked crown and massive two-handed sword",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "siphoning ribbons of vital crimson-emerald energy; emerging spectral phoenix-seed or lingering Echo core",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Colossal armored death king crowned in glowing bone spikes wielding an executioner greatsword. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Towering skeletal king with spiked crown and massive two-handed sword; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: siphoning ribbons of vital crimson-emerald energy; emerging spectral phoenix-seed or lingering Echo core. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-C-0056",
+    "revision": 1,
+    "name": "Shambling Crypt-Trickster",
+    "name_key": "cards.grv_c_0056.name",
+    "description": "Skirmish. When this moves lanes, deal 1 damage to the enemy creature in that lane.",
+    "description_key": "cards.grv_c_0056.description",
+    "type": "creature",
+    "subtype": "undead_jester",
+    "faction": "gravewild",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Juggles severed skulls between lanes, laughing with a jaw that has no tongue.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Shambling Crypt-Trickster",
+      "species_or_classification": "undead jester",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_sunken_ossuary_crypt",
+        "secondary_landmark_id": "lm_grv_briar_cairn_crypts",
+        "primary_figure_id": "fig_grv_silas",
+        "secondary_figure_id": "fig_grv_mara",
+        "organization_id": "org_ossuary_reclaimers",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Sunken Ossuary of the First Age, The Sunken Ossuary & Fossil Marshes",
+      "physical_appearance": "Skeletal court jester in bells and rags tossing glowing skulls between columns — a nimble, quick-deploying undead jester (Hunched jester silhouette with three floating spheres) clad in verdigris swamp-iron and fossilized bone, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a trickster (2 Attack / 3 Health) affiliated with the Order of the Peat-Fog Lantern at Sunken Ossuary of the First Age.",
+      "history": "Juggles severed skulls between lanes, laughing with a jaw that has no tongue. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Lantern-Bearer Silas mobilized the Order of the Peat-Fog Lantern at Sunken Ossuary of the First Age.",
+      "faction_allegiance": "Gravewild (Order of the Peat-Fog Lantern)",
+      "important_relationships": "Serves alongside Lantern-Bearer Silas (Guide of the Peat-Fog Sanctuary) at Sunken Ossuary of the First Age and coordinates three-lane maneuvers with Elegy-Singer Mara.",
+      "habitats": [
+        "The Sunken Catacombs",
+        "Briar-Cairn Memorial Crypts",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "world_abilities": "Channels Gravewild resonance (reclaim) to manifest: Skirmish. When this moves lanes, deal 1 damage to the enemy creature in that lane.",
+      "narrative_importance": "Dependable undead jester forming the field backbone of the Order of the Peat-Fog Lantern across Sunken Ossuary of the First Age.",
+      "flavor_text": "Juggles severed skulls between lanes, laughing with a jaw that has no tongue.",
+      "collection_biography": "At Sunken Ossuary of the First Age — where half-flooded catacombs built inside the ribcage of a petrified world-behemoth. — Shambling Crypt-Trickster earned a lasting reputation among the Order of the Peat-Fog Lantern. Juggles severed skulls between lanes, laughing with a jaw that has no tongue. In Convergence Duels, Lantern-Bearer Silas pairs it with Elegy-Singer Mara's formations to leverage skirmish across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_grv_c_0056",
+      "direction_id": "brief_grv_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal court jester in bells and rags tossing glowing skulls between columns. Faction Style (Gravewild — Sunken Ossuary of the First Age): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Hunched jester silhouette with three floating spheres; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Skeletal court jester in bells and rags tossing glowing skulls between columns",
+        "silhouette": "Hunched jester silhouette with three floating spheres",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal court jester in bells and rags tossing glowing skulls between columns. Faction Style (Gravewild — Sunken Ossuary of the First Age): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Hunched jester silhouette with three floating spheres; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-T-0057",
+    "revision": 1,
+    "name": "Unhallowed Reanimation",
+    "name_key": "cards.grv_t_0057.name",
+    "description": "Quick Tactic. Grant an allied creature +2 Attack.",
+    "description_key": "cards.grv_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "gravewild",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "modify_stats",
+            "target": "ally_creature_in_lane_or_any",
+            "attack_delta": 2,
+            "health_delta": 0
+          }
+        ]
+      }
+    ],
+    "lore": "A sudden surge of embalming malice revitalizes dead muscle.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Unhallowed Reanimation",
+      "classification": "Gravewild tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_sunken_ossuary_crypt",
+        "secondary_landmark_id": "lm_grv_briar_cairn_crypts",
+        "primary_figure_id": "fig_grv_silas",
+        "secondary_figure_id": "fig_grv_mara",
+        "organization_id": "org_ossuary_reclaimers",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Sunken Ossuary of the First Age (The Sunken Ossuary & Fossil Marshes)",
+      "historical_provenance": "A sudden surge of embalming malice revitalizes dead muscle. Established during the Sunken Wake Cataclysm (Year 114 AC) by Lantern-Bearer Silas and the Order of the Peat-Fog Lantern at Sunken Ossuary of the First Age.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of Sunken Ossuary of the First Age: Quick Tactic. Grant an allied creature +2 Attack.",
+      "faction_allegiance": "Gravewild (Order of the Peat-Fog Lantern)",
+      "associated_locations": [
+        "The Sunken Catacombs",
+        "Briar-Cairn Memorial Crypts",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Lantern-Bearer Silas and the Order of the Peat-Fog Lantern at Sunken Ossuary of the First Age.",
+      "flavor_text": "A sudden surge of embalming malice revitalizes dead muscle.",
+      "collection_biography": "At Sunken Ossuary of the First Age, Half-flooded catacombs built inside the ribcage of a petrified world-behemoth. Unhallowed Reanimation draws directly upon that legacy: A sudden surge of embalming malice revitalizes dead muscle. Preserved by the Order of the Peat-Fog Lantern since Year 114 AC, it remains a signature quick tool in Lantern-Bearer Silas's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_grv_t_0057",
+      "direction_id": "brief_grv_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal hand bursting out of damp cemetery earth grasping a sword hilt. Faction Style (Gravewild — Sunken Ossuary of the First Age): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Skeletal hand rising from ground with sword; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Skeletal hand bursting out of damp cemetery earth grasping a sword hilt",
+        "silhouette": "Skeletal hand rising from ground with sword",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Gravewild Aether particles and resonant light motes",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Skeletal hand bursting out of damp cemetery earth grasping a sword hilt. Faction Style (Gravewild — Sunken Ossuary of the First Age): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Skeletal hand rising from ground with sword; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-T-0058",
+    "revision": 1,
+    "name": "Dark Harvest Feast",
+    "name_key": "cards.grv_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards and restore 2 Vitality to your Leader.",
+    "description_key": "cards.grv_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "gravewild",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          },
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "The catacomb spirits whisper ancient secrets in exchange for stolen life essence.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Dark Harvest Feast",
+      "classification": "Gravewild tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_lantern_walk_unforgotten",
+        "secondary_landmark_id": "lm_grv_garden_forgotten_names",
+        "primary_figure_id": "fig_grv_mara",
+        "secondary_figure_id": "fig_grv_fenwick",
+        "organization_id": "org_ossuary_reclaimers",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Lantern-Walk of the Unforgotten (The Sunken Ossuary & Fossil Marshes)",
+      "historical_provenance": "The catacomb spirits whisper ancient secrets in exchange for stolen life essence. Established during the Reclamation of the Sunken Ossuary (Year 381 AC) by Elegy-Singer Mara and the Order of the Peat-Fog Lantern at Lantern-Walk of the Unforgotten.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Lantern-Walk of the Unforgotten: Standard Tactic. Draw 2 cards and restore 2 Vitality to your Leader.",
+      "faction_allegiance": "Gravewild (Order of the Peat-Fog Lantern)",
+      "associated_locations": [
+        "The Sunken Catacombs",
+        "The Garden of Forgotten Names",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Elegy-Singer Mara and the Order of the Peat-Fog Lantern at Lantern-Walk of the Unforgotten.",
+      "flavor_text": "The catacomb spirits whisper ancient secrets in exchange for stolen life essence.",
+      "collection_biography": "When the Reclamation of the Sunken Ossuary tested the defenses of Lantern-Walk of the Unforgotten, the Order of the Peat-Fog Lantern unveiled Dark Harvest Feast. The catacomb spirits whisper ancient secrets in exchange for stolen life essence. Both Elegy-Singer Mara and Blight-Alchemist Fenwick still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_grv_t_0058",
+      "direction_id": "brief_grv_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Stone crypt altar surrounded by green soul wisps feeding into an iron chalice. Faction Style (Gravewild — Lantern-Walk of the Unforgotten): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Chalice on altar surrounded by swirling spirits; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Stone crypt altar surrounded by green soul wisps feeding into an iron chalice",
+        "silhouette": "Chalice on altar surrounded by swirling spirits",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Gravewild Aether particles and resonant light motes",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Stone crypt altar surrounded by green soul wisps feeding into an iron chalice. Faction Style (Gravewild — Lantern-Walk of the Unforgotten): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Chalice on altar surrounded by swirling spirits; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-T-0059",
+    "revision": 1,
+    "name": "Death-Knell Decree",
+    "name_key": "cards.grv_t_0059.name",
+    "description": "Standard Tactic. Destroy a target enemy creature.",
+    "description_key": "cards.grv_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "gravewild",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "destroy",
+            "target": "target_enemy_creature"
+          }
+        ]
+      }
+    ],
+    "lore": "When the tolling of the graveyard bell echoes through the arena, the target’s doom is sealed.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "target_enemy_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: target_enemy_creature",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Death-Knell Decree",
+      "classification": "Gravewild tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_garden_forgotten_names",
+        "secondary_landmark_id": "lm_grv_lantern_walk_unforgotten",
+        "primary_figure_id": "fig_grv_morwen",
+        "secondary_figure_id": "fig_grv_vaelen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "The Garden of Forgotten Names (The Sunken Ossuary & Fossil Marshes)",
+      "historical_provenance": "When the tolling of the graveyard bell echoes through the arena, the target’s doom is sealed. Established during the First Convergence Concordat (Year 1 AC) by Keeper Morwen Vale and the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of The Garden of Forgotten Names: Standard Tactic. Destroy a target enemy creature.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "associated_locations": [
+        "The Sunken Catacombs",
+        "Lantern-Walk of the Unforgotten",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Keeper Morwen Vale and the Keepers of the Forgotten Names at The Garden of Forgotten Names.",
+      "flavor_text": "When the tolling of the graveyard bell echoes through the arena, the target’s doom is sealed.",
+      "collection_biography": "When the tolling of the graveyard bell echoes through the arena, the target’s doom is sealed. Codified by Keeper Morwen Vale (Gravewild Memorial Medium) for the Keepers of the Forgotten Names during the First Convergence Concordat, Death-Knell Decree channels the resonant signature of The Garden of Forgotten Names into a 4-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_grv_t_0059",
+      "direction_id": "brief_grv_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Enormous cracked bronze church bell swinging in a ruined bell tower amidst ravens. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Massive bell hanging in gothic archway; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Enormous cracked bronze church bell swinging in a ruined bell tower amidst ravens",
+        "silhouette": "Massive bell hanging in gothic archway",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Gravewild Aether particles and resonant light motes",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Enormous cracked bronze church bell swinging in a ruined bell tower amidst ravens. Faction Style (Gravewild — The Garden of Forgotten Names): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Massive bell hanging in gothic archway; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "GRV-R-0060",
+    "revision": 1,
+    "name": "Phylactery of the Ossuary",
+    "name_key": "cards.grv_r_0060.name",
+    "description": "Relic. At the start of your turn, restore 1 Vitality to your Leader.",
+    "description_key": "cards.grv_r_0060.description",
+    "type": "relic",
+    "subtype": "undead_relic",
+    "faction": "gravewild",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "reclaim"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "A jeweled bone urn that whispers forgotten names into the dark.",
+    "archetypes": [
+      "reclaim_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reclaim"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "reclaim_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "reclaim",
+        "reclaim_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Phylactery of the Ossuary",
+      "classification": "Gravewild relic (undead relic)",
+      "world_bible_refs": {
+        "region_id": "reg_sunken_ossuary",
+        "primary_landmark_id": "lm_grv_briar_cairn_crypts",
+        "secondary_landmark_id": "lm_grv_sunken_ossuary_crypt",
+        "primary_figure_id": "fig_grv_odrin",
+        "secondary_figure_id": "fig_grv_morwen",
+        "organization_id": "org_forgotten_names_keepers",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Briar-Cairn Memorial Crypts (The Sunken Ossuary & Fossil Marshes)",
+      "historical_provenance": "A jeweled bone urn that whispers forgotten names into the dark. Established during the Great Caldera Eruption of Year 412 (Year 412 AC) by Arch-Reclaimer Odrin and the Keepers of the Forgotten Names at Briar-Cairn Memorial Crypts.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Briar-Cairn Memorial Crypts: Relic. At the start of your turn, restore 1 Vitality to your Leader.",
+      "faction_allegiance": "Gravewild (Keepers of the Forgotten Names)",
+      "associated_locations": [
+        "The Sunken Catacombs",
+        "Sunken Ossuary of the First Age",
+        "The Sunken Ossuary & Fossil Marshes"
+      ],
+      "narrative_importance": "An enduring artifact of the Keepers of the Forgotten Names, forged during the Great Caldera Eruption of Year 412 and safeguarded by Arch-Reclaimer Odrin.",
+      "flavor_text": "A jeweled bone urn that whispers forgotten names into the dark.",
+      "collection_biography": "Few artifacts or doctrines from Briar-Cairn Memorial Crypts carry as much history as Phylactery of the Ossuary. A jeweled bone urn that whispers forgotten names into the dark. Guarded by the Keepers of the Forgotten Names and studied at Sunken Ossuary of the First Age, its 2-Aether effect (Relic. At the start of your turn, restore 1 Vitality to your Leader.) rewards precise timing."
+    },
+    "art": {
+      "asset_id": "art_card_grv_r_0060",
+      "direction_id": "brief_grv_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/grv-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Ornate ivory and silver urn set with dark emeralds resting on a tomb pedestal. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Urn silhouette with carved bone handles; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Ornate ivory and silver urn set with dark emeralds resting on a tomb pedestal",
+        "silhouette": "Urn silhouette with carved bone handles",
+        "palette": [
+          "ossuary_bone",
+          "tomb_emerald",
+          "crypt_black"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Sunken Catacombs",
+        "materials": [
+          "fossilized bone",
+          "petrified bog-oak",
+          "burgundy briar-vines",
+          "verdigris swamp-iron"
+        ],
+        "clothing_or_armor": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "weapons_or_equipment": "Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles",
+        "background": "The Sunken Catacombs (The Sunken Ossuary & Fossil Marshes)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Gravewild Aether particles and resonant light motes",
+        "mood": "Melancholic, primordial, and hauntingly resilient",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Ornate ivory and silver urn set with dark emeralds resting on a tomb pedestal. Faction Style (Gravewild — Briar-Cairn Memorial Crypts): Carved rib-plate armor, bone-framed spirit lanterns, moss-draped halberds, and memorial steles, crafted from fossilized bone, petrified bog-oak, burgundy briar-vines, verdigris swamp-iron. Silhouette & Pose: Urn silhouette with carved bone handles; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Sunken Catacombs in The Sunken Ossuary & Fossil Marshes (Overgrown memorial gardens, fossilized leviathan ribs, mist-shrouded cairns and ossuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors ossuary_bone, tomb_emerald, crypt_black. Visual Effects & Mood: Subtle Gravewild Aether particles and resonant light motes. Mood: Melancholic, primordial, and hauntingly resilient. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

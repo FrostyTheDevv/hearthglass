@@ -135,7 +135,7 @@ func _build_world_hud() -> void:
 	hbox.add_child(btn_time)
 
 	var btn_deck := Button.new()
-	btn_deck.text = "Deck Builder, Crafting & Shop (480 Cards)"
+	btn_deck.text = "Deck Builder, Crafting & Shop (640 Cards)"
 	btn_deck.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/deck_builder.tscn"))
 	hbox.add_child(btn_deck)
 

@@ -3641,7 +3641,7 @@
     "type": "creature",
     "subtype": "human_raider",
     "faction": "emberclad",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "marksman",
     "cost": 3,
     "attack": 3,
@@ -5826,7 +5826,7 @@
     "type": "creature",
     "subtype": "human_rogue",
     "faction": "emberclad",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -8187,6 +8187,1952 @@
         "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
         "mood": "Fierce, industrial, and incandescent",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive chain-suspended basalt bridge spanning a glowing river of lava. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Dramatic diagonal bridge span over molten orange chasm; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Slag-Gate Basalt Causeway in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Intense magma under-lighting and flying forge sparks; dominant colors molten_orange, charcoal_black, volcanic_red. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0049",
+    "revision": 1,
+    "name": "Ignis Hearth-Scout",
+    "name_key": "cards.emb_c_0049.name",
+    "description": "Swift. After this attacks, gain 1 Heat counter (+1 Attack).",
+    "description_key": "cards.emb_c_0049.description",
+    "type": "creature",
+    "subtype": "human_scout",
+    "faction": "emberclad",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "self",
+            "amount": 1,
+            "counter": "heat"
+          }
+        ]
+      }
+    ],
+    "lore": "Runs ahead of the magma flows, lighting torch-markers with sparks struck from his knuckles.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 4
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Ignis Hearth-Scout",
+      "species_or_classification": "human scout",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_slaggate_causeway",
+        "secondary_landmark_id": "lm_emb_cindervault_smeltery",
+        "primary_figure_id": "fig_emb_hespa",
+        "secondary_figure_id": "fig_emb_torren",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Slag-Gate Basalt Causeway, The Crucible Reaches",
+      "physical_appearance": "Agile scout leaping across bubbling lava fissure with glowing torch — a nimble, quick-deploying human scout (Dynamic leaping runner trailing smoke) clad in glowing slag-glass vents and hammered obsidian plate, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Wary of outsiders but unshakably loyal to lane-mates. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "history": "Runs ahead of the magma flows, lighting torch-markers with sparks struck from his knuckles. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Crucible Matron Hespa mobilized the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Crucible Matron Hespa (Warden of the Slag-Gate) at Slag-Gate Basalt Causeway and coordinates three-lane maneuvers with Pyre-Artificer Torren.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Cindervault Ridge Smeltery",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Swift. After this attacks, gain 1 Heat counter (+1 Attack).",
+      "narrative_importance": "Dependable human scout forming the field backbone of the Pyraxis Caldera Vanguard across Slag-Gate Basalt Causeway.",
+      "flavor_text": "Runs ahead of the magma flows, lighting torch-markers with sparks struck from his knuckles.",
+      "collection_biography": "Few sights along Slag-Gate Basalt Causeway are as unmistakable as agile scout leaping across bubbling lava fissure with glowing torch. Runs ahead of the magma flows, lighting torch-markers with sparks struck from his knuckles. Sworn to the Pyraxis Caldera Vanguard since the Third Harmonic Reformation of the Seventh Chime, this common human scout answers Crucible Matron Hespa's call as a 2/1 vanguard."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0049",
+      "direction_id": "brief_emb_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Agile scout leaping across bubbling lava fissure with glowing torch. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Dynamic leaping runner trailing smoke; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Agile scout leaping across bubbling lava fissure with glowing torch",
+        "silhouette": "Dynamic leaping runner trailing smoke",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Agile scout leaping across bubbling lava fissure with glowing torch. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Dynamic leaping runner trailing smoke; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0050",
+    "revision": 1,
+    "name": "Basalt Wall-Breaker",
+    "name_key": "cards.emb_c_0050.name",
+    "description": "Guard. When damaged, deal 1 damage to the enemy creature in this lane.",
+    "description_key": "cards.emb_c_0050.description",
+    "type": "creature",
+    "subtype": "dwarf_warrior",
+    "faction": "emberclad",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "when_damaged",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "His volcanic basalt buckler shatters incoming weapons and showers the attacker with heated grit.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "heat"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Basalt Wall-Breaker",
+      "species_or_classification": "dwarf warrior",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_lumenport_foundry_ward",
+        "secondary_landmark_id": "lm_emb_hammerfall_bellows",
+        "primary_figure_id": "fig_emb_torren",
+        "secondary_figure_id": "fig_emb_brynja",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Lumenport Foundry Ward Crucible, The Crucible Reaches",
+      "physical_appearance": "Stout dwarven defender hunkered behind a massive basalt slab shield — a nimble, quick-deploying dwarf warrior (Broad rectangular shield with glowing cracks) clad in glowing slag-glass vents and hammered obsidian plate, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Stoic and unyielding even when outnumbered across all three lanes. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Pyraxis Caldera Vanguard at Lumenport Foundry Ward Crucible.",
+      "history": "His volcanic basalt buckler shatters incoming weapons and showers the attacker with heated grit. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Pyre-Artificer Torren mobilized the Pyraxis Caldera Vanguard at Lumenport Foundry Ward Crucible.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Pyre-Artificer Torren (Alchemist of Ignis Coal) at Lumenport Foundry Ward Crucible and coordinates three-lane maneuvers with Forge-Captain Brynja Slagheart.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Hammerfall Great Bellows Hall",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Guard. When damaged, deal 1 damage to the enemy creature in this lane.",
+      "narrative_importance": "Dependable dwarf warrior forming the field backbone of the Pyraxis Caldera Vanguard across Lumenport Foundry Ward Crucible.",
+      "flavor_text": "His volcanic basalt buckler shatters incoming weapons and showers the attacker with heated grit.",
+      "collection_biography": "Pyre-Artificer Torren often warns initiates at Lumenport Foundry Ward Crucible never to misjudge Basalt Wall-Breaker. His volcanic basalt buckler shatters incoming weapons and showers the attacker with heated grit. Whether patrolling Hammerfall Great Bellows Hall for the Pyraxis Caldera Vanguard or manifesting on the Convergence slate, its 1 Attack and 5 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0050",
+      "direction_id": "brief_emb_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Stout dwarven defender hunkered behind a massive basalt slab shield. Faction Style (Emberclad — Lumenport Foundry Ward Crucible): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Broad rectangular shield with glowing cracks; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Stout dwarven defender hunkered behind a massive basalt slab shield",
+        "silhouette": "Broad rectangular shield with glowing cracks",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Stout dwarven defender hunkered behind a massive basalt slab shield. Faction Style (Emberclad — Lumenport Foundry Ward Crucible): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Broad rectangular shield with glowing cracks; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0051",
+    "revision": 1,
+    "name": "Cinder-Dagger Skulker",
+    "name_key": "cards.emb_c_0051.name",
+    "description": "Stealth. On Summon: Inflict 1 Burn counter on the enemy creature in this lane.",
+    "description_key": "cards.emb_c_0051.description",
+    "type": "creature",
+    "subtype": "human_rogue",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "stealth"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "enemy_in_lane",
+            "amount": 1,
+            "counter": "burn"
+          }
+        ]
+      }
+    ],
+    "lore": "A blade dipped in sulfur and quenched in chimney pitch burns long after the puncture.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "stealth",
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Cinder-Dagger Skulker",
+      "species_or_classification": "human rogue",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_pyraxis_trenches",
+        "secondary_landmark_id": "lm_emb_ignis_quarry",
+        "primary_figure_id": "fig_emb_brynja",
+        "secondary_figure_id": "fig_emb_hespa",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Mount Pyraxis Caldera Trenches, The Crucible Reaches",
+      "physical_appearance": "Hooded volcanic rogue stepping from furnace steam with red-hot stiletto — a battle-tested mid-weight human rogue (Slender lunging rogue with streaming daggers) clad in glowing slag-glass vents and hammered obsidian plate, exhibiting wisps of concealing twilight mist and shadow refraction.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a assassin (4 Attack / 2 Health) affiliated with the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "history": "A blade dipped in sulfur and quenched in chimney pitch burns long after the puncture. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Forge-Captain Brynja Slagheart mobilized the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Forge-Captain Brynja Slagheart (Emberclad Siege Commander) at Mount Pyraxis Caldera Trenches and coordinates three-lane maneuvers with Crucible Matron Hespa.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Ignis Coal-Quarry Terraces",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Stealth. On Summon: Inflict 1 Burn counter on the enemy creature in this lane.",
+      "narrative_importance": "Dependable human rogue forming the field backbone of the Pyraxis Caldera Vanguard across Mount Pyraxis Caldera Trenches.",
+      "flavor_text": "A blade dipped in sulfur and quenched in chimney pitch burns long after the puncture.",
+      "collection_biography": "Few sights along Mount Pyraxis Caldera Trenches are as unmistakable as hooded volcanic rogue stepping from furnace steam with red-hot stiletto. A blade dipped in sulfur and quenched in chimney pitch burns long after the puncture. Sworn to the Pyraxis Caldera Vanguard since the Third Harmonic Reformation of the Seventh Chime, this uncommon human rogue answers Forge-Captain Brynja Slagheart's call as a 4/2 assassin."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0051",
+      "direction_id": "brief_emb_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hooded volcanic rogue stepping from furnace steam with red-hot stiletto. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Slender lunging rogue with streaming daggers; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Hooded volcanic rogue stepping from furnace steam with red-hot stiletto",
+        "silhouette": "Slender lunging rogue with streaming daggers",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "wisps of concealing twilight mist and shadow refraction",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Hooded volcanic rogue stepping from furnace steam with red-hot stiletto. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Slender lunging rogue with streaming daggers; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0052",
+    "revision": 1,
+    "name": "Pyre-Sling Bombardier",
+    "name_key": "cards.emb_c_0052.name",
+    "description": "Reach. After this attacks, inflict 1 Burn counter on an enemy creature in this lane.",
+    "description_key": "cards.emb_c_0052.description",
+    "type": "creature",
+    "subtype": "human_marksman",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "enemy_in_lane",
+            "amount": 1,
+            "counter": "burn"
+          }
+        ]
+      }
+    ],
+    "lore": "His bronze-weighted sling lobs clay globes packed with live charcoal.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Pyre-Sling Bombardier",
+      "species_or_classification": "human marksman",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_pyraxis_trenches",
+        "secondary_landmark_id": "lm_emb_ignis_quarry",
+        "primary_figure_id": "fig_emb_brynja",
+        "secondary_figure_id": "fig_emb_hespa",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Mount Pyraxis Caldera Trenches, The Crucible Reaches",
+      "physical_appearance": "Foundry marksman whirling an incendiary sling above a furnace rampart — a battle-tested mid-weight human marksman (Overhead whirling sling silhouette) clad in glowing slag-glass vents and hammered obsidian plate, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a marksman (2 Attack / 4 Health) affiliated with the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "history": "His bronze-weighted sling lobs clay globes packed with live charcoal. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Forge-Captain Brynja Slagheart mobilized the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Forge-Captain Brynja Slagheart (Emberclad Siege Commander) at Mount Pyraxis Caldera Trenches and coordinates three-lane maneuvers with Crucible Matron Hespa.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Ignis Coal-Quarry Terraces",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Reach. After this attacks, inflict 1 Burn counter on an enemy creature in this lane.",
+      "narrative_importance": "Dependable human marksman forming the field backbone of the Pyraxis Caldera Vanguard across Mount Pyraxis Caldera Trenches.",
+      "flavor_text": "His bronze-weighted sling lobs clay globes packed with live charcoal.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Forge-Captain Brynja Slagheart and Crucible Matron Hespa first encountered Pyre-Sling Bombardier guarding the approaches to Mount Pyraxis Caldera Trenches. His bronze-weighted sling lobs clay globes packed with live charcoal. Now a mainstay of the Pyraxis Caldera Vanguard, this 3-Aether marksman rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0052",
+      "direction_id": "brief_emb_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Foundry marksman whirling an incendiary sling above a furnace rampart. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Overhead whirling sling silhouette; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Foundry marksman whirling an incendiary sling above a furnace rampart",
+        "silhouette": "Overhead whirling sling silhouette",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Foundry marksman whirling an incendiary sling above a furnace rampart. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Overhead whirling sling silhouette; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0053",
+    "revision": 1,
+    "name": "Caldera Lava-Shaper",
+    "name_key": "cards.emb_c_0053.name",
+    "description": "On Summon: Deal 1 damage to all enemy creatures.",
+    "description_key": "cards.emb_c_0053.description",
+    "type": "creature",
+    "subtype": "human_pyromancer",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Channeling subterranean thermal veins, she summons geysers of molten slag across opposing ranks.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "heat"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Caldera Lava-Shaper",
+      "species_or_classification": "human pyromancer",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_pyraxis_trenches",
+        "secondary_landmark_id": "lm_emb_ignis_quarry",
+        "primary_figure_id": "fig_emb_brynja",
+        "secondary_figure_id": "fig_emb_hespa",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Mount Pyraxis Caldera Trenches, The Crucible Reaches",
+      "physical_appearance": "Pyromancer in brass robes raising twin magma plumes with open hands — a battle-tested mid-weight human pyromancer (Robed caster framed by twin erupting lava pillars) clad in glowing slag-glass vents and hammered obsidian plate, attuned to Emberclad Aether discipline.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a caster (3 Attack / 4 Health) affiliated with the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "history": "Channeling subterranean thermal veins, she summons geysers of molten slag across opposing ranks. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Forge-Captain Brynja Slagheart mobilized the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Forge-Captain Brynja Slagheart (Emberclad Siege Commander) at Mount Pyraxis Caldera Trenches and coordinates three-lane maneuvers with Crucible Matron Hespa.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Ignis Coal-Quarry Terraces",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: On Summon: Deal 1 damage to all enemy creatures.",
+      "narrative_importance": "Dependable human pyromancer forming the field backbone of the Pyraxis Caldera Vanguard across Mount Pyraxis Caldera Trenches.",
+      "flavor_text": "Channeling subterranean thermal veins, she summons geysers of molten slag across opposing ranks.",
+      "collection_biography": "At Mount Pyraxis Caldera Trenches — where a ring of obsidian bulwarks holding back wild magma behemoths along the upper crater. — Caldera Lava-Shaper earned a lasting reputation among the Pyraxis Caldera Vanguard. Channeling subterranean thermal veins, she summons geysers of molten slag across opposing ranks. In Convergence Duels, Forge-Captain Brynja Slagheart pairs it with Crucible Matron Hespa's formations to leverage focused lane presence across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0053",
+      "direction_id": "brief_emb_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Pyromancer in brass robes raising twin magma plumes with open hands. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Robed caster framed by twin erupting lava pillars; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Pyromancer in brass robes raising twin magma plumes with open hands",
+        "silhouette": "Robed caster framed by twin erupting lava pillars",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Pyromancer in brass robes raising twin magma plumes with open hands. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Robed caster framed by twin erupting lava pillars; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0054",
+    "revision": 1,
+    "name": "Foundry Chief Anvil-Master",
+    "name_key": "cards.emb_c_0054.name",
+    "description": "Guard. At the start of your turn, grant an allied creature +1 Attack.",
+    "description_key": "cards.emb_c_0054.description",
+    "type": "creature",
+    "subtype": "dwarf_smith",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "modify_stats",
+            "target": "ally_creature_in_lane_or_any",
+            "attack_delta": 1,
+            "health_delta": 0
+          }
+        ]
+      }
+    ],
+    "lore": "Every hammer blow on the great forge bellows resonates into the weapons of his guild-brethren.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "heat"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Foundry Chief Anvil-Master",
+      "species_or_classification": "dwarf smith",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_cindervault_smeltery",
+        "secondary_landmark_id": "lm_emb_slaggate_causeway",
+        "primary_figure_id": "fig_emb_kaelen",
+        "secondary_figure_id": "fig_emb_vaelor",
+        "organization_id": "org_cinder_anvil",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Cindervault Ridge Smeltery, The Crucible Reaches",
+      "physical_appearance": "Broad-shouldered dwarven smith striking a massive red-hot broadsword on an anvil — a battle-tested mid-weight dwarf smith (Broad smith raising heavy hammer above illuminated anvil) clad in molten brass rivets and glowing slag-glass vents, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Battle-scarred, pragmatic, and disdainful of ornamental flourish. Operates as a support (3 Attack / 5 Health) affiliated with the Order of the Cinder Anvil at Cindervault Ridge Smeltery.",
+      "history": "Every hammer blow on the great forge bellows resonates into the weapons of his guild-brethren. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Kaelen Emberforge mobilized the Order of the Cinder Anvil at Cindervault Ridge Smeltery.",
+      "faction_allegiance": "Emberclad (Order of the Cinder Anvil)",
+      "important_relationships": "Serves alongside Kaelen Emberforge (Emberclad Circuit Challenger) at Cindervault Ridge Smeltery and coordinates three-lane maneuvers with Grand Master Vaelor of the Seventh Anvil.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Slag-Gate Basalt Causeway",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Guard. At the start of your turn, grant an allied creature +1 Attack.",
+      "narrative_importance": "Dependable dwarf smith forming the field backbone of the Order of the Cinder Anvil across Cindervault Ridge Smeltery.",
+      "flavor_text": "Every hammer blow on the great forge bellows resonates into the weapons of his guild-brethren.",
+      "collection_biography": "Where ordinary dwarf smith units falter, Foundry Chief Anvil-Master thrives amidst the hazards of Cindervault Ridge Smeltery. Every hammer blow on the great forge bellows resonates into the weapons of his guild-brethren. Trained under the doctrine of Kaelen Emberforge and the Order of the Cinder Anvil, it turns every skirmish near Slag-Gate Basalt Causeway into a display of guard."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0054",
+      "direction_id": "brief_emb_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Broad-shouldered dwarven smith striking a massive red-hot broadsword on an anvil. Faction Style (Emberclad — Cindervault Ridge Smeltery): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Broad smith raising heavy hammer above illuminated anvil; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Broad-shouldered dwarven smith striking a massive red-hot broadsword on an anvil",
+        "silhouette": "Broad smith raising heavy hammer above illuminated anvil",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Broad-shouldered dwarven smith striking a massive red-hot broadsword on an anvil. Faction Style (Emberclad — Cindervault Ridge Smeltery): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Broad smith raising heavy hammer above illuminated anvil; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0055",
+    "revision": 1,
+    "name": "Lord Ignacius, Avatar of the Caldera",
+    "name_key": "cards.emb_c_0055.name",
+    "description": "Pierce, Shield (1). On Summon: Deal 3 damage to all enemy creatures and gain 3 Heat counters.",
+    "description_key": "cards.emb_c_0055.description",
+    "type": "creature",
+    "subtype": "elemental_avatar",
+    "faction": "emberclad",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 8,
+    "health": 8,
+    "keywords": [
+      "pierce",
+      "shield"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 3
+          },
+          {
+            "operation": "add_counter",
+            "target": "self",
+            "counter": "heat",
+            "amount": 3
+          }
+        ]
+      }
+    ],
+    "lore": "The molten heart of Mount Pyraxis given flesh and iron crown. When Ignacius steps upon the field, stones melt to slag.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "pierce",
+        "shield",
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, self",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Lord Ignacius, Avatar of the Caldera",
+      "species_or_classification": "elemental avatar",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_pyraxis_trenches",
+        "secondary_landmark_id": "lm_emb_ignis_quarry",
+        "primary_figure_id": "fig_emb_brynja",
+        "secondary_figure_id": "fig_emb_hespa",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Mount Pyraxis Caldera Trenches, The Crucible Reaches",
+      "physical_appearance": "Titanic magma giant wearing an obsidian crown and striding through a burning caldera — a towering, high-Aether elemental avatar (Towering horned elemental titan crowned in flame) clad in glowing slag-glass vents and hammered obsidian plate, exhibiting armor-shattering kinetic impact spike and form-fitting hard-light Aether forcefield shell.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a colossus (8 Attack / 8 Health) affiliated with the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "history": "The molten heart of Mount Pyraxis given flesh and iron crown. When Ignacius steps upon the field, stones melt to slag. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Forge-Captain Brynja Slagheart mobilized the Pyraxis Caldera Vanguard at Mount Pyraxis Caldera Trenches.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "important_relationships": "Serves alongside Forge-Captain Brynja Slagheart (Emberclad Siege Commander) at Mount Pyraxis Caldera Trenches and coordinates three-lane maneuvers with Crucible Matron Hespa.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Ignis Coal-Quarry Terraces",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Pierce, Shield (1). On Summon: Deal 3 damage to all enemy creatures and gain 3 Heat counters.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Mount Pyraxis Caldera Trenches, counselled directly by Forge-Captain Brynja Slagheart.",
+      "flavor_text": "The molten heart of Mount Pyraxis given flesh and iron crown. When Ignacius steps upon the field, stones melt to slag.",
+      "collection_biography": "At Mount Pyraxis Caldera Trenches — where a ring of obsidian bulwarks holding back wild magma behemoths along the upper crater. — Lord Ignacius, Avatar of the Caldera earned a lasting reputation among the Pyraxis Caldera Vanguard. The molten heart of Mount Pyraxis given flesh and iron crown. When Ignacius steps upon the field, stones melt to slag. In Convergence Duels, Forge-Captain Brynja Slagheart pairs it with Crucible Matron Hespa's formations to leverage pierce, shield across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0055",
+      "direction_id": "brief_emb_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Titanic magma giant wearing an obsidian crown and striding through a burning caldera. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Towering horned elemental titan crowned in flame; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: armor-shattering kinetic impact spike; form-fitting hard-light Aether forcefield shell. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Titanic magma giant wearing an obsidian crown and striding through a burning caldera",
+        "silhouette": "Towering horned elemental titan crowned in flame",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "armor-shattering kinetic impact spike; form-fitting hard-light Aether forcefield shell",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Titanic magma giant wearing an obsidian crown and striding through a burning caldera. Faction Style (Emberclad — Mount Pyraxis Caldera Trenches): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Towering horned elemental titan crowned in flame; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: armor-shattering kinetic impact spike; form-fitting hard-light Aether forcefield shell. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-C-0056",
+    "revision": 1,
+    "name": "Ash-Whirl Skirmisher",
+    "name_key": "cards.emb_c_0056.name",
+    "description": "Skirmish. When this moves lanes, gain 1 Heat counter.",
+    "description_key": "cards.emb_c_0056.description",
+    "type": "creature",
+    "subtype": "human_skirmisher",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": "trickster",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "self",
+            "amount": 1,
+            "counter": "heat"
+          }
+        ]
+      }
+    ],
+    "lore": "Vaulting on soot-stained poles over conveyor sluices, he strikes wherever the enemy flanks are exposed.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Ash-Whirl Skirmisher",
+      "species_or_classification": "human skirmisher",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_ignis_quarry",
+        "secondary_landmark_id": "lm_emb_pyraxis_trenches",
+        "primary_figure_id": "fig_emb_durgan",
+        "secondary_figure_id": "fig_emb_kaelen",
+        "organization_id": "org_cinder_anvil",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Ignis Coal-Quarry Terraces, The Crucible Reaches",
+      "physical_appearance": "Acrobatic warrior vaulting across an iron foundry sluice with a bladed staff — a battle-tested mid-weight human skirmisher (Vaulting pole-fighter in mid-air above glowing embers) clad in molten brass rivets and glowing slag-glass vents, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a trickster (3 Attack / 3 Health) affiliated with the Order of the Cinder Anvil at Ignis Coal-Quarry Terraces.",
+      "history": "Vaulting on soot-stained poles over conveyor sluices, he strikes wherever the enemy flanks are exposed. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Siege-Master Durgan Ashhand mobilized the Order of the Cinder Anvil at Ignis Coal-Quarry Terraces.",
+      "faction_allegiance": "Emberclad (Order of the Cinder Anvil)",
+      "important_relationships": "Serves alongside Siege-Master Durgan Ashhand (Breaker of Pyraxis) at Ignis Coal-Quarry Terraces and coordinates three-lane maneuvers with Kaelen Emberforge.",
+      "habitats": [
+        "The Crucible Reaches",
+        "Mount Pyraxis Caldera Trenches",
+        "The Crucible Reaches"
+      ],
+      "world_abilities": "Channels Emberclad resonance (heat) to manifest: Skirmish. When this moves lanes, gain 1 Heat counter.",
+      "narrative_importance": "Dependable human skirmisher forming the field backbone of the Order of the Cinder Anvil across Ignis Coal-Quarry Terraces.",
+      "flavor_text": "Vaulting on soot-stained poles over conveyor sluices, he strikes wherever the enemy flanks are exposed.",
+      "collection_biography": "Where ordinary human skirmisher units falter, Ash-Whirl Skirmisher thrives amidst the hazards of Ignis Coal-Quarry Terraces. Vaulting on soot-stained poles over conveyor sluices, he strikes wherever the enemy flanks are exposed. Trained under the doctrine of Siege-Master Durgan Ashhand and the Order of the Cinder Anvil, it turns every skirmish near Mount Pyraxis Caldera Trenches into a display of skirmish."
+    },
+    "art": {
+      "asset_id": "art_card_emb_c_0056",
+      "direction_id": "brief_emb_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Acrobatic warrior vaulting across an iron foundry sluice with a bladed staff. Faction Style (Emberclad — Ignis Coal-Quarry Terraces): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Vaulting pole-fighter in mid-air above glowing embers; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Acrobatic warrior vaulting across an iron foundry sluice with a bladed staff",
+        "silhouette": "Vaulting pole-fighter in mid-air above glowing embers",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Acrobatic warrior vaulting across an iron foundry sluice with a bladed staff. Faction Style (Emberclad — Ignis Coal-Quarry Terraces): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Vaulting pole-fighter in mid-air above glowing embers; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-T-0057",
+    "revision": 1,
+    "name": "Slag-Sparks Flash",
+    "name_key": "cards.emb_t_0057.name",
+    "description": "Quick Tactic. Deal 2 damage to an enemy creature in target lane.",
+    "description_key": "cards.emb_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "emberclad",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "A handful of blinding forge-shavings thrown directly into the enemy visor.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "heat"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Slag-Sparks Flash",
+      "classification": "Emberclad tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_lumenport_foundry_ward",
+        "secondary_landmark_id": "lm_emb_hammerfall_bellows",
+        "primary_figure_id": "fig_emb_torren",
+        "secondary_figure_id": "fig_emb_brynja",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Lumenport Foundry Ward Crucible (The Crucible Reaches)",
+      "historical_provenance": "A handful of blinding forge-shavings thrown directly into the enemy visor. Established during the Sunken Wake Cataclysm (Year 114 AC) by Pyre-Artificer Torren and the Pyraxis Caldera Vanguard at Lumenport Foundry Ward Crucible.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of Lumenport Foundry Ward Crucible: Quick Tactic. Deal 2 damage to an enemy creature in target lane.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "associated_locations": [
+        "The Crucible Reaches",
+        "Hammerfall Great Bellows Hall",
+        "The Crucible Reaches"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Pyre-Artificer Torren and the Pyraxis Caldera Vanguard at Lumenport Foundry Ward Crucible.",
+      "flavor_text": "A handful of blinding forge-shavings thrown directly into the enemy visor.",
+      "collection_biography": "Inscribed into the ledgers of the Pyraxis Caldera Vanguard at Lumenport Foundry Ward Crucible during the Sunken Wake Cataclysm (Year 114 AC), Slag-Sparks Flash captures a decisive moment of faction history: A handful of blinding forge-shavings thrown directly into the enemy visor. Pyre-Artificer Torren recommends it for decks seeking reliable quick leverage."
+    },
+    "art": {
+      "asset_id": "art_card_emb_t_0057",
+      "direction_id": "brief_emb_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Burst of blinding white-gold spark shower striking an iron visor. Faction Style (Emberclad — Lumenport Foundry Ward Crucible): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Explosive radial spray of white sparks; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Burst of blinding white-gold spark shower striking an iron visor",
+        "silhouette": "Explosive radial spray of white sparks",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Burst of blinding white-gold spark shower striking an iron visor. Faction Style (Emberclad — Lumenport Foundry Ward Crucible): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Explosive radial spray of white sparks; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-T-0058",
+    "revision": 1,
+    "name": "Infernal Resurgence",
+    "name_key": "cards.emb_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards and grant your strongest allied creature 1 Heat counter.",
+    "description_key": "cards.emb_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "emberclad",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          },
+          {
+            "operation": "add_counter",
+            "target": "strongest_ally_creature",
+            "counter": "heat",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Opening the furnace draft pipes feeds oxygen directly into the duelist’s reserve.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader",
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader, strongest_ally_creature",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Infernal Resurgence",
+      "classification": "Emberclad tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_slaggate_causeway",
+        "secondary_landmark_id": "lm_emb_cindervault_smeltery",
+        "primary_figure_id": "fig_emb_hespa",
+        "secondary_figure_id": "fig_emb_torren",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "Slag-Gate Basalt Causeway (The Crucible Reaches)",
+      "historical_provenance": "Opening the furnace draft pipes feeds oxygen directly into the duelist’s reserve. Established during the Whisperleaf Root-Compact (Year 450 AC) by Crucible Matron Hespa and the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Slag-Gate Basalt Causeway: Standard Tactic. Draw 2 cards and grant your strongest allied creature 1 Heat counter.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "associated_locations": [
+        "The Crucible Reaches",
+        "Cindervault Ridge Smeltery",
+        "The Crucible Reaches"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Crucible Matron Hespa and the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "flavor_text": "Opening the furnace draft pipes feeds oxygen directly into the duelist’s reserve.",
+      "collection_biography": "When the Whisperleaf Root-Compact tested the defenses of Slag-Gate Basalt Causeway, the Pyraxis Caldera Vanguard unveiled Infernal Resurgence. Opening the furnace draft pipes feeds oxygen directly into the duelist’s reserve. Both Crucible Matron Hespa and Pyre-Artificer Torren still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_emb_t_0058",
+      "direction_id": "brief_emb_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive blast doors opening to reveal a roaring forge firebox. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Symmetrical open arched furnace doors pouring golden light; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Massive blast doors opening to reveal a roaring forge firebox",
+        "silhouette": "Symmetrical open arched furnace doors pouring golden light",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Massive blast doors opening to reveal a roaring forge firebox. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Symmetrical open arched furnace doors pouring golden light; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-T-0059",
+    "revision": 1,
+    "name": "Anvil-Shatter Decree",
+    "name_key": "cards.emb_t_0059.name",
+    "description": "Standard Tactic. Destroy a target enemy creature.",
+    "description_key": "cards.emb_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "emberclad",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "destroy",
+            "target": "target_enemy_creature"
+          }
+        ]
+      }
+    ],
+    "lore": "The Chief Artificer stamps the reject mark upon the challenger’s armor, condemning it to the smelter.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "target_enemy_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "heat"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: target_enemy_creature",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Anvil-Shatter Decree",
+      "classification": "Emberclad tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_slaggate_causeway",
+        "secondary_landmark_id": "lm_emb_cindervault_smeltery",
+        "primary_figure_id": "fig_emb_hespa",
+        "secondary_figure_id": "fig_emb_torren",
+        "organization_id": "org_pyraxis_vanguard",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Slag-Gate Basalt Causeway (The Crucible Reaches)",
+      "historical_provenance": "The Chief Artificer stamps the reject mark upon the challenger’s armor, condemning it to the smelter. Established during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) by Crucible Matron Hespa and the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Slag-Gate Basalt Causeway: Standard Tactic. Destroy a target enemy creature.",
+      "faction_allegiance": "Emberclad (Pyraxis Caldera Vanguard)",
+      "associated_locations": [
+        "The Crucible Reaches",
+        "Cindervault Ridge Smeltery",
+        "The Crucible Reaches"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Crucible Matron Hespa and the Pyraxis Caldera Vanguard at Slag-Gate Basalt Causeway.",
+      "flavor_text": "The Chief Artificer stamps the reject mark upon the challenger’s armor, condemning it to the smelter.",
+      "collection_biography": "When the Third Harmonic Reformation of the Seventh Chime tested the defenses of Slag-Gate Basalt Causeway, the Pyraxis Caldera Vanguard unveiled Anvil-Shatter Decree. The Chief Artificer stamps the reject mark upon the challenger’s armor, condemning it to the smelter. Both Crucible Matron Hespa and Pyre-Artificer Torren still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_emb_t_0059",
+      "direction_id": "brief_emb_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gigantic pneumatic forge piston crushing a steel shield into fragments. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Vertical hammer slamming down with shockwave ripples; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Gigantic pneumatic forge piston crushing a steel shield into fragments",
+        "silhouette": "Vertical hammer slamming down with shockwave ripples",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Gigantic pneumatic forge piston crushing a steel shield into fragments. Faction Style (Emberclad — Slag-Gate Basalt Causeway): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: Vertical hammer slamming down with shockwave ripples; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "EMB-R-0060",
+    "revision": 1,
+    "name": "Crucible Draft-Bellows",
+    "name_key": "cards.emb_r_0060.name",
+    "description": "Relic. At the start of your turn, grant your strongest allied creature 1 Heat counter.",
+    "description_key": "cards.emb_r_0060.description",
+    "type": "relic",
+    "subtype": "forge_relic",
+    "faction": "emberclad",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "heat"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "strongest_ally_creature",
+            "amount": 1,
+            "counter": "heat"
+          }
+        ]
+      }
+    ],
+    "lore": "Twin leather bellows that pump sulfurous air through the floor grating of the table.",
+    "archetypes": [
+      "heat_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "heat",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "heat_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "heat",
+        "heat_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Crucible Draft-Bellows",
+      "classification": "Emberclad relic (forge relic)",
+      "world_bible_refs": {
+        "region_id": "reg_crucible_reaches",
+        "primary_landmark_id": "lm_emb_cindervault_smeltery",
+        "secondary_landmark_id": "lm_emb_slaggate_causeway",
+        "primary_figure_id": "fig_emb_kaelen",
+        "secondary_figure_id": "fig_emb_vaelor",
+        "organization_id": "org_cinder_anvil",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Cindervault Ridge Smeltery (The Crucible Reaches)",
+      "historical_provenance": "Twin leather bellows that pump sulfurous air through the floor grating of the table. Established during the Great Caldera Eruption of Year 412 (Year 412 AC) by Kaelen Emberforge and the Order of the Cinder Anvil at Cindervault Ridge Smeltery.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Cindervault Ridge Smeltery: Relic. At the start of your turn, grant your strongest allied creature 1 Heat counter.",
+      "faction_allegiance": "Emberclad (Order of the Cinder Anvil)",
+      "associated_locations": [
+        "The Crucible Reaches",
+        "Slag-Gate Basalt Causeway",
+        "The Crucible Reaches"
+      ],
+      "narrative_importance": "An enduring artifact of the Order of the Cinder Anvil, forged during the Great Caldera Eruption of Year 412 and safeguarded by Kaelen Emberforge.",
+      "flavor_text": "Twin leather bellows that pump sulfurous air through the floor grating of the table.",
+      "collection_biography": "Twin leather bellows that pump sulfurous air through the floor grating of the table. Codified by Kaelen Emberforge (Emberclad Circuit Challenger) for the Order of the Cinder Anvil during the Great Caldera Eruption of Year 412, Crucible Draft-Bellows channels the resonant signature of Cindervault Ridge Smeltery into a 2-Aether relic."
+    },
+    "art": {
+      "asset_id": "art_card_emb_r_0060",
+      "direction_id": "brief_emb_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/emb-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy brass-banded leather bellows mounted on an iron frame with glowing exhaust vents. Faction Style (Emberclad — Cindervault Ridge Smeltery): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: V-shaped mechanical bellows with smoke vents; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Heavy brass-banded leather bellows mounted on an iron frame with glowing exhaust vents",
+        "silhouette": "V-shaped mechanical bellows with smoke vents",
+        "palette": [
+          "molten_amber",
+          "volcanic_red",
+          "charcoal_black"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Crucible Reaches",
+        "materials": [
+          "hammered obsidian plate",
+          "dark forge-iron",
+          "molten brass rivets",
+          "glowing slag-glass vents"
+        ],
+        "clothing_or_armor": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "weapons_or_equipment": "Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields",
+        "background": "The Crucible Reaches (The Crucible Reaches)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Emberclad Aether particles and resonant light motes",
+        "mood": "Fierce, industrial, and incandescent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy brass-banded leather bellows mounted on an iron frame with glowing exhaust vents. Faction Style (Emberclad — Cindervault Ridge Smeltery): Heavy riveted furnace-plate, heat-vented pauldrons, piston warhammers, and slag-forged shields, crafted from hammered obsidian plate, dark forge-iron, molten brass rivets, glowing slag-glass vents. Silhouette & Pose: V-shaped mechanical bellows with smoke vents; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Crucible Reaches in The Crucible Reaches (Volcanic forge-foundries, basalt anvil causeways, lava conduits, and ember-lit crucibles). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors molten_amber, volcanic_red, charcoal_black. Visual Effects & Mood: Subtle Emberclad Aether particles and resonant light motes. Mood: Fierce, industrial, and incandescent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

@@ -1,7 +1,7 @@
 extends SceneTree
 ## Automated Godot 4.3 Headless Smoke-Test & Verification Suite for Hearthglass
 ## Verifies:
-##  1. Global GameState bootstrap: 480 cards, 16 starter decks, 4-tier rarity, 16 NPCs, 6 districts, 6 interiors, 8 quests
+##  1. Global GameState bootstrap: 640 cards, 16 starter decks, 4-tier rarity, 16 NPCs, 6 districts, 6 interiors, 8 quests
 ##  2. Lumenport 3D Hub Scene: environment meshes, player controller, camera pivot, lighting, 16 scheduled NPCs
 ##  3. Tabletop Arena 3D/2D Scene: 1v1 (30 Vitality) & 2v2 Tag (45 Vitality), board lanes, hand layout, buttons
 ##  4. Deck Builder Scene: collection filtering, archetype deck loading, legal deck composition
@@ -106,9 +106,9 @@ func _test_canonical_content_and_rarity() -> bool:
 		return false
 
 	var cards: Array = parsed["cards"]
-	print("  -> Found %d canonical cards in client bundle (Target: 480)" % [cards.size()])
-	if cards.size() != 480:
-		printerr("Expected 480 canonical cards, got: ", cards.size())
+	print("  -> Found %d canonical cards in client bundle (Target: 640)" % [cards.size()])
+	if cards.size() != 640:
+		printerr("Expected 640 canonical cards, got: ", cards.size())
 		return false
 
 	var rarity_counts := {
@@ -132,7 +132,7 @@ func _test_canonical_content_and_rarity() -> bool:
 	print("     Legendary: %d (Target: 24,  5.0%%)" % [rarity_counts["legendary"]])
 	print("     Epic:      %d (Target: 0,   0.0%%)" % [rarity_counts["epic"]])
 
-	if rarity_counts["common"] != 240 or rarity_counts["uncommon"] != 144 or rarity_counts["rare"] != 72 or rarity_counts["legendary"] != 24 or rarity_counts["epic"] != 0:
+	if rarity_counts["common"] != 320 or rarity_counts["uncommon"] != 192 or rarity_counts["rare"] != 96 or rarity_counts["legendary"] != 32 or rarity_counts["epic"] != 0:
 		printerr("Rarity distribution does not match canonical 4-tier specification!")
 		return false
 

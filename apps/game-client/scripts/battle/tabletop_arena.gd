@@ -132,7 +132,7 @@ func _build_tabletop_ui() -> void:
 
 	inspector_label = RichTextLabel.new()
 	inspector_label.custom_minimum_size = Vector2(350, 220)
-	inspector_label.text = "Authoritative Rust Engine Active (480 Cards). Select a card in your hand, then click an open Front or Rear lane slot."
+	inspector_label.text = "Authoritative Rust Engine Active (640 Cards). Select a card in your hand, then click an open Front or Rear lane slot."
 	right_sidebar.add_child(inspector_label)
 
 	var log_title := Label.new()

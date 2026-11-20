@@ -3273,7 +3273,7 @@
     "type": "creature",
     "subtype": "ancient_reptile",
     "faction": "verdant_pact",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "bulwark",
     "cost": 3,
     "attack": 1,
@@ -3613,7 +3613,7 @@
     "type": "creature",
     "subtype": "sylvan_ranger",
     "faction": "verdant_pact",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "marksman",
     "cost": 3,
     "attack": 2,
@@ -5801,7 +5801,7 @@
     "type": "creature",
     "subtype": "insectoid_beast",
     "faction": "verdant_pact",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -8156,6 +8156,1944 @@
         "visual_effects": "sprouting emerald leaves and golden vitality rings",
         "mood": "Serene, ancient, and flourishing",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Vast forest interior formed by living arched yew trunks and golden sun-shafts. Faction Style (Verdant Pact — Root-Bound Cathedral of Elder Yew): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Gothic arches of living tree trunks; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Root-Bound Cathedral of Elder Yew in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dappled golden canopy sunbeams and glowing emerald pollen; dominant colors emerald_green, amber_sap, bark_brown. Visual Effects & Mood: sprouting emerald leaves and golden vitality rings. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0049",
+    "revision": 1,
+    "name": "Briar-Weft Seedling",
+    "name_key": "cards.ver_c_0049.name",
+    "description": "Swift. After this attacks, gain 1 Growth counter (+1/+1).",
+    "description_key": "cards.ver_c_0049.description",
+    "type": "creature",
+    "subtype": "sylvan_plant",
+    "faction": "verdant_pact",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 1,
+    "health": 3,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "self",
+            "amount": 1,
+            "counter": "growth"
+          }
+        ]
+      }
+    ],
+    "lore": "Rooting in stone paving within heartbeats, it draws Aether sap directly from the bedrock.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "growth",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Briar-Weft Seedling",
+      "species_or_classification": "sylvan plant",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_sundew_conservatory",
+        "secondary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "primary_figure_id": "fig_ver_sylvanus",
+        "secondary_figure_id": "fig_ver_oakhaven",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Sun-Dew Conservatory Glades, The Verdant Expanse",
+      "physical_appearance": "Luminous green sapling sprouting thorny tendrils across cracked stone — a nimble, quick-deploying sylvan plant (Twisting upright vine seedling with spreading leaf crown) clad in moss-woven linen and living ironwood, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Wary of outsiders but unshakably loyal to lane-mates. Operates as a vanguard (1 Attack / 3 Health) affiliated with the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "history": "Rooting in stone paving within heartbeats, it draws Aether sap directly from the bedrock. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Arch-Druid Sylvanus Rootbinder mobilized the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "important_relationships": "Serves alongside Arch-Druid Sylvanus Rootbinder (Keeper of the Worldroot) at Sun-Dew Conservatory Glades and coordinates three-lane maneuvers with Canopy Matriarch Oakhaven.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Whisperleaf High Canopy",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Swift. After this attacks, gain 1 Growth counter (+1/+1).",
+      "narrative_importance": "Dependable sylvan plant forming the field backbone of the Apothecaries of the Twelve Birches across Sun-Dew Conservatory Glades.",
+      "flavor_text": "Rooting in stone paving within heartbeats, it draws Aether sap directly from the bedrock.",
+      "collection_biography": "Arch-Druid Sylvanus Rootbinder often warns initiates at Sun-Dew Conservatory Glades never to misjudge Briar-Weft Seedling. Rooting in stone paving within heartbeats, it draws Aether sap directly from the bedrock. Whether patrolling Whisperleaf High Canopy for the Apothecaries of the Twelve Birches or manifesting on the Convergence slate, its 1 Attack and 3 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0049",
+      "direction_id": "brief_ver_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Luminous green sapling sprouting thorny tendrils across cracked stone. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Twisting upright vine seedling with spreading leaf crown; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Luminous green sapling sprouting thorny tendrils across cracked stone",
+        "silhouette": "Twisting upright vine seedling with spreading leaf crown",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Luminous green sapling sprouting thorny tendrils across cracked stone. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Twisting upright vine seedling with spreading leaf crown; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0050",
+    "revision": 1,
+    "name": "Ironwood Bark-Bulwark",
+    "name_key": "cards.ver_c_0050.name",
+    "description": "Guard, Anchor. At the end of your turn, restore 1 Health to this creature.",
+    "description_key": "cards.ver_c_0050.description",
+    "type": "creature",
+    "subtype": "treant_guardian",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "bulwark",
+    "cost": 3,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard",
+      "anchor"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_end",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "self",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Petrified timber grown under druidic hymns cannot be split by common steel.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "anchor",
+        "growth"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Ironwood Bark-Bulwark",
+      "species_or_classification": "treant guardian",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "secondary_landmark_id": "lm_ver_sundew_conservatory",
+        "primary_figure_id": "fig_ver_soren",
+        "secondary_figure_id": "fig_ver_elowen",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "Whisperleaf High Canopy, The Verdant Expanse",
+      "physical_appearance": "Broad-trunked wooden sentry with braided bark plates and glowing emerald eyes — a battle-tested mid-weight treant guardian (Solid tree-trunk silhouette with rooted base) clad in emerald amber and moss-woven linen, exhibiting interlocking defensive barrier aura and planted shield stance and heavy gravity runes locking the base to the stone floorplates.",
+      "personality_or_disposition": "Battle-scarred, pragmatic, and disdainful of ornamental flourish. Operates as a bulwark (2 Attack / 5 Health) affiliated with the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "history": "Petrified timber grown under druidic hymns cannot be split by common steel. First recorded during the First Convergence Concordat (Year 1 AC) when Soren of Whisperleaf mobilized the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "important_relationships": "Serves alongside Soren of Whisperleaf (Verdant Pact Envoy & Tag Partner) at Whisperleaf High Canopy and coordinates three-lane maneuvers with Grove-Speaker Elowen.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Sun-Dew Conservatory Glades",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Guard, Anchor. At the end of your turn, restore 1 Health to this creature.",
+      "narrative_importance": "Dependable treant guardian forming the field backbone of the Circle of the Elder Canopy across Whisperleaf High Canopy.",
+      "flavor_text": "Petrified timber grown under druidic hymns cannot be split by common steel.",
+      "collection_biography": "Petrified timber grown under druidic hymns cannot be split by common steel. Within the ranks of the Circle of the Elder Canopy, Ironwood Bark-Bulwark is remembered from the records of the First Convergence Concordat at Whisperleaf High Canopy. Soren of Whisperleaf (Verdant Pact Envoy & Tag Partner) still deploys this treant guardian whenever a 3-Aether bulwark is needed to anchor the Front-to-Rear geometry with 2 Attack and 5 Health."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0050",
+      "direction_id": "brief_ver_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Broad-trunked wooden sentry with braided bark plates and glowing emerald eyes. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Solid tree-trunk silhouette with rooted base; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Broad-trunked wooden sentry with braided bark plates and glowing emerald eyes",
+        "silhouette": "Solid tree-trunk silhouette with rooted base",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Broad-trunked wooden sentry with braided bark plates and glowing emerald eyes. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Solid tree-trunk silhouette with rooted base; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0051",
+    "revision": 1,
+    "name": "Thorn-Needle Stalker",
+    "name_key": "cards.ver_c_0051.name",
+    "description": "Stealth. After this attacks, gain 1 Growth counter (+1/+1).",
+    "description_key": "cards.ver_c_0051.description",
+    "type": "creature",
+    "subtype": "insectoid_hunter",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 4,
+    "attack": 4,
+    "health": 3,
+    "keywords": [
+      "stealth"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "self",
+            "amount": 1,
+            "counter": "growth"
+          }
+        ]
+      }
+    ],
+    "lore": "Silent as falling foliage until its needle-barbed forelegs strike.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "stealth",
+        "growth",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Thorn-Needle Stalker",
+      "species_or_classification": "insectoid hunter",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "secondary_landmark_id": "lm_ver_sundew_conservatory",
+        "primary_figure_id": "fig_ver_soren",
+        "secondary_figure_id": "fig_ver_elowen",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Whisperleaf High Canopy, The Verdant Expanse",
+      "physical_appearance": "Camouflaged praying mantis poised on a mossy branch in emerald gloom — a battle-tested mid-weight insectoid hunter (Sharply angled predatory insect silhouette) clad in living ironwood and braided sun-vines, exhibiting wisps of concealing twilight mist and shadow refraction.",
+      "personality_or_disposition": "Fiercely territorial yet bound by ancient oath. Operates as a assassin (4 Attack / 3 Health) affiliated with the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "history": "Silent as falling foliage until its needle-barbed forelegs strike. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Soren of Whisperleaf mobilized the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "important_relationships": "Serves alongside Soren of Whisperleaf (Verdant Pact Envoy & Tag Partner) at Whisperleaf High Canopy and coordinates three-lane maneuvers with Grove-Speaker Elowen.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Sun-Dew Conservatory Glades",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Stealth. After this attacks, gain 1 Growth counter (+1/+1).",
+      "narrative_importance": "Dependable insectoid hunter forming the field backbone of the Circle of the Elder Canopy across Whisperleaf High Canopy.",
+      "flavor_text": "Silent as falling foliage until its needle-barbed forelegs strike.",
+      "collection_biography": "\"Silent as falling foliage until its needle-barbed forelegs strike.\" — field annotation by Soren of Whisperleaf. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Thorn-Needle Stalker exemplifies how the Circle of the Elder Canopy adapts to high-pressure three-lane duels between Whisperleaf High Canopy and Sun-Dew Conservatory Glades."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0051",
+      "direction_id": "brief_ver_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Camouflaged praying mantis poised on a mossy branch in emerald gloom. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Sharply angled predatory insect silhouette; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Camouflaged praying mantis poised on a mossy branch in emerald gloom",
+        "silhouette": "Sharply angled predatory insect silhouette",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "wisps of concealing twilight mist and shadow refraction",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Camouflaged praying mantis poised on a mossy branch in emerald gloom. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Sharply angled predatory insect silhouette; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0052",
+    "revision": 1,
+    "name": "Canopy Long-Bowman",
+    "name_key": "cards.ver_c_0052.name",
+    "description": "Reach. After this attacks, restore 1 Vitality to your Leader.",
+    "description_key": "cards.ver_c_0052.description",
+    "type": "creature",
+    "subtype": "sylvan_archer",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Each feathered arrow is fletched with living willow leaves that bloom upon impact.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "growth"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Canopy Long-Bowman",
+      "species_or_classification": "sylvan archer",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_twelve_birches",
+        "secondary_landmark_id": "lm_ver_mycelium_hollows",
+        "primary_figure_id": "fig_ver_sylvi",
+        "secondary_figure_id": "fig_ver_sylvanus",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "The Twelve White Birches Sanctuary, The Verdant Expanse",
+      "physical_appearance": "Woodland archer in leafy cloak drawing an ornate yew bow — a battle-tested mid-weight sylvan archer (Tall archer silhouette framed by canopy boughs) clad in moss-woven linen and living ironwood, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a marksman (2 Attack / 4 Health) affiliated with the Apothecaries of the Twelve Birches at The Twelve White Birches Sanctuary.",
+      "history": "Each feathered arrow is fletched with living willow leaves that bloom upon impact. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Sylvi Thornweaver mobilized the Apothecaries of the Twelve Birches at The Twelve White Birches Sanctuary.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "important_relationships": "Serves alongside Sylvi Thornweaver (Verdant Botanist & Spore Alchemist) at The Twelve White Birches Sanctuary and coordinates three-lane maneuvers with Arch-Druid Sylvanus Rootbinder.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Mycelium Under-Bough Hollows",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Reach. After this attacks, restore 1 Vitality to your Leader.",
+      "narrative_importance": "Dependable sylvan archer forming the field backbone of the Apothecaries of the Twelve Birches across The Twelve White Birches Sanctuary.",
+      "flavor_text": "Each feathered arrow is fletched with living willow leaves that bloom upon impact.",
+      "collection_biography": "At The Twelve White Birches Sanctuary — where a sacred ring of pale trees whose spring water knits shattered bone and cracked armor. — Canopy Long-Bowman earned a lasting reputation among the Apothecaries of the Twelve Birches. Each feathered arrow is fletched with living willow leaves that bloom upon impact. In Convergence Duels, Sylvi Thornweaver pairs it with Arch-Druid Sylvanus Rootbinder's formations to leverage reach across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0052",
+      "direction_id": "brief_ver_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Woodland archer in leafy cloak drawing an ornate yew bow. Faction Style (Verdant Pact — The Twelve White Birches Sanctuary): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Tall archer silhouette framed by canopy boughs; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Woodland archer in leafy cloak drawing an ornate yew bow",
+        "silhouette": "Tall archer silhouette framed by canopy boughs",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Woodland archer in leafy cloak drawing an ornate yew bow. Faction Style (Verdant Pact — The Twelve White Birches Sanctuary): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Tall archer silhouette framed by canopy boughs; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0053",
+    "revision": 1,
+    "name": "Grove Heart-Weaver",
+    "name_key": "cards.ver_c_0053.name",
+    "description": "On Summon: Restore 2 Health to all allied creatures.",
+    "description_key": "cards.ver_c_0053.description",
+    "type": "creature",
+    "subtype": "human_druid",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "all_ally_creatures",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Weaving strands of living sunlight, she knits splintered shields and wounded flesh alike.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_ally_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "growth"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_ally_creatures",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Grove Heart-Weaver",
+      "species_or_classification": "human druid",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_briargate_march",
+        "secondary_landmark_id": "lm_ver_elder_yew_cathedral",
+        "primary_figure_id": "fig_ver_oakhaven",
+        "secondary_figure_id": "fig_ver_sylvi",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Briar-Gate Borderland March, The Verdant Expanse",
+      "physical_appearance": "Druidess surrounded by swirling emerald ribbons of healing pollen — a battle-tested mid-weight human druid (Graceful robed figure with raised arms trailing light) clad in braided sun-vines and emerald amber, attuned to Verdant Pact Aether discipline.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a caster (3 Attack / 4 Health) affiliated with the Apothecaries of the Twelve Birches at Briar-Gate Borderland March.",
+      "history": "Weaving strands of living sunlight, she knits splintered shields and wounded flesh alike. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Canopy Matriarch Oakhaven mobilized the Apothecaries of the Twelve Birches at Briar-Gate Borderland March.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "important_relationships": "Serves alongside Canopy Matriarch Oakhaven (Defender of Briar-Gate) at Briar-Gate Borderland March and coordinates three-lane maneuvers with Sylvi Thornweaver.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Root-Bound Cathedral of Elder Yew",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: On Summon: Restore 2 Health to all allied creatures.",
+      "narrative_importance": "Dependable human druid forming the field backbone of the Apothecaries of the Twelve Birches across Briar-Gate Borderland March.",
+      "flavor_text": "Weaving strands of living sunlight, she knits splintered shields and wounded flesh alike.",
+      "collection_biography": "Few sights along Briar-Gate Borderland March are as unmistakable as druidess surrounded by swirling emerald ribbons of healing pollen. Weaving strands of living sunlight, she knits splintered shields and wounded flesh alike. Sworn to the Apothecaries of the Twelve Birches since the Third Harmonic Reformation of the Seventh Chime, this uncommon human druid answers Canopy Matriarch Oakhaven's call as a 3/4 caster."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0053",
+      "direction_id": "brief_ver_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Druidess surrounded by swirling emerald ribbons of healing pollen. Faction Style (Verdant Pact — Briar-Gate Borderland March): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Graceful robed figure with raised arms trailing light; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Druidess surrounded by swirling emerald ribbons of healing pollen",
+        "silhouette": "Graceful robed figure with raised arms trailing light",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Verdant Pact Aether particles and resonant light motes",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Druidess surrounded by swirling emerald ribbons of healing pollen. Faction Style (Verdant Pact — Briar-Gate Borderland March): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Graceful robed figure with raised arms trailing light; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0054",
+    "revision": 1,
+    "name": "Elder Treant Tender",
+    "name_key": "cards.ver_c_0054.name",
+    "description": "Guard. At the start of your turn, grant your strongest allied creature 1 Growth counter.",
+    "description_key": "cards.ver_c_0054.description",
+    "type": "creature",
+    "subtype": "dryad_warden",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 6,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "strongest_ally_creature",
+            "amount": 1,
+            "counter": "growth"
+          }
+        ]
+      }
+    ],
+    "lore": "Carries vessels of pure spring water drawn from the Roots of Eldra.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "growth",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Elder Treant Tender",
+      "species_or_classification": "dryad warden",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_mycelium_hollows",
+        "secondary_landmark_id": "lm_ver_twelve_birches",
+        "primary_figure_id": "fig_ver_mirella",
+        "secondary_figure_id": "fig_ver_soren",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Mycelium Under-Bough Hollows, The Verdant Expanse",
+      "physical_appearance": "Dryad tending a young treant sapling with glowing water from an earthen jug — a battle-tested mid-weight dryad warden (Gentle dryad silhouette with antler headdress) clad in emerald amber and moss-woven linen, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a support (2 Attack / 6 Health) affiliated with the Circle of the Elder Canopy at Mycelium Under-Bough Hollows.",
+      "history": "Carries vessels of pure spring water drawn from the Roots of Eldra. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Seed-Keeper Mirella mobilized the Circle of the Elder Canopy at Mycelium Under-Bough Hollows.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "important_relationships": "Serves alongside Seed-Keeper Mirella (Curator of the Sun-Dew Vaults) at Mycelium Under-Bough Hollows and coordinates three-lane maneuvers with Soren of Whisperleaf.",
+      "habitats": [
+        "The Verdant Expanse",
+        "The Twelve White Birches Sanctuary",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Guard. At the start of your turn, grant your strongest allied creature 1 Growth counter.",
+      "narrative_importance": "Dependable dryad warden forming the field backbone of the Circle of the Elder Canopy across Mycelium Under-Bough Hollows.",
+      "flavor_text": "Carries vessels of pure spring water drawn from the Roots of Eldra.",
+      "collection_biography": "Where ordinary dryad warden units falter, Elder Treant Tender thrives amidst the hazards of Mycelium Under-Bough Hollows. Carries vessels of pure spring water drawn from the Roots of Eldra. Trained under the doctrine of Seed-Keeper Mirella and the Circle of the Elder Canopy, it turns every skirmish near The Twelve White Birches Sanctuary into a display of guard."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0054",
+      "direction_id": "brief_ver_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dryad tending a young treant sapling with glowing water from an earthen jug. Faction Style (Verdant Pact — Mycelium Under-Bough Hollows): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Gentle dryad silhouette with antler headdress; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Dryad tending a young treant sapling with glowing water from an earthen jug",
+        "silhouette": "Gentle dryad silhouette with antler headdress",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dryad tending a young treant sapling with glowing water from an earthen jug. Faction Style (Verdant Pact — Mycelium Under-Bough Hollows): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Gentle dryad silhouette with antler headdress; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0055",
+    "revision": 1,
+    "name": "Yggdrasil-Born Behemoth",
+    "name_key": "cards.ver_c_0055.name",
+    "description": "Guard, Anchor. On Summon: Grant all allied creatures 2 Growth counters (+2/+2).",
+    "description_key": "cards.ver_c_0055.description",
+    "type": "creature",
+    "subtype": "primordial_treant",
+    "faction": "verdant_pact",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 7,
+    "health": 9,
+    "keywords": [
+      "guard",
+      "anchor"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "all_ally_creatures",
+            "amount": 2,
+            "counter": "growth"
+          }
+        ]
+      }
+    ],
+    "lore": "A walking cathedral of emerald foliage and sacred ironwood. Its canopy shelters whole generations of forest kin.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_ally_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "anchor",
+        "growth",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_ally_creatures",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Yggdrasil-Born Behemoth",
+      "species_or_classification": "primordial treant",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_sundew_conservatory",
+        "secondary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "primary_figure_id": "fig_ver_sylvanus",
+        "secondary_figure_id": "fig_ver_oakhaven",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Sun-Dew Conservatory Glades, The Verdant Expanse",
+      "physical_appearance": "Monumental ancient treant colossus crowned with an entire glowing woodland canopy — a towering, high-Aether primordial treant (Massive multi-trunk titan dwarfing forest trees) clad in braided sun-vines and emerald amber, exhibiting interlocking defensive barrier aura and planted shield stance and heavy gravity runes locking the base to the stone floorplates.",
+      "personality_or_disposition": "Proud, disciplined, and relentless in pursuit of tactical superiority. Operates as a colossus (7 Attack / 9 Health) affiliated with the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "history": "A walking cathedral of emerald foliage and sacred ironwood. Its canopy shelters whole generations of forest kin. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Arch-Druid Sylvanus Rootbinder mobilized the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "important_relationships": "Serves alongside Arch-Druid Sylvanus Rootbinder (Keeper of the Worldroot) at Sun-Dew Conservatory Glades and coordinates three-lane maneuvers with Canopy Matriarch Oakhaven.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Whisperleaf High Canopy",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Guard, Anchor. On Summon: Grant all allied creatures 2 Growth counters (+2/+2).",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Sun-Dew Conservatory Glades, counselled directly by Arch-Druid Sylvanus Rootbinder.",
+      "flavor_text": "A walking cathedral of emerald foliage and sacred ironwood. Its canopy shelters whole generations of forest kin.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Arch-Druid Sylvanus Rootbinder and Canopy Matriarch Oakhaven first encountered Yggdrasil-Born Behemoth guarding the approaches to Sun-Dew Conservatory Glades. A walking cathedral of emerald foliage and sacred ironwood. Its canopy shelters whole generations of forest kin. Now a mainstay of the Apothecaries of the Twelve Birches, this 8-Aether colossus rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0055",
+      "direction_id": "brief_ver_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Monumental ancient treant colossus crowned with an entire glowing woodland canopy. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Massive multi-trunk titan dwarfing forest trees; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Monumental ancient treant colossus crowned with an entire glowing woodland canopy",
+        "silhouette": "Massive multi-trunk titan dwarfing forest trees",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Monumental ancient treant colossus crowned with an entire glowing woodland canopy. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Massive multi-trunk titan dwarfing forest trees; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance; heavy gravity runes locking the base to the stone floorplates. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-C-0056",
+    "revision": 1,
+    "name": "Leaf-Stride Harrier",
+    "name_key": "cards.ver_c_0056.name",
+    "description": "Skirmish. When this moves lanes, restore 3 Vitality to your Leader.",
+    "description_key": "cards.ver_c_0056.description",
+    "type": "creature",
+    "subtype": "sylvan_trickster",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": "trickster",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 3
+          }
+        ]
+      }
+    ],
+    "lore": "Leaps from bough to bough on buoyant updrafts of forest Aether.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "growth"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Leaf-Stride Harrier",
+      "species_or_classification": "sylvan trickster",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "secondary_landmark_id": "lm_ver_sundew_conservatory",
+        "primary_figure_id": "fig_ver_soren",
+        "secondary_figure_id": "fig_ver_elowen",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Whisperleaf High Canopy, The Verdant Expanse",
+      "physical_appearance": "Swift forest scout vaulting across branches with twin leaf-daggers — a battle-tested mid-weight sylvan trickster (Agile airborne figure among swirling leaves) clad in emerald amber and moss-woven linen, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Battle-scarred, pragmatic, and disdainful of ornamental flourish. Operates as a trickster (2 Attack / 4 Health) affiliated with the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "history": "Leaps from bough to bough on buoyant updrafts of forest Aether. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Soren of Whisperleaf mobilized the Circle of the Elder Canopy at Whisperleaf High Canopy.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "important_relationships": "Serves alongside Soren of Whisperleaf (Verdant Pact Envoy & Tag Partner) at Whisperleaf High Canopy and coordinates three-lane maneuvers with Grove-Speaker Elowen.",
+      "habitats": [
+        "The Verdant Expanse",
+        "Sun-Dew Conservatory Glades",
+        "The Verdant Expanse"
+      ],
+      "world_abilities": "Channels Verdant Pact resonance (growth) to manifest: Skirmish. When this moves lanes, restore 3 Vitality to your Leader.",
+      "narrative_importance": "Dependable sylvan trickster forming the field backbone of the Circle of the Elder Canopy across Whisperleaf High Canopy.",
+      "flavor_text": "Leaps from bough to bough on buoyant updrafts of forest Aether.",
+      "collection_biography": "Born of the traditions that shaped Whisperleaf High Canopy after the Great Caldera Eruption of Year 412, Leaf-Stride Harrier serves the Circle of the Elder Canopy as a dedicated trickster. Leaps from bough to bough on buoyant updrafts of forest Aether. Even Grove-Speaker Elowen acknowledges the tactical leverage its skirmish brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_ver_c_0056",
+      "direction_id": "brief_ver_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Swift forest scout vaulting across branches with twin leaf-daggers. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Agile airborne figure among swirling leaves; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Swift forest scout vaulting across branches with twin leaf-daggers",
+        "silhouette": "Agile airborne figure among swirling leaves",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Swift forest scout vaulting across branches with twin leaf-daggers. Faction Style (Verdant Pact — Whisperleaf High Canopy): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Agile airborne figure among swirling leaves; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-T-0057",
+    "revision": 1,
+    "name": "Wild-Root Surge",
+    "name_key": "cards.ver_t_0057.name",
+    "description": "Quick Tactic. Restore 3 Health to an allied creature.",
+    "description_key": "cards.ver_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "verdant_pact",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "heal",
+            "target": "ally_creature_in_lane_or_any",
+            "amount": 3
+          }
+        ]
+      }
+    ],
+    "lore": "Medicinal sap surges through roots to close wounds instantly.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "growth"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Wild-Root Surge",
+      "classification": "Verdant Pact tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_twelve_birches",
+        "secondary_landmark_id": "lm_ver_mycelium_hollows",
+        "primary_figure_id": "fig_ver_sylvi",
+        "secondary_figure_id": "fig_ver_sylvanus",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "The Twelve White Birches Sanctuary (The Verdant Expanse)",
+      "historical_provenance": "Medicinal sap surges through roots to close wounds instantly. Established during the Reclamation of the Sunken Ossuary (Year 381 AC) by Sylvi Thornweaver and the Apothecaries of the Twelve Birches at The Twelve White Birches Sanctuary.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of The Twelve White Birches Sanctuary: Quick Tactic. Restore 3 Health to an allied creature.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "associated_locations": [
+        "The Verdant Expanse",
+        "Mycelium Under-Bough Hollows",
+        "The Verdant Expanse"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Sylvi Thornweaver and the Apothecaries of the Twelve Birches at The Twelve White Birches Sanctuary.",
+      "flavor_text": "Medicinal sap surges through roots to close wounds instantly.",
+      "collection_biography": "At The Twelve White Birches Sanctuary, A sacred ring of pale trees whose spring water knits shattered bone and cracked armor. Wild-Root Surge draws directly upon that legacy: Medicinal sap surges through roots to close wounds instantly. Preserved by the Apothecaries of the Twelve Birches since Year 381 AC, it remains a signature quick tool in Sylvi Thornweaver's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_ver_t_0057",
+      "direction_id": "brief_ver_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glowing green vines wrapping tightly around a cracked wooden shield. Faction Style (Verdant Pact — The Twelve White Birches Sanctuary): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Spiral tendrils binding a cracked surface; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Glowing green vines wrapping tightly around a cracked wooden shield",
+        "silhouette": "Spiral tendrils binding a cracked surface",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Verdant Pact Aether particles and resonant light motes",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glowing green vines wrapping tightly around a cracked wooden shield. Faction Style (Verdant Pact — The Twelve White Birches Sanctuary): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Spiral tendrils binding a cracked surface; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-T-0058",
+    "revision": 1,
+    "name": "Bountiful Bloom",
+    "name_key": "cards.ver_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards and restore 2 Vitality to your Leader.",
+    "description_key": "cards.ver_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "verdant_pact",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          },
+          {
+            "operation": "heal",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Springtime arrives early when the Verdant Grove sings its hymn.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "growth"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Bountiful Bloom",
+      "classification": "Verdant Pact tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_sundew_conservatory",
+        "secondary_landmark_id": "lm_ver_whisperleaf_canopy",
+        "primary_figure_id": "fig_ver_sylvanus",
+        "secondary_figure_id": "fig_ver_oakhaven",
+        "organization_id": "org_white_birch_apothecaries",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Sun-Dew Conservatory Glades (The Verdant Expanse)",
+      "historical_provenance": "Springtime arrives early when the Verdant Grove sings its hymn. Established during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) by Arch-Druid Sylvanus Rootbinder and the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Sun-Dew Conservatory Glades: Standard Tactic. Draw 2 cards and restore 2 Vitality to your Leader.",
+      "faction_allegiance": "Verdant Pact (Apothecaries of the Twelve Birches)",
+      "associated_locations": [
+        "The Verdant Expanse",
+        "Whisperleaf High Canopy",
+        "The Verdant Expanse"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Arch-Druid Sylvanus Rootbinder and the Apothecaries of the Twelve Birches at Sun-Dew Conservatory Glades.",
+      "flavor_text": "Springtime arrives early when the Verdant Grove sings its hymn.",
+      "collection_biography": "When the Third Harmonic Reformation of the Seventh Chime tested the defenses of Sun-Dew Conservatory Glades, the Apothecaries of the Twelve Birches unveiled Bountiful Bloom. Springtime arrives early when the Verdant Grove sings its hymn. Both Arch-Druid Sylvanus Rootbinder and Canopy Matriarch Oakhaven still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_ver_t_0058",
+      "direction_id": "brief_ver_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glade of white lilies bursting into luminous golden bloom at sunrise. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Cluster of blooming blossoms radiating petals; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Glade of white lilies bursting into luminous golden bloom at sunrise",
+        "silhouette": "Cluster of blooming blossoms radiating petals",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Verdant Pact Aether particles and resonant light motes",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glade of white lilies bursting into luminous golden bloom at sunrise. Faction Style (Verdant Pact — Sun-Dew Conservatory Glades): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Cluster of blooming blossoms radiating petals; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-T-0059",
+    "revision": 1,
+    "name": "Canopy Entanglement",
+    "name_key": "cards.ver_t_0059.name",
+    "description": "Standard Tactic. Exhaust all enemy creatures.",
+    "description_key": "cards.ver_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "verdant_pact",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "all_enemy_creatures",
+            "keyword": "exhaust"
+          }
+        ]
+      }
+    ],
+    "lore": "Thick creepers drop from high boughs to immobilize the entire opposing vanguard.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "growth",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Canopy Entanglement",
+      "classification": "Verdant Pact tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_mycelium_hollows",
+        "secondary_landmark_id": "lm_ver_twelve_birches",
+        "primary_figure_id": "fig_ver_mirella",
+        "secondary_figure_id": "fig_ver_soren",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Mycelium Under-Bough Hollows (The Verdant Expanse)",
+      "historical_provenance": "Thick creepers drop from high boughs to immobilize the entire opposing vanguard. Established during the Prism Schism of the Mirror Galleries (Year 208 AC) by Seed-Keeper Mirella and the Circle of the Elder Canopy at Mycelium Under-Bough Hollows.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Mycelium Under-Bough Hollows: Standard Tactic. Exhaust all enemy creatures.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "associated_locations": [
+        "The Verdant Expanse",
+        "The Twelve White Birches Sanctuary",
+        "The Verdant Expanse"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Seed-Keeper Mirella and the Circle of the Elder Canopy at Mycelium Under-Bough Hollows.",
+      "flavor_text": "Thick creepers drop from high boughs to immobilize the entire opposing vanguard.",
+      "collection_biography": "Few artifacts or doctrines from Mycelium Under-Bough Hollows carry as much history as Canopy Entanglement. Thick creepers drop from high boughs to immobilize the entire opposing vanguard. Guarded by the Circle of the Elder Canopy and studied at The Twelve White Birches Sanctuary, its 4-Aether effect (Standard Tactic. Exhaust all enemy creatures.) rewards precise timing."
+    },
+    "art": {
+      "asset_id": "art_card_ver_t_0059",
+      "direction_id": "brief_ver_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dense net of thorny brambles snaring heavily armored soldiers. Faction Style (Verdant Pact — Mycelium Under-Bough Hollows): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Overhead web of tangled vines dropping down; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Dense net of thorny brambles snaring heavily armored soldiers",
+        "silhouette": "Overhead web of tangled vines dropping down",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Verdant Pact Aether particles and resonant light motes",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Dense net of thorny brambles snaring heavily armored soldiers. Faction Style (Verdant Pact — Mycelium Under-Bough Hollows): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Overhead web of tangled vines dropping down; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "VER-R-0060",
+    "revision": 1,
+    "name": "Seed of the First Tree",
+    "name_key": "cards.ver_r_0060.name",
+    "description": "Relic. At the start of your turn, grant your strongest allied creature 1 Growth counter.",
+    "description_key": "cards.ver_r_0060.description",
+    "type": "relic",
+    "subtype": "growth_relic",
+    "faction": "verdant_pact",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "growth"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "add_counter",
+            "target": "strongest_ally_creature",
+            "amount": 1,
+            "counter": "growth"
+          }
+        ]
+      }
+    ],
+    "lore": "A golden acorn preserved in clear amber that pulses with gentle emerald warmth.",
+    "archetypes": [
+      "growth_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "growth",
+        "add_counter"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "growth_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "growth",
+        "growth_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Seed of the First Tree",
+      "classification": "Verdant Pact relic (growth relic)",
+      "world_bible_refs": {
+        "region_id": "reg_verdant_expanse",
+        "primary_landmark_id": "lm_ver_elder_yew_cathedral",
+        "secondary_landmark_id": "lm_ver_briargate_march",
+        "primary_figure_id": "fig_ver_elowen",
+        "secondary_figure_id": "fig_ver_mirella",
+        "organization_id": "org_whisperleaf_circle",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Root-Bound Cathedral of Elder Yew (The Verdant Expanse)",
+      "historical_provenance": "A golden acorn preserved in clear amber that pulses with gentle emerald warmth. Established during the Ninth Hour Celestial Conjunction (Year 488 AC) by Grove-Speaker Elowen and the Circle of the Elder Canopy at Root-Bound Cathedral of Elder Yew.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Root-Bound Cathedral of Elder Yew: Relic. At the start of your turn, grant your strongest allied creature 1 Growth counter.",
+      "faction_allegiance": "Verdant Pact (Circle of the Elder Canopy)",
+      "associated_locations": [
+        "The Verdant Expanse",
+        "Briar-Gate Borderland March",
+        "The Verdant Expanse"
+      ],
+      "narrative_importance": "An enduring artifact of the Circle of the Elder Canopy, forged during the Ninth Hour Celestial Conjunction and safeguarded by Grove-Speaker Elowen.",
+      "flavor_text": "A golden acorn preserved in clear amber that pulses with gentle emerald warmth.",
+      "collection_biography": "\"A golden acorn preserved in clear amber that pulses with gentle emerald warmth.\" — treatise by Grove-Speaker Elowen of the Circle of the Elder Canopy. Originating at Root-Bound Cathedral of Elder Yew during the Ninth Hour Celestial Conjunction, this common relic allows duelists to reshape lane momentum at 2 Aether."
+    },
+    "art": {
+      "asset_id": "art_card_ver_r_0060",
+      "direction_id": "brief_ver_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/ver-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glowing golden acorn encased in a polished amber pendant resting on moss. Faction Style (Verdant Pact — Root-Bound Cathedral of Elder Yew): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Teardrop pendant glowing with an inner seed; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Glowing golden acorn encased in a polished amber pendant resting on moss",
+        "silhouette": "Teardrop pendant glowing with an inner seed",
+        "palette": [
+          "emerald_green",
+          "sunlit_amber",
+          "moss_brown"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Verdant Expanse",
+        "materials": [
+          "living ironwood",
+          "braided sun-vines",
+          "emerald amber",
+          "moss-woven linen"
+        ],
+        "clothing_or_armor": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "weapons_or_equipment": "Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns",
+        "background": "The Verdant Expanse (The Verdant Expanse)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Verdant Pact Aether particles and resonant light motes",
+        "mood": "Serene, ancient, and flourishing",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Glowing golden acorn encased in a polished amber pendant resting on moss. Faction Style (Verdant Pact — Root-Bound Cathedral of Elder Yew): Carved heartwood breastplates, living vine-bucklers, amber-tipped staves, and spore lanterns, crafted from living ironwood, braided sun-vines, emerald amber, moss-woven linen. Silhouette & Pose: Teardrop pendant glowing with an inner seed; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Verdant Expanse in The Verdant Expanse (Cathedral banyan roots, sun-dappled sacred groves, bioluminescent moss sanctuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors emerald_green, sunlit_amber, moss_brown. Visual Effects & Mood: Subtle Verdant Pact Aether particles and resonant light motes. Mood: Serene, ancient, and flourishing. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

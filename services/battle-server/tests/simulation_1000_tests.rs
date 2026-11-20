@@ -51,7 +51,7 @@ struct MatchupRecord {
 #[test]
 fn test_exhaustive_pairwise_matchup_simulation() {
     let (catalogue, decks) = load_catalogue_and_decks();
-    assert_eq!(catalogue.len(), 480);
+    assert_eq!(catalogue.len(), 640);
     assert_eq!(decks.decks.len(), 16);
 
     let num_decks = decks.decks.len();

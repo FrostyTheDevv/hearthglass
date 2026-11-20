@@ -3548,7 +3548,7 @@
     "type": "creature",
     "subtype": "night_watcher",
     "faction": "nocturne",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "marksman",
     "cost": 3,
     "attack": 3,
@@ -4052,7 +4052,7 @@
     "type": "creature",
     "subtype": "shadow_weaver",
     "faction": "nocturne",
-    "rarity": "rare",
+    "rarity": "uncommon",
     "role": "summoner",
     "cost": 4,
     "attack": 2,
@@ -4155,7 +4155,7 @@
         "The Umbral Courts & Crescent Undercity"
       ],
       "world_abilities": "Channels Nocturne resonance (veil) to manifest: On Summon: Summon a 2/1 Shadow Double token with Stealth.",
-      "narrative_importance": "Renowned specialist of the Court of the Porcelain Mask sought after by veteran tournament duelists in Lumenport.",
+      "narrative_importance": "Dependable shadow weaver forming the field backbone of the Court of the Porcelain Mask across Velvet Court of Whispered Debts.",
       "flavor_text": "With silver threads tied to her fingertips, she detaches her own shadow and sends it ahead to kill.",
       "collection_biography": "Phantom Archivist Valerius often warns initiates at Velvet Court of Whispered Debts never to misjudge Umbral Puppet-Mistress. With silver threads tied to her fingertips, she detaches her own shadow and sends it ahead to kill. Whether patrolling The Hollow Masquerade Manor for the Court of the Porcelain Mask or manifesting on the Convergence slate, its 2 Attack and 1 Health punish careless lane positioning."
     },
@@ -8143,6 +8143,1937 @@
         "visual_effects": "wisps of concealing twilight mist and shadow refraction",
         "mood": "Enigmatic, nocturnal, and aristocratic",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Covered gothic stone bridge spanning a fog-shrouded canal under a giant silver moon. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Arched canal bridge silhouetted against a full moon; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Moonlit Bridge of Sighs in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: High-contrast silver moonlight and deep velvet shadows; dominant colors midnight_blue, indigo, silver, restrained_crimson. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0049",
+    "revision": 1,
+    "name": "Gloom-Blade Initiate",
+    "name_key": "cards.noc_c_0049.name",
+    "description": "Swift, Stealth.",
+    "description_key": "cards.noc_c_0049.description",
+    "type": "creature",
+    "subtype": "shadow_infiltrator",
+    "faction": "nocturne",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift",
+      "stealth"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "stealth"
+          }
+        ]
+      }
+    ],
+    "lore": "Clothed in umbral silk woven from the dark fibers between stars.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "stealth",
+        "veil",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Gloom-Blade Initiate",
+      "species_or_classification": "shadow infiltrator",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_velvet_court",
+        "secondary_landmark_id": "lm_noc_hollow_masquerade",
+        "primary_figure_id": "fig_noc_corin_phantom",
+        "secondary_figure_id": "fig_noc_kestrel",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Velvet Court of Whispered Debts, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Sleek shadow rogue stepping through purple twilight mist with dual obsidian daggers — a nimble, quick-deploying shadow infiltrator (Crouched assassin silhouette dissolving into smoke) clad in shadow-steeped silk and midnight velvet, exhibiting kinetic wind-streaks and blurred forward momentum and wisps of concealing twilight mist and shadow refraction.",
+      "personality_or_disposition": "Wary of outsiders but unshakably loyal to lane-mates. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "history": "Clothed in umbral silk woven from the dark fibers between stars. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Phantom Archivist Valerius mobilized the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "important_relationships": "Serves alongside Phantom Archivist Valerius (Curator of Stolen Echoes) at Velvet Court of Whispered Debts and coordinates three-lane maneuvers with Night-Blade Kestrel.",
+      "habitats": [
+        "The Shadowed Veil",
+        "The Hollow Masquerade Manor",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Swift, Stealth.",
+      "narrative_importance": "Dependable shadow infiltrator forming the field backbone of the Court of the Porcelain Mask across Velvet Court of Whispered Debts.",
+      "flavor_text": "Clothed in umbral silk woven from the dark fibers between stars.",
+      "collection_biography": "Few sights along Velvet Court of Whispered Debts are as unmistakable as sleek shadow rogue stepping through purple twilight mist with dual obsidian daggers. Clothed in umbral silk woven from the dark fibers between stars. Sworn to the Court of the Porcelain Mask since the Third Harmonic Reformation of the Seventh Chime, this common shadow infiltrator answers Phantom Archivist Valerius's call as a 2/1 vanguard."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0049",
+      "direction_id": "brief_noc_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek shadow rogue stepping through purple twilight mist with dual obsidian daggers. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Crouched assassin silhouette dissolving into smoke; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum; wisps of concealing twilight mist and shadow refraction. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Sleek shadow rogue stepping through purple twilight mist with dual obsidian daggers",
+        "silhouette": "Crouched assassin silhouette dissolving into smoke",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum; wisps of concealing twilight mist and shadow refraction",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek shadow rogue stepping through purple twilight mist with dual obsidian daggers. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Crouched assassin silhouette dissolving into smoke; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum; wisps of concealing twilight mist and shadow refraction. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0050",
+    "revision": 1,
+    "name": "Obsidian Veil-Warden",
+    "name_key": "cards.noc_c_0050.name",
+    "description": "Guard. When damaged, gain Stealth.",
+    "description_key": "cards.noc_c_0050.description",
+    "type": "creature",
+    "subtype": "shadow_knight",
+    "faction": "nocturne",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "when_damaged",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "stealth"
+          }
+        ]
+      }
+    ],
+    "lore": "Striking his dark plate causes the warrior to melt into pooling ink beneath his boots.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "veil",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Obsidian Veil-Warden",
+      "species_or_classification": "shadow knight",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_velvet_court",
+        "secondary_landmark_id": "lm_noc_hollow_masquerade",
+        "primary_figure_id": "fig_noc_corin_phantom",
+        "secondary_figure_id": "fig_noc_kestrel",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Velvet Court of Whispered Debts, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Armored knight in matte black plate disappearing into pooling shadow at his feet — a nimble, quick-deploying shadow knight (Towering armored knight with blurred shadowy edges) clad in tarnished sterling silver and smoked obsidian glass, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Proud, disciplined, and relentless in pursuit of tactical superiority. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "history": "Striking his dark plate causes the warrior to melt into pooling ink beneath his boots. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Phantom Archivist Valerius mobilized the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "important_relationships": "Serves alongside Phantom Archivist Valerius (Curator of Stolen Echoes) at Velvet Court of Whispered Debts and coordinates three-lane maneuvers with Night-Blade Kestrel.",
+      "habitats": [
+        "The Shadowed Veil",
+        "The Hollow Masquerade Manor",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Guard. When damaged, gain Stealth.",
+      "narrative_importance": "Dependable shadow knight forming the field backbone of the Court of the Porcelain Mask across Velvet Court of Whispered Debts.",
+      "flavor_text": "Striking his dark plate causes the warrior to melt into pooling ink beneath his boots.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Phantom Archivist Valerius and Night-Blade Kestrel first encountered Obsidian Veil-Warden guarding the approaches to Velvet Court of Whispered Debts. Striking his dark plate causes the warrior to melt into pooling ink beneath his boots. Now a mainstay of the Court of the Porcelain Mask, this 2-Aether bulwark rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0050",
+      "direction_id": "brief_noc_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored knight in matte black plate disappearing into pooling shadow at his feet. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Towering armored knight with blurred shadowy edges; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Armored knight in matte black plate disappearing into pooling shadow at his feet",
+        "silhouette": "Towering armored knight with blurred shadowy edges",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Armored knight in matte black plate disappearing into pooling shadow at his feet. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Towering armored knight with blurred shadowy edges; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0051",
+    "revision": 1,
+    "name": "Midnight Stalker",
+    "name_key": "cards.noc_c_0051.name",
+    "description": "Stealth. After this attacks, Silence the enemy creature in this lane.",
+    "description_key": "cards.noc_c_0051.description",
+    "type": "creature",
+    "subtype": "human_assassin",
+    "faction": "nocturne",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "stealth"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "silence",
+            "target": "enemy_in_lane"
+          }
+        ]
+      }
+    ],
+    "lore": "He cuts not only the throat, but the victim’s voice and memory of combat.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "stealth",
+        "veil",
+        "silence"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Midnight Stalker",
+      "species_or_classification": "human assassin",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_bridge_of_sighs",
+        "secondary_landmark_id": "lm_noc_unseen_herald_belfry",
+        "primary_figure_id": "fig_noc_kestrel",
+        "secondary_figure_id": "fig_noc_soren_broker",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Moonlit Bridge of Sighs, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Masked assassin delivering a silent throat strike from behind an enemy pillar — a battle-tested mid-weight human assassin (Two overlapping silhouettes in sudden close-quarters strike) clad in shadow-steeped silk and midnight velvet, exhibiting wisps of concealing twilight mist and shadow refraction.",
+      "personality_or_disposition": "Stoic and unyielding even when outnumbered across all three lanes. Operates as a assassin (4 Attack / 2 Health) affiliated with the Court of the Porcelain Mask at Moonlit Bridge of Sighs.",
+      "history": "He cuts not only the throat, but the victim’s voice and memory of combat. First recorded during the Sunken Wake Cataclysm (Year 114 AC) when Night-Blade Kestrel mobilized the Court of the Porcelain Mask at Moonlit Bridge of Sighs.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "important_relationships": "Serves alongside Night-Blade Kestrel (Executioner of the Bridge of Sighs) at Moonlit Bridge of Sighs and coordinates three-lane maneuvers with Whisper-Broker Malakor.",
+      "habitats": [
+        "The Shadowed Veil",
+        "Belfry of the Unseen Herald",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Stealth. After this attacks, Silence the enemy creature in this lane.",
+      "narrative_importance": "Dependable human assassin forming the field backbone of the Court of the Porcelain Mask across Moonlit Bridge of Sighs.",
+      "flavor_text": "He cuts not only the throat, but the victim’s voice and memory of combat.",
+      "collection_biography": "At Moonlit Bridge of Sighs — where narrow gothic bridge where Stealth assassins practice single-stroke ambushes. — Midnight Stalker earned a lasting reputation among the Court of the Porcelain Mask. He cuts not only the throat, but the victim’s voice and memory of combat. In Convergence Duels, Night-Blade Kestrel pairs it with Whisper-Broker Malakor's formations to leverage stealth across contested lanes."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0051",
+      "direction_id": "brief_noc_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Masked assassin delivering a silent throat strike from behind an enemy pillar. Faction Style (Nocturne — Moonlit Bridge of Sighs): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Two overlapping silhouettes in sudden close-quarters strike; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Masked assassin delivering a silent throat strike from behind an enemy pillar",
+        "silhouette": "Two overlapping silhouettes in sudden close-quarters strike",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "wisps of concealing twilight mist and shadow refraction",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Masked assassin delivering a silent throat strike from behind an enemy pillar. Faction Style (Nocturne — Moonlit Bridge of Sighs): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Two overlapping silhouettes in sudden close-quarters strike; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0052",
+    "revision": 1,
+    "name": "Umbral Dart-Spitter",
+    "name_key": "cards.noc_c_0052.name",
+    "description": "Reach. On Summon: Deal 1 damage to an enemy creature in this lane.",
+    "description_key": "cards.noc_c_0052.description",
+    "type": "creature",
+    "subtype": "shadow_scout",
+    "faction": "nocturne",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_in_lane",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Fires poisoned sleep-darts through hollow ebony blowpipes with silent exhalations.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_in_lane"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "veil"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_in_lane",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Umbral Dart-Spitter",
+      "species_or_classification": "shadow scout",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_umbral_undercity_vaults",
+        "secondary_landmark_id": "lm_noc_crescent_alley_canals",
+        "primary_figure_id": "fig_noc_duchess_vivienne",
+        "secondary_figure_id": "fig_noc_vesper",
+        "organization_id": "org_unseen_herald",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Umbral Undercity Vaults, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Crouched sniper on a dark rooftop aiming a long black blowgun through mist — a battle-tested mid-weight shadow scout (Crouched marksman silhouette with long blowpipe) clad in midnight velvet and tarnished sterling silver, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Recklessly bold when channeling peak Aether resonance. Operates as a marksman (2 Attack / 4 Health) affiliated with the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "history": "Fires poisoned sleep-darts through hollow ebony blowpipes with silent exhalations. First recorded during the Great Caldera Eruption of Year 412 (Year 412 AC) when Duchess Vivienne of the Hollow Masquerade mobilized the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "faction_allegiance": "Nocturne (Brokers of the Unseen Herald)",
+      "important_relationships": "Serves alongside Duchess Vivienne of the Hollow Masquerade (Patron of the Twilight Duelists) at Umbral Undercity Vaults and coordinates three-lane maneuvers with Vesper of the Crescent Mask.",
+      "habitats": [
+        "The Shadowed Veil",
+        "Crescent Alley Shadow-Canals",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Reach. On Summon: Deal 1 damage to an enemy creature in this lane.",
+      "narrative_importance": "Dependable shadow scout forming the field backbone of the Brokers of the Unseen Herald across Umbral Undercity Vaults.",
+      "flavor_text": "Fires poisoned sleep-darts through hollow ebony blowpipes with silent exhalations.",
+      "collection_biography": "Born of the traditions that shaped Umbral Undercity Vaults after the Great Caldera Eruption of Year 412, Umbral Dart-Spitter serves the Brokers of the Unseen Herald as a dedicated marksman. Fires poisoned sleep-darts through hollow ebony blowpipes with silent exhalations. Even Vesper of the Crescent Mask acknowledges the tactical leverage its reach brings to a forty-card deck."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0052",
+      "direction_id": "brief_noc_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Crouched sniper on a dark rooftop aiming a long black blowgun through mist. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Crouched marksman silhouette with long blowpipe; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Crouched sniper on a dark rooftop aiming a long black blowgun through mist",
+        "silhouette": "Crouched marksman silhouette with long blowpipe",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Crouched sniper on a dark rooftop aiming a long black blowgun through mist. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Crouched marksman silhouette with long blowpipe; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0053",
+    "revision": 1,
+    "name": "Veil-Mist Sorceress",
+    "name_key": "cards.noc_c_0053.name",
+    "description": "On Summon: Grant all allied creatures Stealth.",
+    "description_key": "cards.noc_c_0053.description",
+    "type": "creature",
+    "subtype": "human_shadow_mage",
+    "faction": "nocturne",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "all_ally_creatures",
+            "keyword": "stealth"
+          }
+        ]
+      }
+    ],
+    "lore": "Summons a rolling cloud of lavender smoke that conceals an entire strike wing.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_ally_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "veil",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_ally_creatures",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Veil-Mist Sorceress",
+      "species_or_classification": "human shadow mage",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_bridge_of_sighs",
+        "secondary_landmark_id": "lm_noc_unseen_herald_belfry",
+        "primary_figure_id": "fig_noc_kestrel",
+        "secondary_figure_id": "fig_noc_soren_broker",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Moonlit Bridge of Sighs, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Sorceress holding an ornate brass censor billowing purple mist across the floor — a battle-tested mid-weight human shadow mage (Robed figure holding smoking incense burner) clad in tarnished sterling silver and smoked obsidian glass, attuned to Nocturne Aether discipline.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a caster (3 Attack / 4 Health) affiliated with the Court of the Porcelain Mask at Moonlit Bridge of Sighs.",
+      "history": "Summons a rolling cloud of lavender smoke that conceals an entire strike wing. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Night-Blade Kestrel mobilized the Court of the Porcelain Mask at Moonlit Bridge of Sighs.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "important_relationships": "Serves alongside Night-Blade Kestrel (Executioner of the Bridge of Sighs) at Moonlit Bridge of Sighs and coordinates three-lane maneuvers with Whisper-Broker Malakor.",
+      "habitats": [
+        "The Shadowed Veil",
+        "Belfry of the Unseen Herald",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: On Summon: Grant all allied creatures Stealth.",
+      "narrative_importance": "Dependable human shadow mage forming the field backbone of the Court of the Porcelain Mask across Moonlit Bridge of Sighs.",
+      "flavor_text": "Summons a rolling cloud of lavender smoke that conceals an entire strike wing.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Night-Blade Kestrel and Whisper-Broker Malakor first encountered Veil-Mist Sorceress guarding the approaches to Moonlit Bridge of Sighs. Summons a rolling cloud of lavender smoke that conceals an entire strike wing. Now a mainstay of the Court of the Porcelain Mask, this 4-Aether caster rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0053",
+      "direction_id": "brief_noc_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sorceress holding an ornate brass censor billowing purple mist across the floor. Faction Style (Nocturne — Moonlit Bridge of Sighs): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Robed figure holding smoking incense burner; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Sorceress holding an ornate brass censor billowing purple mist across the floor",
+        "silhouette": "Robed figure holding smoking incense burner",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Nocturne Aether particles and resonant light motes",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sorceress holding an ornate brass censor billowing purple mist across the floor. Faction Style (Nocturne — Moonlit Bridge of Sighs): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Robed figure holding smoking incense burner; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0054",
+    "revision": 1,
+    "name": "Sanctum Shadow-Keeper",
+    "name_key": "cards.noc_c_0054.name",
+    "description": "Guard. At the start of your turn, draw 1 card.",
+    "description_key": "cards.noc_c_0054.description",
+    "type": "creature",
+    "subtype": "shadow_priest",
+    "faction": "nocturne",
+    "rarity": "rare",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Reads secret correspondence intercepted from courier pigeons over Lumenport.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "veil"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Sanctum Shadow-Keeper",
+      "species_or_classification": "shadow priest",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_velvet_court",
+        "secondary_landmark_id": "lm_noc_hollow_masquerade",
+        "primary_figure_id": "fig_noc_corin_phantom",
+        "secondary_figure_id": "fig_noc_kestrel",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "Velvet Court of Whispered Debts, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Cloaked priest reading a glowing purple cipher scroll in a candlelit crypt — a battle-tested mid-weight shadow priest (Seated cloaked figure leaning over glowing scroll) clad in tarnished sterling silver and smoked obsidian glass, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Proud, disciplined, and relentless in pursuit of tactical superiority. Operates as a support (2 Attack / 5 Health) affiliated with the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "history": "Reads secret correspondence intercepted from courier pigeons over Lumenport. First recorded during the Whisperleaf Root-Compact (Year 450 AC) when Phantom Archivist Valerius mobilized the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "important_relationships": "Serves alongside Phantom Archivist Valerius (Curator of Stolen Echoes) at Velvet Court of Whispered Debts and coordinates three-lane maneuvers with Night-Blade Kestrel.",
+      "habitats": [
+        "The Shadowed Veil",
+        "The Hollow Masquerade Manor",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Guard. At the start of your turn, draw 1 card.",
+      "narrative_importance": "Renowned specialist of the Court of the Porcelain Mask sought after by veteran tournament duelists in Lumenport.",
+      "flavor_text": "Reads secret correspondence intercepted from courier pigeons over Lumenport.",
+      "collection_biography": "The archives of the Court of the Porcelain Mask at Velvet Court of Whispered Debts preserve the original Echo impression of Sanctum Shadow-Keeper, dated to Year 450 AC (the Whisperleaf Root-Compact). Reads secret correspondence intercepted from courier pigeons over Lumenport. On the tabletop, Phantom Archivist Valerius uses its 4-Aether profile (2/5) to swing two-lane Resonance."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0054",
+      "direction_id": "brief_noc_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Cloaked priest reading a glowing purple cipher scroll in a candlelit crypt. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Seated cloaked figure leaning over glowing scroll; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Cloaked priest reading a glowing purple cipher scroll in a candlelit crypt",
+        "silhouette": "Seated cloaked figure leaning over glowing scroll",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Cloaked priest reading a glowing purple cipher scroll in a candlelit crypt. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Seated cloaked figure leaning over glowing scroll; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0055",
+    "revision": 1,
+    "name": "Vespera, Empress of the Obsidian Void",
+    "name_key": "cards.noc_c_0055.name",
+    "description": "Stealth, Pierce. On Summon: Deal 2 damage to and Silence all enemy creatures.",
+    "description_key": "cards.noc_c_0055.description",
+    "type": "creature",
+    "subtype": "shadow_avatar",
+    "faction": "nocturne",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 7,
+    "health": 8,
+    "keywords": [
+      "stealth",
+      "pierce"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 2
+          },
+          {
+            "operation": "silence",
+            "target": "all_enemy_creatures"
+          }
+        ]
+      }
+    ],
+    "lore": "The sovereign monarch of the unlighted realms. When Vespera unveils her visage, all magic withers in terror.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "stealth",
+        "pierce",
+        "veil",
+        "silence"
+      ],
+      "resource_interactions": [
+        "Standard 8 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 17
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Vespera, Empress of the Obsidian Void",
+      "species_or_classification": "shadow avatar",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_unseen_herald_belfry",
+        "secondary_landmark_id": "lm_noc_bridge_of_sighs",
+        "primary_figure_id": "fig_noc_nyx",
+        "secondary_figure_id": "fig_noc_duchess_vivienne",
+        "organization_id": "org_unseen_herald",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Belfry of the Unseen Herald, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Regal shadow empress with vast raven wings and a crown of black stars towering over mist — a towering, high-Aether shadow avatar (Majestic winged empress with floating starlight crown) clad in midnight velvet and tarnished sterling silver, exhibiting wisps of concealing twilight mist and shadow refraction and armor-shattering kinetic impact spike.",
+      "personality_or_disposition": "Grimly resolute, carrying the memory of fallen predecessors. Operates as a colossus (7 Attack / 8 Health) affiliated with the Brokers of the Unseen Herald at Belfry of the Unseen Herald.",
+      "history": "The sovereign monarch of the unlighted realms. When Vespera unveils her visage, all magic withers in terror. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Cipher-Mistress Nyx mobilized the Brokers of the Unseen Herald at Belfry of the Unseen Herald.",
+      "faction_allegiance": "Nocturne (Brokers of the Unseen Herald)",
+      "important_relationships": "Serves alongside Cipher-Mistress Nyx (Bell-Ringer of the Unseen Herald) at Belfry of the Unseen Herald and coordinates three-lane maneuvers with Duchess Vivienne of the Hollow Masquerade.",
+      "habitats": [
+        "The Shadowed Veil",
+        "Moonlit Bridge of Sighs",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Stealth, Pierce. On Summon: Deal 2 damage to and Silence all enemy creatures.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Belfry of the Unseen Herald, counselled directly by Cipher-Mistress Nyx.",
+      "flavor_text": "The sovereign monarch of the unlighted realms. When Vespera unveils her visage, all magic withers in terror.",
+      "collection_biography": "Where ordinary shadow avatar units falter, Vespera, Empress of the Obsidian Void thrives amidst the hazards of Belfry of the Unseen Herald. The sovereign monarch of the unlighted realms. When Vespera unveils her visage, all magic withers in terror. Trained under the doctrine of Cipher-Mistress Nyx and the Brokers of the Unseen Herald, it turns every skirmish near Moonlit Bridge of Sighs into a display of stealth, pierce."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0055",
+      "direction_id": "brief_noc_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Regal shadow empress with vast raven wings and a crown of black stars towering over mist. Faction Style (Nocturne — Belfry of the Unseen Herald): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Majestic winged empress with floating starlight crown; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction; armor-shattering kinetic impact spike. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Regal shadow empress with vast raven wings and a crown of black stars towering over mist",
+        "silhouette": "Majestic winged empress with floating starlight crown",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "wisps of concealing twilight mist and shadow refraction; armor-shattering kinetic impact spike",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Regal shadow empress with vast raven wings and a crown of black stars towering over mist. Faction Style (Nocturne — Belfry of the Unseen Herald): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Majestic winged empress with floating starlight crown; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: wisps of concealing twilight mist and shadow refraction; armor-shattering kinetic impact spike. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-C-0056",
+    "revision": 1,
+    "name": "Dusk-Prowler Trickster",
+    "name_key": "cards.noc_c_0056.name",
+    "description": "Skirmish. When this moves lanes, deal 1 damage to the enemy Leader.",
+    "description_key": "cards.noc_c_0056.description",
+    "type": "creature",
+    "subtype": "shadow_beast",
+    "faction": "nocturne",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Stalks the shadows between lanes, nipping at enemy commanders who look the other way.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "veil"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_leader",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Dusk-Prowler Trickster",
+      "species_or_classification": "shadow beast",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_umbral_undercity_vaults",
+        "secondary_landmark_id": "lm_noc_crescent_alley_canals",
+        "primary_figure_id": "fig_noc_duchess_vivienne",
+        "secondary_figure_id": "fig_noc_vesper",
+        "organization_id": "org_unseen_herald",
+        "historical_event_id": "era_clapperless_bells"
+      },
+      "origin": "Umbral Undercity Vaults, The Umbral Courts & Crescent Undercity",
+      "physical_appearance": "Sleek panther composed of smoke and violet embers leaping between columns — a nimble, quick-deploying shadow beast (Prowling feline silhouette made of smoke) clad in smoked obsidian glass and shadow-steeped silk, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a trickster (2 Attack / 3 Health) affiliated with the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "history": "Stalks the shadows between lanes, nipping at enemy commanders who look the other way. First recorded during the Night of Clapperless Bells (Year 339 AC) when Duchess Vivienne of the Hollow Masquerade mobilized the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "faction_allegiance": "Nocturne (Brokers of the Unseen Herald)",
+      "important_relationships": "Serves alongside Duchess Vivienne of the Hollow Masquerade (Patron of the Twilight Duelists) at Umbral Undercity Vaults and coordinates three-lane maneuvers with Vesper of the Crescent Mask.",
+      "habitats": [
+        "The Shadowed Veil",
+        "Crescent Alley Shadow-Canals",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "world_abilities": "Channels Nocturne resonance (veil) to manifest: Skirmish. When this moves lanes, deal 1 damage to the enemy Leader.",
+      "narrative_importance": "Dependable shadow beast forming the field backbone of the Brokers of the Unseen Herald across Umbral Undercity Vaults.",
+      "flavor_text": "Stalks the shadows between lanes, nipping at enemy commanders who look the other way.",
+      "collection_biography": "During the Night of Clapperless Bells, the Brokers of the Unseen Herald relied on specialists capable of holding Umbral Undercity Vaults against overwhelming odds. Dusk-Prowler Trickster emerged from that crucible: Stalks the shadows between lanes, nipping at enemy commanders who look the other way. Today, duelists studying under Duchess Vivienne of the Hollow Masquerade prize its 2-Aether tempo and skirmish."
+    },
+    "art": {
+      "asset_id": "art_card_noc_c_0056",
+      "direction_id": "brief_noc_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek panther composed of smoke and violet embers leaping between columns. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Prowling feline silhouette made of smoke; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Sleek panther composed of smoke and violet embers leaping between columns",
+        "silhouette": "Prowling feline silhouette made of smoke",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Sleek panther composed of smoke and violet embers leaping between columns. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Prowling feline silhouette made of smoke; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-T-0057",
+    "revision": 1,
+    "name": "Cloak of Nightfall",
+    "name_key": "cards.noc_t_0057.name",
+    "description": "Quick Tactic. Grant an allied creature Stealth.",
+    "description_key": "cards.noc_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "nocturne",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "ally_creature_in_lane_or_any",
+            "keyword": "stealth"
+          }
+        ]
+      }
+    ],
+    "lore": "Pulling the shadow blanket tight over armor removes its gleam entirely.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_creature_in_lane_or_any"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "veil",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 1 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_creature_in_lane_or_any",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Cloak of Nightfall",
+      "classification": "Nocturne tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_umbral_undercity_vaults",
+        "secondary_landmark_id": "lm_noc_crescent_alley_canals",
+        "primary_figure_id": "fig_noc_duchess_vivienne",
+        "secondary_figure_id": "fig_noc_vesper",
+        "organization_id": "org_unseen_herald",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Umbral Undercity Vaults (The Umbral Courts & Crescent Undercity)",
+      "historical_provenance": "Pulling the shadow blanket tight over armor removes its gleam entirely. Established during the Great Caldera Eruption of Year 412 (Year 412 AC) by Duchess Vivienne of the Hollow Masquerade and the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of Umbral Undercity Vaults: Quick Tactic. Grant an allied creature Stealth.",
+      "faction_allegiance": "Nocturne (Brokers of the Unseen Herald)",
+      "associated_locations": [
+        "The Shadowed Veil",
+        "Crescent Alley Shadow-Canals",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Duchess Vivienne of the Hollow Masquerade and the Brokers of the Unseen Herald at Umbral Undercity Vaults.",
+      "flavor_text": "Pulling the shadow blanket tight over armor removes its gleam entirely.",
+      "collection_biography": "Few artifacts or doctrines from Umbral Undercity Vaults carry as much history as Cloak of Nightfall. Pulling the shadow blanket tight over armor removes its gleam entirely. Guarded by the Brokers of the Unseen Herald and studied at Crescent Alley Shadow-Canals, its 1-Aether effect (Quick Tactic. Grant an allied creature Stealth.) rewards precise timing."
+    },
+    "art": {
+      "asset_id": "art_card_noc_t_0057",
+      "direction_id": "brief_noc_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy dark velvet cloak billowing around a soldier until only shadows remain. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Swirling cloak engulfing a humanoid form; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Heavy dark velvet cloak billowing around a soldier until only shadows remain",
+        "silhouette": "Swirling cloak engulfing a humanoid form",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Nocturne Aether particles and resonant light motes",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy dark velvet cloak billowing around a soldier until only shadows remain. Faction Style (Nocturne — Umbral Undercity Vaults): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Swirling cloak engulfing a humanoid form; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-T-0058",
+    "revision": 1,
+    "name": "Blackmail Network",
+    "name_key": "cards.noc_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards.",
+    "description_key": "cards.noc_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "nocturne",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "In Lumenport, what you know about the merchant guilds is worth far more than silver.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "veil"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Blackmail Network",
+      "classification": "Nocturne tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_velvet_court",
+        "secondary_landmark_id": "lm_noc_hollow_masquerade",
+        "primary_figure_id": "fig_noc_corin_phantom",
+        "secondary_figure_id": "fig_noc_kestrel",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Velvet Court of Whispered Debts (The Umbral Courts & Crescent Undercity)",
+      "historical_provenance": "In Lumenport, what you know about the merchant guilds is worth far more than silver. Established during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) by Phantom Archivist Valerius and the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Velvet Court of Whispered Debts: Standard Tactic. Draw 2 cards.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "associated_locations": [
+        "The Shadowed Veil",
+        "The Hollow Masquerade Manor",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Phantom Archivist Valerius and the Court of the Porcelain Mask at Velvet Court of Whispered Debts.",
+      "flavor_text": "In Lumenport, what you know about the merchant guilds is worth far more than silver.",
+      "collection_biography": "When the Third Harmonic Reformation of the Seventh Chime tested the defenses of Velvet Court of Whispered Debts, the Court of the Porcelain Mask unveiled Blackmail Network. In Lumenport, what you know about the merchant guilds is worth far more than silver. Both Phantom Archivist Valerius and Night-Blade Kestrel still regard it as a benchmark of standard design."
+    },
+    "art": {
+      "asset_id": "art_card_noc_t_0058",
+      "direction_id": "brief_noc_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Table scattered with sealed wax letters, a dagger, and piles of gold coins in dark room. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Overhead composition of desk with letters and dagger; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Table scattered with sealed wax letters, a dagger, and piles of gold coins in dark room",
+        "silhouette": "Overhead composition of desk with letters and dagger",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Nocturne Aether particles and resonant light motes",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Table scattered with sealed wax letters, a dagger, and piles of gold coins in dark room. Faction Style (Nocturne — Velvet Court of Whispered Debts): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Overhead composition of desk with letters and dagger; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-T-0059",
+    "revision": 1,
+    "name": "Throat-Cut Ambush",
+    "name_key": "cards.noc_t_0059.name",
+    "description": "Standard Tactic. Destroy a target enemy creature.",
+    "description_key": "cards.noc_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "nocturne",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "destroy",
+            "target": "target_enemy_creature"
+          }
+        ]
+      }
+    ],
+    "lore": "No shout, no clash of iron. Only a muffled gasp and a collapsing cape.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "target_enemy_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "veil"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: target_enemy_creature",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Throat-Cut Ambush",
+      "classification": "Nocturne tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_crescent_alley_canals",
+        "secondary_landmark_id": "lm_noc_umbral_undercity_vaults",
+        "primary_figure_id": "fig_noc_soren_broker",
+        "secondary_figure_id": "fig_noc_corin_phantom",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Crescent Alley Shadow-Canals (The Umbral Courts & Crescent Undercity)",
+      "historical_provenance": "No shout, no clash of iron. Only a muffled gasp and a collapsing cape. Established during the Sunken Wake Cataclysm (Year 114 AC) by Whisper-Broker Malakor and the Court of the Porcelain Mask at Crescent Alley Shadow-Canals.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Crescent Alley Shadow-Canals: Standard Tactic. Destroy a target enemy creature.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "associated_locations": [
+        "The Shadowed Veil",
+        "Umbral Undercity Vaults",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Whisper-Broker Malakor and the Court of the Porcelain Mask at Crescent Alley Shadow-Canals.",
+      "flavor_text": "No shout, no clash of iron. Only a muffled gasp and a collapsing cape.",
+      "collection_biography": "At Crescent Alley Shadow-Canals, Fog-draped waterways beneath Lumenport’s Lantern Row patrolled by Vesper’s informants. Throat-Cut Ambush draws directly upon that legacy: No shout, no clash of iron. Only a muffled gasp and a collapsing cape. Preserved by the Court of the Porcelain Mask since Year 114 AC, it remains a signature standard tool in Whisper-Broker Malakor's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_noc_t_0059",
+      "direction_id": "brief_noc_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Shadow silhouette clamping a hand over a guard’s mouth from behind a pillar. Faction Style (Nocturne — Crescent Alley Shadow-Canals): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Two struggling silhouettes in dark archway; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Shadow silhouette clamping a hand over a guard’s mouth from behind a pillar",
+        "silhouette": "Two struggling silhouettes in dark archway",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Nocturne Aether particles and resonant light motes",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Shadow silhouette clamping a hand over a guard’s mouth from behind a pillar. Faction Style (Nocturne — Crescent Alley Shadow-Canals): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Two struggling silhouettes in dark archway; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "NOC-R-0060",
+    "revision": 1,
+    "name": "Amulet of the Eclipse",
+    "name_key": "cards.noc_r_0060.name",
+    "description": "Relic. At the start of your turn, grant your strongest allied creature Stealth.",
+    "description_key": "cards.noc_r_0060.description",
+    "type": "relic",
+    "subtype": "shadow_relic",
+    "faction": "nocturne",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "veil"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "strongest_ally_creature",
+            "keyword": "stealth"
+          }
+        ]
+      }
+    ],
+    "lore": "Black obsidian stone that absorbs candlelight in a ten-foot circle.",
+    "archetypes": [
+      "veil_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "strongest_ally_creature"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "veil",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "veil_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: strongest_ally_creature",
+      "synergy_references": [
+        "veil",
+        "veil_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Amulet of the Eclipse",
+      "classification": "Nocturne relic (shadow relic)",
+      "world_bible_refs": {
+        "region_id": "reg_umbral_courts",
+        "primary_landmark_id": "lm_noc_crescent_alley_canals",
+        "secondary_landmark_id": "lm_noc_umbral_undercity_vaults",
+        "primary_figure_id": "fig_noc_soren_broker",
+        "secondary_figure_id": "fig_noc_corin_phantom",
+        "organization_id": "org_hollow_masquerade",
+        "historical_event_id": "era_sunken_wake"
+      },
+      "origin": "Crescent Alley Shadow-Canals (The Umbral Courts & Crescent Undercity)",
+      "historical_provenance": "Black obsidian stone that absorbs candlelight in a ten-foot circle. Established during the Sunken Wake Cataclysm (Year 114 AC) by Whisper-Broker Malakor and the Court of the Porcelain Mask at Crescent Alley Shadow-Canals.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of Crescent Alley Shadow-Canals: Relic. At the start of your turn, grant your strongest allied creature Stealth.",
+      "faction_allegiance": "Nocturne (Court of the Porcelain Mask)",
+      "associated_locations": [
+        "The Shadowed Veil",
+        "Umbral Undercity Vaults",
+        "The Umbral Courts & Crescent Undercity"
+      ],
+      "narrative_importance": "An enduring artifact of the Court of the Porcelain Mask, forged during the Sunken Wake Cataclysm and safeguarded by Whisper-Broker Malakor.",
+      "flavor_text": "Black obsidian stone that absorbs candlelight in a ten-foot circle.",
+      "collection_biography": "At Crescent Alley Shadow-Canals, Fog-draped waterways beneath Lumenport’s Lantern Row patrolled by Vesper’s informants. Amulet of the Eclipse draws directly upon that legacy: Black obsidian stone that absorbs candlelight in a ten-foot circle. Preserved by the Court of the Porcelain Mask since Year 114 AC, it remains a signature shadow relic tool in Whisper-Broker Malakor's repertoire."
+    },
+    "art": {
+      "asset_id": "art_card_noc_r_0060",
+      "direction_id": "brief_noc_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/noc-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Polished black stone disc hanging from a silver chain resting on dark velvet. Faction Style (Nocturne — Crescent Alley Shadow-Canals): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Circular black medallion silhouette; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Polished black stone disc hanging from a silver chain resting on dark velvet",
+        "silhouette": "Circular black medallion silhouette",
+        "palette": [
+          "midnight_indigo",
+          "shadow_slate",
+          "pale_violet"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Shadowed Veil",
+        "materials": [
+          "midnight velvet",
+          "tarnished sterling silver",
+          "smoked obsidian glass",
+          "shadow-steeped silk"
+        ],
+        "clothing_or_armor": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "weapons_or_equipment": "Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks",
+        "background": "The Shadowed Veil (The Umbral Courts & Crescent Undercity)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Nocturne Aether particles and resonant light motes",
+        "mood": "Enigmatic, nocturnal, and aristocratic",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Polished black stone disc hanging from a silver chain resting on dark velvet. Faction Style (Nocturne — Crescent Alley Shadow-Canals): Porcelain masquerade masks, crescent daggers, clapperless silver bells, and smoke-woven cloaks, crafted from midnight velvet, tarnished sterling silver, smoked obsidian glass, shadow-steeped silk. Silhouette & Pose: Circular black medallion silhouette; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Shadowed Veil in The Umbral Courts & Crescent Undercity (Moonlit gothic belfries, fog-shrouded canal bridges, candlelit masquerade ballrooms). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors midnight_indigo, shadow_slate, pale_violet. Visual Effects & Mood: Subtle Nocturne Aether particles and resonant light motes. Mood: Enigmatic, nocturnal, and aristocratic. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

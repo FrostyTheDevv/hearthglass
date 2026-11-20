@@ -67,9 +67,9 @@ func _test_canonical_content_and_rarity() -> bool:
 	print("\n[SMOKE TEST 1] Verifying Canonical Content & 4-Tier Rarity in GameState...")
 
 	var cards: Array = GameState.all_cards
-	print("  -> GameState loaded %d canonical cards (Target: 480)" % [cards.size()])
-	if cards.size() != 480:
-		printerr("Expected 480 canonical cards, got: ", cards.size())
+	print("  -> GameState loaded %d canonical cards (Target: 640)" % [cards.size()])
+	if cards.size() != 640:
+		printerr("Expected 640 canonical cards, got: ", cards.size())
 		return false
 
 	var rarity_counts := {
@@ -87,13 +87,13 @@ func _test_canonical_content_and_rarity() -> bool:
 		rarity_counts[r] += 1
 
 	print("  -> Rarity Breakdown:")
-	print("     Common:    %d (Target: 240, 50.0%%)" % [rarity_counts["common"]])
-	print("     Uncommon:  %d (Target: 144, 30.0%%)" % [rarity_counts["uncommon"]])
-	print("     Rare:      %d (Target: 72,  15.0%%)" % [rarity_counts["rare"]])
-	print("     Legendary: %d (Target: 24,  5.0%%)" % [rarity_counts["legendary"]])
+	print("     Common:    %d (Target: 320, 50.0%%)" % [rarity_counts["common"]])
+	print("     Uncommon:  %d (Target: 192, 30.0%%)" % [rarity_counts["uncommon"]])
+	print("     Rare:      %d (Target: 96,  15.0%%)" % [rarity_counts["rare"]])
+	print("     Legendary: %d (Target: 32,  5.0%%)" % [rarity_counts["legendary"]])
 	print("     Epic:      %d (Target: 0,   0.0%%)" % [rarity_counts["epic"]])
 
-	if rarity_counts["common"] != 240 or rarity_counts["uncommon"] != 144 or rarity_counts["rare"] != 72 or rarity_counts["legendary"] != 24 or rarity_counts["epic"] != 0:
+	if rarity_counts["common"] != 320 or rarity_counts["uncommon"] != 192 or rarity_counts["rare"] != 96 or rarity_counts["legendary"] != 32 or rarity_counts["epic"] != 0:
 		printerr("Rarity distribution does not match canonical 4-tier specification!")
 		return false
 
@@ -232,9 +232,9 @@ func _test_deck_builder_scene() -> bool:
 	add_child(builder_instance)
 
 	var filtered: Array = builder_instance.get("filtered_cards")
-	print("  -> Deck Builder collection browser populated with %d cards (Target: 480)" % [filtered.size()])
-	if filtered.size() != 480:
-		printerr("Expected 480 cards in collection browser, got: ", filtered.size())
+	print("  -> Deck Builder collection browser populated with %d cards (Target: 640)" % [filtered.size()])
+	if filtered.size() != 640:
+		printerr("Expected 640 cards in collection browser, got: ", filtered.size())
 		builder_instance.queue_free()
 		return false
 

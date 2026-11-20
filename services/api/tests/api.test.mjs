@@ -78,8 +78,8 @@ test('GET /v1/cards returns all 320 canonical Foundations & Expansion cards acro
     const res = await fetch(`${baseUrl}/v1/cards`);
     assert.equal(res.status, 200);
     const body = await res.json();
-    assert.equal(body.total, 480);
-    assert.equal(body.milestone_total, 480);
+    assert.equal(body.total, 640);
+    assert.equal(body.milestone_total, 640);
     assert.equal(body.target_release_total, 640);
 
     for (const faction of [
@@ -94,12 +94,12 @@ test('GET /v1/cards returns all 320 canonical Foundations & Expansion cards acro
     ]) {
       const fRes = await fetch(`${baseUrl}/v1/cards?faction=${faction}`);
       const fBody = await fRes.json();
-      assert.equal(fBody.total, 48, `Faction ${faction} must have exactly 48 cards`);
+      assert.equal(fBody.total, 60, `Faction ${faction} must have exactly 60 cards`);
     }
 
     const neutralRes = await fetch(`${baseUrl}/v1/cards?faction=neutral`);
     const neutralBody = await neutralRes.json();
-    assert.equal(neutralBody.total, 96, 'Neutral must have exactly 96 cards');
+    assert.equal(neutralBody.total, 160, 'Neutral must have exactly 160 cards');
 
     // Verify every card returned has structured gameplay_metadata, identity, and art prompt
     for (const card of body.cards) {
@@ -289,20 +289,25 @@ test('Lumenport World expansion: 6 districts, 6 functional interiors, 16 schedul
     assert.equal(worldBody.npcs.length, 16);
     assert.equal(worldBody.quest_definitions.length, 8);
 
-    // Move into an interior (Prism & Parchment Card Emporium) and advance in-game time
+    // Walk to connected central card market, then enter interior_card_shop
+    const marketMove = await fetch(`${baseUrl}/v1/world/move`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...authHeaders },
+      body: JSON.stringify({ district: 'lumenport_central_card_market' })
+    });
+    assert.equal(marketMove.status, 200);
+
     const moveRes = await fetch(`${baseUrl}/v1/world/move`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...authHeaders },
       body: JSON.stringify({
-        interior: 'interior_prism_card_shop',
-        in_game_minutes: 840,
-        weather: 'sunlit_breeze'
+        interior: 'interior_card_shop'
       })
     });
     assert.equal(moveRes.status, 200);
     const moveBody = await moveRes.json();
-    assert.equal(moveBody.character.district, 'interior_prism_card_shop');
-    assert.equal(moveBody.character.in_game_minutes, 840);
+    assert.equal(moveBody.character.district, 'interior_card_shop');
+    assert.ok(moveBody.character.in_game_minutes >= 485, 'Authoritative time must advance naturally');
 
     // Interact with a newly added V3 NPC (Captain Nerissa) to increase relationship score
     const interactRes = await fetch(`${baseUrl}/v1/npcs/interact`, {
@@ -338,7 +343,7 @@ test('AI Card-Art Production Pipeline: 8 faction showcase illustrations exported
     const statusRes = await fetch(`${baseUrl}/v1/art/status`);
     assert.equal(statusRes.status, 200);
     const statusBody = await statusRes.json();
-    assert.equal(statusBody.total_cards, 480);
+    assert.equal(statusBody.total_cards, 640);
     assert.ok(
       statusBody.counts.integrated_into_game >= 8,
       'At least the 8 faction showcase cards must be approved & integrated into Godot'

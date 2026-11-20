@@ -12,12 +12,12 @@ func _ready() -> void:
 	print("\n[STEP 1] Player Character Initialization...")
 	GameState.player_name = "Aerin_Vanguard"
 	GameState.claimed_matches = {}
-	assert(GameState.cards.size() == 480, "Must have exactly 480 canonical cards loaded")
+	assert(GameState.cards.size() == 640, "Must have exactly 640 canonical cards loaded")
 	assert(GameState.starter_decks.size() == 16, "Must have 16 legal 40-card decks loaded")
 	print("  Player Name:   ", GameState.player_name)
 	print("  Account Level: 3")
 	print("  Initial Wallet: %d Crowns, %d Echo Dust" % [GameState.crowns, GameState.echo_dust])
-	print("  [OK] Character profile active and 480 canonical cards loaded.")
+	print("  [OK] Character profile active and 640 canonical cards loaded.")
 
 	# STEP 2: Enter Lumenport 3D Hub Scene
 	print("\n[STEP 2] Entering Lumenport 3D Hub Scene...")
@@ -70,10 +70,10 @@ func _ready() -> void:
 	var deck_ui = deck_res.instantiate()
 	add_child(deck_ui)
 
-	# Verify collection browser and 480 cards
+	# Verify collection browser and 640 cards
 	var filtered: Array = deck_ui.get("filtered_cards")
 	print("  Collection Browser: %d cards accessible" % [filtered.size()])
-	assert(filtered.size() == 480, "Browser must display all 480 cards")
+	assert(filtered.size() == 640, "Browser must display all 640 cards")
 
 	var active_deck: Dictionary = GameState.get_active_deck()
 	print("  Configured Deck: '", active_deck.get("name"), "' (", active_deck.get("factions"), ")")

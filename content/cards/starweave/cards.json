@@ -5794,7 +5794,7 @@
     "type": "creature",
     "subtype": "astral_cavalier",
     "faction": "starweave",
-    "rarity": "uncommon",
+    "rarity": "common",
     "role": "assassin",
     "cost": 3,
     "attack": 4,
@@ -5900,7 +5900,7 @@
       "world_abilities": "Channels Starweave resonance (alignment) to manifest: Swift. After this attacks, gain 1 Alignment counter.",
       "narrative_importance": "Dependable astral cavalier forming the field backbone of the Watchers of the Zenith Meridian across Lumenport Celestial Orrery Chamber.",
       "flavor_text": "He charges down the Star-Bridge at the speed of a falling meteor.",
-      "collection_biography": "Few sights along Lumenport Celestial Orrery Chamber are as unmistakable as astral lancer diving forward with a spear of condensed golden starlight. He charges down the Star-Bridge at the speed of a falling meteor. Sworn to the Watchers of the Zenith Meridian since the Third Harmonic Reformation of the Seventh Chime, this uncommon astral cavalier answers Crownbearer Solarius's call as a 4/2 assassin."
+      "collection_biography": "Few sights along Lumenport Celestial Orrery Chamber are as unmistakable as astral lancer diving forward with a spear of condensed golden starlight. He charges down the Star-Bridge at the speed of a falling meteor. Sworn to the Watchers of the Zenith Meridian since the Third Harmonic Reformation of the Seventh Chime, this common astral cavalier answers Crownbearer Solarius's call as a 4/2 assassin."
     },
     "art": {
       "asset_id": "art_card_str_c_0035",
@@ -8172,6 +8172,1951 @@
         "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
         "mood": "Cosmic, prophetic, and transcendent",
         "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Cloud-top marble terrace dotted with glowing golden meteor craters under an aurora. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: High mountain balcony beneath streaking comets; Expansive architectural vista with subtle ambient motion. Camera & Composition: Wide atmospheric establishing shot with strong foreground framing and deep perspective, vertical 3:4 card illustration framing. Environment & Background: Comet-Fall Terrace in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Radiant golden constellation lines against deep cosmic purple; dominant colors midnight_purple, gold, celestial_blue. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0049",
+    "revision": 1,
+    "name": "Starlight Astrologer Initiate",
+    "name_key": "cards.str_c_0049.name",
+    "description": "Swift. On Summon: Scry 1.",
+    "description_key": "cards.str_c_0049.description",
+    "type": "creature",
+    "subtype": "human_astronomer",
+    "faction": "starweave",
+    "rarity": "common",
+    "role": "vanguard",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "keywords": [
+      "swift"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Charts celestial conjunctions before breakfast to anticipate opposing vanguards.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "swift",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Early lane pressure",
+        "Efficient Aether-to-stat tempo",
+        "Frontline trading"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "High-health Bulwark guards",
+        "Quick removal tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 4
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Starlight Astrologer Initiate",
+      "species_or_classification": "human astronomer",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "secondary_landmark_id": "lm_str_zenith_meridian",
+        "primary_figure_id": "fig_str_orion",
+        "secondary_figure_id": "fig_str_zephyr",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_ninth_hour_conjunction"
+      },
+      "origin": "Star-Bridge of the Ninth Hour, The High Astral Archive",
+      "physical_appearance": "Young scholar holding a brass armillary sphere pointing up at starry night sky — a nimble, quick-deploying human astronomer (Scholar silhouette with raised celestial globe) clad in celestial gold and meteoric iron, exhibiting kinetic wind-streaks and blurred forward momentum.",
+      "personality_or_disposition": "Grimly resolute, carrying the memory of fallen predecessors. Operates as a vanguard (2 Attack / 1 Health) affiliated with the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "history": "Charts celestial conjunctions before breakfast to anticipate opposing vanguards. First recorded during the Ninth Hour Celestial Conjunction (Year 488 AC) when Comet-Ranger Orion mobilized the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "important_relationships": "Serves alongside Comet-Ranger Orion (First Bow of the Star-Bridge) at Star-Bridge of the Ninth Hour and coordinates three-lane maneuvers with Orrery-Keeper Zephyr.",
+      "habitats": [
+        "The Astral Archive",
+        "Zenith Meridian Sanctuary",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Swift. On Summon: Scry 1.",
+      "narrative_importance": "Dependable human astronomer forming the field backbone of the Astromancers of the Ninth Hour across Star-Bridge of the Ninth Hour.",
+      "flavor_text": "Charts celestial conjunctions before breakfast to anticipate opposing vanguards.",
+      "collection_biography": "Where ordinary human astronomer units falter, Starlight Astrologer Initiate thrives amidst the hazards of Star-Bridge of the Ninth Hour. Charts celestial conjunctions before breakfast to anticipate opposing vanguards. Trained under the doctrine of Comet-Ranger Orion and the Astromancers of the Ninth Hour, it turns every skirmish near Zenith Meridian Sanctuary into a display of swift."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0049",
+      "direction_id": "brief_str_c_0049",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0049.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Young scholar holding a brass armillary sphere pointing up at starry night sky. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Scholar silhouette with raised celestial globe; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Young scholar holding a brass armillary sphere pointing up at starry night sky",
+        "silhouette": "Scholar silhouette with raised celestial globe",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Practical frontline melee weapon and agile vanguard armor",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dynamic eye-level three-quarter action shot",
+        "pose": "Forward-leaning aggressive combat stance at the front of the lane",
+        "visual_effects": "kinetic wind-streaks and blurred forward momentum",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Young scholar holding a brass armillary sphere pointing up at starry night sky. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Scholar silhouette with raised celestial globe; Forward-leaning aggressive combat stance at the front of the lane. Camera & Composition: Dynamic eye-level three-quarter action shot, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: kinetic wind-streaks and blurred forward momentum. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0050",
+    "revision": 1,
+    "name": "Celestial Pillar Sentinel",
+    "name_key": "cards.str_c_0050.name",
+    "description": "Guard, Ward.",
+    "description_key": "cards.str_c_0050.description",
+    "type": "creature",
+    "subtype": "astral_construct",
+    "faction": "starweave",
+    "rarity": "common",
+    "role": "bulwark",
+    "cost": 2,
+    "attack": 1,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "grant_keyword",
+            "target": "self",
+            "keyword": "ward"
+          }
+        ]
+      }
+    ],
+    "lore": "Carved from meteoric granite and inscribed with golden constellations that ward off spells.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "self"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "alignment",
+        "grant_keyword"
+      ],
+      "resource_interactions": [
+        "Standard 2 Aether deployment"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Protects fragile Rear support and caster units",
+        "Absorbs multi-hit aggression"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Pierce damage",
+        "Corrode stat reduction",
+        "Silence effects"
+      ],
+      "legal_targeting_rules": "Resolves against: self",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Celestial Pillar Sentinel",
+      "species_or_classification": "astral construct",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_astral_archive_rotunda",
+        "secondary_landmark_id": "lm_str_cometfall_terrace",
+        "primary_figure_id": "fig_str_aurelia",
+        "secondary_figure_id": "fig_str_solarius",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "High Astral Archive Rotunda, The High Astral Archive",
+      "physical_appearance": "Heavy stone automaton carved with glowing golden constellation lines — a nimble, quick-deploying astral construct (Upright granite pillar guardian with glowing runes) clad in starlight crystal and celestial gold, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Curious, perceptive, and attuned to subtle leyline shifts. Operates as a bulwark (1 Attack / 5 Health) affiliated with the Watchers of the Zenith Meridian at High Astral Archive Rotunda.",
+      "history": "Carved from meteoric granite and inscribed with golden constellations that ward off spells. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Star-Seer Aurelia mobilized the Watchers of the Zenith Meridian at High Astral Archive Rotunda.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "important_relationships": "Serves alongside Star-Seer Aurelia (Oracle of the Observatory Beyond Dawn) at High Astral Archive Rotunda and coordinates three-lane maneuvers with Crownbearer Solarius.",
+      "habitats": [
+        "The Astral Archive",
+        "Comet-Fall Terrace",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Guard, Ward.",
+      "narrative_importance": "Dependable astral construct forming the field backbone of the Watchers of the Zenith Meridian across High Astral Archive Rotunda.",
+      "flavor_text": "Carved from meteoric granite and inscribed with golden constellations that ward off spells.",
+      "collection_biography": "Few sights along High Astral Archive Rotunda are as unmistakable as heavy stone automaton carved with glowing golden constellation lines. Carved from meteoric granite and inscribed with golden constellations that ward off spells. Sworn to the Watchers of the Zenith Meridian since the Third Harmonic Reformation of the Seventh Chime, this common astral construct answers Star-Seer Aurelia's call as a 1/5 bulwark."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0050",
+      "direction_id": "brief_str_c_0050",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0050.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy stone automaton carved with glowing golden constellation lines. Faction Style (Starweave — High Astral Archive Rotunda): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Upright granite pillar guardian with glowing runes; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Heavy stone automaton carved with glowing golden constellation lines",
+        "silhouette": "Upright granite pillar guardian with glowing runes",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Heavy tower shield, reinforced pauldrons, or protective barrier field",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Slightly low-angle heroic framing emphasizing mass and protection",
+        "pose": "Planted, immovable defensive stance anchoring the Front slot",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Heavy stone automaton carved with glowing golden constellation lines. Faction Style (Starweave — High Astral Archive Rotunda): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Upright granite pillar guardian with glowing runes; Planted, immovable defensive stance anchoring the Front slot. Camera & Composition: Slightly low-angle heroic framing emphasizing mass and protection, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0051",
+    "revision": 1,
+    "name": "Meteor-Shard Skulker",
+    "name_key": "cards.str_c_0051.name",
+    "description": "Pierce. After this attacks, deal 1 damage to the enemy Leader.",
+    "description_key": "cards.str_c_0051.description",
+    "type": "creature",
+    "subtype": "astral_scout",
+    "faction": "starweave",
+    "rarity": "uncommon",
+    "role": "assassin",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "keywords": [
+      "pierce"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Fights with twin sickles forged from fallen star-metal that crackle with cold blue cosmic fire.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "pierce",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Standard 3 Aether deployment"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "High burst damage",
+        "Eliminating Rear backline threats"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Guard units in the Front slot",
+        "Area-of-effect tactics",
+        "Shield counters"
+      ],
+      "legal_targeting_rules": "Resolves against: enemy_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Meteor-Shard Skulker",
+      "species_or_classification": "astral scout",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_celestial_orrery_chamber",
+        "secondary_landmark_id": "lm_str_observatory_beyond_dawn",
+        "primary_figure_id": "fig_str_solarius",
+        "secondary_figure_id": "fig_str_lyris_star",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_seventh_chime"
+      },
+      "origin": "Lumenport Celestial Orrery Chamber, The High Astral Archive",
+      "physical_appearance": "Astral rogue in dark starry silk leaping downward with glowing crescent sickles — a battle-tested mid-weight astral scout (Airborne assassin silhouette with curved celestial sickles) clad in starlight crystal and celestial gold, exhibiting armor-shattering kinetic impact spike.",
+      "personality_or_disposition": "Wary of outsiders but unshakably loyal to lane-mates. Operates as a assassin (4 Attack / 2 Health) affiliated with the Watchers of the Zenith Meridian at Lumenport Celestial Orrery Chamber.",
+      "history": "Fights with twin sickles forged from fallen star-metal that crackle with cold blue cosmic fire. First recorded during the Third Harmonic Reformation of the Seventh Chime (Year 275 AC) when Crownbearer Solarius mobilized the Watchers of the Zenith Meridian at Lumenport Celestial Orrery Chamber.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "important_relationships": "Serves alongside Crownbearer Solarius (Paladin of the Zenith Meridian) at Lumenport Celestial Orrery Chamber and coordinates three-lane maneuvers with Chronicler Astraea.",
+      "habitats": [
+        "The Astral Archive",
+        "The Observatory Beyond Dawn",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Pierce. After this attacks, deal 1 damage to the enemy Leader.",
+      "narrative_importance": "Dependable astral scout forming the field backbone of the Watchers of the Zenith Meridian across Lumenport Celestial Orrery Chamber.",
+      "flavor_text": "Fights with twin sickles forged from fallen star-metal that crackle with cold blue cosmic fire.",
+      "collection_biography": "Few sights along Lumenport Celestial Orrery Chamber are as unmistakable as astral rogue in dark starry silk leaping downward with glowing crescent sickles. Fights with twin sickles forged from fallen star-metal that crackle with cold blue cosmic fire. Sworn to the Watchers of the Zenith Meridian since the Third Harmonic Reformation of the Seventh Chime, this uncommon astral scout answers Crownbearer Solarius's call as a 4/2 assassin."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0051",
+      "direction_id": "brief_str_c_0051",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0051.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Astral rogue in dark starry silk leaping downward with glowing crescent sickles. Faction Style (Starweave — Lumenport Celestial Orrery Chamber): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Airborne assassin silhouette with curved celestial sickles; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Astral rogue in dark starry silk leaping downward with glowing crescent sickles",
+        "silhouette": "Airborne assassin silhouette with curved celestial sickles",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Twin precision blades, concealed cloak, and lightweight silent gear",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dutch-angle dynamic close-up with sharp foreground/background contrast",
+        "pose": "Coiled, low-profile strike posture emerging from cover or shadow",
+        "visual_effects": "armor-shattering kinetic impact spike",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Astral rogue in dark starry silk leaping downward with glowing crescent sickles. Faction Style (Starweave — Lumenport Celestial Orrery Chamber): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Airborne assassin silhouette with curved celestial sickles; Coiled, low-profile strike posture emerging from cover or shadow. Camera & Composition: Dutch-angle dynamic close-up with sharp foreground/background contrast, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: armor-shattering kinetic impact spike. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0052",
+    "revision": 1,
+    "name": "Orrery Star-Shooter",
+    "name_key": "cards.str_c_0052.name",
+    "description": "Reach. After this attacks, Scry 1.",
+    "description_key": "cards.str_c_0052.description",
+    "type": "creature",
+    "subtype": "astral_marksman",
+    "faction": "starweave",
+    "rarity": "uncommon",
+    "role": "marksman",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [
+      "reach"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "after_this_attacks",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Aligns telescopic lenses to guide starlight arrows directly into vulnerable joints.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "reach",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Reach targeting past unguarded Front units",
+        "Safe backline damage projection"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Dive assassins with Reach or Skirmish",
+        "Direct damage tactics"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Orrery Star-Shooter",
+      "species_or_classification": "astral marksman",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_zenith_meridian",
+        "secondary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "primary_figure_id": "fig_str_lyris_star",
+        "secondary_figure_id": "fig_str_aurelia",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_ossuary_reclamation"
+      },
+      "origin": "Zenith Meridian Sanctuary, The High Astral Archive",
+      "physical_appearance": "Archon marksman aiming an ornate golden orrery crossbow toward the heavens — a battle-tested mid-weight astral marksman (Arched celestial bowman silhouette) clad in meteoric iron and nebula-woven damask, exhibiting elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a marksman (3 Attack / 4 Health) affiliated with the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "history": "Aligns telescopic lenses to guide starlight arrows directly into vulnerable joints. First recorded during the Reclamation of the Sunken Ossuary (Year 381 AC) when Chronicler Astraea mobilized the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "important_relationships": "Serves alongside Chronicler Astraea (Scribe of the Gold Star-Plates) at Zenith Meridian Sanctuary and coordinates three-lane maneuvers with Star-Seer Aurelia.",
+      "habitats": [
+        "The Astral Archive",
+        "Star-Bridge of the Ninth Hour",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Reach. After this attacks, Scry 1.",
+      "narrative_importance": "Dependable astral marksman forming the field backbone of the Watchers of the Zenith Meridian across Zenith Meridian Sanctuary.",
+      "flavor_text": "Aligns telescopic lenses to guide starlight arrows directly into vulnerable joints.",
+      "collection_biography": "Chronicler Astraea often warns initiates at Zenith Meridian Sanctuary never to misjudge Orrery Star-Shooter. Aligns telescopic lenses to guide starlight arrows directly into vulnerable joints. Whether patrolling Star-Bridge of the Ninth Hour for the Watchers of the Zenith Meridian or manifesting on the Convergence slate, its 3 Attack and 4 Health punish careless lane positioning."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0052",
+      "direction_id": "brief_str_c_0052",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0052.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Archon marksman aiming an ornate golden orrery crossbow toward the heavens. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Arched celestial bowman silhouette; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Archon marksman aiming an ornate golden orrery crossbow toward the heavens",
+        "silhouette": "Arched celestial bowman silhouette",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Ranged bow, arcane rifle, harp-bow, or precision ballista",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Medium shot looking along the line of fire with depth-of-field target focus",
+        "pose": "Poised long-range aiming stance from an elevated Rear vantage point",
+        "visual_effects": "elevated trajectory lines and extended targeting focus",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Archon marksman aiming an ornate golden orrery crossbow toward the heavens. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Arched celestial bowman silhouette; Poised long-range aiming stance from an elevated Rear vantage point. Camera & Composition: Medium shot looking along the line of fire with depth-of-field target focus, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: elevated trajectory lines and extended targeting focus. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0053",
+    "revision": 1,
+    "name": "Zenith Star-Caller",
+    "name_key": "cards.str_c_0053.name",
+    "description": "On Summon: Deal 1 damage to all enemy creatures and draw 1 card.",
+    "description_key": "cards.str_c_0053.description",
+    "type": "creature",
+    "subtype": "human_star_mage",
+    "faction": "starweave",
+    "rarity": "uncommon",
+    "role": "caster",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "keywords": [],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 1
+          },
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Brings down fragments of shooting stars to scatter opposing battle lines.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Card advantage",
+        "Lane-wide status manipulation and spell synergy"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Silence disruption",
+        "High-tempo aggressive vanguards"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Zenith Star-Caller",
+      "species_or_classification": "human star mage",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_astral_archive_rotunda",
+        "secondary_landmark_id": "lm_str_cometfall_terrace",
+        "primary_figure_id": "fig_str_aurelia",
+        "secondary_figure_id": "fig_str_solarius",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_whisperleaf_compact"
+      },
+      "origin": "High Astral Archive Rotunda, The High Astral Archive",
+      "physical_appearance": "Star mage calling showers of golden meteors down upon the arena table — a battle-tested mid-weight human star mage (Robed figure with raised hands channeling falling stars) clad in meteoric iron and nebula-woven damask, attuned to Starweave Aether discipline.",
+      "personality_or_disposition": "Methodical and calculating under battlefield pressure. Operates as a caster (3 Attack / 4 Health) affiliated with the Watchers of the Zenith Meridian at High Astral Archive Rotunda.",
+      "history": "Brings down fragments of shooting stars to scatter opposing battle lines. First recorded during the Whisperleaf Root-Compact (Year 450 AC) when Star-Seer Aurelia mobilized the Watchers of the Zenith Meridian at High Astral Archive Rotunda.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "important_relationships": "Serves alongside Star-Seer Aurelia (Oracle of the Observatory Beyond Dawn) at High Astral Archive Rotunda and coordinates three-lane maneuvers with Crownbearer Solarius.",
+      "habitats": [
+        "The Astral Archive",
+        "Comet-Fall Terrace",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: On Summon: Deal 1 damage to all enemy creatures and draw 1 card.",
+      "narrative_importance": "Dependable human star mage forming the field backbone of the Watchers of the Zenith Meridian across High Astral Archive Rotunda.",
+      "flavor_text": "Brings down fragments of shooting stars to scatter opposing battle lines.",
+      "collection_biography": "The archives of the Watchers of the Zenith Meridian at High Astral Archive Rotunda preserve the original Echo impression of Zenith Star-Caller, dated to Year 450 AC (the Whisperleaf Root-Compact). Brings down fragments of shooting stars to scatter opposing battle lines. On the tabletop, Star-Seer Aurelia uses its 4-Aether profile (3/4) to swing two-lane Resonance."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0053",
+      "direction_id": "brief_str_c_0053",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0053.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Star mage calling showers of golden meteors down upon the arena table. Faction Style (Starweave — High Astral Archive Rotunda): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Robed figure with raised hands channeling falling stars; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Star mage calling showers of golden meteors down upon the arena table",
+        "silhouette": "Robed figure with raised hands channeling falling stars",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Runed staff, floating grimoire, astrolabe, or focusing crystal lenses",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Centered medium portrait framed by swirling magical geometry",
+        "pose": "Expressive gesture channeling structured Aether glyphs and elemental energy",
+        "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Star mage calling showers of golden meteors down upon the arena table. Faction Style (Starweave — High Astral Archive Rotunda): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Robed figure with raised hands channeling falling stars; Expressive gesture channeling structured Aether glyphs and elemental energy. Camera & Composition: Centered medium portrait framed by swirling magical geometry, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0054",
+    "revision": 1,
+    "name": "Archival Chrono-Scribe",
+    "name_key": "cards.str_c_0054.name",
+    "description": "Guard. At the start of your turn, Scry 2.",
+    "description_key": "cards.str_c_0054.description",
+    "type": "creature",
+    "subtype": "human_scholar",
+    "faction": "starweave",
+    "rarity": "uncommon",
+    "role": "support",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "keywords": [
+      "guard"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Records tomorrow’s history in illuminated manuscripts bound in astral leather.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "guard",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Sustains injured allies",
+        "Multiplies team stats across lanes"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Eliminating the Support unit before its engine snowballs"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 8
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Archival Chrono-Scribe",
+      "species_or_classification": "human scholar",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_cometfall_terrace",
+        "secondary_landmark_id": "lm_str_astral_archive_rotunda",
+        "primary_figure_id": "fig_str_zephyr",
+        "secondary_figure_id": "fig_str_celeste",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Comet-Fall Terrace, The High Astral Archive",
+      "physical_appearance": "Venerable scholar in golden robes penning symbols into a levitating golden codex — a battle-tested mid-weight human scholar (Scholarly figure writing in floating book) clad in nebula-woven damask and starlight crystal, exhibiting interlocking defensive barrier aura and planted shield stance.",
+      "personality_or_disposition": "Quicksilver-tempered and fond of misdirection. Operates as a support (2 Attack / 5 Health) affiliated with the Astromancers of the Ninth Hour at Comet-Fall Terrace.",
+      "history": "Records tomorrow’s history in illuminated manuscripts bound in astral leather. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Orrery-Keeper Zephyr mobilized the Astromancers of the Ninth Hour at Comet-Fall Terrace.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "important_relationships": "Serves alongside Orrery-Keeper Zephyr (Artificer of the Nine Brass Planets) at Comet-Fall Terrace and coordinates three-lane maneuvers with Astromancer Celeste Oryn.",
+      "habitats": [
+        "The Astral Archive",
+        "High Astral Archive Rotunda",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Guard. At the start of your turn, Scry 2.",
+      "narrative_importance": "Dependable human scholar forming the field backbone of the Astromancers of the Ninth Hour across Comet-Fall Terrace.",
+      "flavor_text": "Records tomorrow’s history in illuminated manuscripts bound in astral leather.",
+      "collection_biography": "\"Records tomorrow’s history in illuminated manuscripts bound in astral leather.\" — field annotation by Orrery-Keeper Zephyr. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Archival Chrono-Scribe exemplifies how the Astromancers of the Ninth Hour adapts to high-pressure three-lane duels between Comet-Fall Terrace and High Astral Archive Rotunda."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0054",
+      "direction_id": "brief_str_c_0054",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0054.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Venerable scholar in golden robes penning symbols into a levitating golden codex. Faction Style (Starweave — Comet-Fall Terrace): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Scholarly figure writing in floating book; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Venerable scholar in golden robes penning symbols into a levitating golden codex",
+        "silhouette": "Scholarly figure writing in floating book",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Restorative censer, tuning baton, banner, or sanctuary lantern",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Warm balanced medium shot with open inviting composition",
+        "pose": "Uplifted protective posture radiating restorative aura outward to allies",
+        "visual_effects": "interlocking defensive barrier aura and planted shield stance",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Venerable scholar in golden robes penning symbols into a levitating golden codex. Faction Style (Starweave — Comet-Fall Terrace): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Scholarly figure writing in floating book; Uplifted protective posture radiating restorative aura outward to allies. Camera & Composition: Warm balanced medium shot with open inviting composition, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: interlocking defensive barrier aura and planted shield stance. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0055",
+    "revision": 1,
+    "name": "Archon Orion, Sovereign of the Constellations",
+    "name_key": "cards.str_c_0055.name",
+    "description": "Ward, Reach. On Summon: Deal 3 damage to all enemy creatures and draw 2 cards.",
+    "description_key": "cards.str_c_0055.description",
+    "type": "creature",
+    "subtype": "celestial_avatar",
+    "faction": "starweave",
+    "rarity": "legendary",
+    "role": "colossus",
+    "cost": 8,
+    "attack": 8,
+    "health": 8,
+    "keywords": [
+      "ward",
+      "reach"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_summon",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "all_enemy_creatures",
+            "amount": 3
+          },
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "The living manifestation of the celestial vault. His staff aligns the planetary spheres into catastrophic conjunctions.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "advanced",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "all_enemy_creatures",
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "ward",
+        "reach",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Late-game lane breaker",
+        "Massive stat presence and game-ending keywords"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Hard removal tactics",
+        "Chump-blocking with Shield or Ward"
+      ],
+      "legal_targeting_rules": "Resolves against: all_enemy_creatures, ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "late",
+        "power_budget_score": 18
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Archon Orion, Sovereign of the Constellations",
+      "species_or_classification": "celestial avatar",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "secondary_landmark_id": "lm_str_zenith_meridian",
+        "primary_figure_id": "fig_str_orion",
+        "secondary_figure_id": "fig_str_zephyr",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "Star-Bridge of the Ninth Hour, The High Astral Archive",
+      "physical_appearance": "Towering cosmic avatar woven of nebula clouds and golden starlight wielding a constellation staff — a towering, high-Aether celestial avatar (Colossal starlit titan crowned with spinning astral rings) clad in nebula-woven damask and starlight crystal, exhibiting translucent hexagonal prismatic spell-ward halo and elevated trajectory lines and extended targeting focus.",
+      "personality_or_disposition": "Zealously devoted to the harmonic purity of their order. Operates as a colossus (8 Attack / 8 Health) affiliated with the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "history": "The living manifestation of the celestial vault. His staff aligns the planetary spheres into catastrophic conjunctions. First recorded during the Prism Schism of the Mirror Galleries (Year 208 AC) when Comet-Ranger Orion mobilized the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "important_relationships": "Serves alongside Comet-Ranger Orion (First Bow of the Star-Bridge) at Star-Bridge of the Ninth Hour and coordinates three-lane maneuvers with Orrery-Keeper Zephyr.",
+      "habitats": [
+        "The Astral Archive",
+        "Zenith Meridian Sanctuary",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Ward, Reach. On Summon: Deal 3 damage to all enemy creatures and draw 2 cards.",
+      "narrative_importance": "Pivotal named figure in the Convergence Chronicles of Star-Bridge of the Ninth Hour, counselled directly by Comet-Ranger Orion.",
+      "flavor_text": "The living manifestation of the celestial vault. His staff aligns the planetary spheres into catastrophic conjunctions.",
+      "collection_biography": "\"The living manifestation of the celestial vault. His staff aligns the planetary spheres into catastrophic conjunctions.\" — field annotation by Comet-Ranger Orion. First documented during the Prism Schism of the Mirror Galleries (Year 208 AC), Archon Orion, Sovereign of the Constellations exemplifies how the Astromancers of the Ninth Hour adapts to high-pressure three-lane duels between Star-Bridge of the Ninth Hour and Zenith Meridian Sanctuary."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0055",
+      "direction_id": "brief_str_c_0055",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0055.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering cosmic avatar woven of nebula clouds and golden starlight wielding a constellation staff. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Colossal starlit titan crowned with spinning astral rings; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo; elevated trajectory lines and extended targeting focus. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Towering cosmic avatar woven of nebula clouds and golden starlight wielding a constellation staff",
+        "silhouette": "Colossal starlit titan crowned with spinning astral rings",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Massive siege weaponry, monolithic armor plating, and glowing Aether core",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Epic cinematic composition with grand architectural framing and multi-layered depth",
+        "pose": "Monumental, ground-shaking stride dominating the entire battlefield lane",
+        "visual_effects": "translucent hexagonal prismatic spell-ward halo; elevated trajectory lines and extended targeting focus",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Towering cosmic avatar woven of nebula clouds and golden starlight wielding a constellation staff. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Colossal starlit titan crowned with spinning astral rings; Monumental, ground-shaking stride dominating the entire battlefield lane. Camera & Composition: Epic cinematic composition with grand architectural framing and multi-layered depth, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: translucent hexagonal prismatic spell-ward halo; elevated trajectory lines and extended targeting focus. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-C-0056",
+    "revision": 1,
+    "name": "Orbit-Dancing Skirmisher",
+    "name_key": "cards.str_c_0056.name",
+    "description": "Skirmish. When this moves lanes, Scry 1.",
+    "description_key": "cards.str_c_0056.description",
+    "type": "creature",
+    "subtype": "astral_dancer",
+    "faction": "starweave",
+    "rarity": "common",
+    "role": "trickster",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "keywords": [
+      "skirmish"
+    ],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_move",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Glides between lanes as though pulled by planetary gravitational tides.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "silence"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "skirmish",
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Repositioning units between lanes",
+        "Tempo disruption and surprise swaps"
+      ],
+      "weaknesses": [
+        "silence"
+      ],
+      "counterplay_options": [
+        "Anchor units immune to movement",
+        "Predictable lane locking"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 6
+      }
+    },
+    "identity": {
+      "entity_kind": "creature",
+      "original_name": "Orbit-Dancing Skirmisher",
+      "species_or_classification": "astral dancer",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_zenith_meridian",
+        "secondary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "primary_figure_id": "fig_str_lyris_star",
+        "secondary_figure_id": "fig_str_aurelia",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Zenith Meridian Sanctuary, The High Astral Archive",
+      "physical_appearance": "Graceful dancer with flowing starry silk scarves revolving around an arena pedestal — a nimble, quick-deploying astral dancer (Spinning dancer silhouette trailing ribbon curves) clad in meteoric iron and nebula-woven damask, exhibiting fluid side-stepping water or wind trail.",
+      "personality_or_disposition": "Serene and patient, waiting for the exact moment of convergence. Operates as a trickster (2 Attack / 3 Health) affiliated with the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "history": "Glides between lanes as though pulled by planetary gravitational tides. First recorded during the Founding of the Lumenport Tag Charter (Year 510 AC) when Chronicler Astraea mobilized the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "important_relationships": "Serves alongside Chronicler Astraea (Scribe of the Gold Star-Plates) at Zenith Meridian Sanctuary and coordinates three-lane maneuvers with Star-Seer Aurelia.",
+      "habitats": [
+        "The Astral Archive",
+        "Star-Bridge of the Ninth Hour",
+        "The High Astral Archive"
+      ],
+      "world_abilities": "Channels Starweave resonance (alignment) to manifest: Skirmish. When this moves lanes, Scry 1.",
+      "narrative_importance": "Dependable astral dancer forming the field backbone of the Watchers of the Zenith Meridian across Zenith Meridian Sanctuary.",
+      "flavor_text": "Glides between lanes as though pulled by planetary gravitational tides.",
+      "collection_biography": "Chronicles of the Founding of the Lumenport Tag Charter recount how Chronicler Astraea and Star-Seer Aurelia first encountered Orbit-Dancing Skirmisher guarding the approaches to Zenith Meridian Sanctuary. Glides between lanes as though pulled by planetary gravitational tides. Now a mainstay of the Watchers of the Zenith Meridian, this 2-Aether trickster rewards disciplined resource timing."
+    },
+    "art": {
+      "asset_id": "art_card_str_c_0056",
+      "direction_id": "brief_str_c_0056",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-c-0056.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Graceful dancer with flowing starry silk scarves revolving around an arena pedestal. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Spinning dancer silhouette trailing ribbon curves; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Graceful dancer with flowing starry silk scarves revolving around an arena pedestal",
+        "silhouette": "Spinning dancer silhouette trailing ribbon curves",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Atmospheric fantasy lighting with glowing Aether accents",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Grappling tethers, hydro-fans, illusion mirrors, or smoke vials",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dynamic wide-angle action framing capturing motion trails",
+        "pose": "Acrobatic mid-motion pivot, feint, or lane-shifting flourish",
+        "visual_effects": "fluid side-stepping water or wind trail",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Graceful dancer with flowing starry silk scarves revolving around an arena pedestal. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Spinning dancer silhouette trailing ribbon curves; Acrobatic mid-motion pivot, feint, or lane-shifting flourish. Camera & Composition: Dynamic wide-angle action framing capturing motion trails, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Atmospheric fantasy lighting with glowing Aether accents; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: fluid side-stepping water or wind trail. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-T-0057",
+    "revision": 1,
+    "name": "Guiding Constellation",
+    "name_key": "cards.str_t_0057.name",
+    "description": "Quick Tactic. Scry 2.",
+    "description_key": "cards.str_t_0057.description",
+    "type": "tactic",
+    "subtype": "quick",
+    "faction": "starweave",
+    "rarity": "common",
+    "role": null,
+    "cost": 1,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "Look to the North Star when the duel table becomes obscured.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Main Phase or Quick Response Window",
+      "status_interactions": [
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 3
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Guiding Constellation",
+      "classification": "Starweave tactic (quick)",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_observatory_beyond_dawn",
+        "secondary_landmark_id": "lm_str_celestial_orrery_chamber",
+        "primary_figure_id": "fig_str_celeste",
+        "secondary_figure_id": "fig_str_orion",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_first_convergence"
+      },
+      "origin": "The Observatory Beyond Dawn (The High Astral Archive)",
+      "historical_provenance": "Look to the North Star when the duel table becomes obscured. Established during the First Convergence Concordat (Year 1 AC) by Astromancer Celeste Oryn and the Astromancers of the Ninth Hour at The Observatory Beyond Dawn.",
+      "mechanism_of_action": "At 1 Aether, projects the resonant imprint of The Observatory Beyond Dawn: Quick Tactic. Scry 2.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "associated_locations": [
+        "The Astral Archive",
+        "Lumenport Celestial Orrery Chamber",
+        "The High Astral Archive"
+      ],
+      "narrative_importance": "A codified quick tactic perfected by Astromancer Celeste Oryn and the Astromancers of the Ninth Hour at The Observatory Beyond Dawn.",
+      "flavor_text": "Look to the North Star when the duel table becomes obscured.",
+      "collection_biography": "Look to the North Star when the duel table becomes obscured. Codified by Astromancer Celeste Oryn (Starweave Chair of Celestial Alignment) for the Astromancers of the Ninth Hour during the First Convergence Concordat, Guiding Constellation channels the resonant signature of The Observatory Beyond Dawn into a 1-Aether tactic."
+    },
+    "art": {
+      "asset_id": "art_card_str_t_0057",
+      "direction_id": "brief_str_t_0057",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-t-0057.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Golden constellation lines forming the shape of a guiding compass in dark sky. Faction Style (Starweave — The Observatory Beyond Dawn): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Geometric star-map diagram; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Golden constellation lines forming the shape of a guiding compass in dark sky",
+        "silhouette": "Geometric star-map diagram",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Golden constellation lines forming the shape of a guiding compass in dark sky. Faction Style (Starweave — The Observatory Beyond Dawn): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Geometric star-map diagram; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-T-0058",
+    "revision": 1,
+    "name": "Planetary Conjunction",
+    "name_key": "cards.str_t_0058.name",
+    "description": "Standard Tactic. Draw 2 cards and gain 1 temporary Aether this turn.",
+    "description_key": "cards.str_t_0058.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "starweave",
+    "rarity": "uncommon",
+    "role": null,
+    "cost": 3,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "draw",
+            "target": "ally_leader",
+            "amount": 2
+          },
+          {
+            "operation": "gain_aether",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "When three planets align, the cosmic resonance overflows mortal vessels.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Generates temporary Aether",
+        "Draws cards from deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 7
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Planetary Conjunction",
+      "classification": "Starweave tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_zenith_meridian",
+        "secondary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "primary_figure_id": "fig_str_lyris_star",
+        "secondary_figure_id": "fig_str_aurelia",
+        "organization_id": "org_starbridge_paladins",
+        "historical_event_id": "era_lumenport_charter"
+      },
+      "origin": "Zenith Meridian Sanctuary (The High Astral Archive)",
+      "historical_provenance": "When three planets align, the cosmic resonance overflows mortal vessels. Established during the Founding of the Lumenport Tag Charter (Year 510 AC) by Chronicler Astraea and the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "mechanism_of_action": "At 3 Aether, projects the resonant imprint of Zenith Meridian Sanctuary: Standard Tactic. Draw 2 cards and gain 1 temporary Aether this turn.",
+      "faction_allegiance": "Starweave (Watchers of the Zenith Meridian)",
+      "associated_locations": [
+        "The Astral Archive",
+        "Star-Bridge of the Ninth Hour",
+        "The High Astral Archive"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Chronicler Astraea and the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary.",
+      "flavor_text": "When three planets align, the cosmic resonance overflows mortal vessels.",
+      "collection_biography": "Inscribed into the ledgers of the Watchers of the Zenith Meridian at Zenith Meridian Sanctuary during the Founding of the Lumenport Tag Charter (Year 510 AC), Planetary Conjunction captures a decisive moment of faction history: When three planets align, the cosmic resonance overflows mortal vessels. Chronicler Astraea recommends it for decks seeking reliable standard leverage."
+    },
+    "art": {
+      "asset_id": "art_card_str_t_0058",
+      "direction_id": "brief_str_t_0058",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-t-0058.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Three glowing planets lining up in a brilliant horizontal beam of gold and violet light. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Three aligned glowing spheres along a horizontal axis; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Three glowing planets lining up in a brilliant horizontal beam of gold and violet light",
+        "silhouette": "Three aligned glowing spheres along a horizontal axis",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Three glowing planets lining up in a brilliant horizontal beam of gold and violet light. Faction Style (Starweave — Zenith Meridian Sanctuary): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Three aligned glowing spheres along a horizontal axis; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-T-0059",
+    "revision": 1,
+    "name": "Supernova Burst",
+    "name_key": "cards.str_t_0059.name",
+    "description": "Standard Tactic. Deal 5 damage to an enemy creature and 2 damage to the enemy Leader.",
+    "description_key": "cards.str_t_0059.description",
+    "type": "tactic",
+    "subtype": "standard",
+    "faction": "starweave",
+    "rarity": "rare",
+    "role": null,
+    "cost": 4,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "on_play",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "deal_damage",
+            "target": "target_enemy_creature",
+            "amount": 5
+          },
+          {
+            "operation": "deal_damage",
+            "target": "enemy_leader",
+            "amount": 2
+          }
+        ]
+      }
+    ],
+    "lore": "A collapsing star releases the energy of ten thousand suns in a fraction of a breath.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "timing"
+    ],
+    "complexity": "intermediate",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "target_enemy_creature",
+        "enemy_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase",
+      "status_interactions": [
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Standard 4 Aether deployment"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Immediate tactical tempo swing",
+        "Direct spell interaction"
+      ],
+      "weaknesses": [
+        "timing"
+      ],
+      "counterplay_options": [
+        "Ward spell protection",
+        "Counter-tactics and Shield buffers"
+      ],
+      "legal_targeting_rules": "Resolves against: target_enemy_creature, enemy_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "mid",
+        "power_budget_score": 9
+      }
+    },
+    "identity": {
+      "entity_kind": "tactic",
+      "original_name": "Supernova Burst",
+      "classification": "Starweave tactic (standard)",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_ninth_hour_starbridge",
+        "secondary_landmark_id": "lm_str_zenith_meridian",
+        "primary_figure_id": "fig_str_orion",
+        "secondary_figure_id": "fig_str_zephyr",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_caldera_eruption"
+      },
+      "origin": "Star-Bridge of the Ninth Hour (The High Astral Archive)",
+      "historical_provenance": "A collapsing star releases the energy of ten thousand suns in a fraction of a breath. Established during the Great Caldera Eruption of Year 412 (Year 412 AC) by Comet-Ranger Orion and the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "mechanism_of_action": "At 4 Aether, projects the resonant imprint of Star-Bridge of the Ninth Hour: Standard Tactic. Deal 5 damage to an enemy creature and 2 damage to the enemy Leader.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "associated_locations": [
+        "The Astral Archive",
+        "Zenith Meridian Sanctuary",
+        "The High Astral Archive"
+      ],
+      "narrative_importance": "A codified standard tactic perfected by Comet-Ranger Orion and the Astromancers of the Ninth Hour at Star-Bridge of the Ninth Hour.",
+      "flavor_text": "A collapsing star releases the energy of ten thousand suns in a fraction of a breath.",
+      "collection_biography": "\"A collapsing star releases the energy of ten thousand suns in a fraction of a breath.\" — treatise by Comet-Ranger Orion of the Astromancers of the Ninth Hour. Originating at Star-Bridge of the Ninth Hour during the Great Caldera Eruption of Year 412, this rare tactic allows duelists to reshape lane momentum at 4 Aether."
+    },
+    "art": {
+      "asset_id": "art_card_str_t_0059",
+      "direction_id": "brief_str_t_0059",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-t-0059.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Blinding white-gold cosmic explosion expanding outward across a star field. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Radial supernova shockwave; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Blinding white-gold cosmic explosion expanding outward across a star field",
+        "silhouette": "Radial supernova shockwave",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Dramatic action flare with atmospheric depth",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Dynamic spell-action mid-shot capturing energy motion and clear focal impact",
+        "pose": "High-energy kinetic spell release",
+        "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Blinding white-gold cosmic explosion expanding outward across a star field. Faction Style (Starweave — Star-Bridge of the Ninth Hour): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Radial supernova shockwave; High-energy kinetic spell release. Camera & Composition: Dynamic spell-action mid-shot capturing energy motion and clear focal impact, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Dramatic action flare with atmospheric depth; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+        "visual_exclusions": [
+          "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+          "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+          "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+          "NO copyrighted characters or recognizable external franchise designs"
+        ],
+        "reference_style_id": "hearthglass_stylized_handpainted_v1"
+      }
+    },
+    "balance_version": "base_002",
+    "release_set": "foundations"
+  },
+  {
+    "id": "STR-R-0060",
+    "revision": 1,
+    "name": "Brass Astrolabe of the Zenith",
+    "name_key": "cards.str_r_0060.name",
+    "description": "Relic. At the start of your turn, Scry 1.",
+    "description_key": "cards.str_r_0060.description",
+    "type": "relic",
+    "subtype": "astral_relic",
+    "faction": "starweave",
+    "rarity": "common",
+    "role": null,
+    "cost": 2,
+    "attack": 0,
+    "health": 0,
+    "keywords": [],
+    "mechanics": [
+      "alignment"
+    ],
+    "abilities": [
+      {
+        "trigger": "turn_start",
+        "conditions": [],
+        "effects": [
+          {
+            "operation": "scry_top_deck",
+            "target": "ally_leader",
+            "amount": 1
+          }
+        ]
+      }
+    ],
+    "lore": "Engraved with the eighteen ancient constellations known to the First Scribes.",
+    "archetypes": [
+      "alignment_core"
+    ],
+    "weaknesses": [
+      "tempo"
+    ],
+    "complexity": "beginner",
+    "gameplay_metadata": {
+      "effect_targets": [
+        "ally_leader"
+      ],
+      "timing_restrictions": "Active Player Main Phase (requires open lane/zone slot)",
+      "status_interactions": [
+        "alignment"
+      ],
+      "resource_interactions": [
+        "Manipulates top card of deck"
+      ],
+      "archetype_membership": [
+        "alignment_core"
+      ],
+      "strategic_strengths": [
+        "Persistent turn-over-turn Relic zone value",
+        "Synergy engine for faction mechanic"
+      ],
+      "weaknesses": [
+        "tempo"
+      ],
+      "counterplay_options": [
+        "High-tempo lane pressure to punish Relic setup turn"
+      ],
+      "legal_targeting_rules": "Resolves against: ally_leader",
+      "synergy_references": [
+        "alignment",
+        "alignment_core"
+      ],
+      "balance_metadata": {
+        "cost_curve_tier": "early",
+        "power_budget_score": 5
+      }
+    },
+    "identity": {
+      "entity_kind": "relic",
+      "original_name": "Brass Astrolabe of the Zenith",
+      "classification": "Starweave relic (astral relic)",
+      "world_bible_refs": {
+        "region_id": "reg_high_astral_archive",
+        "primary_landmark_id": "lm_str_observatory_beyond_dawn",
+        "secondary_landmark_id": "lm_str_celestial_orrery_chamber",
+        "primary_figure_id": "fig_str_celeste",
+        "secondary_figure_id": "fig_str_orion",
+        "organization_id": "org_ninth_hour_seers",
+        "historical_event_id": "era_prism_schism"
+      },
+      "origin": "The Observatory Beyond Dawn (The High Astral Archive)",
+      "historical_provenance": "Engraved with the eighteen ancient constellations known to the First Scribes. Established during the Prism Schism of the Mirror Galleries (Year 208 AC) by Astromancer Celeste Oryn and the Astromancers of the Ninth Hour at The Observatory Beyond Dawn.",
+      "mechanism_of_action": "At 2 Aether, projects the resonant imprint of The Observatory Beyond Dawn: Relic. At the start of your turn, Scry 1.",
+      "faction_allegiance": "Starweave (Astromancers of the Ninth Hour)",
+      "associated_locations": [
+        "The Astral Archive",
+        "Lumenport Celestial Orrery Chamber",
+        "The High Astral Archive"
+      ],
+      "narrative_importance": "An enduring artifact of the Astromancers of the Ninth Hour, forged during the Prism Schism of the Mirror Galleries and safeguarded by Astromancer Celeste Oryn.",
+      "flavor_text": "Engraved with the eighteen ancient constellations known to the First Scribes.",
+      "collection_biography": "Engraved with the eighteen ancient constellations known to the First Scribes. Codified by Astromancer Celeste Oryn (Starweave Chair of Celestial Alignment) for the Astromancers of the Ninth Hour during the Prism Schism of the Mirror Galleries, Brass Astrolabe of the Zenith channels the resonant signature of The Observatory Beyond Dawn into a 2-Aether relic."
+    },
+    "art": {
+      "asset_id": "art_card_str_r_0060",
+      "direction_id": "brief_str_r_0060",
+      "art_tier": "none",
+      "concept_approved": false,
+      "final_production_approved": false,
+      "approved": false,
+      "status": "brief_ready",
+      "placeholder_status": "brief_ready_awaiting_generation",
+      "asset_location": "res://assets/cards/pending/str-r-0060.svg",
+      "web_preview_url": null,
+      "style_id": "hearthglass_stylized_handpainted_v1",
+      "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Intricate brass astrolabe with movable discs and sapphire pointers on dark stone. Faction Style (Starweave — The Observatory Beyond Dawn): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Circular astrolabe profile with suspension ring; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
+      "visual_exclusions": [
+        "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
+        "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",
+        "NO photorealistic stock photos, NO generic 3D renders, NO anime chibi distortion",
+        "NO copyrighted characters or recognizable external franchise designs"
+      ],
+      "brief": {
+        "subject": "Intricate brass astrolabe with movable discs and sapphire pointers on dark stone",
+        "silhouette": "Circular astrolabe profile with suspension ring",
+        "palette": [
+          "cosmic_purple",
+          "celestial_gold",
+          "starlight_cyan"
+        ],
+        "lighting": "Warm metallic highlights and gem sheen",
+        "environment": "The Astral Archive",
+        "materials": [
+          "celestial gold",
+          "meteoric iron",
+          "nebula-woven damask",
+          "starlight crystal"
+        ],
+        "clothing_or_armor": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "weapons_or_equipment": "Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns",
+        "background": "The Astral Archive (The High Astral Archive)",
+        "camera_composition": "Heroic centered object focus on an ornate pedestal with dramatic rim-lighting",
+        "pose": "Suspended or mounted in active Aether resonance",
+        "visual_effects": "Subtle Starweave Aether particles and resonant light motes",
+        "mood": "Cosmic, prophetic, and transcendent",
+        "prompt": "Rich stylized hand-painted fantasy illustration, tactile painterly brushwork, luminous Aether crystal accents, clear readable silhouette at tabletop card scale, dramatic atmospheric depth, cohesive material rendering. Subject: Intricate brass astrolabe with movable discs and sapphire pointers on dark stone. Faction Style (Starweave — The Observatory Beyond Dawn): Constellation-inlaid plate, brass armillary spheres, astral longbows, and floating solar crowns, crafted from celestial gold, meteoric iron, nebula-woven damask, starlight crystal. Silhouette & Pose: Circular astrolabe profile with suspension ring; Suspended or mounted in active Aether resonance. Camera & Composition: Heroic centered object focus on an ornate pedestal with dramatic rim-lighting, vertical 3:4 card illustration framing. Environment & Background: The Astral Archive in The High Astral Archive (Floating cloud-top observatories, golden orrery domes, star-bridge sanctuaries). Lighting & Color Palette: Warm metallic highlights and gem sheen; dominant colors cosmic_purple, celestial_gold, starlight_cyan. Visual Effects & Mood: Subtle Starweave Aether particles and resonant light motes. Mood: Cosmic, prophetic, and transcendent. Full-bleed illustration only — strictly no text, no numbers, no card frame, no UI elements.",
         "visual_exclusions": [
           "NO text, NO numbers, NO numerals, NO letters, NO watermarks, NO signatures",
           "NO card borders, NO stat boxes, NO mana crystals, NO UI overlays, NO badges",

@@ -1,6 +1,6 @@
 extends Node
 ## Global GameState Autoload (Singleton)
-## Holds loaded 480 canonical cards, 16 starter decks, active deck ID, Lumenport world data,
+## Holds loaded 640 canonical cards, 16 starter decks, active deck ID, Lumenport world data,
 ## persistent profile (Crowns, Echo Dust, Sigils, Collection, Relationships, Quests),
 ## and enforces strict outcome-dependent, transaction-safe duel rewards.
 
@@ -46,7 +46,7 @@ func _ready() -> void:
 	load_local_profile()
 
 func _load_canonical_data() -> void:
-	# 1. Load 480 Canonical Cards
+	# 1. Load 640 Canonical Cards
 	var cards_file := FileAccess.open("res://../../content/cards/foundations_v1.json", FileAccess.READ)
 	if not cards_file:
 		cards_file = FileAccess.open("res://content/cards/foundations_v1.json", FileAccess.READ)
