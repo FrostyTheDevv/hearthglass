@@ -1,0 +1,4573 @@
+{
+  "schema_version": "1.2.0",
+  "title": "Hearthglass Canonical 120 Original Side Quests",
+  "total_quests": 120,
+  "region_distribution": {
+    "lumenport": 30,
+    "verdant_expanse": 30,
+    "ironreach": 30,
+    "astral_archive": 30
+  },
+  "quests": [
+    {
+      "id": "sq_lum_001",
+      "title": "Whispers of the Lumenport #1",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_lyra_vane",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near interior_training_facility have prompted Lyra Vane to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Lyra Vane with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_lum_001_obj_1",
+          "description": "Consult with Lyra Vane in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_lyra_vane",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_001_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_lum_001_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_001_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_prism",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 44,
+        "xp_reward": 220,
+        "bonus_card_id": "GLS-C-0001",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_002",
+      "title": "Mastering the Three Lanes in Lumenport #2",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_kaelen_forge",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Kaelen Emberforge to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Kaelen Emberforge with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_lum_002_obj_1",
+          "description": "Consult with Kaelen Emberforge in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_kaelen_forge",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_002_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_lum_002_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_002_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 170,
+        "echo_dust": 48,
+        "xp_reward": 240,
+        "bonus_card_id": "EMB-C-0002",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_003",
+      "title": "Relic Fragments of Lumenport #3",
+      "region_id": "lumenport",
+      "district_id": "lumenport_central_card_market",
+      "giver_npc_id": "npc_master_vance",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near interior_card_shop have prompted Master Artificer Vance to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Master Artificer Vance with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_lum_003_obj_1",
+          "description": "Consult with Master Artificer Vance in lumenport central_card_market regarding the mission parameters.",
+          "target": "npc_master_vance",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_003_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_lum_003_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_003_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 180,
+        "echo_dust": 52,
+        "xp_reward": 260,
+        "bonus_card_id": "IRN-C-0003",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_004",
+      "title": "The Forgotten Sub-Level of Lumenport #4",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_soren_whisperleaf",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lumenport_arrival_square have prompted Soren of Whisperleaf to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Soren of Whisperleaf with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_lum_004_obj_1",
+          "description": "Consult with Soren of Whisperleaf in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_soren_whisperleaf",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_004_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_lum_004_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_004_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 56,
+        "xp_reward": 280,
+        "bonus_card_id": "VER-C-0004",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_005",
+      "title": "The Preliminary Round of Lumenport #5",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_captain_nerissa",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Captain Nerissa Wake to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Captain Nerissa Wake with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_lum_005_obj_1",
+          "description": "Consult with Captain Nerissa Wake in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_captain_nerissa",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_005_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_lum_005_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_005_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_tide_star_navigation",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "xp_reward": 300,
+        "bonus_card_id": "TID-C-0005",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_006",
+      "title": "The Personal Burden of Lumenport #6",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_vesper_noctis",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Vesper of the Crescent Mask to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Vesper of the Crescent Mask with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_lum_006_obj_1",
+          "description": "Consult with Vesper of the Crescent Mask in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_vesper_noctis",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_006_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_lum_006_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_006_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_nocturne_grave_nightfall",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 210,
+        "echo_dust": 64,
+        "xp_reward": 320,
+        "bonus_card_id": "NOC-T-0006",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_007",
+      "title": "The Phantom Thief of Lumenport #7",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_astromancer_celeste",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near interior_artificer_workshop have prompted Astromancer Celeste Oryn to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Astromancer Celeste Oryn with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_lum_007_obj_1",
+          "description": "Consult with Astromancer Celeste Oryn in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_astromancer_celeste",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_007_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_lum_007_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_007_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 68,
+        "xp_reward": 340,
+        "bonus_card_id": "STR-R-0007",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_008",
+      "title": "The Astronomical Riddle of Lumenport #8",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_morwen_ossuary",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lumenport_residential_district have prompted Keeper Morwen Vale to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Keeper Morwen Vale with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_lum_008_obj_1",
+          "description": "Consult with Keeper Morwen Vale in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_morwen_ossuary",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_008_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_lum_008_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_008_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_nocturne_grave_echo",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 230,
+        "echo_dust": 72,
+        "xp_reward": 360,
+        "bonus_card_id": "GRV-E-0008",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_009",
+      "title": "Whispers of the Lumenport #9",
+      "region_id": "lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "giver_npc_id": "npc_marshal_corin",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near interior_tournament_registration have prompted Grand Marshal Corin Thorne to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Marshal Corin Thorne with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_lum_009_obj_1",
+          "description": "Consult with Grand Marshal Corin Thorne in lumenport grand_tournament_hall regarding the mission parameters.",
+          "target": "npc_marshal_corin",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_009_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_lum_009_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_009_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 240,
+        "echo_dust": 76,
+        "xp_reward": 380,
+        "bonus_card_id": "NEU-C-0009",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_010",
+      "title": "Mastering the Three Lanes in Lumenport #10",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_mira_solis",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Mira Solis to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Mira Solis with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_lum_010_obj_1",
+          "description": "Consult with Mira Solis in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_mira_solis",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_010_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_lum_010_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_010_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 250,
+        "echo_dust": 80,
+        "xp_reward": 400,
+        "bonus_card_id": "NEU-C-0010",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_011",
+      "title": "Relic Fragments of Lumenport #11",
+      "region_id": "lumenport",
+      "district_id": "lumenport_duelist_plaza",
+      "giver_npc_id": "npc_instructor_hale",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near interior_training_facility have prompted Tactical Instructor Garrick Hale to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Tactical Instructor Garrick Hale with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_lum_011_obj_1",
+          "description": "Consult with Tactical Instructor Garrick Hale in lumenport duelist_plaza regarding the mission parameters.",
+          "target": "npc_instructor_hale",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_011_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_lum_011_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_011_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 260,
+        "echo_dust": 84,
+        "xp_reward": 420,
+        "bonus_card_id": "IRN-C-0011",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_012",
+      "title": "The Forgotten Sub-Level of Lumenport #12",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_eluned_glass",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near interior_artificer_workshop have prompted Eluned Prismwright to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Eluned Prismwright with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_lum_012_obj_1",
+          "description": "Consult with Eluned Prismwright in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_eluned_glass",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_012_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_lum_012_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_012_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 270,
+        "echo_dust": 88,
+        "xp_reward": 440,
+        "bonus_card_id": "GLS-C-0012",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_013",
+      "title": "The Preliminary Round of Lumenport #13",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_toma_wick",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near interior_player_apartment have prompted Toma Wick to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Toma Wick with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_lum_013_obj_1",
+          "description": "Consult with Toma Wick in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_toma_wick",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_013_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_lum_013_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_013_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 280,
+        "echo_dust": 92,
+        "xp_reward": 460,
+        "bonus_card_id": "NEU-C-0013",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_014",
+      "title": "The Personal Burden of Lumenport #14",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_brynja_slagheart",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near lumenport_arrival_square have prompted Forge-Captain Brynja Slagheart to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Forge-Captain Brynja Slagheart with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_lum_014_obj_1",
+          "description": "Consult with Forge-Captain Brynja Slagheart in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_brynja_slagheart",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_014_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_lum_014_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_014_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 290,
+        "echo_dust": 96,
+        "xp_reward": 480,
+        "bonus_card_id": "EMB-C-0014",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_015",
+      "title": "The Phantom Thief of Lumenport #15",
+      "region_id": "lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "giver_npc_id": "npc_brother_cassian",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lumenport_grand_tournament_hall have prompted Conductor Cassian Bell to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Conductor Cassian Bell with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_lum_015_obj_1",
+          "description": "Consult with Conductor Cassian Bell in lumenport grand_tournament_hall regarding the mission parameters.",
+          "target": "npc_brother_cassian",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_015_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_lum_015_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_015_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 300,
+        "echo_dust": 100,
+        "xp_reward": 500,
+        "bonus_card_id": "IRN-T-0015",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_016",
+      "title": "The Astronomical Riddle of Lumenport #16",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_sylvi_thorn",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lumenport_residential_district have prompted Sylvi Thornweaver to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Sylvi Thornweaver with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_lum_016_obj_1",
+          "description": "Consult with Sylvi Thornweaver in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_sylvi_thorn",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_016_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_lum_016_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_016_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 310,
+        "echo_dust": 104,
+        "xp_reward": 520,
+        "bonus_card_id": "VER-T-0016",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_017",
+      "title": "Whispers of the Lumenport #17",
+      "region_id": "lumenport",
+      "district_id": "lumenport_central_card_market",
+      "giver_npc_id": "npc_bramwell_coin",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near lumenport_central_card_market have prompted Bramwell Coin-Counter to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Bramwell Coin-Counter with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_lum_017_obj_1",
+          "description": "Consult with Bramwell Coin-Counter in lumenport central_card_market regarding the mission parameters.",
+          "target": "npc_bramwell_coin",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_017_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_lum_017_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_017_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 320,
+        "echo_dust": 108,
+        "xp_reward": 540,
+        "bonus_card_id": "NEU-C-0017",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_018",
+      "title": "Mastering the Three Lanes in Lumenport #18",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_fenna_swift",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lumenport_arrival_square have prompted Fenna Swiftfoot to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Fenna Swiftfoot with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_lum_018_obj_1",
+          "description": "Consult with Fenna Swiftfoot in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_fenna_swift",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_018_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_lum_018_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_018_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 330,
+        "echo_dust": 112,
+        "xp_reward": 560,
+        "bonus_card_id": "NEU-C-0018",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_019",
+      "title": "Relic Fragments of Lumenport #19",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_archon_valen",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lumenport_accord_institute have prompted Archon Valen of the Accord to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Archon Valen of the Accord with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_lum_019_obj_1",
+          "description": "Consult with Archon Valen of the Accord in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_archon_valen",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_019_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_lum_019_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_019_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 340,
+        "echo_dust": 116,
+        "xp_reward": 580,
+        "bonus_card_id": "NEU-C-0019",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_020",
+      "title": "The Forgotten Sub-Level of Lumenport #20",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_port_warden_brand",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lumenport_arrival_square have prompted Port Warden Brand to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Port Warden Brand with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_lum_020_obj_1",
+          "description": "Consult with Port Warden Brand in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_port_warden_brand",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_020_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_lum_020_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_020_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "xp_reward": 600,
+        "bonus_card_id": "NEU-C-0020",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_021",
+      "title": "The Preliminary Round of Lumenport #21",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_lyra_vane",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near interior_training_facility have prompted Lyra Vane to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Lyra Vane with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_lum_021_obj_1",
+          "description": "Consult with Lyra Vane in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_lyra_vane",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_021_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_lum_021_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_021_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_prism",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 360,
+        "echo_dust": 124,
+        "xp_reward": 620,
+        "bonus_card_id": "GLS-C-0001",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_022",
+      "title": "The Personal Burden of Lumenport #22",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_kaelen_forge",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Kaelen Emberforge to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Kaelen Emberforge with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_lum_022_obj_1",
+          "description": "Consult with Kaelen Emberforge in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_kaelen_forge",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_022_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_lum_022_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_022_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 370,
+        "echo_dust": 128,
+        "xp_reward": 640,
+        "bonus_card_id": "EMB-C-0002",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_023",
+      "title": "The Phantom Thief of Lumenport #23",
+      "region_id": "lumenport",
+      "district_id": "lumenport_central_card_market",
+      "giver_npc_id": "npc_master_vance",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near interior_card_shop have prompted Master Artificer Vance to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Master Artificer Vance with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_lum_023_obj_1",
+          "description": "Consult with Master Artificer Vance in lumenport central_card_market regarding the mission parameters.",
+          "target": "npc_master_vance",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_023_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_lum_023_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_023_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 380,
+        "echo_dust": 132,
+        "xp_reward": 660,
+        "bonus_card_id": "IRN-C-0003",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_024",
+      "title": "The Astronomical Riddle of Lumenport #24",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_soren_whisperleaf",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lumenport_arrival_square have prompted Soren of Whisperleaf to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Soren of Whisperleaf with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_lum_024_obj_1",
+          "description": "Consult with Soren of Whisperleaf in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_soren_whisperleaf",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_024_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_lum_024_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_024_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 390,
+        "echo_dust": 136,
+        "xp_reward": 680,
+        "bonus_card_id": "VER-C-0004",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_025",
+      "title": "Whispers of the Lumenport #25",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_captain_nerissa",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Captain Nerissa Wake to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Captain Nerissa Wake with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_lum_025_obj_1",
+          "description": "Consult with Captain Nerissa Wake in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_captain_nerissa",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_025_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_lum_025_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_025_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_tide_star_navigation",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 140,
+        "xp_reward": 700,
+        "bonus_card_id": "TID-C-0005",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_026",
+      "title": "Mastering the Three Lanes in Lumenport #26",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_vesper_noctis",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Vesper of the Crescent Mask to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Vesper of the Crescent Mask with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_lum_026_obj_1",
+          "description": "Consult with Vesper of the Crescent Mask in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_vesper_noctis",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_026_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_lum_026_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_026_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_nocturne_grave_nightfall",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 410,
+        "echo_dust": 144,
+        "xp_reward": 720,
+        "bonus_card_id": "NOC-T-0006",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_027",
+      "title": "Relic Fragments of Lumenport #27",
+      "region_id": "lumenport",
+      "district_id": "lumenport_accord_institute",
+      "giver_npc_id": "npc_astromancer_celeste",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near interior_artificer_workshop have prompted Astromancer Celeste Oryn to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Astromancer Celeste Oryn with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_lum_027_obj_1",
+          "description": "Consult with Astromancer Celeste Oryn in lumenport accord_institute regarding the mission parameters.",
+          "target": "npc_astromancer_celeste",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_027_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_lum_027_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_027_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 420,
+        "echo_dust": 148,
+        "xp_reward": 740,
+        "bonus_card_id": "STR-R-0007",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_028",
+      "title": "The Forgotten Sub-Level of Lumenport #28",
+      "region_id": "lumenport",
+      "district_id": "lumenport_residential_district",
+      "giver_npc_id": "npc_morwen_ossuary",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lumenport_residential_district have prompted Keeper Morwen Vale to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Keeper Morwen Vale with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_lum_028_obj_1",
+          "description": "Consult with Keeper Morwen Vale in lumenport residential_district regarding the mission parameters.",
+          "target": "npc_morwen_ossuary",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_028_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_lum_028_target",
+          "count": 2
+        },
+        {
+          "id": "sq_lum_028_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_nocturne_grave_echo",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 430,
+        "echo_dust": 152,
+        "xp_reward": 760,
+        "bonus_card_id": "GRV-E-0008",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_029",
+      "title": "The Preliminary Round of Lumenport #29",
+      "region_id": "lumenport",
+      "district_id": "lumenport_grand_tournament_hall",
+      "giver_npc_id": "npc_marshal_corin",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near interior_tournament_registration have prompted Grand Marshal Corin Thorne to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Marshal Corin Thorne with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_lum_029_obj_1",
+          "description": "Consult with Grand Marshal Corin Thorne in lumenport grand_tournament_hall regarding the mission parameters.",
+          "target": "npc_marshal_corin",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_029_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_lum_029_target",
+          "count": 3
+        },
+        {
+          "id": "sq_lum_029_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 440,
+        "echo_dust": 156,
+        "xp_reward": 780,
+        "bonus_card_id": "NEU-C-0009",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_lum_030",
+      "title": "The Personal Burden of Lumenport #30",
+      "region_id": "lumenport",
+      "district_id": "lumenport_arrival_square",
+      "giver_npc_id": "npc_mira_solis",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near interior_harbor_cafe have prompted Mira Solis to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Mira Solis with proof of completion.",
+      "prerequisite_level": 11,
+      "objectives": [
+        {
+          "id": "sq_lum_030_obj_1",
+          "description": "Consult with Mira Solis in lumenport arrival_square regarding the mission parameters.",
+          "target": "npc_mira_solis",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_030_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_lum_030_target",
+          "count": 1
+        },
+        {
+          "id": "sq_lum_030_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 450,
+        "echo_dust": 160,
+        "xp_reward": 800,
+        "bonus_card_id": "NEU-C-0010",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_001",
+      "title": "Whispers of the Verdant Expanse #1",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_elder_orla",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near verdant_sporewood_sanctuary have prompted Elder Orla of the Canopy to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Elder Orla of the Canopy with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_ver_001_obj_1",
+          "description": "Consult with Elder Orla of the Canopy in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_elder_orla",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_001_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ver_001_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_001_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 44,
+        "xp_reward": 220,
+        "bonus_card_id": "VER-C-0021",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_002",
+      "title": "Mastering the Three Lanes in Verdant Expanse #2",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_ranger_bram",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near verdant_rootbridge_crossing have prompted Ranger Bram to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Ranger Bram with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_ver_002_obj_1",
+          "description": "Consult with Ranger Bram in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_ranger_bram",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_002_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ver_002_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_002_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 170,
+        "echo_dust": 48,
+        "xp_reward": 240,
+        "bonus_card_id": "VER-C-0022",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_003",
+      "title": "Relic Fragments of Verdant Expanse #3",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_alchemist_fenn",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near verdant_old_growth_glen have prompted Fenn the Spore-Collector to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Fenn the Spore-Collector with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ver_003_obj_1",
+          "description": "Consult with Fenn the Spore-Collector in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_alchemist_fenn",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_003_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ver_003_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_003_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 180,
+        "echo_dust": 52,
+        "xp_reward": 260,
+        "bonus_card_id": "NEU-C-0023",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_004",
+      "title": "The Forgotten Sub-Level of Verdant Expanse #4",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_thornweaver_myra",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near verdant_whispering_canopy have prompted Thornweaver Myra to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Thornweaver Myra with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ver_004_obj_1",
+          "description": "Consult with Thornweaver Myra in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_thornweaver_myra",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_004_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ver_004_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_004_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 56,
+        "xp_reward": 280,
+        "bonus_card_id": "VER-C-0024",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_005",
+      "title": "The Preliminary Round of Verdant Expanse #5",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_grove_speaker_elowen",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near lm_ver_twelve_birches have prompted Grove-Speaker Elowen to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grove-Speaker Elowen with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ver_005_obj_1",
+          "description": "Consult with Grove-Speaker Elowen in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_grove_speaker_elowen",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_005_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ver_005_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_005_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "xp_reward": 300,
+        "bonus_card_id": "VER-C-0025",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_006",
+      "title": "The Personal Burden of Verdant Expanse #6",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_sylvanus_rootbinder",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near lm_ver_elder_yew_cathedral have prompted Arch-Druid Sylvanus Rootbinder to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Arch-Druid Sylvanus Rootbinder with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ver_006_obj_1",
+          "description": "Consult with Arch-Druid Sylvanus Rootbinder in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_sylvanus_rootbinder",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_006_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ver_006_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_006_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 210,
+        "echo_dust": 64,
+        "xp_reward": 320,
+        "bonus_card_id": "VER-C-0026",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_007",
+      "title": "The Phantom Thief of Verdant Expanse #7",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_seed_keeper_mirella",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_ver_sundew_conservatory have prompted Seed-Keeper Mirella to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Seed-Keeper Mirella with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ver_007_obj_1",
+          "description": "Consult with Seed-Keeper Mirella in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_seed_keeper_mirella",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_007_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ver_007_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_007_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 68,
+        "xp_reward": 340,
+        "bonus_card_id": "VER-T-0027",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_008",
+      "title": "The Astronomical Riddle of Verdant Expanse #8",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_canopy_matriarch_oakhaven",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lm_ver_briargate_march have prompted Canopy Matriarch Oakhaven to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Canopy Matriarch Oakhaven with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ver_008_obj_1",
+          "description": "Consult with Canopy Matriarch Oakhaven in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_canopy_matriarch_oakhaven",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_008_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ver_008_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_008_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 230,
+        "echo_dust": 72,
+        "xp_reward": 360,
+        "bonus_card_id": "VER-T-0028",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_009",
+      "title": "Whispers of the Verdant Expanse #9",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_stag_rider_kestin",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near verdant_rootbridge_crossing have prompted Stag-Rider Kestin to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Stag-Rider Kestin with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ver_009_obj_1",
+          "description": "Consult with Stag-Rider Kestin in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_stag_rider_kestin",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_009_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ver_009_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_009_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 240,
+        "echo_dust": 76,
+        "xp_reward": 380,
+        "bonus_card_id": "VER-T-0029",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_010",
+      "title": "Mastering the Three Lanes in Verdant Expanse #10",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_mycelium_sage_thall",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lm_ver_mycelium_hollows have prompted Mycelium Sage Thall to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Mycelium Sage Thall with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ver_010_obj_1",
+          "description": "Consult with Mycelium Sage Thall in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_mycelium_sage_thall",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_010_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ver_010_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_010_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 250,
+        "echo_dust": 80,
+        "xp_reward": 400,
+        "bonus_card_id": "VER-R-0030",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_011",
+      "title": "Relic Fragments of Verdant Expanse #11",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_bloom_herbalist_lyanna",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lm_ver_sundew_conservatory have prompted Bloom Herbalist Lyanna to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Bloom Herbalist Lyanna with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ver_011_obj_1",
+          "description": "Consult with Bloom Herbalist Lyanna in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_bloom_herbalist_lyanna",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_011_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ver_011_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_011_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 260,
+        "echo_dust": 84,
+        "xp_reward": 420,
+        "bonus_card_id": "VER-R-0031",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_012",
+      "title": "The Forgotten Sub-Level of Verdant Expanse #12",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_woodcarver_torv",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near verdant_whispering_canopy have prompted Woodcarver Torv to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Woodcarver Torv with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ver_012_obj_1",
+          "description": "Consult with Woodcarver Torv in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_woodcarver_torv",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_012_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ver_012_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_012_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 270,
+        "echo_dust": 88,
+        "xp_reward": 440,
+        "bonus_card_id": "NEU-C-0032",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_013",
+      "title": "The Preliminary Round of Verdant Expanse #13",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_amberfall_ferryman_jorn",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near verdant_rootbridge_crossing have prompted Ferryman Jorn to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Ferryman Jorn with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ver_013_obj_1",
+          "description": "Consult with Ferryman Jorn in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_amberfall_ferryman_jorn",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_013_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ver_013_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_013_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 280,
+        "echo_dust": 92,
+        "xp_reward": 460,
+        "bonus_card_id": "NEU-C-0033",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_014",
+      "title": "The Personal Burden of Verdant Expanse #14",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_fern_stalker_cora",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near verdant_old_growth_glen have prompted Fern-Stalker Cora to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Fern-Stalker Cora with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ver_014_obj_1",
+          "description": "Consult with Fern-Stalker Cora in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_fern_stalker_cora",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_014_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ver_014_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_014_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 290,
+        "echo_dust": 96,
+        "xp_reward": 480,
+        "bonus_card_id": "VER-C-0034",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_015",
+      "title": "The Phantom Thief of Verdant Expanse #15",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_briar_warden_varik",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_ver_briargate_march have prompted Briar-Warden Varik to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Briar-Warden Varik with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ver_015_obj_1",
+          "description": "Consult with Briar-Warden Varik in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_briar_warden_varik",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_015_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ver_015_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_015_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 300,
+        "echo_dust": 100,
+        "xp_reward": 500,
+        "bonus_card_id": "VER-C-0035",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_016",
+      "title": "The Astronomical Riddle of Verdant Expanse #16",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_canopy_lookout_talia",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near verdant_whispering_canopy have prompted Canopy Lookout Talia to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Canopy Lookout Talia with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ver_016_obj_1",
+          "description": "Consult with Canopy Lookout Talia in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_canopy_lookout_talia",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_016_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ver_016_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_016_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 310,
+        "echo_dust": 104,
+        "xp_reward": 520,
+        "bonus_card_id": "VER-C-0036",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_017",
+      "title": "Whispers of the Verdant Expanse #17",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_pact_envoy_ren",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near verdant_sporewood_sanctuary have prompted Pact Envoy Ren to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Pact Envoy Ren with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ver_017_obj_1",
+          "description": "Consult with Pact Envoy Ren in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_pact_envoy_ren",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_017_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ver_017_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_017_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 320,
+        "echo_dust": 108,
+        "xp_reward": 540,
+        "bonus_card_id": "VER-C-0037",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_018",
+      "title": "Mastering the Three Lanes in Verdant Expanse #18",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_spore_tender_brin",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lm_ver_mycelium_hollows have prompted Spore-Tender Brin to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Spore-Tender Brin with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ver_018_obj_1",
+          "description": "Consult with Spore-Tender Brin in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_spore_tender_brin",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_018_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ver_018_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_018_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 330,
+        "echo_dust": 112,
+        "xp_reward": 560,
+        "bonus_card_id": "VER-C-0038",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_019",
+      "title": "Relic Fragments of Verdant Expanse #19",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_wildroot_medium_vanya",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near verdant_old_growth_glen have prompted Wildroot Medium Vanya to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Wildroot Medium Vanya with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ver_019_obj_1",
+          "description": "Consult with Wildroot Medium Vanya in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_wildroot_medium_vanya",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_019_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ver_019_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_019_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_grave_cycle",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 340,
+        "echo_dust": 116,
+        "xp_reward": 580,
+        "bonus_card_id": "GRV-C-0039",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_020",
+      "title": "The Forgotten Sub-Level of Verdant Expanse #20",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_elder_treant_ironbark",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lm_ver_elder_yew_cathedral have prompted Ironbark the Ancient to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Ironbark the Ancient with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ver_020_obj_1",
+          "description": "Consult with Ironbark the Ancient in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_elder_treant_ironbark",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_020_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ver_020_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_020_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "xp_reward": 600,
+        "bonus_card_id": "VER-C-0040",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_021",
+      "title": "The Preliminary Round of Verdant Expanse #21",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_elder_orla",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near verdant_sporewood_sanctuary have prompted Elder Orla of the Canopy to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Elder Orla of the Canopy with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ver_021_obj_1",
+          "description": "Consult with Elder Orla of the Canopy in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_elder_orla",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_021_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ver_021_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_021_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 360,
+        "echo_dust": 124,
+        "xp_reward": 620,
+        "bonus_card_id": "VER-C-0021",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_022",
+      "title": "The Personal Burden of Verdant Expanse #22",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_ranger_bram",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near verdant_rootbridge_crossing have prompted Ranger Bram to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Ranger Bram with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ver_022_obj_1",
+          "description": "Consult with Ranger Bram in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_ranger_bram",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_022_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ver_022_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_022_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 370,
+        "echo_dust": 128,
+        "xp_reward": 640,
+        "bonus_card_id": "VER-C-0022",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_023",
+      "title": "The Phantom Thief of Verdant Expanse #23",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_alchemist_fenn",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near verdant_old_growth_glen have prompted Fenn the Spore-Collector to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Fenn the Spore-Collector with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ver_023_obj_1",
+          "description": "Consult with Fenn the Spore-Collector in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_alchemist_fenn",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_023_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ver_023_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_023_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 380,
+        "echo_dust": 132,
+        "xp_reward": 660,
+        "bonus_card_id": "NEU-C-0023",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_024",
+      "title": "The Astronomical Riddle of Verdant Expanse #24",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_thornweaver_myra",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near verdant_whispering_canopy have prompted Thornweaver Myra to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Thornweaver Myra with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ver_024_obj_1",
+          "description": "Consult with Thornweaver Myra in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_thornweaver_myra",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_024_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ver_024_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_024_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 390,
+        "echo_dust": 136,
+        "xp_reward": 680,
+        "bonus_card_id": "VER-C-0024",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_025",
+      "title": "Whispers of the Verdant Expanse #25",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_grove_speaker_elowen",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near lm_ver_twelve_birches have prompted Grove-Speaker Elowen to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grove-Speaker Elowen with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ver_025_obj_1",
+          "description": "Consult with Grove-Speaker Elowen in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_grove_speaker_elowen",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_025_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ver_025_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_025_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 140,
+        "xp_reward": 700,
+        "bonus_card_id": "VER-C-0025",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_026",
+      "title": "Mastering the Three Lanes in Verdant Expanse #26",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_sporewood_sanctuary",
+      "giver_npc_id": "npc_sylvanus_rootbinder",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lm_ver_elder_yew_cathedral have prompted Arch-Druid Sylvanus Rootbinder to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Arch-Druid Sylvanus Rootbinder with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ver_026_obj_1",
+          "description": "Consult with Arch-Druid Sylvanus Rootbinder in verdant sporewood_sanctuary regarding the mission parameters.",
+          "target": "npc_sylvanus_rootbinder",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_026_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ver_026_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_026_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 410,
+        "echo_dust": 144,
+        "xp_reward": 720,
+        "bonus_card_id": "VER-C-0026",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_027",
+      "title": "Relic Fragments of Verdant Expanse #27",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_whispering_canopy",
+      "giver_npc_id": "npc_seed_keeper_mirella",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lm_ver_sundew_conservatory have prompted Seed-Keeper Mirella to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Seed-Keeper Mirella with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ver_027_obj_1",
+          "description": "Consult with Seed-Keeper Mirella in verdant whispering_canopy regarding the mission parameters.",
+          "target": "npc_seed_keeper_mirella",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_027_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ver_027_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_027_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 420,
+        "echo_dust": 148,
+        "xp_reward": 740,
+        "bonus_card_id": "VER-T-0027",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_028",
+      "title": "The Forgotten Sub-Level of Verdant Expanse #28",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_canopy_matriarch_oakhaven",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lm_ver_briargate_march have prompted Canopy Matriarch Oakhaven to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Canopy Matriarch Oakhaven with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ver_028_obj_1",
+          "description": "Consult with Canopy Matriarch Oakhaven in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_canopy_matriarch_oakhaven",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_028_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ver_028_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ver_028_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 430,
+        "echo_dust": 152,
+        "xp_reward": 760,
+        "bonus_card_id": "VER-T-0028",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_029",
+      "title": "The Preliminary Round of Verdant Expanse #29",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_rootbridge_crossing",
+      "giver_npc_id": "npc_stag_rider_kestin",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near verdant_rootbridge_crossing have prompted Stag-Rider Kestin to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Stag-Rider Kestin with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ver_029_obj_1",
+          "description": "Consult with Stag-Rider Kestin in verdant rootbridge_crossing regarding the mission parameters.",
+          "target": "npc_stag_rider_kestin",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_029_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ver_029_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ver_029_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_tide_harmony",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 440,
+        "echo_dust": 156,
+        "xp_reward": 780,
+        "bonus_card_id": "VER-T-0029",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ver_030",
+      "title": "The Personal Burden of Verdant Expanse #30",
+      "region_id": "verdant_expanse",
+      "district_id": "verdant_old_growth_glen",
+      "giver_npc_id": "npc_mycelium_sage_thall",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near lm_ver_mycelium_hollows have prompted Mycelium Sage Thall to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Mycelium Sage Thall with proof of completion.",
+      "prerequisite_level": 11,
+      "objectives": [
+        {
+          "id": "sq_ver_030_obj_1",
+          "description": "Consult with Mycelium Sage Thall in verdant old_growth_glen regarding the mission parameters.",
+          "target": "npc_mycelium_sage_thall",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_030_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ver_030_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ver_030_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_verdant_iron_resonance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 450,
+        "echo_dust": 160,
+        "xp_reward": 800,
+        "bonus_card_id": "VER-R-0030",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_001",
+      "title": "Whispers of the Ironreach #1",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_artificer_vance_iron",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Master Artificer Vance to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Master Artificer Vance with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_iro_001_obj_1",
+          "description": "Consult with Master Artificer Vance in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_artificer_vance_iron",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_001_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_iro_001_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_001_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 44,
+        "xp_reward": 220,
+        "bonus_card_id": "IRN-C-0041",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_002",
+      "title": "Mastering the Three Lanes in Ironreach #2",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "giver_npc_id": "npc_clocksmith_greta",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near ironreach_bellspire_cloister have prompted Clocksmith Greta to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Clocksmith Greta with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_iro_002_obj_1",
+          "description": "Consult with Clocksmith Greta in ironreach bellspire_cloister regarding the mission parameters.",
+          "target": "npc_clocksmith_greta",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_002_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_iro_002_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_002_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 170,
+        "echo_dust": 48,
+        "xp_reward": 240,
+        "bonus_card_id": "IRN-T-0042",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_003",
+      "title": "Relic Fragments of Ironreach #3",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_dynamo_vorne",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lm_irn_induction_railhead have prompted Dynamo Architect Vorne to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Dynamo Architect Vorne with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_iro_003_obj_1",
+          "description": "Consult with Dynamo Architect Vorne in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_dynamo_vorne",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_003_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_iro_003_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_003_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 180,
+        "echo_dust": 52,
+        "xp_reward": 260,
+        "bonus_card_id": "IRN-T-0043",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_004",
+      "title": "The Forgotten Sub-Level of Ironreach #4",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_vespera_conductor",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lm_irn_seventh_chime_gantry have prompted Conductor-General Vespera to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Conductor-General Vespera with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_iro_004_obj_1",
+          "description": "Consult with Conductor-General Vespera in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_vespera_conductor",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_004_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_iro_004_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_004_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 56,
+        "xp_reward": 280,
+        "bonus_card_id": "IRN-T-0044",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_005",
+      "title": "The Preliminary Round of Ironreach #5",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "giver_npc_id": "npc_aegis_ix",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near lm_irn_bellspire_automaton have prompted Prime Automaton Aegis-IX to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Prime Automaton Aegis-IX with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_iro_005_obj_1",
+          "description": "Consult with Prime Automaton Aegis-IX in ironreach bellspire_cloister regarding the mission parameters.",
+          "target": "npc_aegis_ix",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_005_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_iro_005_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_005_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "xp_reward": 300,
+        "bonus_card_id": "IRN-R-0045",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_006",
+      "title": "The Personal Burden of Ironreach #6",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_forge_master_vaelor",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Grand Master Vaelor of the Seventh Anvil to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Master Vaelor of the Seventh Anvil with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_iro_006_obj_1",
+          "description": "Consult with Grand Master Vaelor of the Seventh Anvil in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_forge_master_vaelor",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_006_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_iro_006_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_006_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 210,
+        "echo_dust": 64,
+        "xp_reward": 320,
+        "bonus_card_id": "EMB-R-0046",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_007",
+      "title": "The Phantom Thief of Ironreach #7",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_crucible_matron_hespa",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near ironreach_gantry_approach have prompted Crucible Matron Hespa to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Crucible Matron Hespa with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_iro_007_obj_1",
+          "description": "Consult with Crucible Matron Hespa in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_crucible_matron_hespa",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_007_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_iro_007_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_007_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_iron_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 68,
+        "xp_reward": 340,
+        "bonus_card_id": "EMB-R-0047",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_008",
+      "title": "The Astronomical Riddle of Ironreach #8",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_siege_master_durgan",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Siege-Master Durgan Ashhand to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Siege-Master Durgan Ashhand with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_iro_008_obj_1",
+          "description": "Consult with Siege-Master Durgan Ashhand in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_siege_master_durgan",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_008_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_iro_008_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_008_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 230,
+        "echo_dust": 72,
+        "xp_reward": 360,
+        "bonus_card_id": "EMB-E-0048",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_009",
+      "title": "Whispers of the Ironreach #9",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "giver_npc_id": "npc_pyre_artificer_torren",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near ironreach_dynamo_vaults have prompted Pyre-Artificer Torren to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Pyre-Artificer Torren with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_iro_009_obj_1",
+          "description": "Consult with Pyre-Artificer Torren in ironreach dynamo_vaults regarding the mission parameters.",
+          "target": "npc_pyre_artificer_torren",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_009_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_iro_009_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_009_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_iron_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 240,
+        "echo_dust": 76,
+        "xp_reward": 380,
+        "bonus_card_id": "EMB-C-0049",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_010",
+      "title": "Mastering the Three Lanes in Ironreach #10",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_railhead_engineer_titus",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lm_irn_induction_railhead have prompted Chief Engineer Titus to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Chief Engineer Titus with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_iro_010_obj_1",
+          "description": "Consult with Chief Engineer Titus in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_railhead_engineer_titus",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_010_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_iro_010_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_010_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 250,
+        "echo_dust": 80,
+        "xp_reward": 400,
+        "bonus_card_id": "IRN-C-0050",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_011",
+      "title": "Relic Fragments of Ironreach #11",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_piston_smith_bron",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Piston-Smith Bron to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Piston-Smith Bron with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_iro_011_obj_1",
+          "description": "Consult with Piston-Smith Bron in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_piston_smith_bron",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_011_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_iro_011_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_011_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 260,
+        "echo_dust": 84,
+        "xp_reward": 420,
+        "bonus_card_id": "IRN-C-0051",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_012",
+      "title": "The Forgotten Sub-Level of Ironreach #12",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "giver_npc_id": "npc_harmonic_tuner_sela",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near ironreach_bellspire_cloister have prompted Harmonic Tuner Sela to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Harmonic Tuner Sela with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_iro_012_obj_1",
+          "description": "Consult with Harmonic Tuner Sela in ironreach bellspire_cloister regarding the mission parameters.",
+          "target": "npc_harmonic_tuner_sela",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_012_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_iro_012_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_012_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 270,
+        "echo_dust": 88,
+        "xp_reward": 440,
+        "bonus_card_id": "IRN-C-0052",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_013",
+      "title": "The Preliminary Round of Ironreach #13",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "giver_npc_id": "npc_dynamo_operator_kellan",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near ironreach_dynamo_vaults have prompted Dynamo Operator Kellan to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Dynamo Operator Kellan with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_iro_013_obj_1",
+          "description": "Consult with Dynamo Operator Kellan in ironreach dynamo_vaults regarding the mission parameters.",
+          "target": "npc_dynamo_operator_kellan",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_013_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_iro_013_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_013_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 280,
+        "echo_dust": 92,
+        "xp_reward": 460,
+        "bonus_card_id": "IRN-C-0053",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_014",
+      "title": "The Personal Burden of Ironreach #14",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_gear_carver_moris",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near ironreach_gantry_approach have prompted Gear-Carver Moris to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Gear-Carver Moris with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_iro_014_obj_1",
+          "description": "Consult with Gear-Carver Moris in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_gear_carver_moris",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_014_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_iro_014_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_014_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 290,
+        "echo_dust": 96,
+        "xp_reward": 480,
+        "bonus_card_id": "NEU-R-0054",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_015",
+      "title": "The Phantom Thief of Ironreach #15",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_furnace_tender_rhea",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Furnace-Tender Rhea to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Furnace-Tender Rhea with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_iro_015_obj_1",
+          "description": "Consult with Furnace-Tender Rhea in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_furnace_tender_rhea",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_015_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_iro_015_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_015_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_iron_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 300,
+        "echo_dust": 100,
+        "xp_reward": 500,
+        "bonus_card_id": "EMB-C-0055",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_016",
+      "title": "The Astronomical Riddle of Ironreach #16",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_choir_chorister_oriel",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lm_irn_seventh_chime_gantry have prompted Choir Chorister Oriel to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Choir Chorister Oriel with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_iro_016_obj_1",
+          "description": "Consult with Choir Chorister Oriel in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_choir_chorister_oriel",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_016_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_iro_016_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_016_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 310,
+        "echo_dust": 104,
+        "xp_reward": 520,
+        "bonus_card_id": "IRN-C-0056",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_017",
+      "title": "Whispers of the Ironreach #17",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_rail_conductor_maren",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near lm_irn_induction_railhead have prompted Rail Conductor Maren to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Rail Conductor Maren with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_iro_017_obj_1",
+          "description": "Consult with Rail Conductor Maren in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_rail_conductor_maren",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_017_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_iro_017_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_017_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 320,
+        "echo_dust": 108,
+        "xp_reward": 540,
+        "bonus_card_id": "NEU-R-0057",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_018",
+      "title": "Mastering the Three Lanes in Ironreach #18",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_automat_inspector_dalen",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Automaton Inspector Dalen to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Automaton Inspector Dalen with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_iro_018_obj_1",
+          "description": "Consult with Automaton Inspector Dalen in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_automat_inspector_dalen",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_018_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_iro_018_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_018_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 330,
+        "echo_dust": 112,
+        "xp_reward": 560,
+        "bonus_card_id": "IRN-T-0058",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_019",
+      "title": "Relic Fragments of Ironreach #19",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_brass_merchant_hobb",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near ironreach_gantry_approach have prompted Brass Merchant Hobb to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Brass Merchant Hobb with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_iro_019_obj_1",
+          "description": "Consult with Brass Merchant Hobb in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_brass_merchant_hobb",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_019_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_iro_019_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_019_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 340,
+        "echo_dust": 116,
+        "xp_reward": 580,
+        "bonus_card_id": "NEU-E-0059",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_020",
+      "title": "The Forgotten Sub-Level of Ironreach #20",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "giver_npc_id": "npc_slag_diver_cassia",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near ironreach_dynamo_vaults have prompted Slag-Diver Cassia to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Slag-Diver Cassia with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_iro_020_obj_1",
+          "description": "Consult with Slag-Diver Cassia in ironreach dynamo_vaults regarding the mission parameters.",
+          "target": "npc_slag_diver_cassia",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_020_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_iro_020_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_020_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "xp_reward": 600,
+        "bonus_card_id": "EMB-R-0060",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_021",
+      "title": "The Preliminary Round of Ironreach #21",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_artificer_vance_iron",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Master Artificer Vance to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Master Artificer Vance with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_iro_021_obj_1",
+          "description": "Consult with Master Artificer Vance in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_artificer_vance_iron",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_021_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_iro_021_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_021_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 360,
+        "echo_dust": 124,
+        "xp_reward": 620,
+        "bonus_card_id": "IRN-C-0041",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_022",
+      "title": "The Personal Burden of Ironreach #22",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "giver_npc_id": "npc_clocksmith_greta",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near ironreach_bellspire_cloister have prompted Clocksmith Greta to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Clocksmith Greta with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_iro_022_obj_1",
+          "description": "Consult with Clocksmith Greta in ironreach bellspire_cloister regarding the mission parameters.",
+          "target": "npc_clocksmith_greta",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_022_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_iro_022_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_022_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 370,
+        "echo_dust": 128,
+        "xp_reward": 640,
+        "bonus_card_id": "IRN-T-0042",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_023",
+      "title": "The Phantom Thief of Ironreach #23",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_dynamo_vorne",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_irn_induction_railhead have prompted Dynamo Architect Vorne to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Dynamo Architect Vorne with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_iro_023_obj_1",
+          "description": "Consult with Dynamo Architect Vorne in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_dynamo_vorne",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_023_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_iro_023_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_023_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 380,
+        "echo_dust": 132,
+        "xp_reward": 660,
+        "bonus_card_id": "IRN-T-0043",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_024",
+      "title": "The Astronomical Riddle of Ironreach #24",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_vespera_conductor",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lm_irn_seventh_chime_gantry have prompted Conductor-General Vespera to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Conductor-General Vespera with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_iro_024_obj_1",
+          "description": "Consult with Conductor-General Vespera in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_vespera_conductor",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_024_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_iro_024_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_024_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 390,
+        "echo_dust": 136,
+        "xp_reward": 680,
+        "bonus_card_id": "IRN-T-0044",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_025",
+      "title": "Whispers of the Ironreach #25",
+      "region_id": "ironreach",
+      "district_id": "ironreach_bellspire_cloister",
+      "giver_npc_id": "npc_aegis_ix",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near lm_irn_bellspire_automaton have prompted Prime Automaton Aegis-IX to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Prime Automaton Aegis-IX with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_iro_025_obj_1",
+          "description": "Consult with Prime Automaton Aegis-IX in ironreach bellspire_cloister regarding the mission parameters.",
+          "target": "npc_aegis_ix",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_025_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_iro_025_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_025_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_glass_citadel",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 140,
+        "xp_reward": 700,
+        "bonus_card_id": "IRN-R-0045",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_026",
+      "title": "Mastering the Three Lanes in Ironreach #26",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_forge_master_vaelor",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Grand Master Vaelor of the Seventh Anvil to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Master Vaelor of the Seventh Anvil with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_iro_026_obj_1",
+          "description": "Consult with Grand Master Vaelor of the Seventh Anvil in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_forge_master_vaelor",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_026_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_iro_026_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_026_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 410,
+        "echo_dust": 144,
+        "xp_reward": 720,
+        "bonus_card_id": "EMB-R-0046",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_027",
+      "title": "Relic Fragments of Ironreach #27",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_crucible_matron_hespa",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near ironreach_gantry_approach have prompted Crucible Matron Hespa to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Crucible Matron Hespa with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_iro_027_obj_1",
+          "description": "Consult with Crucible Matron Hespa in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_crucible_matron_hespa",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_027_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_iro_027_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_027_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_iron_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 420,
+        "echo_dust": 148,
+        "xp_reward": 740,
+        "bonus_card_id": "EMB-R-0047",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_028",
+      "title": "The Forgotten Sub-Level of Ironreach #28",
+      "region_id": "ironreach",
+      "district_id": "ironreach_proving_floor",
+      "giver_npc_id": "npc_siege_master_durgan",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near ironreach_proving_floor have prompted Siege-Master Durgan Ashhand to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Siege-Master Durgan Ashhand with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_iro_028_obj_1",
+          "description": "Consult with Siege-Master Durgan Ashhand in ironreach proving_floor regarding the mission parameters.",
+          "target": "npc_siege_master_durgan",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_028_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_iro_028_target",
+          "count": 2
+        },
+        {
+          "id": "sq_iro_028_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_nocturne_blitz",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 430,
+        "echo_dust": 152,
+        "xp_reward": 760,
+        "bonus_card_id": "EMB-E-0048",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_029",
+      "title": "The Preliminary Round of Ironreach #29",
+      "region_id": "ironreach",
+      "district_id": "ironreach_dynamo_vaults",
+      "giver_npc_id": "npc_pyre_artificer_torren",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near ironreach_dynamo_vaults have prompted Pyre-Artificer Torren to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Pyre-Artificer Torren with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_iro_029_obj_1",
+          "description": "Consult with Pyre-Artificer Torren in ironreach dynamo_vaults regarding the mission parameters.",
+          "target": "npc_pyre_artificer_torren",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_029_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_iro_029_target",
+          "count": 3
+        },
+        {
+          "id": "sq_iro_029_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_ember_iron_forge",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 440,
+        "echo_dust": 156,
+        "xp_reward": 780,
+        "bonus_card_id": "EMB-C-0049",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_iro_030",
+      "title": "The Personal Burden of Ironreach #30",
+      "region_id": "ironreach",
+      "district_id": "ironreach_gantry_approach",
+      "giver_npc_id": "npc_railhead_engineer_titus",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near lm_irn_induction_railhead have prompted Chief Engineer Titus to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Chief Engineer Titus with proof of completion.",
+      "prerequisite_level": 11,
+      "objectives": [
+        {
+          "id": "sq_iro_030_obj_1",
+          "description": "Consult with Chief Engineer Titus in ironreach gantry_approach regarding the mission parameters.",
+          "target": "npc_railhead_engineer_titus",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_030_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_iro_030_target",
+          "count": 1
+        },
+        {
+          "id": "sq_iro_030_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_iron_tide_dreadnought",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 450,
+        "echo_dust": 160,
+        "xp_reward": 800,
+        "bonus_card_id": "IRN-C-0050",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_001",
+      "title": "Whispers of the Astral Archive #1",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_astromancer_celeste_climax",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near astral_observatory_beyond_dawn have prompted Grand Astromancer Celeste to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Astromancer Celeste with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_ast_001_obj_1",
+          "description": "Consult with Grand Astromancer Celeste in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_astromancer_celeste_climax",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_001_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ast_001_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_001_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 160,
+        "echo_dust": 44,
+        "xp_reward": 220,
+        "bonus_card_id": "STR-C-0001",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_002",
+      "title": "Mastering the Three Lanes in Astral Archive #2",
+      "region_id": "astral_archive",
+      "district_id": "astral_sanctum_of_the_first_conjunction",
+      "giver_npc_id": "npc_avatar_of_convergence",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near astral_sanctum_of_the_first_conjunction have prompted The Convergence Sovereign to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to The Convergence Sovereign with proof of completion.",
+      "prerequisite_level": 1,
+      "objectives": [
+        {
+          "id": "sq_ast_002_obj_1",
+          "description": "Consult with The Convergence Sovereign in astral sanctum_of_the_first_conjunction regarding the mission parameters.",
+          "target": "npc_avatar_of_convergence",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_002_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ast_002_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_002_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 170,
+        "echo_dust": 48,
+        "xp_reward": 240,
+        "bonus_card_id": "NEU-E-0062",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_003",
+      "title": "Relic Fragments of Astral Archive #3",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_comet_ranger_orion",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lm_str_ninth_hour_starbridge have prompted Comet-Ranger Orion to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Comet-Ranger Orion with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ast_003_obj_1",
+          "description": "Consult with Comet-Ranger Orion in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_comet_ranger_orion",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_003_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ast_003_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_003_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 180,
+        "echo_dust": 52,
+        "xp_reward": 260,
+        "bonus_card_id": "STR-C-0003",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_004",
+      "title": "The Forgotten Sub-Level of Astral Archive #4",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_solarius_paladin",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lm_str_zenith_meridian have prompted Crownbearer Solarius to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Crownbearer Solarius with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ast_004_obj_1",
+          "description": "Consult with Crownbearer Solarius in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_solarius_paladin",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_004_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ast_004_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_004_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 190,
+        "echo_dust": 56,
+        "xp_reward": 280,
+        "bonus_card_id": "STR-C-0004",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_005",
+      "title": "The Preliminary Round of Astral Archive #5",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_star_seer_aurelia",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near lm_str_observatory_beyond_dawn have prompted Star-Seer Aurelia to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Star-Seer Aurelia with proof of completion.",
+      "prerequisite_level": 2,
+      "objectives": [
+        {
+          "id": "sq_ast_005_obj_1",
+          "description": "Consult with Star-Seer Aurelia in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_star_seer_aurelia",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_005_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ast_005_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_005_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 200,
+        "echo_dust": 60,
+        "xp_reward": 300,
+        "bonus_card_id": "STR-C-0005",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_006",
+      "title": "The Personal Burden of Astral Archive #6",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_orrery_keeper_zephyr",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Orrery-Keeper Zephyr to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Orrery-Keeper Zephyr with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ast_006_obj_1",
+          "description": "Consult with Orrery-Keeper Zephyr in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_orrery_keeper_zephyr",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_006_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ast_006_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_006_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 210,
+        "echo_dust": 64,
+        "xp_reward": 320,
+        "bonus_card_id": "STR-T-0006",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_007",
+      "title": "The Phantom Thief of Astral Archive #7",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_chronicler_astraea",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_str_astral_archive_rotunda have prompted Chronicler Astraea to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Chronicler Astraea with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ast_007_obj_1",
+          "description": "Consult with Chronicler Astraea in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_chronicler_astraea",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_007_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ast_007_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_007_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 220,
+        "echo_dust": 68,
+        "xp_reward": 340,
+        "bonus_card_id": "STR-R-0007",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_008",
+      "title": "The Astronomical Riddle of Astral Archive #8",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_arch_refractor_seraphina",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Arch-Refractor Seraphina to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Arch-Refractor Seraphina with proof of completion.",
+      "prerequisite_level": 3,
+      "objectives": [
+        {
+          "id": "sq_ast_008_obj_1",
+          "description": "Consult with Arch-Refractor Seraphina in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_arch_refractor_seraphina",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_008_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ast_008_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_008_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 230,
+        "echo_dust": 72,
+        "xp_reward": 360,
+        "bonus_card_id": "GLS-E-0008",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_009",
+      "title": "Whispers of the Astral Archive #9",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_blade_dancer_caelum",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Blade-Dancer Caelum to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Blade-Dancer Caelum with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ast_009_obj_1",
+          "description": "Consult with Blade-Dancer Caelum in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_blade_dancer_caelum",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_009_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ast_009_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_009_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_prism",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 240,
+        "echo_dust": 76,
+        "xp_reward": 380,
+        "bonus_card_id": "GLS-C-0009",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_010",
+      "title": "Mastering the Three Lanes in Astral Archive #10",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_lens_scholar_isolde",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Lens-Scholar Isolde to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Lens-Scholar Isolde with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ast_010_obj_1",
+          "description": "Consult with Lens-Scholar Isolde in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_lens_scholar_isolde",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_010_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ast_010_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_010_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 250,
+        "echo_dust": 80,
+        "xp_reward": 400,
+        "bonus_card_id": "GLS-C-0010",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_011",
+      "title": "Relic Fragments of Astral Archive #11",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_astral_herald_thorne",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near astral_observatory_beyond_dawn have prompted Astral Herald Thorne to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Astral Herald Thorne with proof of completion.",
+      "prerequisite_level": 4,
+      "objectives": [
+        {
+          "id": "sq_ast_011_obj_1",
+          "description": "Consult with Astral Herald Thorne in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_astral_herald_thorne",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_011_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ast_011_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_011_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 260,
+        "echo_dust": 84,
+        "xp_reward": 420,
+        "bonus_card_id": "STR-C-0011",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_012",
+      "title": "The Forgotten Sub-Level of Astral Archive #12",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_comet_forger_nyx",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near lm_str_cometfall_terrace have prompted Comet-Forger Nyx to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Comet-Forger Nyx with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ast_012_obj_1",
+          "description": "Consult with Comet-Forger Nyx in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_comet_forger_nyx",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_012_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ast_012_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_012_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 270,
+        "echo_dust": 88,
+        "xp_reward": 440,
+        "bonus_card_id": "STR-C-0012",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_013",
+      "title": "The Preliminary Round of Astral Archive #13",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_star_weaver_mira",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Star-Weaver Mira to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Star-Weaver Mira with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ast_013_obj_1",
+          "description": "Consult with Star-Weaver Mira in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_star_weaver_mira",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_013_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ast_013_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_013_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 280,
+        "echo_dust": 92,
+        "xp_reward": 460,
+        "bonus_card_id": "STR-C-0013",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_014",
+      "title": "The Personal Burden of Astral Archive #14",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_zenith_scribe_aldus",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Zenith Scribe Aldus to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Zenith Scribe Aldus with proof of completion.",
+      "prerequisite_level": 5,
+      "objectives": [
+        {
+          "id": "sq_ast_014_obj_1",
+          "description": "Consult with Zenith Scribe Aldus in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_zenith_scribe_aldus",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_014_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ast_014_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_014_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 290,
+        "echo_dust": 96,
+        "xp_reward": 480,
+        "bonus_card_id": "STR-C-0014",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_015",
+      "title": "The Phantom Thief of Astral Archive #15",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_celestial_scout_koren",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_str_ninth_hour_starbridge have prompted Celestial Scout Koren to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Celestial Scout Koren with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ast_015_obj_1",
+          "description": "Consult with Celestial Scout Koren in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_celestial_scout_koren",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_015_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ast_015_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_015_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 300,
+        "echo_dust": 100,
+        "xp_reward": 500,
+        "bonus_card_id": "STR-T-0015",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_016",
+      "title": "The Astronomical Riddle of Astral Archive #16",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_mirror_artisan_valeria",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Mirror Artisan Valeria to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Mirror Artisan Valeria with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ast_016_obj_1",
+          "description": "Consult with Mirror Artisan Valeria in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_mirror_artisan_valeria",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_016_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ast_016_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_016_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 310,
+        "echo_dust": 104,
+        "xp_reward": 520,
+        "bonus_card_id": "GLS-T-0016",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_017",
+      "title": "Whispers of the Astral Archive #17",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_void_astronomer_lydon",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near astral_observatory_beyond_dawn have prompted Void Astronomer Lydon to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Void Astronomer Lydon with proof of completion.",
+      "prerequisite_level": 6,
+      "objectives": [
+        {
+          "id": "sq_ast_017_obj_1",
+          "description": "Consult with Void Astronomer Lydon in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_void_astronomer_lydon",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_017_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ast_017_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_017_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 320,
+        "echo_dust": 108,
+        "xp_reward": 540,
+        "bonus_card_id": "STR-R-0017",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_018",
+      "title": "Mastering the Three Lanes in Astral Archive #18",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_constellation_guard_braun",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near lm_str_ninth_hour_starbridge have prompted Constellation Guard Braun to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Constellation Guard Braun with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ast_018_obj_1",
+          "description": "Consult with Constellation Guard Braun in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_constellation_guard_braun",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_018_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ast_018_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_018_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 330,
+        "echo_dust": 112,
+        "xp_reward": 560,
+        "bonus_card_id": "STR-E-0018",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_019",
+      "title": "Relic Fragments of Astral Archive #19",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_prismatic_monk_elias",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Prismatic Monk Elias to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Prismatic Monk Elias with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ast_019_obj_1",
+          "description": "Consult with Prismatic Monk Elias in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_prismatic_monk_elias",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_019_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ast_019_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_019_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_prism",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 340,
+        "echo_dust": 116,
+        "xp_reward": 580,
+        "bonus_card_id": "GLS-C-0019",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_020",
+      "title": "The Forgotten Sub-Level of Astral Archive #20",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_chronos_archivist_selene",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Chronos Archivist Selene to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Chronos Archivist Selene with proof of completion.",
+      "prerequisite_level": 7,
+      "objectives": [
+        {
+          "id": "sq_ast_020_obj_1",
+          "description": "Consult with Chronos Archivist Selene in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_chronos_archivist_selene",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_020_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ast_020_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_020_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 350,
+        "echo_dust": 120,
+        "xp_reward": 600,
+        "bonus_card_id": "STR-C-0020",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_021",
+      "title": "The Preliminary Round of Astral Archive #21",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_astromancer_celeste_climax",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near astral_observatory_beyond_dawn have prompted Grand Astromancer Celeste to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Grand Astromancer Celeste with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ast_021_obj_1",
+          "description": "Consult with Grand Astromancer Celeste in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_astromancer_celeste_climax",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_021_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ast_021_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_021_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 360,
+        "echo_dust": 124,
+        "xp_reward": 620,
+        "bonus_card_id": "STR-C-0001",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_022",
+      "title": "The Personal Burden of Astral Archive #22",
+      "region_id": "astral_archive",
+      "district_id": "astral_sanctum_of_the_first_conjunction",
+      "giver_npc_id": "npc_avatar_of_convergence",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near astral_sanctum_of_the_first_conjunction have prompted The Convergence Sovereign to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to The Convergence Sovereign with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ast_022_obj_1",
+          "description": "Consult with The Convergence Sovereign in astral sanctum_of_the_first_conjunction regarding the mission parameters.",
+          "target": "npc_avatar_of_convergence",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_022_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ast_022_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_022_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_accord_grand_alliance",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 370,
+        "echo_dust": 128,
+        "xp_reward": 640,
+        "bonus_card_id": "NEU-E-0062",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_023",
+      "title": "The Phantom Thief of Astral Archive #23",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_comet_ranger_orion",
+      "category": "bounty",
+      "narrative_hook": "Local disturbances near lm_str_ninth_hour_starbridge have prompted Comet-Ranger Orion to seek a capable duelist to resolve an ongoing bounty.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Comet-Ranger Orion with proof of completion.",
+      "prerequisite_level": 8,
+      "objectives": [
+        {
+          "id": "sq_ast_023_obj_1",
+          "description": "Consult with Comet-Ranger Orion in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_comet_ranger_orion",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_023_obj_2",
+          "description": "Complete the bounty task across the designated district coordinates.",
+          "target": "sq_ast_023_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_023_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 380,
+        "echo_dust": 132,
+        "xp_reward": 660,
+        "bonus_card_id": "STR-C-0003",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_024",
+      "title": "The Astronomical Riddle of Astral Archive #24",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_solarius_paladin",
+      "category": "puzzle",
+      "narrative_hook": "Local disturbances near lm_str_zenith_meridian have prompted Crownbearer Solarius to seek a capable duelist to resolve an ongoing puzzle.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Crownbearer Solarius with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ast_024_obj_1",
+          "description": "Consult with Crownbearer Solarius in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_solarius_paladin",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_024_obj_2",
+          "description": "Complete the puzzle task across the designated district coordinates.",
+          "target": "sq_ast_024_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_024_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 390,
+        "echo_dust": 136,
+        "xp_reward": 680,
+        "bonus_card_id": "STR-C-0004",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_025",
+      "title": "Whispers of the Astral Archive #25",
+      "region_id": "astral_archive",
+      "district_id": "astral_observatory_beyond_dawn",
+      "giver_npc_id": "npc_star_seer_aurelia",
+      "category": "investigation",
+      "narrative_hook": "Local disturbances near lm_str_observatory_beyond_dawn have prompted Star-Seer Aurelia to seek a capable duelist to resolve an ongoing investigation.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Star-Seer Aurelia with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ast_025_obj_1",
+          "description": "Consult with Star-Seer Aurelia in astral observatory_beyond_dawn regarding the mission parameters.",
+          "target": "npc_star_seer_aurelia",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_025_obj_2",
+          "description": "Complete the investigation task across the designated district coordinates.",
+          "target": "sq_ast_025_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_025_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 400,
+        "echo_dust": 140,
+        "xp_reward": 700,
+        "bonus_card_id": "STR-C-0005",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_026",
+      "title": "Mastering the Three Lanes in Astral Archive #26",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_orrery_keeper_zephyr",
+      "category": "duel_challenge",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Orrery-Keeper Zephyr to seek a capable duelist to resolve an ongoing duel challenge.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Orrery-Keeper Zephyr with proof of completion.",
+      "prerequisite_level": 9,
+      "objectives": [
+        {
+          "id": "sq_ast_026_obj_1",
+          "description": "Consult with Orrery-Keeper Zephyr in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_orrery_keeper_zephyr",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_026_obj_2",
+          "description": "Complete the duel challenge task across the designated district coordinates.",
+          "target": "sq_ast_026_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_026_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_star_ember_supernova",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 410,
+        "echo_dust": 144,
+        "xp_reward": 720,
+        "bonus_card_id": "STR-T-0006",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_027",
+      "title": "Relic Fragments of Astral Archive #27",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_chronicler_astraea",
+      "category": "collection",
+      "narrative_hook": "Local disturbances near lm_str_astral_archive_rotunda have prompted Chronicler Astraea to seek a capable duelist to resolve an ongoing collection.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Chronicler Astraea with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ast_027_obj_1",
+          "description": "Consult with Chronicler Astraea in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_chronicler_astraea",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_027_obj_2",
+          "description": "Complete the collection task across the designated district coordinates.",
+          "target": "sq_ast_027_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_027_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_celestial",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 420,
+        "echo_dust": 148,
+        "xp_reward": 740,
+        "bonus_card_id": "STR-R-0007",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_028",
+      "title": "The Forgotten Sub-Level of Astral Archive #28",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_arch_refractor_seraphina",
+      "category": "dungeon_delve",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Arch-Refractor Seraphina to seek a capable duelist to resolve an ongoing dungeon delve.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Arch-Refractor Seraphina with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ast_028_obj_1",
+          "description": "Consult with Arch-Refractor Seraphina in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_arch_refractor_seraphina",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_028_obj_2",
+          "description": "Complete the dungeon delve task across the designated district coordinates.",
+          "target": "sq_ast_028_target",
+          "count": 2
+        },
+        {
+          "id": "sq_ast_028_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 430,
+        "echo_dust": 152,
+        "xp_reward": 760,
+        "bonus_card_id": "GLS-E-0008",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_029",
+      "title": "The Preliminary Round of Astral Archive #29",
+      "region_id": "astral_archive",
+      "district_id": "astral_celestial_spire",
+      "giver_npc_id": "npc_blade_dancer_caelum",
+      "category": "tournament_qualifier",
+      "narrative_hook": "Local disturbances near astral_celestial_spire have prompted Blade-Dancer Caelum to seek a capable duelist to resolve an ongoing tournament qualifier.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Blade-Dancer Caelum with proof of completion.",
+      "prerequisite_level": 10,
+      "objectives": [
+        {
+          "id": "sq_ast_029_obj_1",
+          "description": "Consult with Blade-Dancer Caelum in astral celestial_spire regarding the mission parameters.",
+          "target": "npc_blade_dancer_caelum",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_029_obj_2",
+          "description": "Complete the tournament qualifier task across the designated district coordinates.",
+          "target": "sq_ast_029_target",
+          "count": 3
+        },
+        {
+          "id": "sq_ast_029_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_star_prism",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 440,
+        "echo_dust": 156,
+        "xp_reward": 780,
+        "bonus_card_id": "GLS-C-0009",
+        "reputation_points": 15
+      }
+    },
+    {
+      "id": "sq_ast_030",
+      "title": "The Personal Burden of Astral Archive #30",
+      "region_id": "astral_archive",
+      "district_id": "astral_auroral_scriptorium",
+      "giver_npc_id": "npc_lens_scholar_isolde",
+      "category": "companion_story",
+      "narrative_hook": "Local disturbances near astral_auroral_scriptorium have prompted Lens-Scholar Isolde to seek a capable duelist to resolve an ongoing companion story.",
+      "description": "Investigate the surrounding district, fulfill the specified tactical criteria in combat, and return to Lens-Scholar Isolde with proof of completion.",
+      "prerequisite_level": 11,
+      "objectives": [
+        {
+          "id": "sq_ast_030_obj_1",
+          "description": "Consult with Lens-Scholar Isolde in astral auroral_scriptorium regarding the mission parameters.",
+          "target": "npc_lens_scholar_isolde",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_030_obj_2",
+          "description": "Complete the companion story task across the designated district coordinates.",
+          "target": "sq_ast_030_target",
+          "count": 1
+        },
+        {
+          "id": "sq_ast_030_obj_3",
+          "description": "Win a standard Convergence duel using an authorized 40-card deck to certify success.",
+          "target": "deck_glass_nocturne_mirage",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crowns": 450,
+        "echo_dust": 160,
+        "xp_reward": 800,
+        "bonus_card_id": "GLS-C-0010",
+        "reputation_points": 15
+      }
+    }
+  ]
+}

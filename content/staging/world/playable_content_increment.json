@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.3.0",
+  "increment_id": "playable_increment_lum_01",
+  "title": "Playable Content Increment: The Glass Cartographer's Survey",
+  "status": "integration_ready_fixture",
+  "region_id": "lumenport",
+  "district_id": "lumenport_arrival_square",
+  "compatible_runtimes": {
+    "api_server": "services/api/src/server.mjs",
+    "api_interaction_route": "POST /v1/npcs/interact",
+    "db_progression": "services/api/src/db.mjs",
+    "godot_client": "apps/game-client",
+    "godot_scene": "res://scenes/world/lumenport_hub.tscn",
+    "godot_script": "res://scripts/world/lumenport_hub.gd",
+    "rust_engine": "services/battle-server/src/lib.rs"
+  },
+  "godot_compatibility_matrix": {
+    "explorable_world_scene": "res://scenes/world/lumenport_hub.tscn",
+    "arrival_square_building_block": {
+      "transform_position": { "x": -12.0, "y": 2.0, "z": 10.0 },
+      "size": { "x": 7.0, "y": 4.0, "z": 6.0 },
+      "color": "Color(0.24, 0.62, 0.56)",
+      "label": "Arrival Square & Harbor Cafe"
+    },
+    "duelist_plaza_building_block": {
+      "transform_position": { "x": 0.0, "y": 0.7, "z": 0.0 },
+      "size": { "x": 6.0, "y": 1.4, "z": 6.0 },
+      "color": "Color(0.45, 0.36, 0.68)",
+      "label": "Duelist Plaza Convergence Amphitheater"
+    },
+    "npc_runtime_spawn": "GameState.npcs array dynamically instantiated in lumenport_hub.gd _spawn_lumenport_npcs",
+    "tabletop_arena_scene": "res://scenes/battle/tabletop_arena.tscn"
+  },
+  "api_contract_specification": {
+    "endpoint": "POST /v1/npcs/interact",
+    "authentication": "Bearer <session_token> via Authorization header",
+    "request_schema": {
+      "type": "object",
+      "required": ["npc_id"],
+      "properties": {
+        "npc_id": { "type": "string", "enum": ["npc_cassi_mercer"] },
+        "type": { "type": "string", "enum": ["talk", "gift"], "default": "talk" }
+      }
+    },
+    "response_schema": {
+      "type": "object",
+      "required": ["npc_id", "dialogue", "relationship", "quests"],
+      "properties": {
+        "npc_id": { "type": "string" },
+        "dialogue": { "type": "string" },
+        "relationship": {
+          "type": "object",
+          "required": ["score", "tier", "companion_unlocked"],
+          "properties": {
+            "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "tier": { "type": "string", "enum": ["Acquaintance", "Friendly", "Trusted", "Bonded"] },
+            "companion_unlocked": { "type": "boolean" }
+          }
+        },
+        "quests": { "type": "array" }
+      }
+    },
+    "error_codes": {
+      "400": "Bad Request: Missing npc_id or invalid payload format",
+      "401": "Unauthorized: Missing or invalid Bearer authentication token",
+      "403": "Forbidden: Interaction rejected due to schedule or proximity lock",
+      "404": "Not Found: NPC ID unknown in npc_definitions",
+      "409": "Conflict: Replayed reward claim or concurrent interaction race"
+    }
+  },
+  "npc": {
+    "id": "npc_cassi_mercer",
+    "name": "Cassi Mercer",
+    "title": "Glassborne Field Cartographer",
+    "category": "scholar",
+    "faction_affinity": "glassborne",
+    "secondary_faction": "starweave",
+    "duel_difficulty": "intermediate",
+    "deck_id": "deck_glass_star_prism",
+    "home_location": "lumenport_arrival_square",
+    "interior_id": "interior_harbor_cafe",
+    "initial_relationship": 15,
+    "world_coordinates_3d": {
+      "scene": "res://scenes/world/lumenport_hub.tscn",
+      "x": -12.0,
+      "y": 2.0,
+      "z": 10.0,
+      "district_block": "Arrival Square & Harbor Cafe"
+    },
+    "appearance": "Pragmatic young cartographer clad in leather field coat over iridescent violet linen, carrying a brass surveying theodolite.",
+    "background": "Apprenticed to Eluned Prismwright; maps shifting resonance fractures along Lumenport's coastal breakwater.",
+    "personality": ["meticulous", "inquisitive", "tactical"],
+    "schedule": [
+      {
+        "time": "08:00",
+        "location": "lumenport_arrival_square",
+        "activity": "calibrating_theodolite"
+      },
+      {
+        "time": "12:00",
+        "location": "interior_harbor_cafe",
+        "activity": "chart_cross_referencing"
+      },
+      {
+        "time": "16:00",
+        "location": "lumenport_duelist_plaza",
+        "activity": "tactical_sparring"
+      }
+    ],
+    "duel_rewards": {
+      "transaction_type": "duel_payout",
+      "transaction_id_prefix": "tx_duel_npc_cassi_mercer",
+      "crowns": 100,
+      "echo_dust": 30,
+      "relationship_gain": 10,
+      "duplicate_rejection_policy": "standard_daily_or_repeatable_duel"
+    }
+  },
+  "dialogue_tree": {
+    "dialogue_tree_id": "dt_cassi_mercer_survey",
+    "security_policy": "SERVER_AUTHORITATIVE_TRANSITIONS_ONLY",
+    "anti_tampering_rules": [
+      "Client UI communicates strictly via POST /v1/npcs/interact with Authorization: Bearer <session_token>",
+      "Server verifies player proximity to NPC active schedule district (Arrival Square: Vector3(-12, 2, 10)) before processing interaction",
+      "Server rejects arbitrary client-supplied reward payloads; rewards are strictly server-evaluated",
+      "Quest progression is advanced strictly through server-evaluated objective milestones and match results"
+    ],
+    "initial_node": "node_intro",
+    "nodes": {
+      "node_intro": {
+        "speaker": "npc_cassi_mercer",
+        "text": "Careful where you step on the wet flagstones! The harbor tide isn't just moving water today—the Glassborne leylines under the quay are humming at 440 megahertz.",
+        "choices": [
+          {
+            "choice_id": "choice_tactics",
+            "text": "How do fluctuating leylines affect a Convergence duel table?",
+            "target_node": "node_tactical_assessment",
+            "server_action": "modify_relationship",
+            "payload": { "target_npc_id": "npc_cassi_mercer", "delta": 5 }
+          },
+          {
+            "choice_id": "choice_expedition",
+            "text": "I can help you calibrate the surveying stations along the pier.",
+            "target_node": "node_expedition_brief",
+            "server_action": "accept_quest",
+            "payload": { "quest_id": "quest_playable_glass_survey" }
+          }
+        ]
+      },
+      "node_tactical_assessment": {
+        "speaker": "npc_cassi_mercer",
+        "text": "When the ground refracts, lane transitions cost less momentum, but shield wards suffer double decay. If you take the center lane without flank protection, you're giving away the tempo.",
+        "choices": [
+          {
+            "choice_id": "choice_accept_from_tactics",
+            "text": "Understood. Let's run a live diagnostic survey together.",
+            "target_node": "node_expedition_brief",
+            "server_action": "accept_quest",
+            "payload": { "quest_id": "quest_playable_glass_survey" }
+          }
+        ]
+      },
+      "node_expedition_brief": {
+        "speaker": "npc_cassi_mercer",
+        "text": "Excellent! Take this resonant prism beacon to the old harbor sea-wall. Once the harmonic stabilizes, meet me at the octagonal table in Duelist Plaza for a calibration duel.",
+        "choices": [
+          {
+            "choice_id": "choice_confirm_start",
+            "text": "I'm on it. I'll see you at the tables.",
+            "target_node": "node_quest_active",
+            "server_action": "advance_objective",
+            "payload": { "quest_id": "quest_playable_glass_survey", "objective_id": "obj_speak_cassi", "delta": 1 }
+          }
+        ]
+      },
+      "node_quest_active": {
+        "speaker": "npc_cassi_mercer",
+        "text": "Log the readings at Arrival Square, then meet me at Duelist Plaza with your 40-card deck ready.",
+        "choices": []
+      },
+      "node_completed": {
+        "speaker": "npc_cassi_mercer",
+        "text": "Remarkable readings! Your lane switching cleared the harmonic turbulence completely. Take these Crowns and this Glassborne Echo—you've earned a permanent place in our field logs.",
+        "choices": []
+      }
+    }
+  },
+  "quest": {
+    "id": "quest_playable_glass_survey",
+    "chapter": 1,
+    "title": "The Glass Cartographer's Survey",
+    "category": "side_story",
+    "region_id": "lumenport",
+    "district_id": "lumenport_arrival_square",
+    "giver_npc_id": "npc_cassi_mercer",
+    "prerequisites": {
+      "player_level": 1,
+      "completed_quests": ["quest_ch1_first_echo"]
+    },
+    "description": "Assist Field Cartographer Cassi Mercer by inspecting harmonic readings at Arrival Square and validating the survey via a Convergence duel at Duelist Plaza.",
+    "objectives": [
+      {
+        "id": "obj_speak_cassi",
+        "type": "talk_to_npc",
+        "target": "npc_cassi_mercer",
+        "count": 1,
+        "description": "Speak with Field Cartographer Cassi Mercer at the Arrival Square quay."
+      },
+      {
+        "id": "obj_survey_arrival",
+        "type": "visit_location",
+        "target": "lumenport_arrival_square",
+        "count": 1,
+        "description": "Survey the resonance fracture along Arrival Square sea-wall."
+      },
+      {
+        "id": "obj_duel_cassi",
+        "type": "win_duel",
+        "target": "npc_cassi_mercer",
+        "count": 1,
+        "description": "Win a calibration duel against Cassi Mercer in Duelist Plaza."
+      }
+    ],
+    "rewards": {
+      "transaction_type": "quest_one_time_completion",
+      "transaction_id_prefix": "tx_quest_glass_survey_completion",
+      "crowns": 250,
+      "echo_dust": 75,
+      "xp_reward": 300,
+      "bonus_card_id": "GLS-C-0004",
+      "reputation_gain": 30,
+      "atomic_issuance": true,
+      "duplicate_rejection_policy": "strict_idempotency_reject_409"
+    }
+  },
+  "battle_encounter": {
+    "encounter_id": "enc_cassi_calibration_duel",
+    "opponent_npc_id": "npc_cassi_mercer",
+    "opponent_name": "Cassi Mercer",
+    "district_id": "lumenport_duelist_plaza",
+    "world_coordinates_3d": {
+      "scene": "res://scenes/world/lumenport_hub.tscn",
+      "x": 0.0,
+      "y": 0.7,
+      "z": 0.0,
+      "district_block": "Duelist Plaza Convergence Amphitheater"
+    },
+    "deck_id": "deck_glass_star_prism",
+    "deck_card_count": 40,
+    "difficulty": "intermediate",
+    "ai_profile": "defensive_ward_counterplay",
+    "environmental_rule": {
+      "rule_name": "Crystal Refraction: Center Lane +1 Health on summon",
+      "implementation_status": "pending_rust_engine_implementation",
+      "fallback_mode": "standard_1v1_convergence_rules",
+      "rust_coordination_note": "Custom ambient lane stat modifiers require rules engine hook in services/battle-server/src/lib.rs handle_summon_creature. Fallback executes standard 1v1 Convergence match without blocking gameplay."
+    }
+  },
+  "anti_exploit_and_progression_invariants": {
+    "separation_of_transactions": {
+      "rule": "Duel win payout (100 Crowns, 30 Dust) and Quest Completion payout (250 Crowns, 75 Dust, Card GLS-C-0004) are completely independent database ledger entries.",
+      "audit_guarantee": "Winning the calibration duel does not auto-complete the quest unless obj_speak_cassi and obj_survey_arrival have both been verified on the server."
+    },
+    "idempotency_assertion": "UPDATE player_quests SET status = 'completed', claimed_at = NOW() WHERE user_id = $1 AND quest_id = 'quest_playable_glass_survey' AND status = 'active';",
+    "duplicate_prevention": "If status is already 'completed', reward issuance query returns 0 rows updated, skipping wallet mutations and returning HTTP 409."
+  }
+}
